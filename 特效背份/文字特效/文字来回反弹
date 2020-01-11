@@ -1,0 +1,40 @@
+<!--脚本说明:
+第一步:把如下代码加入<body>区域中-->
+<SCRIPT LANGUAGE=JAVASCRIPT>
+// Declare all Local Variables Here
+Size2 = 42;
+Pos2 = Size2;
+Vel2 = 2;
+Dir2 = 2;
+Message2="我怕撞";
+Size2-=Message2.length;
+
+function Bouncer(){
+	Dir2==2 ? Pos2-=Vel2 : Pos2+=Vel2;
+   	if (Pos2 < 1){
+      		Dir2=1;
+     		Pos2=1;
+	}   
+	if (Pos2 > Size2){
+		Dir2=2;
+      		Pos2=Size2;
+      	}   
+	Space2 = "";
+	for (count=1; count<Pos2; count++){
+		Space2+= " ";
+	}   
+	document.PANEL2.Bar2.value = Space2 + Message2;
+   	setTimeout( 'Bouncer();', 100);
+}
+</SCRIPT>
+<FORM NAME=PANEL2>
+<INPUT Size=21 Name=Bar2 Value="*********************************************************************************">
+</FORM>
+
+
+
+
+<!--第二步:把如下代码加入<body>区域中-->
+<body  ONLOAD="Bouncer()">  
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

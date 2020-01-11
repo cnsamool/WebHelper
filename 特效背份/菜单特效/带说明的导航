@@ -1,0 +1,103 @@
+<script language="JavaScript">
+
+<!--
+function go_to_station(){
+        if (document.stationform.stationselect.options[0].selected){
+                window.location.href = "http://www.abctelevision.com";} 
+        else if (document.stationform.stationselect.options[1].selected)                
+        {       window.location.href = "http://www.cbs.com";}
+        else if (document.stationform.stationselect.options[2].selected)                
+        {       window.location.href = "http://www.nbc.com";}   
+        else if (document.stationform.stationselect.options[3].selected)                
+        {       window.location.href = "http://www.foxnetwork.com";}    
+        else if (document.stationform.stationselect.options[4].selected)                
+        {       window.location.href = "http://www.filmzone.com/SpaceGhost/cartoonnet.html";}   
+        else if (document.stationform.stationselect.options[5].selected)                
+        {       window.location.href = "http://www.discovery.com";}     
+        else if (document.stationform.stationselect.options[6].selected)                
+        {       window.location.href = "http://www.cs.brandeis.com";}   
+        else if (document.stationform.stationselect.options[7].selected)                
+        {       window.location.href = "http://www.qvc.com";}   
+        else if (document.stationform.stationselect.options[8].selected)                
+        {       window.location.href = "http://www.historychannel.com";}        
+        else if (document.stationform.stationselect.options[9].selected)                
+        {       window.location.href = "http://www.mtv.com";}   
+        else if (document.stationform.stationselect.options[10].selected)               
+        {       window.location.href = "http://www.cnn.com";}   
+        else if (document.stationform.stationselect.options[11].selected)               
+        {       window.location.href = "http://www.aetv.com";}  
+        else if (document.stationform.stationselect.options[12].selected)               
+        {       window.location.href = "http://www.amctv.com";} 
+        else if (document.stationform.stationselect.options[13].selected)               
+        {       window.location.href = "http://www.bravotv.com";}       
+        else if (document.stationform.stationselect.options[14].selected)               
+        {       window.location.href = "http://www.c-span.org";}        
+        else if (document.stationform.stationselect.options[15].selected)               
+        {       window.location.href = "http://www.comcentral.com";}
+        else if (document.stationform.stationselect.options[16].selected)               
+        {       window.location.href = "http://espnet.sportszone.com";} 
+        else if (document.stationform.stationselect.options[17].selected)               
+        {       window.location.href = "http://www.fxnetworks.com";}    
+        else if (document.stationform.stationselect.options[18].selected)               
+        {       window.location.href = "http://www.hbohomevideo.com";}  
+        else if (document.stationform.stationselect.options[19].selected)               
+        {       window.location.href = "http://www.scifi.com";} 
+        else if (document.stationform.stationselect.options[20].selected)               
+        {       window.location.href = "http://showtimeonline.com";}    
+        else if (document.stationform.stationselect.options[21].selected)               
+        {       window.location.href = "http://vh1.com";}       
+        else if (document.stationform.stationselect.options[22].selected)               
+        {       window.location.href = "http://www.weather.com";}       
+        else if (document.stationform.stationselect.options[23].selected)               
+        {       window.location.href = "http://www.disneychannel.com";} 
+        
+        return true;    
+        }
+
+function textValue(){   
+        var stationInteger, stationString       
+        stationInteger=document.stationform.stationselect.selectedIndex 
+        stationString=document.stationform.stationselect.options[stationInteger].text   
+        document.stationform.stationtext.value = "Go to " + stationString +"!"  }
+
+//-->
+
+</script>
+<form name="stationform">
+<select name="stationselect" onChange="textValue()" multiple size="5">
+<option>ABC
+<option>CBS
+<option>NBC
+<option>Fox
+<option>Cartoon Network
+<option>Discovery Channel
+<option>Warner Brothers Network
+<option>QVC
+<option>History Channel
+<option>MTV
+<option>CNN
+<option>A&E
+<option>American Movie Classics(AMC)
+<option>Bravo
+<option>C-SPAN
+<option>Comedy Central
+<option>ESPN
+<option>fX
+<option>HBO
+<option>Sci-Fi Channel
+<option>Showtime
+<option>VH-1
+<option>Weather Channel
+<option>Disney Channel
+</select>
+
+<br><p>
+<input type="button" name="stationbutton" value="Go!" onClick="go_to_station()">
+<p>
+<input type="text" name="stationtext" value="" size="35" maxlength="35">
+<p>
+</form>
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,44 @@
+PHP中有许多与文件系统有关的函数，这些函数不仅可以打开文件，还可以显示目录中的内容、移动文件和其他一些功能，许多人甚至用PHP开发基于互联网的文件资源管理器。  
+
+下面的脚本样例可以显示一个目录清单，注释已经包含在代码中：  
+
+＜? /把要读取的目录的全路径名存入一个名字为$dir_name的变量中。/ 
+$dir_name& 
+nbsp;= "/home/me/"; 
+/ 创建一个句柄，其值是打开一个给定目录的结果/ 
+$dir = opendir($dir_name); 
+/ 建立一个文字块，用以放置列表元素（文件名字）/ 
+$file_list = "＜ul＞"; 
+/ 使用一个while语句，读取已经打开的目录中的所有元素，如果文件的名字不是“.”或“..”，则显示列表中的名字/ 
+while ($file_name = readdir($dir)) { 
+if (($file_name != ".") &&&& ($file_name != "..")) { 
+$file_list .= "＜li＞$file_name"; 
+} 
+} 
+$file_list .= "＜/ul＞"; 
+/关闭打开的目录，结束PHP模块/ 
+closedir($dir); 
+?＞ 
+＜!-- Start your HTML --＞ 
+＜HTML＞ 
+＜HEAD＞ 
+＜TITLE＞Directory Listing＜/TITLE＞ 
+＜/HEAD＞ 
+＜BODY＞ 
+＜!-- Use PHP to print the name of the directory you read --＞ 
+＜P＞Files in: ＜? echo "$dir_name"; ?＞＜/p＞ 
+＜!-- Use PHP to print the directory listing --＞ 
+＜? echo "$file_list"; ?＞ 
+＜/BODY＞ 
+＜/HTML＞  
+
+好了，我们已经得到了一个目录清单。需要注意的是，要读取一个文件（稍后我们将进行讲解）或目录的内容，PHP运行的系统上的用户必须至少有读取文件的权限。  
+
+下面是一个如何拷贝文件的例子：  
+
+＜? /把你要拷贝的源文件的全路径赋给一个名字为$original的变量中，把拷贝的文件的全路径赋予一个名字为$copied的变量中/ 
+$original = "/home/me/mydatabasedump"; 
+$copied = "/archive/mydatabasedumo_1010"; 
+/ 使用copy()函数拷贝源文件，如果拷贝没有完成则会显示一个错误信息/ 
+@copy($original, $copied) or die("Couldn't copy file."); 
+?＞  

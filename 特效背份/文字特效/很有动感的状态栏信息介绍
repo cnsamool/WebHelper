@@ -1,0 +1,51 @@
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+var data = "0123456789";
+var done = 1;
+function statusIn(text) {
+decrypt(text, 2, 1);
+}
+
+function statusOut() {
+self.status = '';
+done = 1;
+}
+
+function decrypt(text, max, delay) {
+if (done) {
+done = 0;
+decrypt_helper(text, max, delay,  0, max);
+   }
+}
+function decrypt_helper(text, runs_left, delay, charvar, max) {
+if (!done) {
+runs_left = runs_left - 1;
+var status = text.substring(0, charvar);
+for (var current_char = charvar; current_char < text.length; current_char++) {
+status += data.charAt(Math.round(Math.random()*data.length));
+}
+window.status = status;
+var rerun = "decrypt_helper('" + text + "'," + runs_left + "," + delay + "," + charvar + "," + max + ");"
+var new_char = charvar + 1;
+var next_char = "decrypt_helper('" + text + "'," + max + "," + delay + "," + new_char + "," + max + ");"
+if(runs_left > 0) {
+setTimeout(rerun, delay);
+}
+else {
+if (charvar < text.length) {
+setTimeout(next_char, Math.round(delay*(charvar+3)/(charvar+1)));
+}
+else {
+done = 1;
+         }
+      }
+   }
+}
+//  End -->
+</script>
+
+<body>
+
+<p align="center">&nbsp;<a tppabs="http://lwjrj.126.net/" onMouseOver="statusIn('傻猫软件 http://samool.533.net');return true;" onMouseOut="statusOut();" href="#">请将鼠标悬停于此再看看下面</a>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

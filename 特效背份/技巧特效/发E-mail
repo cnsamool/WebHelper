@@ -1,0 +1,14 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把以下代码加到<body>中//-->
+<script language="JavaScript">
+function mailMe( form ) {   /*put some checks here*/   return true;}
+</script>
+<form name="email" method="POST" action="mailto:yourname@mail.com"onSubmit="return mailMe( this.form )" enctype="text/plain"> <b><p>YOUR NAME:</b><br>  <input type="text" name="SUBMITED BY" value size="30"><br>  <b>ENTER YOUR URL:</b><br> <input type="text" name="URL LOCATION" value="http://" size="30"><br>  <b>YOUR E-MAIL ADDRESS:</b><br>  <input type="text" name="EMAIL ADDRESS" value size="30"><br>  <b>YOUR COMMENTS:<br>  <textarea NAME="COMMENTS" ROWS="8" COLS="30" wrap="virtual"></textarea><br>  <input type="submit" value="Submit "><input type="reset" value="Reset"></p></form></b> 
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,81 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中//-->
+<form Name="InputForm">
+<div align="center"><center><p><script language="JavaScript">
+var FirstForm;
+function StartSearch()
+{
+document.forms[FirstForm+document.InputForm.SearchSelect.
+selectedIndex].elements[0].value=document.InputForm.SearchWords.value;
+document.forms[FirstForm+document.InputForm.SearchSelect.
+selectedIndex].submit();
+}
+</script><span style="font-size: 9pt">查找内容:</span><input name="SearchWords" type="text" size="21" style=" margin-left: 1px"><br>
+<span style="font-size: 9pt">搜索引擎:</span><select Name="SearchSelect" size="1" style="background-color: rgb(0,0,0); color: rgb(255,255,0)">
+<option selected>Yahoo </option>
+<option>InfoSeek </option>
+<option>altavista</option>
+<option value="Magellan">Magellan</option>
+<option value="Point ">Point </option>
+<option value="中文YAHOO">中文YAHOO</option>
+<option value="全球FTP资源搜索系统">全球FTP资源搜索系统</option>
+<option value="全球游戏资源搜索系统">全球游戏资源搜索系统</option>
+<option>Yeah中文搜索</option>
+<option>Cseek中文搜索</option>
+<option value="台湾绿世界中文搜索">台湾绿世界中文搜索</option>
+<option value="台湾番薯藤">台湾番薯藤</option>
+<option value="东方网景">东方网景</option>
+</select><br>
+<input type="button" value=" 开始查找 " onClick="StartSearch()"> <script language="JavaScript">
+FirstForm=document.forms.length
+</script></p>
+</center></div>
+</form>
+<form action="http://search.yahoo.com/bin/search?p=" method="get">
+<input type="hidden" name="p" value>
+</form>
+<form METHOD="GET" ACTION="http://www3.infoseek.com/Titles?qt=&col=WW&sv=IS&lk=noframes&nh=10">
+<input type="hidden" name="qt" value><input type="hidden" name="col" value="WW"><input type="hidden" name="sv" value="IS"><input type="hidden" name="lk" value="noframes"><input type="hidden" name="nh" value="10">
+</form>
+<form action="http://www.altavista.digital.com/cgi-bin/query?pg=q&what=web&q=?q=">
+<input type="hidden" name="q" value>
+</form>
+<form action="http://www.mckinley.com/searcher.cgi?query=?query=">
+<input type="hidden" name="query" value>
+</form>
+<form action="http://point.lycos.com/cgi-bin/pursuit?query=?query=">
+<input type="hidden" name="query" value>
+</form>
+<form action="http://search.chinese.yahoo.com/search/gb?p=" method="get">
+<input type="hidden" name="p" value>
+</form>
+<form action="http://ftpsearch.unit.no/ftpsearch?query=">
+<input type="hidden" name="query" value>
+</form>
+<form action="http://www.gamesdomain.com/cgi-bin/wwwwais?keywords=">
+<input type="hidden" name="keywords" value>
+</form>
+<form action="http://www.yeah.net/cgi-bin/search/search.cgi?key=">
+<input type="hidden" name="key" value>
+</form>
+<form action="http://www.cseek.com/homepage/cgi/srchengine.cgi?searchkey=">
+<input type="hidden" name="searchkey" value>
+</form>
+<form action="http://greenworld.com.tw/explorer/search.pl?Keywords=?Keywords=" tppabs="http://greenworld.com.tw/explorer/search.pl?Keywords=?Keywords=">
+<input type="hidden" name="Keywords" value>
+</form>
+<form action="http://search.yam.org.tw/b5/search/?k=">
+<input type="hidden" name="k" value>
+</form>
+<form action="http://www.orinet.cn.net/cgi-bin/yang/addlinks/searchlink.pl?keywords=">
+<input type="hidden" name="keywords" value>
+</form>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

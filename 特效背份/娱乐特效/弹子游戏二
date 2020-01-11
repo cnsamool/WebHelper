@@ -1,0 +1,171 @@
+
+<body bgcolor="#000000" text="#FFFFFF">
+<script language="JavaScript">
+<!--
+amount=9;
+ss=27;
+if (document.layers)PaddleHeight=window.innerHeight-15;
+else if (document.all)PaddleHeight=document.body.clientHeight-15;
+ypos=PaddleHeight-20;
+xpos=10;
+verticalbounce=0;
+horizontalbounce=0;
+degree = 315;
+speed=20;
+X=0;
+BufferY=-20;
+BufferX=-20;
+
+if (document.layers){
+document.write('<layer name=npaddle top='+PaddleHeight+' left=0 height=2 width=140 bgcolor=#00ff00"></layer>');
+window.captureEvents(Event.MOUSEMOVE);
+function MoveHandler(evnt){
+X = evnt.pageX-70;
+document.npaddle.left=X;
+}
+window.onMouseMove = MoveHandler;
+document.write("<layer name=ball top=0 left=0 height=20 width=20 bgcolor=#ffff00></layer>");
+a=-32;
+apos=new Array();
+for (i = 0; i < amount; i++)
+{
+apos[i] = a+=62;
+document.write('<layer name=naBox'+i+' top=33 left='+apos[i]+' height=60 width=60 bgcolor=#0000ff></layer>');
+document.write('<layer name=nbBox'+i+' top=95 left='+apos[i]+' height=60 width=60 bgcolor=#5555ff></layer>');
+document.write('<layer name=ncBox'+i+' top=157 left='+apos[i]+' height=60 width=60 bgcolor=#00aaff></layer>');
+}
+//alert(document.layers['naBox'+4].left)
+document.write('<layer name=nsb top=1 left=621 height='+(window.innerHeight-1)+' width='+(window.innerWidth-621)+' bgcolor=#FFFF00">'
++'<center><font face="Comic Sans MS" size=6 color=#ff0000>Break out</font></center><p>'
++'<center><layer name=nsc></layer><br><br><br><layer name=re></layer></center></layer>');
+}
+else if (document.all){
+document.body.style.cssText="overflow-x:hidden;overflow-y:scroll"
+document.write('<span id="paddle" style="position:absolute;top:'+PaddleHeight+';left:0px;font-size:2px;height:2px;width:140px;background:#00ff00"></span>');
+function Follow(){
+X=event.x-70;
+document.all.paddle.style.pixelLeft=X;
+}
+window.document.onmousemove = Follow;
+document.write("<div id='pOiNtErS' style='position:absolute;top:0px;left:0px'>"
++"<div id='me' style='position:relative;top:0px;left:0px'>"
++"<div style='position:absolute;top:0px;left:0px;height:20px;width:20px;background:#ffff00'></div>"
++"</div>"
++"</div>")
+a=-32;
+apos=new Array();
+for (i = 0; i < amount; i++)
+{
+apos[i] = a+=62; 
+document.write('<div id=aBox style="position:absolute;top:33px;left:'+apos[i]+'; height:60px; width:60px;background:#0000ff"></div>');
+document.write('<div id=bBox style="position:absolute;top:95px;left:'+apos[i]+'; height:60px; width:60px;background:#5555ff"></div>');
+document.write('<div id=cBox style="position:absolute;top:157px;left:'+apos[i]+';height:60px; width:60px;background:#00aaff"></div>');
+}
+document.write('<div id=sb style="position:absolute;top:1px;left:621px; height:'+(document.body.clientHeight-1)+';width:'+(document.body.clientWidth-621)+';font-family:Comic Sans MS;font-size:20px;color:#ff0000;background:#FFFF00">'
++'<center>敲砖头游戏<p><table width=90% border=0><tr align=center><td width=70%><font face="Comic Sans MS" size=2 color=#ff0000>加油呀，还剩下砖头数为</font></td><td><div id=sc style="position:relative"></div></td></tr><tr align=center><td height=100 valign=bottom colspan=2>'
++'<div id=esc style="position:relative"></div></td></tr></table></center></div>');
+}
+
+function MoveIt(){
+y = Math.round(speed*Math.sin(degree*Math.PI/180));
+x = Math.round(speed*Math.cos(degree*Math.PI/180));
+xpos+=x
+ypos+=y
+verticalbounce=180-degree;
+horizontalbounce=0-degree;
+T=setTimeout('MoveIt()',10);
+if (document.layers){
+var npy=document.npaddle.top;
+var npx=document.npaddle.left;
+if ((ypos+speed >= npy) && (xpos+speed >= npx) && (xpos+speed <= npx+20)) degree=225;
+if ((ypos+speed >= npy) && (xpos+speed >= npx+20) && (xpos+speed <= npx+40)) degree=240;
+if ((ypos+speed >= npy) && (xpos+speed >= npx+40) && (xpos+speed <= npx+60)) degree=255;
+if ((ypos+speed >= npy) && (xpos+speed >= npx+60) && (xpos <= npx+80)) degree=270;
+if ((ypos+speed >= npy) && (xpos >= npx+80) && (xpos <= npx+100)) degree=285;
+if ((ypos+speed >= npy) && (xpos >= npx+100) && (xpos <= npx+120)) degree=300;
+if ((ypos+speed >= npy) && (xpos >= npx+120) && (xpos <= npx+140)) degree=315;
+
+if ((xpos+speed > document.nsb.left) || (xpos < 0)) degree = verticalbounce;
+if (ypos < 0)degree=horizontalbounce;
+if ((xpos < 0) && (ypos < 0)) degree = 45;
+if ((xpos+speed > document.nsb.left) && (ypos < 0)) degree = 135;
+for (i = 0; i < amount; i++)
+{
+if ((ypos+20 >= document.layers['naBox'+i].top) && (ypos <= document.layers['naBox'+i].top+60) && (xpos+20 >= document.layers['naBox'+i].left) && (xpos <= document.layers['naBox'+i].left+60) && 
+(document.layers['naBox'+i].visibility !='hide')) 
+{degree=horizontalbounce;document.layers['naBox'+i].visibility='hide';ss-=1}
+if ((ypos+20 >= document.layers['nbBox'+i].top) && (ypos <= document.layers['nbBox'+i].top+60) && (xpos+20 >= document.layers['nbBox'+i].left) && (xpos <= document.layers['nbBox'+i].left+60) && 
+(document.layers['nbBox'+i].visibility !='hide')) 
+{degree=horizontalbounce;document.layers['nbBox'+i].visibility='hide';ss-=1}
+if ((ypos+20 >= document.layers['ncBox'+i].top) && (ypos <= document.layers['ncBox'+i].top+60) && (xpos+20 >= document.layers['ncBox'+i].left) && (xpos <= document.layers['ncBox'+i].left+60) && 
+(document.layers['ncBox'+i].visibility !='hide')) 
+{degree=horizontalbounce;document.layers['ncBox'+i].visibility='hide';ss-=1}
+}
+document.layers.nsb.document.layers.nsc.document.open();
+document.layers.nsb.document.layers.nsc.document.write('<center><font face="Comic Sans MS" size=3 color=#ff0000>Blocks Left '+ss+'</font></center>');
+document.layers.nsb.document.layers.nsc.document.close();
+if (ss==0)
+{
+clearTimeout(T);
+document.layers.nsb.document.layers.re.document.open();
+document.layers.nsb.document.layers.re.document.write('<center><font face="Comic Sans MS" size=3 color=#ff0000>You Win</font><form><input type=button value="Restart" onClick="window.location.reload()"></form></center>');
+document.layers.nsb.document.layers.re.document.close();
+}
+if (ypos >= document.npaddle.top)
+{
+clearTimeout(T);
+document.layers.nsb.document.layers.re.document.open();
+document.layers.nsb.document.layers.re.document.write('<center><font face="Comic Sans MS" size=3 color=#ff0000>You Lose</font><form><input type=button value="Restart" onClick="window.location.reload()"></form></center>');
+document.layers.nsb.document.layers.re.document.close();
+}
+document.ball.top=ypos;
+document.ball.left=xpos;
+}
+else if (document.all){
+var py=document.all.paddle.style.pixelTop;
+var px=document.all.paddle.style.pixelLeft;
+if ((ypos+speed >= py) && (xpos+speed >= px) && (xpos+speed <= px+20)) degree=225;
+if ((ypos+speed >= py) && (xpos+speed >= px+20) && (xpos+speed <= px+40)) degree=240;
+if ((ypos+speed >= py) && (xpos+speed >= px+40) && (xpos+speed <= px+60)) degree=255;
+if ((ypos+speed >= py) && (xpos+speed >= px+60) && (xpos <= px+80)) degree=270;
+if ((ypos+speed >= py) && (xpos >= px+80) && (xpos <= px+100)) degree=285;
+if ((ypos+speed >= py) && (xpos >= px+100) && (xpos <= px+120)) degree=300;
+if ((ypos+speed >= py) && (xpos >= px+120) && (xpos <= px+140)) degree=315;
+
+if ((xpos+speed > document.all.sb.style.pixelLeft) || (xpos < 0)) degree = verticalbounce;
+if (ypos < 0)degree=horizontalbounce;
+if ((xpos < 0) && (ypos < 0)) degree = 45;
+if ((xpos+speed > document.all.sb.style.pixelLeft) && (ypos < 0)) degree = 135;
+
+for (i = 0; i < amount; i++)
+{
+var aie=document.all.aBox,taie=document.all.aBox[i].style.pixelTop,laie=document.all.aBox[i].style.pixelLeft;
+var bie=document.all.bBox,tbie=document.all.bBox[i].style.pixelTop,lbie=document.all.bBox[i].style.pixelLeft;
+var cie=document.all.cBox,tcie=document.all.cBox[i].style.pixelTop,lcie=document.all.cBox[i].style.pixelLeft;
+if ((ypos+20 >= taie) && (ypos <= taie+60) && (xpos+20 >= laie) && (xpos <= laie+60) && 
+(aie[i].style.visibility !='hidden')) 
+{degree=horizontalbounce;aie[i].style.visibility='hidden';ss-=1}
+if ((ypos+20 >= tbie) && (ypos <= tbie+60) && (xpos+20 >= lbie) && (xpos <= lbie+60) && 
+(bie[i].style.visibility !='hidden')) 
+{degree=horizontalbounce;bie[i].style.visibility='hidden';ss-=1}
+if ((ypos+20 >= tcie) && (ypos <= tcie+60) && (xpos+20 >= lcie) && (xpos <= lcie+60) && 
+(cie[i].style.visibility !='hidden')) 
+{degree=horizontalbounce;cie[i].style.visibility='hidden';ss-=1}
+}
+document.all.sc.innerHTML='<font face="Comic Sans MS" size=3 color=#ff0000>'+ss+'</font>';
+if (ss==0){clearTimeout(T);document.all.esc.innerHTML='<font face="Comic Sans MS" size=3 color=#ff0000>敲砖头</font><form><input type=button value="按此游戏开始" onClick="window.location.reload()"></form>'}
+if (ypos >= document.all.paddle.style.pixelTop)
+{clearTimeout(T);document.all.esc.innerHTML='<font face="Comic Sans MS" size=3 color=#ff0000>块</font><form><input type=button value="按此游戏开始" onClick="window.location.reload()"></form>'}
+pOiNtErS.all.me.all[0].style.top=ypos+document.body.scrollTop;
+pOiNtErS.all.me.all[0].style.left=xpos+document.body.scrollLeft;
+}
+}//end function
+if (document.layers||document.all){
+window.onresize = new Function("window.location.reload()");
+MoveIt();
+}
+//-->
+</script>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

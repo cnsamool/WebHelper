@@ -1,0 +1,47 @@
+    创建一个关联数组元素最简单的方法是赋值，如语句$fruit{"bananas"} = 1； 把1赋给关联数组%fruit下标为bananas的元素，如果该元素不存在，则被创建，如果数组%fruit从未使用过，也被创建。 
+这一特性使得关联数组很容易用于计数。下面我们用关联数组改写上面的程序，注意实现同样的功能此程序简化了许多。 
+
+1 : #!/usr/local/bin/perl 
+2 : 
+3 : while ($inputline = ) { 
+4 : while ($inputline =~ /b[A-Z]S+/g) { 
+5 : $word = $&; 
+6 : $word =~ s/[;.,:-]$//; # remove punctuation 
+7 : $wordlist{$word} += 1; 
+8 : } 
+9 : } 
+10: print ("Capitalized words and number of occurrences:n"); 
+11: foreach $capword (keys(%wordlist)) { 
+12: print ("$capword: $wordlist{$capword}n"); 
+13: } 
+
+    运行结果如下： 
+
+Here is a line of Input. 
+This Input contains some Capitalized words. 
+^D 
+Capitalized words and number of occurrences: 
+This: 1 
+Input: 2 
+Here: 1 
+Capitalized: 1 
+
+    你可以看到，这次程序简单多了，读取输入并存贮各单词数目从20行减少到了7行。本程序用关联数组%wordlist跟踪首字母大写的单词，下标就用单词本身，元素值为该单词出现的次数。第11行使用了内嵌函数keys()。这个函数返回关联数组的下标列表，foreach语句就用此列表循环。 
+注：关联数组总是随机存贮的，因此当你用keys()访问其所有元素时，不保证元素以任何顺序出现，特别值得一提的是，它们不会以被创建的顺序出现。 
+要想控制关联数组元素出现的次序，可以用sort()函数对keys()返回值进行排列，如： 
+
+foreach $capword (sort keys(%wordlist)) { 
+print ("$capword: $wordlist{$capword}n"); 
+} 　 
+
+    创建关联数组
+
+　　可以用单个赋值语句创建关联数组，如： 
+%fruit = ("apples",17,"bananas",9,"oranges","none"); 
+此语句创建的关联数组含有下面三个元素： 
+
+下标为apples的元素，值为17 
+下标为bananas的元素，值为9 
+下标为oranges的元素，值为none 
+注：用列表给关联数组赋值时，Perl5允许使用"=>"或","来分隔下标与值，用"=>"可读性更好些，上面语句等效于： 
+%fruit = ("apples"=>17,"bananas"=>9,"oranges"=>"none");

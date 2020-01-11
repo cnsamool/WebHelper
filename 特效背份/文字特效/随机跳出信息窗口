@@ -1,0 +1,59 @@
+<!--脚本说明：
+把如下代码加入<body>区域中:-->
+<SCRIPT LANGUAGE="JavaScript">
+function generateRandomNumber() {
+    var tempString = ""
+    tempString += Math.random() * 100000
+    return tempString.substring(2,3)
+}
+config='toolbar=no,location=no,directories=no,status=no,menubar=no,width=300,height=150'
+
+config += 'scrollbars=no,resizable=no'
+output = window.open ("","outputwindow",config)
+output.document.write('<title>每日一贴</title>');
+output.document.write('<BODY bgcolor=#000066  text=#cccccc>');
+output.document.write('<center><big>《网页助手》随机信息</big>');
+output.document.write('<hr><br><p>');
+if (generateRandomNumber()=="1")
+ {output.document.write('网页助手 你的朋友');
+        output.document.write('<br><br><br><br><br><br>')}
+if (generateRandomNumber()=="2")
+ {output.document.write('《网页助手》收集了近800个特效！.');
+        output.document.write('<br><br><br><br><br><br>')}
+if (generateRandomNumber()=="3")
+ {output.document.write('《网页助手》是你制作主页的好工具！');
+        output.document.write('<br><br><br><br><br><br>')}
+if (generateRandomNumber()=="4")
+ {output.document.write('欢迎光临傻猫软件http://samool.533.net');
+        output.document.write('<br><br><br><br><br><br>')}
+if (generateRandomNumber()=="5")
+ {output.document.write('《网页助手》支持目前所有windows操作系统' + generateRandomNumber());
+ output.document.write('>');
+        output.document.write('<br><br><br><br><br><br>')}
+if (generateRandomNumber()=="6")
+ {output.document.write('傻猫网欢迎你！' + generateRandomNumber());
+ output.document.write('>');
+        output.document.write('<br><br><br><br><br><br>')}
+if (generateRandomNumber()=="7")
+ {output.document.write('Http://samool.533.com' + generateRandomNumber());
+ output.document.write('>');
+        output.document.write('<br><br><br><br><br><br>')}
+if (generateRandomNumber()=="8")
+ {output.document.write('网页助手   雁去无声版权所有' + generateRandomNumber());
+ output.document.write('>');
+        output.document.write('<br><br><br><br><br><br>')}
+if (generateRandomNumber()=="9")
+ {output.document.write('Welcome to http://samool.533.net' + generateRandomNumber());
+ output.document.write('>');
+        output.document.write('<br><br><br><br><br><br>')}
+if (generateRandomNumber()=="0")
+ {output.document.write('感觉好用的话，请向你的朋友推荐，傻猫不胜感激你！' + generateRandomNumber());
+ output.document.write('>');
+        output.document.write('<br><br><br><br><br><br>');}
+else
+ {output.document.write('升级主站：http://samool.533.net');
+        output.document.write('<br><br><br><br><br><br>')}
+
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

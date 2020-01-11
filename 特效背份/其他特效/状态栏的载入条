@@ -1,0 +1,26 @@
+<script language="VBScript">
+<!--
+Dim Bar, Line, SP
+Bar = 0
+Line = "|"
+SP = 100
+Function Window_onLoad()
+Bar = 95
+SP = 10
+End Function
+Function Count()
+If Bar < 100 Then
+Bar = Bar + 1
+Window.Status = "页面载入状态：" & Bar & "%" & " " & String(Bar, Line)
+setTimeout "Count()", SP
+Else
+Window.Status = "页面载入状态：完成！"
+Document.Body.Style.Display = ""
+End If
+End Function
+Call Count()
+-->
+
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

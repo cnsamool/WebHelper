@@ -1,0 +1,43 @@
+<SCRIPT LANGUAGE="JavaScript">
+
+<!-- Begin
+function checkAll() {
+for (var j = 1; j <= 9; j++) {
+box = eval("document.checkboxform.C" + j); 
+if (box.checked == false) box.checked = true;
+   }
+}
+
+function uncheckAll() {
+for (var j = 1; j <= 9; j++) {
+box = eval("document.checkboxform.C" + j); 
+if (box.checked == true) box.checked = false;
+   }
+}
+
+function switchAll() {
+for (var j = 1; j <= 9; j++) {
+box = eval("document.checkboxform.C" + j); 
+box.checked = !box.checked;
+   }
+}
+//  End -->
+</script>
+<form name=checkboxform>
+<input type=checkbox name=C1 checked>C1<br>
+<input type=checkbox name=C2 checked>C2<br>
+<input type=checkbox name=C3 checked>C3<br>
+<input type=checkbox name=C4 checked>C4<br>
+<input type=checkbox name=C5 checked>C5<br>
+<input type=checkbox name=C6 checked>C6<br>
+<input type=checkbox name=C7 checked>C7<br>
+<input type=checkbox name=C8 checked>C8<br>
+<input type=checkbox name=C9 checked>C9<br>
+<br>
+<input type=button value="全部选中" onClick="checkAll()"><br>
+<input type=button value="全部不选" onClick="uncheckAll()"><br>
+<input type=button value="选择转换" onClick="switchAll()"><br>
+</form>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

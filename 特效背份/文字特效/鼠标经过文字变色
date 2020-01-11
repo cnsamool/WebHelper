@@ -1,0 +1,10 @@
+<!--脚本说明:
+把如下代码加入<body>区域中-->
+<p onMouseMove="hello()">鼠标经过时就会变色的文本</p>
+                  <script language="VBScript">
+sub hello
+document.fgColor=int(256*256*256*rnd)
+end sub
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

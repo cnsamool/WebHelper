@@ -1,0 +1,64 @@
+<!--在你的HTML文件的<head>和</head>之间加上以下代码:-->
+<script language="javascript"> 
+var Temp;
+var TimerId = null;
+var TimerRunning = false;
+Seconds = 0
+Minutes = 0
+Hours = 0
+function showtime() 
+{
+if(Seconds >= 59) 
+{
+Seconds = 0
+if(Minutes >= 59) 
+{
+Minutes = 0
+if(Hours >= 23) 
+{
+Seconds = 0
+Minutes = 0
+Hours = 0
+} 
+else { 
+++Hours 
+}
+} 
+else { 
+++Minutes 
+}
+} 
+else { 
+++Seconds 
+}
+if(Seconds != 1) { var ss="s" } else { var ss="" }
+if(Minutes != 1) { var ms="s" } else { var ms="" }
+if(Hours != 1) { var hs="s" } else { var hs="" }
+Temp = '你在本页停留了 '+Hours+' 小时'+', '+Minutes+' 分'+', '+Seconds+' 秒'+''
+window.status = Temp;
+TimerId = setTimeout("showtime()", 1000);
+TimerRunning = true;
+}
+var TimerId = null;
+var TimerRunning = false;
+function stopClock() {
+if(TimerRunning) 
+clearTimeout(TimerId);
+TimerRunning = false;
+}
+function startClock() {
+stopClock();
+showtime();
+}
+function stat(txt) {
+window.status = txt;
+setTimeout("erase()", 2000);
+}
+function erase() {
+window.status = "";
+}
+
+</script>
+<body onLoad="startClock()">
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

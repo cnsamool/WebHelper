@@ -1,0 +1,48 @@
+<script LANGUAGE="JavaScript">
+var hex = new Array(6)
+hex[0] = "FF"
+hex[1] = "CC"
+hex[2] = "99"
+hex[3] = "66"
+hex[4] = "33"
+hex[5] = "00"
+function display(triplet) {
+        document.bgColor = '#' + triplet
+        alert('现在的背景颜色是 #' + triplet)
+}
+function drawCell(red, green, blue) {
+        document.write('<TD BGCOLOR="#' + red + green + blue + '">')
+        document.write('<A HREF="javascript:display(\'' + (red + green + blue) + '\')">')
+        document.write('<IMG SRC="place11.gif" BORDER=0 HEIGHT=12 WIDTH=12>')
+        document.write('</A>')
+        document.write('</TD>')
+}
+
+function drawRow(red, blue) {
+        document.write('<TR>')
+        for (var i = 0; i < 6; ++i) {
+                drawCell(red, hex[i], blue)
+        }
+        document.write('</TR>')
+}
+function drawTable(blue) {
+        document.write('<TABLE CELLPADDING=0 CELLSPACING=0 BORDER=0>')
+        for (var i = 0; i < 6; ++i) {
+                drawRow(hex[i], blue)
+        }
+        document.write('</TABLE>')
+}
+function drawCube() {
+        document.write('<TABLE CELLPADDING=5 CELLSPACING=0 BORDER=1><TR>')
+        for (var i = 0; i < 6; ++i) {
+                document.write('<TD BGCOLOR="#FFFFFF">')
+                drawTable(hex[i])
+                document.write('</TD>')
+        }
+        document.write('</TR></TABLE>')
+}
+drawCube()
+// -->
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

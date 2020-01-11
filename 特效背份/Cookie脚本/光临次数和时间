@@ -1,0 +1,829 @@
+<!--脚本说明:
+第一步:把如下代码加入<body>区域中-->
+<SCRIPT language="JavaScript"><!--
+function getCookieVal (offset) 
+   {
+   var endstr = document.cookie.indexOf (";", offset);
+   if (endstr == -1)
+      endstr = document.cookie.length;
+   return unescape(document.cookie.substring(offset, endstr));
+   }
+function GetCookie (name) 
+   {
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen) 
+      {
+
+      var j = i + alen;
+
+      if (document.cookie.substring(i, j) == arg)
+
+         return getCookieVal (j);
+
+      i = document.cookie.indexOf(" ", i) + 1;
+
+      if (i == 0) 
+
+         break; 
+
+
+
+      }
+
+
+
+   return null;
+
+
+
+   }
+
+
+
+function SetCookie (name, value) 
+
+
+
+   {
+
+
+
+   var argv = SetCookie.arguments;
+
+
+
+   var argc = SetCookie.arguments.length;
+
+
+
+   var expires = (2 < argc) ? argv[2] : null;
+
+
+
+   var path = (3 < argc) ? argv[3] : null;
+
+
+
+   var domain = (4 < argc) ? argv[4] : null;
+
+
+
+   var secure = (5 < argc) ? argv[5] : false;
+
+
+
+   document.cookie = name + "=" + escape (value) +
+
+
+
+     ((expires == null) ? "" : ("; expires=" + expires.toGMTString())) +
+
+
+
+     ((path == null) ? "" : ("; path=" + path)) +
+
+
+
+     ((domain == null) ? "" : ("; domain=" + domain)) +
+
+
+
+	((secure == true) ? "; secure" : "");
+
+
+
+   }
+
+
+
+function ResetCounts(name)
+
+
+
+   {
+
+
+
+   visits = 0;
+
+
+
+   SetCookie("visits", visits, expdate , "java2000.wol.com.html", null, false);
+
+
+
+   location.reload();
+
+
+
+   }
+
+
+
+//-->
+
+
+
+</SCRIPT><br><SCRIPT language="JavaScript"><!--
+
+
+
+var expdate = new Date();
+
+
+
+
+
+
+
+var visits;
+
+
+
+
+
+
+
+// Set expiration date to a year from now.
+
+
+
+
+
+
+
+expdate.setTime(expdate.getTime() +  (24 * 60 * 60 * 1000 * 365)); 
+
+
+
+
+
+
+
+if(!(visits = GetCookie("visits"))) 
+
+
+
+
+
+
+
+   visits = 0;
+
+
+
+
+
+
+
+visits++;
+
+
+
+
+
+
+
+SetCookie("visits", visits, expdate, "java2000.wol.com.html", null, false);
+
+
+
+
+
+
+
+   if(visits == 1) 
+
+
+
+
+
+
+
+      document.write('<P><CENTER>Welcome Cadet '+username+'</CENTER>');
+
+
+
+
+
+
+
+   if(visits == 2) 
+
+
+
+
+
+
+
+      document.write('<P><CENTER>Welcome Ensign '+username+'</CENTER>');
+
+
+
+
+
+
+
+   if(visits == 3) 
+
+
+
+
+
+
+
+      document.write('<P><CENTER>Welcome Lieutenant '+username+'</CENTER>');
+
+
+
+
+
+
+
+   if(visits == 4) 
+
+
+
+
+
+
+
+      document.write('<P><CENTER>Welcome Lieutenant-Commander '+username+'</CENTER>');
+
+
+
+
+
+
+
+   if(visits == 5) 
+
+
+
+
+
+
+
+      document.write('<P><CENTER>Welcome Commander '+username+'</CENTER>');
+
+
+
+
+
+
+
+   if(visits == 6) 
+
+
+
+
+
+
+
+      document.write('<P><CENTER>Welcome Vice-Admiral '+username+'</CENTER>');
+
+
+
+
+
+
+
+   if(visits == 7) 
+
+
+
+
+
+
+
+      document.write('<P><CENTER>Welcome Admiral '+username+'</CENTER>');
+
+
+
+
+
+
+
+   if(visits== 8) 
+
+
+
+
+
+
+
+      document.write('<P><CENTER>Welcome Demi-God '+username+'</CENTER>');
+
+
+
+
+
+
+
+   if(visits== 9) 
+
+
+
+
+
+
+
+      document.write('<P><CENTER>Welcome Demi-God '+username+'</CENTER>');
+
+
+
+
+
+
+
+   if(visits>=10) 
+
+
+
+
+
+
+
+      document.write('<P><CENTER>Welcome Master '+username+'</CENTER>');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-->
+
+
+
+
+
+
+
+</SCRIPT><br>
+
+
+
+
+
+
+
+<FONT FACE=ARIAL size="2">
+
+
+
+
+
+
+
+<b>Your access was granted from
+
+
+
+<SCRIPT language="javascript">document.write(document.referrer)</SCRIPT><br>
+
+
+
+Using <SCRIPT language="javascript">document.write(navigator.userAgent)</SCRIPT>
+
+
+
+</b></font><br><SCRIPT language="JavaScript"><!--
+
+
+
+var expdate = new Date();
+
+
+
+
+
+
+
+var visits;
+
+
+
+
+
+
+
+expdate.setTime(expdate.getTime() +  (24 * 60 * 60 * 1000 * 365)); 
+
+
+
+
+
+
+
+if(!(visits = GetCookie("visits"))) 
+
+
+
+
+
+
+
+   visits = 0;
+
+
+
+
+
+
+
+visits++;
+
+
+
+
+
+
+
+SetCookie("visits", visits, expdate, "www.njcatv.net.html", null, false);
+
+
+
+
+
+
+
+document.write(""+"你已经光临本页"+visits+" 次了.谢谢!");
+
+
+
+
+
+
+
+
+
+
+
+//-->
+
+
+
+
+
+
+
+</SCRIPT><br>
+
+
+
+You arrived at <br><SCRIPT language="JavaScript"><!--
+
+
+
+Stamp = new Date();
+
+
+
+	var Hours;
+
+
+
+	var Mins;
+
+
+
+	var Time;
+
+
+
+	Hours = Stamp.getHours();
+
+
+
+	if (Hours >= 12) {
+
+
+
+	        Time = " P.M.";
+
+
+
+	}
+
+
+
+        else {
+
+
+
+                Time = " A.M.";
+
+
+
+        }
+
+
+
+	
+
+
+
+	if (Hours > 12) {
+
+
+
+        	Hours -= 12;
+
+
+
+        }
+
+
+
+	if (Hours == 0) {
+
+
+
+        	Hours = 12;
+
+
+
+        }
+
+
+
+	Mins = Stamp.getMinutes();
+
+
+
+	if (Mins < 10) {
+
+
+
+        	Mins = "0" + Mins;
+
+
+
+        }
+
+
+
+	
+
+
+
+	document.write('<font size="2" face="Arial"><B>' + Hours + ":" + Mins + Time + '</B></font>');
+
+
+
+//-->
+
+
+
+
+
+
+
+</SCRIPT><br>
+
+
+
+The current time is:<br><SCRIPT language="JavaScript"><!--
+
+
+
+function goback(){
+
+
+
+alert("Good Bye!");
+
+
+
+history.go(-1);
+
+
+
+}
+
+
+
+function gettheDate() {
+
+
+
+Todays = new Date();
+
+
+
+TheDate = "" + (Todays.getMonth()+ 1) +" / "+ Todays.getDate() + " / " + 
+
+
+
+Todays.getYear() 
+
+
+
+document.clock.date.value = TheDate;
+
+
+
+}
+
+
+
+// Navigation - Stop
+
+
+
+// Netscapes Clock - Start
+
+
+
+// this code was taken from Netscapes JavaScript documentation at
+
+
+
+// www.netscape.com on Jan.25.96
+
+
+
+
+
+
+
+var timerID = null;
+
+
+
+var timerRunning = false;
+
+
+
+function stopclock (){
+
+
+
+        if(timerRunning)
+
+
+
+                clearTimeout(timerID);
+
+
+
+        timerRunning = false;
+
+
+
+}
+
+
+
+
+
+
+
+function startclock () {
+
+
+
+        // Make sure the clock is stopped
+
+
+
+        stopclock();
+
+
+
+        gettheDate()
+
+
+
+        showtime();
+
+
+
+}
+
+
+
+
+
+
+
+function showtime () {
+
+
+
+        var now = new Date();
+
+
+
+        var hours = now.getHours();
+
+
+
+        var minutes = now.getMinutes();
+
+
+
+        var seconds = now.getSeconds()
+
+
+
+        var timeValue = "" + ((hours >12) ? hours -12 :hours)
+
+
+
+        timeValue += ((minutes < 10) ? ":0" : ":") + minutes
+
+
+
+        timeValue += ((seconds < 10) ? ":0" : ":") + seconds
+
+
+
+        timeValue += (hours >= 12) ? " P.M." : " A.M."
+
+
+
+        document.clock.face.value = timeValue;
+
+
+
+        // you could replace the above with this
+
+
+
+        // and have a clock on the status bar:
+
+
+
+        // window.status = timeValue;
+
+
+
+        timerID = setTimeout("showtime()",1000);
+
+
+
+        timerRunning = true;
+
+
+
+}
+
+
+
+//-->
+
+
+
+
+
+
+
+</SCRIPT><br><form name="clock" onSubmit="0">
+
+
+
+<div align=center>
+
+
+
+<b><font size="-1"></font></b>
+
+
+
+<input type="text" name="date" size=12 value="">
+
+
+
+<input type="text" name="face" size=12 value="">
+
+
+
+</div>
+
+
+
+</form>
+
+<!--第二步:把<body>改为-->
+
+
+
+<body bgcolor="#fef4d9" onLoad="startclock()"> 
+
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

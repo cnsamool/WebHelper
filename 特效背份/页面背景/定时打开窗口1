@@ -1,0 +1,13 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--将以下代码加到<body>中//-->
+<script language="javascript">function opencolortext(){window.open('http://fengyi.b6.to','colortext')}setTimeout("opencolortext()",5000)   //5000是时间
+</script>   
+<P>5秒钟后将自动打开新窗口</p> 
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

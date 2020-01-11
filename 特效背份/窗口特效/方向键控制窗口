@@ -1,0 +1,32 @@
+<script language="JavaScript">
+function movepage()
+{
+var direction =event.keyCode
+switch(direction){
+case 39:
+window.moveBy(15, 0);
+window.moveBy(0, 0);
+break
+case 37:
+window.moveBy(-15, 0);
+window.moveBy(0, 0);
+break
+case 38:
+window.moveBy(0, 0);
+window.moveBy(0, -15);
+break
+case 40:
+window.moveBy(0, 0);
+window.moveBy(0, 15);
+break
+default:
+break
+}
+}
+
+</script>
+<!--把“onLoad="top.window.focus()" onkeydown="movepage()"”加在<body>标记里-->
+<body onLoad="top.window.focus()" onkeydown="movepage()">
+方向键控制窗口移动
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

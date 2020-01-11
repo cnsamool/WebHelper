@@ -1,0 +1,91 @@
+<!--要完成此效果需要两个步骤-->
+
+<!--第一步：把如下代码加入到<body>区域中-->
+
+<style>
+body,td,a {font-size:9pt;color:black}
+.none{border:black 1px solid;background:D9D9D9;padding-top:2}
+.over {border:black 1px solid;background:707888;color:white;padding-top:2}
+</style>
+<div style="position:absolute; left: 100; top: 200; width: 1; height: 1;cursor: hand" ID=plane onmousedown="down=true;divleft=event.clientX-parseInt(plane.style.left);divtop=event.clientY-parseInt(plane.style.top)"onmouseup="down=false">
+<div align=center style="position:absolute; left:220px; top:3px; width:100px; height:19px; z-index:1;color:white;background:707888;cursor:move"onmouseover='stopTimerline();menuItemIn()' onmouseout='runTimerline()' class="none">可拖动的菜单</div>
+<div align=center id="item11" style="position:absolute; left:120px; top:25px; width:99px; height:19px; z-index:2; filter:alpha(opacity=0)" onmouseover="this.className='over';stopTimerline()"
+onmouseout="this.className='none';runTimerline()" class="none"
+>菜单项一</div>
+<div align=center id="item12" style="position:absolute; left:320px; top:47px; width:99px; height:19px; z-index:3;filter:alpha(opacity=0)"
+class=none onmouseover="this.className='over';stopTimerline()"
+onmouseout="this.className='none';runTimerline()">菜单项二</div>  <div align=center id="item13" style="position:absolute; left:120px; top:69px; width:99px; height:19px; z-index:4; filter:alpha(opacity=0)"
+class=none onmouseover="this.className='over';stopTimerline()"
+onmouseout="this.className='none';runTimerline()">菜单项三</div>
+<div align=center id="item14" style="position:absolute; left:320px; top:91px; width:99px; height:19px; z-index:5;filter:alpha(opacity=0)"
+class=none onmouseover="this.className='over';stopTimerline()"
+onmouseout="this.className='none';runTimerline()">菜单项四</div>  <div align=center id="item15" style="position:absolute; left:120px; top:113px; width:99px; height:19px; z-index:6; filter:alpha(opacity=0)"
+class=none onmouseover="this.className='over';stopTimerline()"
+onmouseout="this.className='none';runTimerline()">菜单项五</div>
+</div><script>
+//动画菜单
+var currTimerlinePoint=0
+var totalTimerlineFrames=2
+var timerlineTimer
+var leftLine = 50
+var timerIn
+var timerOut
+var timerlineArray = new Array()
+timerlineArray[0]=''
+timerlineArray[1]='menuItemOut()'
+function runTimerline()
+{
+window.timerlineTimer = setTimeout('menuItemOut()',500)
+}
+function stopTimerline()
+{
+clearTimeout(window.timerlineTimer)
+}
+function menuItemIn()
+{
+if( leftLine != 150)
+{
+item11.style.pixelLeft += 20; item11.filters.alpha.opacity += 20
+item12.style.pixelLeft -= 20; item12.filters.alpha.opacity += 20
+item13.style.pixelLeft += 20; item13.filters.alpha.opacity += 20
+item14.style.pixelLeft -= 20; item14.filters.alpha.opacity += 20
+item15.style.pixelLeft += 20; item15.filters.alpha.opacity += 20
+leftLine += 20
+}
+else
+{
+clearTimeout(window.timerIn)
+return false
+}
+timerIn=window.setTimeout('menuItemIn()',1)
+}
+function menuItemOut()
+{
+clearTimeout(window.timerIn)
+if (leftLine != 50)
+{
+item11.style.pixelLeft -= 20; item11.filters.alpha.opacity -= 20
+item12.style.pixelLeft += 20; item12.filters.alpha.opacity -= 20
+item13.style.pixelLeft -= 20; item13.filters.alpha.opacity -= 20
+item14.style.pixelLeft += 20; item14.filters.alpha.opacity -= 20
+item15.style.pixelLeft -= 20; item15.filters.alpha.opacity -= 20
+leftLine -= 20
+}
+else
+{
+clearTimeout(window.timerOut)
+return false;
+}
+timerOut=window.setTimeout("menuItemOut()",1)
+}
+self.moveTo(0,0)
+self.resizeTo(screen.availWidth,screen.availHeight)
+//移动层
+var over=false,down=false,divleft,divtop;function move(){if(down){plane.style.left=event.clientX-divleft;plane.style.top=event.clientY-divtop}}
+</script>
+
+
+<!--第二步：把“onmousemove="move()"”加在<body>标记里,例如：-->
+<body onmousemove="move()">
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

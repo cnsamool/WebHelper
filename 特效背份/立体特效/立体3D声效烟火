@@ -1,0 +1,14 @@
+<!--本特效需要firework.class和rocket.class和fire.au支持-->
+<!--C:\webhelpview\webhelpview 有这个三个文件,只有将这个三个文件同网页
+放在同一目录时才能显示特效-->
+
+<APPLET CODE="Firework.class" WIDTH="399" HEIGHT="349">
+<PARAM NAME="AnimationSpeed" VALUE="10">
+<PARAM NAME="RocketSoundtrack" VALUE="fire.au">
+<PARAM NAME="RocketStyleVariability" VALUE="10">
+<PARAM NAME="MaxRocketNumber" VALUE="9">
+<PARAM NAME="MaxRocketExplosionEnergy" VALUE="850">
+<PARAM NAME="MaxRocketPatchNumber" VALUE="90">
+<PARAM NAME="MaxRocketPatchLength" VALUE="68">
+<PARAM NAME="Gravity" VALUE="400">
+</applet>

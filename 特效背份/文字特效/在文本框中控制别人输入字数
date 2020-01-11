@@ -1,0 +1,24 @@
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+maxLen = 130; // max number of characters allowed
+
+function checkMaxInput(form) {
+if (form.message.value.length > maxLen) // if too long.... trim it!
+form.message.value = form.message.value.substring(0, maxLen);
+// otherwise, update 'characters left' counter
+else form.remLen.value = maxLen - form.message.value.length;
+}
+//  End -->
+</script>
+
+
+<form name=myform action="YOUR-SCRIPT.CGI">
+<font size="1" face="arial, helvetica, sans-serif"> ( You may enter up to 125 characters. )<br>
+<textarea name=message wrap=physical cols=28 rows=4 onKeyDown="checkMaxInput(this.form)" onKeyUp="checkMaxInput(this.form)"></textarea>
+<br>
+<input readonly type=text name=remLen size=3 maxlength=3 value="130"> characters left</font>
+</form>
+
+<!--±¾ÍøÒ³ÓÉ¡¶ÍøÒ³ÖúÊÖV1.1¡·ÖÆ×÷    °æÈ¨ËùÓĞ£ºÉµÃ¨Èí¼ş -->
+<!--Çë·ÃÎÊÉµÃ¨Èí¼ş¹Ù·½ÍøÕ¾   http://samool.533.net  -->

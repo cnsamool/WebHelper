@@ -1,0 +1,90 @@
+<%@LANGUAGE="VBSCRIPT"%> 
+<!--Êý¾Ý¿â±í 
+if exists (select * from dbo.sysobjects where id = object_id(N''[dbo].[Cat]'') and OBJECTPROPE 
+RTY(id, N''IsUserTable'') = 1) 
+drop table [dbo].[Cat] 
+GO 
+
+CREATE TABLE [dbo].[Cat] ( 
+[Cat_Id] [int] IDENTITY (1, 1) NOT NULL , 
+[Cat_Name] [nvarchar] (50) COLLATE Chinese_PRC_CI_AS NULL , 
+[Cat_Parent] [int] NULL  
+) ON [PRIMARY] 
+GO 
+--> 
+<% 
+MM_v2boy_STRING = "Driver={Microsoft Access Driver (*.mdb)};DBQ=d:\v2boy.mdb" 
+Dim rsCat__MMColParam 
+rsCat__MMColParam = "1" 
+if (Request.QueryString("Cat_Parent") <> "") then rsCat__MMColParam = Request.QueryString("Cat_Parent")(1)  
+''response.write request.querystring & "<hr>" & rsCat__MMColParam 
+''response.end 
+%> 
+<% 
+set rsCat = Server.CreateObject("ADODB.Recordset") 
+rsCat.ActiveConnection = MM_v2boy_STRING 
+rsCat.Source = "SELECT Cat_Id, Cat_Name, Cat_Parent FROM Cat WHERE Cat_Parent = " + Replace(rsCat__MMColParam, "''", "''''") + "" 
+rsCat.CursorType = 0 
+rsCat.CursorLocation = 2 
+rsCat.LockType = 3 
+rsCat.Open() 
+rsCat_numRows = 0 
+%> 
+<% 
+Dim Repeat1__numRows 
+Repeat1__numRows = -1 
+Dim Repeat1__index 
+Repeat1__index = 0 
+rsCat_numRows = rsCat_numRows + Repeat1__numRows 
+%> 
+<html> 
+<head> 
+<title>??¦Ì¦Ì¡Á¨º¨¢?</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"> 
+</head> 
+<body bgcolor="#FFFFFF" text="#000000"> 
+<% 
+dim request_all 
+IF request.querystring <> "" then request_all = "&" & request.querystring 
+%> 
+<table width="100%" border="0" cellspacing="1" cellpadding="4"> 
+<tr>  
+<td><a href="data.asp">??¦Ì¦Ì¡Á¨º¨¢?</a> 
+<%  
+dim i,j,h 
+j = Request.QueryString("Cat_Parent").Count 
+For i = 1 to j 
+''For i = j to 1 step -1 
+response.write "<a href=data.asp?" 
+for h = (j - i + 1) to j 
+''for h = j to (j - i + 1) step -1 
+Response.Write "Cat_Parent=" & Request.QueryString("Cat_Parent")(h) & "&Cat_Name=" & Request.QueryString("Cat_Name")(h) 
+if h <> j then 
+response.write("&") 
+end if 
+Next 
+''response.write "<br>" 
+response.write ">" & Request.QueryString("Cat_Name")(j-i+1) & "</a> " 
+Next 
+
+response.write "<br>" 
+
+While ((Repeat1__numRows <> 0) AND (NOT rsCat.EOF))  
+%> 
+<% If Not rsCat.EOF Or Not rsCat.BOF Then %> 
+<a href="data.asp?Cat_Parent=<%=(rsCat.Fields.Item("Cat_Id").Value)%>&Cat_Name=<%=(rsCat.Fields.Item("Cat_Name").Value)%><%=request_all%>"><%=(rsCat.Fields.Item("Cat_Name").Value)%></a>  
+<% End If '' end Not rsCat.EOF Or NOT rsCat.BOF %> 
+<%  
+Repeat1__index=Repeat1__index+1 
+Repeat1__numRows=Repeat1__numRows-1 
+rsCat.MoveNext() 
+Wend 
+%> 
+</td> 
+</tr> 
+</table> 
+</body> 
+</html> 
+<% 
+rsCat.Close() 
+%> 

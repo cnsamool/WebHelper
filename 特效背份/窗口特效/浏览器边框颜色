@@ -1,0 +1,9 @@
+<body>
+<script language="JavaScript1.2">
+if (document.all)
+document.body.style.cssText="border:10 ridge #FF0000"
+
+</script>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

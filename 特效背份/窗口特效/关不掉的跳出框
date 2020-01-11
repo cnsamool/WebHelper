@@ -1,0 +1,12 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中://-->
+<input type=button value=点我一下 onClick="var e=1;while(1==1){alert('谁叫你使那么大的劲，哼，我生气了，你关我啊。。你是关不掉我的!!!')}">
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

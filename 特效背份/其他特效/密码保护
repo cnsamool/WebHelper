@@ -1,0 +1,15 @@
+将以下代码加入HEML的<body></body>之间：
+<script LANGUAGE="JAVASCRIPT">
+<!--
+loopy()
+function loopy() {
+var sWord =""
+while (sWord != "welcome") { //改为您的密码！
+sWord = prompt("请输入正确的密码!现在密码为:welcome")
+}
+alert("AH...欢迎光临！")
+}
+//-->
+</script>  
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

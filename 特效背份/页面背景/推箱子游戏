@@ -1,0 +1,133 @@
+<script>
+var smapdata = new Array( 
+"11111111111111111111",
+"10000000000000000001",
+"10010000000000000001",
+"10010022000000000001",
+"11010000000000000301",
+"10010111110000003001",
+"10000001300000000301",
+"11111001000010000001",
+"10000001000000000001",
+"10000001000000111001",
+"10000000000000000001",
+"10000000011110000001",
+"10021200000000000001",
+"10000000000000000001",
+"11111111111111111111"
+)
+
+var mapData =new Array(15);
+var spriteX=0;
+    spriteY=0;
+var winbox=0;
+
+function readMap(){ //重建地图信息便于程序使用。
+  for(var i=0;i<15;i++){
+    mapData[i]=new Array(20);
+    for(var j=0;j<20;j++){
+      mapData[i][j]=smapdata[i].substr(j,1);
+    }
+  }
+}
+
+function CreateMap(){ //用dom来创建地图。
+var x=30;
+var y=30;
+var cbox=0;
+for (var i=0;i<15;i++){
+for (var j=0;j<20;j++){
+var oe=document.createElement("div");
+    oe.id="box"+i+"_"+j; //设定id规则以便后面程序访问。
+    oe.className="map"+mapData[i][j];
+    oe.style.pixelLeft=x;
+    oe.style.pixelTop=y;
+    gameArea.appendChild(oe);
+    x+=19;
+}
+y+=19;
+x=30;
+}
+}
+
+function move(dir){
+var dx=0;
+var dy=0;
+if(dir=="Left")  dx=-1;
+if(dir=="Right") dx=1;
+if(dir=="Up") dy=-1;
+if(dir=="Down") dy=1;
+    if(mapData[spriteY+dy][spriteX+dx]=="1" ) return;
+    if(mapData[spriteY+dy][spriteX+dx]=="2" ) {
+        if(mapData[spriteY+dy*2][spriteX+dx*2]=="0" || mapData[spriteY+dy*2][spriteX+dx*2]=="3"){
+        if(mapData[spriteY+dy*2][spriteX+dx*2]=="3"){
+                mapData[spriteY+dy*2][spriteX+dx*2]="1";
+                winbox++;
+                if(winbox==3) win();
+                }
+            else mapData[spriteY+dy*2][spriteX+dx*2]="2";
+        mapData[spriteY+dy][spriteX+dx]="0";
+        eval("box"+(spriteY+dy)+"_"+(spriteX+dx)).style.backgroundColor='#333333';
+        eval("box"+(spriteY+dy*2)+"_"+(spriteX+dx*2)).style.backgroundColor='#3333FF';
+        spriteX+=dx;
+        spriteY+=dy;
+        sprite.style.pixelLeft+=dx*19;       
+        sprite.style.pixelTop+=dy*19;       
+        }
+    }else{
+        spriteX+=dx;
+        spriteY+=dy;
+        sprite.style.pixelLeft+=dx*19;       
+        sprite.style.pixelTop+=dy*19;       
+    }
+}
+
+function win(){
+alert("OK  胜 利 !!!");
+}
+
+function fnKeydown(){
+var key=event.keyCode;
+switch(key){
+case 37:
+  move("Left");
+  break;
+case 39:
+  move("Right");
+  break;
+case 38:
+  move("Up");
+  break;
+case 40:
+  move("Down");
+  break;
+}
+return false;
+}
+
+function init(){
+readMap();
+CreateMap();
+sprite.style.pixelLeft=49;
+sprite.style.pixelTop=49;
+spriteX=1;
+spriteY=1;
+}
+
+document.onkeydown=fnKeydown;
+</script>
+
+<STYLE TYPE="text/css">
+.map0{position:absolute;border:1px solid #cococo;width:20;height:20;background-color:#333333}
+.map1{position:absolute;border:2px outset #FFFFFF;width:20;height:20;background-color:#999999}
+.map2{position:absolute;border:1px solid #4078B0;width:20;height:20;background-color:#3333FF}
+.map3{position:absolute;border:0px solid #999999;width:20;height:20;background-color:#006600}
+.box{position:absolute;border:1px outset #ffffff;width:20;height:20;background-color:#0000cc}
+}
+</STYLE>
+
+<body bgColor=#333333 onload="init()">
+<div id=gameArea></div>
+<div id="sprite" style="position:absolute"><img src="boxman.gif" height=20 width=20></div>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

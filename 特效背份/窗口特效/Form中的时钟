@@ -1,0 +1,52 @@
+
+<script language="JavaScript">
+
+<!--
+var timerID = null
+var timerRunning = false
+function stopclock(){
+    if(timerRunning)
+        clearTimeout(timerID)
+    timerRunning = false
+}
+
+function startclock(){
+    stopclock()
+    showtime()
+}
+
+function showtime(){
+    var now = new Date()
+    var hours = now.getHours()
+    var minutes = now.getMinutes()
+    var seconds = now.getSeconds()
+    var timeValue = "" + ((hours > 12) ? hours - 12 : hours)
+    timeValue  += ((minutes < 10) ? ":0" : ":") + minutes
+    timeValue  += ((seconds < 10) ? ":0" : ":") + seconds
+    if (hours>=6 && hours<=12)
+       {timeValue  += ("上午")}
+    if(hours>12 && hours<=18) 
+       {timeValue += ("下午")}
+    if(hours>18 && hours <=24)
+       {timeValue +=("晚上")}
+    if(hours<6) 
+       {timeValue += ("深夜")}
+    document.clock.face.value = timeValue 
+    timerID = setTimeout("showtime()",1000)
+    timerRunning = true
+}
+
+
+//-->
+</script>
+ <form method="POST" name="clock">
+                    <p> 
+                      <input type="text" name="face" size="11" style="font-size: 9pt">
+                    </p>
+                  </form>
+
+
+
+<body bgcolor="#fef4d9" onLoad="startclock();">
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

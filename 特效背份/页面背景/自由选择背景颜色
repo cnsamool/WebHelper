@@ -1,0 +1,30 @@
+<!--脚本说明:
+把如下代码加入<body>区域中-->
+<FORM>
+<SELECT Size=22 name=clr onChange="document.bgColor=this.options[this.selectedIndex].value">
+<OPTION VALUE="blue">blue
+<OPTION VALUE="aquamarine">aquamarine 
+<OPTION VALUE="chocolate">chocolate
+<OPTION VALUE="darkred">dark red
+<OPTION VALUE="gold">gold
+<OPTION VALUE="red">red
+<OPTION VALUE="yellow">yellow
+<OPTION VALUE="hotpink">hotpink
+<OPTION VALUE="lime">lime
+<OPTION VALUE="darkkhaki">dark khaki
+<OPTION VALUE="cadetblue ">cadet blue 
+<OPTION VALUE="darkgoldenrod">dark goldenrod
+<OPTION VALUE="darkslateblue">dark slate blue
+<OPTION VALUE="deeppink">deep pink
+<OPTION VALUE="darksalmon">dark salmon
+<OPTION VALUE="salmon">salmon
+<OPTION VALUE="tan">tan
+<OPTION VALUE="wheat">wheat
+<OPTION VALUE="tomato">tomato
+<OPTION VALUE="springgreen">springgreen
+<OPTION VALUE="turquoise">turquoise
+<OPTION VALUE="FFFFFF" SELECTED> White
+</select></form>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

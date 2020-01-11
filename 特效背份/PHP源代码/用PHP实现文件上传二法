@@ -1,0 +1,242 @@
+PHP(Hypertext Preprocessor)是一种 HTML 内嵌式的语言 (类似 IIS 上的ASP)。而 PHP 独特的语法混合了 C、Java、Perl 以及 PHP 式的新语法。它可以比 CGI 或者 Perl&nb 
+sp;更快速的执行动态网页。除此之外，用 PHP 写出来的 Web 后端CGI 程序，可以很轻易的移植到不同的系统平台上。  
+
+　　我们在做网站时，需要访问者的参于才能将网站建设得更加引人注目，这就要求我们从访问者那里得到文章、图片等。因此，文件上传成为网页中必不可少的功能。现在我就利用现在流行的编程语言PHP，用两种方法来说明其功能的实现。  
+
+一、利用php的文件函数来实现上传  
+　　这段代码分为两个文件，一个为upload.html，一个是upload.php。  
+
+
+上传文件选择：upload.html 代码如下: 
+
+
+-------------------------------------------------------------------------------- 
+
+　　<html><head><title>上载文件表单</title></head>  
+
+　　<body>  
+
+　　<form enctype="multipart/form-data" action="upload.php" method="post">  
+
+　　　　<input type="hidden" name="max_file_size" value="100000">  
+
+　　<center>请选择文件：  
+
+　　　　<input name="userfile" type="file">　　  
+
+　　　　<input type="submit" value="上传文件">  
+
+　　</center>  
+
+　　</form>  
+
+　　</body>  
+
+　　</html>  
+
+
+-------------------------------------------------------------------------------- 
+
+*** 说明 ***  
+
+　　1、请注意<form enctype="multipart/form-data"......>这是一个标签，我们要实现文件的上传，必须指定为 multipart/form-data ，否则服务器将不知道你在干什么！  
+
+　　2、值得注意的是文件upload.html中表单选项 MAX_FILE_SIZE 的隐藏值域，通过设置  
+
+其Value(值)可以限制上载文件的大小。  
+
+
+处理刚刚上传的文件：upload.php 代码如下: 
+
+
+-------------------------------------------------------------------------------- 
+
+　　<html>  
+
+　　<head>  
+
+　　<title>处理上载文件</title>  
+
+　　</head>  
+
+　　<body>  
+
+　　<?  
+
+　　copy($userfile,"newfile");  
+
+　　echo $userfile."-用户上传到服务器上的文件临时存放的名称
+";  
+
+　　echo $userfile_name."-在用户机器上该文件的原始名称
+";  
+
+　　echo $userfile_size."-上传文件的实际字节数
+";  
+
+　　echo $userfile_type."-如果用户的浏览器提供了这个信息的话，它表示mime的类型。例如image/gif
+";  
+
+　　?>  
+
+　　</body>  
+
+　　</html>  
+
+
+-------------------------------------------------------------------------------- 
+
+*** 说明 ***  
+
+　　1、使用了PHP文件函数copy()将上载到临时目录下的文件拷贝到一个特定的目录下，并重新命名为"newfile"。  
+
+　　2、在upload.html中定义了一个变量 userfile,在upload.php中，我们就可以使用这个变量，直接通过$userfile访问上载的文件，但由于这是一个保存文件的变量，因此文件名字必须通过另外一个$userfile_name变量取得。  
+
+　　下面是这个变量的具体用法：  
+
+　　$userfile:在将要存放上载文件的服务器上的临时文件名字。  
+
+　　$userfile_name:在发送者系统中的初始文件名。  
+
+　　$userfile_size:按字节计算的上载文件的大小。  
+
+　　$userfile_type:多用途网际邮件扩充协议类型的文件，前提是浏览器提供这种信息，比如说“image/gif"。  
+
+
+
+二、利用FTP功能进行文件上传  
+　　这段代码同样分为两个文件，一个为upload.php，一个是ftp.php。  
+
+
+设置ftp的相关选项及选择上传文件名：upload.php 代码如下: 
+
+
+-------------------------------------------------------------------------------- 
+
+　　<?php  
+
+　　$username="用户名";  
+
+　　$password="用户密码";  
+
+　　$server="主机名";  
+
+　　$cdir="上传目录名" ;  
+
+//以上设置你的FTP主机名、用户名和用户密码  
+
+　　?>  
+
+<!-- 文件上传设置标签 -->  
+
+　　<form enctype="multipart/form-data" action=ftp.php method=post>  
+
+<!-- 传递变量 -->  
+
+　　　　<input type=hidden name=username value=<? echo $username; ?>>  
+
+　　　　<input type=hidden name=password value=<? echo $password; ?>>  
+
+　　　　<input type=hidden name=server value=<? echo $server; ?>>  
+
+　　　　<input type=hidden name=cdir value=<? echo $cdir; ?>>  
+
+　　<table>  
+
+　　<tr>  
+
+　　　　<td>上传文件选择  
+
+　　　　<input type=file name=upfile>  
+
+　　　　</td>  
+
+　　</tr>  
+
+　　<tr>  
+
+　　　　<td>  
+
+<!-- 提交表单 -->  
+
+　　　　<input type=submit name=action value=上传>  
+
+　　　　</td>  
+
+　　</tr>  
+
+　　</table>  
+
+　　</form>  
+
+
+-------------------------------------------------------------------------------- 
+
+
+处理上传文件：ftp.php 代码如下： 
+
+
+-------------------------------------------------------------------------------- 
+
+　　<?php  
+
+//ftp联接主机函数  
+
+　　function connect()  
+
+　　{  
+
+　　global $server, $username, $password;  
+
+　　$conn = ftp_connect($server);  
+
+　　ftp_login($conn, $username, $password);  
+
+　　return $conn;  
+
+　　}  
+
+//建立ftp联接  
+
+　　$result = connect();  
+
+　　if ($action == "上传")  
+
+　　{  
+
+//用来改变ftp路径  
+
+　　ftp_chdir($result, $cdir);  
+
+//用来上传指定的文件,同名并以二进制位传递  
+
+　　$res_code = ftp_put($result, $upfile_name, $upfile, FTP_BINARY);  
+
+// 判断是否正确上传  
+
+　　if ($res_code == 1)  
+
+echo "上传成功!";  
+
+　　else  
+
+echo "上传错误!";  
+
+　　}  
+
+// 关闭联接  
+
+　　ftp_quit($result);  
+
+　　?>  
+
+
+-------------------------------------------------------------------------------- 
+
+*** 说明 ***  
+
+　　函数ftp_put(int ftp_stream, string remote_file, string local_file, int mode)用法  
+
+　　返回值: 布尔值  
+
+　　本函数用来上传指定的文件。参数 ftp_stream 为 FTP 的连接代码。参数 remote_file 为欲存在远端的文件名。参数 local_file 为欲上传文件的文件名。参数 mode 的值有 FTP_ASCII 及 FTP_BINARY 二种，分别表示文档或者是二进位文件。成功则返回 true 值，失败则返回 false 值。 

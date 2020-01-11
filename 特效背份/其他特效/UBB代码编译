@@ -1,0 +1,345 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta content="Microsoft FrontPage 3.0" name="GENERATOR">
+<title></title>
+<style type="text/css">
+A:link {TEXT-DECORATION: none}
+A:visited {TEXT-DECORATION: none}
+A:hover {TEXT-DECORATION: underline}
+c {	FONT: 9pt/12pt 宋体; TEXT-DECORATION: none}
+.d {FONT: 13.5pt/15.5pt 宋体; TEXT-DECORATION: none}
+BODY {FONT-SIZE: 9pt; FONT-FAMILY: 宋体}
+TABLE {FONT-SIZE: 9pt; FONT-FAMILY: 宋体}
+TextBox {FONT-SIZE: 9pt; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #f7f7f7}
+PasswordBox {FONT-SIZE: 9pt; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #f7f7f7}
+TEXTAREA {FONT-SIZE: 9pt; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #f7f7f7}
+Checkbox {FONT-SIZE: 9pt; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #f7f7f7}
+Radio {FONT-SIZE: 9pt; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #f7f7f7}
+SELECT {FONT-SIZE: 9pt; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #f7f7f7}
+INPUT {FONT-SIZE: 9pt; COLOR: #000000; PADDING-TOP: 3px; BACKGROUND-COLOR: #f7f7f7}
+.unnamed1 {FONT-SIZE: 10pt; COLOR: #333333; FONT-FAMILY: "宋体", "Arial"; BACKGROUND-COLOR: #0099cc}
+.unnamed2 {FONT-SIZE: 10pt; COLOR: #000000; FONT-FAMILY: "宋体", "Arial"; TEXT-DECORATION: none}
+</style>
+</head>
+
+<body onload="begin()" bgcolor="#000000">
+<script language="JavaScript">
+var head="display:''"
+function doit(header){
+var head=header.style
+if (head.display=="none")
+head.display=""
+else
+head.display="none"
+}
+function begin() {
+ubbcode=samplehtml=""
+imghtml=imgubb=""
+colorbegin=colorend=colorbeginhtml=colorendhtml=""
+fontbegin=fontend=fontbeginhtml=fontendhtml=""
+sizebegin=sizeend=sizebeginhtml=sizeendhtml=""
+centerbegin=centerend=centerbeginhtml=centerendhtml=""
+ubegin=uend=ubeginhtml=uendhtml=""
+bbegin=bend=bbeginhtml=bendhtml=""
+ibegin=iend=ibeginhtml=iendhtml=""
+linkbegin=linkend=linkbeginhtml=linkendhtml=""
+sampletext="范例文字"
+document.tool.ubbcode.value=ubbcode
+document.all.eOutput.innerHTML=samplehtml
+document.tool.sample.value=sampletext
+}
+function printsample(){
+samplehtml=centerbeginhtml+linkbeginhtml+sizebeginhtml+ubeginhtml+bbeginhtml+ibeginhtml+fontbeginhtml+colorbeginhtml+imghtml+sampletext+colorendhtml+fontendhtml+iendhtml+bendhtml+uendhtml+sizeendhtml+linkendhtml+centerendhtml
+document.all.eOutput.innerHTML=samplehtml
+}
+function printubbcode() {
+ubbcode=centerbegin+linkbegin+sizebegin+ubegin+bbegin+ibegin+fontbegin+colorbegin+imgubb+sampletext+colorend+fontend+iend+bend+uend+sizeend+linkend+centerend
+document.tool.ubbcode.value=ubbcode
+document.tool.sample.value=sampletext
+printsample();
+}
+function sampleupdate(stxt){
+sampletext=stxt
+printubbcode();
+}
+function paste() {
+opener.document.PostTopic.Message.value+=ubbcode
+}
+function showcolor(color){
+colorbegin="[color="+color+"]"
+colorend="[/color]"
+colorbeginhtml="<font color=\""+color+"\">"
+colorendhtml="</font>"
+printubbcode();
+}
+function center() {
+if (centerbegin!="") {
+centerbegin=centerend=centerbeginhtml=centerendhtml=""
+} else {
+centerbegin="[center]"
+centerend="[/center]"
+centerbeginhtml="<center>"
+centerendhtml="</center>"
+}
+printubbcode();
+}
+function bold() {
+if (bbegin!="") {
+bbegin=bend=bbeginhtml=bendhtml=""
+} else {
+bbegin="[b]"
+bend="[/b]"
+bbeginhtml="<b>"
+bendhtml="</b>"
+}
+printubbcode();
+}
+function marquee() {
+if (centerbegin!="") {
+centerbegin=centerend=centerbeginhtml=centerendhtml=""
+} else {
+centerbegin="[marquee]"
+centerend="[/marquee]"
+centerbeginhtml="<marquee>"
+centerendhtml="</marquee>"
+}
+printubbcode();
+}
+function italicize() {
+if (ibegin!="") {
+ibegin=iend=ibeginhtml=iendhtml=""
+} else {
+ibegin="[i]"
+iend="[/i]"
+ibeginhtml="<i>"
+iendhtml="</i>"
+}
+printubbcode();
+}
+function yin() {
+if (ibegin!="") {
+ibegin=iend=ibeginhtml=iendhtml=""
+} else {
+ibegin="[QUOTE]"
+iend="[/QUOTE]"
+ibeginhtml="<QUOTE>"
+iendhtml="</QUOTE>"
+}
+printubbcode();
+}
+function bao() {
+if (ibegin!="") {
+ibegin=iend=ibeginhtml=iendhtml=""
+} else {
+ibegin="[code]"
+iend="[/code]"
+ibeginhtml="<pre>"
+iendhtml="</pre>"
+}
+printubbcode();
+}
+function underline() {
+if (ubegin!="") {
+ubegin=uend=ubeginhtml=uendhtml=""
+} else {
+ubegin="[u]"
+uend="[/u]"
+ubeginhtml="<u>"
+uendhtml="</u>"
+}
+printubbcode();
+}
+function img(){
+imgtxt=prompt("链接图像.","http://");
+if(imgtxt!=null){
+imgubb="[img]"+imgtxt+"[/img]"
+imghtml="<img src=\""+imgtxt+"\" border=0>"
+sampletext=""
+printubbcode();
+}
+}
+function flash(){
+imgtxt=prompt("链接FLASH.","http://");
+if(imgtxt!=null){
+imgubb="[embed]"+imgtxt+"[/embed]"
+imghtml="<embed src=\""+imgtxt+"\" ></embed>"
+sampletext=""
+printubbcode();
+}
+}
+function showsize(size){
+sizebegin="[size="+size+"]"
+sizeend="[/size]"
+sizebeginhtml="<font size=\""+size+"\">"
+sizeendhtml="</font>"
+printubbcode();
+}
+function hyperlink(){
+urltxt=prompt("超级链接.","http://");
+if(urltxt!=null){
+sampletext=urltxt
+document.tool.sample.value=sampletext
+linkbegin="[url]"
+linkend="[/url]"
+linkbeginhtml="<a href=\""+urltxt+"\">"
+linkendhtml="</a>"
+printubbcode();
+}
+}
+function email(){
+urltxt=prompt("Email地址.","name@domain.com");
+if(urltxt!=null){
+sampletext=urltxt
+document.tool.sample.value=sampletext
+linkbegin="[email]"
+linkend="[/email]"
+linkbeginhtml="<a href=\"mailto:"+urltxt+"\">"
+linkendhtml="</a>"
+printubbcode();
+}
+}
+function openWindow(url) {
+popupWin = window.open('ybbcode.htm','','scrollbars=yes')
+}
+
+</script>
+
+<form name="tool">
+  <p><span class="unnamed1"></span></p>
+  <table cellSpacing="0" borderColorDark="white" cellPadding="0" width="420" align="center"
+  bgColor="silver" borderColorLight="black" border="1">
+<TBODY>
+    <tr align="center">
+      <td align="middle" height="17">UBB代码编辑器</td>
+    </tr>
+    <tr align="center">
+      <td><table cellSpacing="1" cellPadding="1" border="0">
+<TBODY>
+        <tr>
+          <td noWrap><img onclick="bold()" alt="加粗" src="ubb-bold.jpg" border="0" width="23"
+          height="22"><img onclick="italicize()" alt="倾斜" src="ubb-italicize.jpg" border="0"
+          width="23" height="22"><img onclick="underline()" alt="下划线" src="ubb-underline.jpg"
+          border="0" width="23" height="22"> <img onclick="center()" alt="居中"
+          src="ubb-center.jpg" border="0" width="23" height="22"><img onclick="marquee()"
+          alt="移动文字" src="ubb-list.jpg" border="0" width="23" height="22"> <img
+          onclick="bao()" alt="保持格式" src="ubb-same.jpg" border="0" width="23" height="22"><img
+          onclick="yin()" alt="引用其它信息" src="ubb-yin.jpg" border="0" width="23"
+          height="22"> <img onclick="hyperlink()" alt="链接" src="ubb-url.jpg" border="0"
+          width="23" height="22"><img onclick="email()" alt="插入Email" src="ubb-email.jpg"
+          border="0" width="23" height="22"><img onclick="img()" alt="插入图像"
+          src="ubb-image.jpg" border="0" width="23" height="22"><img onclick="flash()"
+          alt="插入FLASH动画" src="ubb-flash.jpg" border="0" width="23" height="23"></td>
+          <td align="right" width="100%"><select
+          onchange="showsize(this.options[this.selectedIndex].value)" size="1" name="size">
+            <option value="1" selected>8pt</option>
+            <option value="2">10pt</option>
+            <option value="3">12pt</option>
+            <option value="4">14pt</option>
+            <option value="5">16pt</option>
+            <option value="7">18pt</option>
+          </select> <select onchange="showcolor(this.options[this.selectedIndex].value)"
+          name="color" size="1">
+            <option style="COLOR: black" value="Black" selected>黑色</option>
+            <option style="COLOR: silver" value="Silver">银色</option>
+            <option style="COLOR: gray" value="Gray">灰色</option>
+            <option style="COLOR: maroon" value="Maroon">茶色</option>
+            <option style="COLOR: red" value="Red">红色</option>
+            <option style="COLOR: purple" value="Purple">紫色</option>
+            <option style="COLOR: fuchsia" value="Fuchsia">紫红</option>
+            <option style="COLOR: green" value="Green">绿色</option>
+            <option style="COLOR: lime" value="Lime">亮绿</option>
+            <option style="COLOR: olive" value="Olive">橄榄</option>
+            <option style="COLOR: yellow" value="Yellow">黄色</option>
+            <option style="COLOR: teal" value="Teal">深蓝</option>
+            <option style="COLOR: blue" value="Blue">蓝色</option>
+            <option style="COLOR: teal" value="Teal">青色</option>
+            <option style="COLOR: aqua" value="Aqua">浅绿</option>
+            <option style="COLOR: pink" value="Pink">粉红</option>
+            <option style="COLOR: orange" value="Orange">橙色</option>
+            <option style="COLOR: brown" value="Brown">褐色</option>
+            <option style="COLOR: navy" value="Navy">海蓝</option>
+          </select> </td>
+        </tr>
+</TBODY>
+      </table>
+      </td>
+    </tr>
+    <tr>
+      <td align="right"><table cellSpacing="1" cellPadding="1" width="390" border="0">
+<TBODY>
+        <tr>
+          <td align="center" width="32"><font class="c">文本</font><font class="c" face="Tahoma"
+          size="1">: </font></td>
+          <td width="344"><div align="right"><p><textarea style="OVERFLOW: auto" name="sample"
+          cols="54" onchange="sampleupdate(this.value)" rows="1"></textarea> </td>
+        </tr>
+</TBODY>
+      </table>
+      </td>
+    </tr>
+    <tr align="center">
+      <td align="right"><table cellSpacing="1" cellPadding="1" width="390" border="0">
+<TBODY>
+        <tr>
+          <td vAlign="top" align="right" width="35"><font class="c">演示</font><font class="c"
+          face="Tahoma" size="1">: </font></td>
+          <td><table height="50" cellSpacing="0" borderColorDark="white" cellPadding="0"
+          width="100%" borderColorLight="black" border="1">
+<TBODY>
+            <tr>
+              <td bgColor="white"><div id="eOutput"></div></td>
+            </tr>
+</TBODY>
+          </table>
+          </td>
+        </tr>
+</TBODY>
+      </table>
+      </td>
+    </tr>
+    <tr align="center">
+      <td align="right"><table cellSpacing="1" cellPadding="1" border="0">
+<TBODY>
+        <tr>
+          <td vAlign="top" align="right" width="35">代码:</td>
+          <td><textarea style="OVERFLOW: auto" name="ubbcode" rows="5" cols="54"></textarea> </td>
+        </tr>
+</TBODY>
+      </table>
+      </td>
+    </tr>
+    <tr align="center">
+      <td><table cellSpacing="1" cellPadding="1" width="100%" border="0">
+<TBODY>
+        <tr>
+          <td class="c"><input class="unnamed1" style="FONT-SIZE: 9pt; COLOR: #ffffff"
+          onclick="window.close()" type="button" value="关闭" name="button"> <input
+          class="unnamed1" style="FONT-SIZE: 9pt; COLOR: #ffffff" onclick="begin()" type="reset"
+          value="清除" name="reset"> <input class="unnamed1"
+          style="FONT-SIZE: 9pt; COLOR: #ffffff"
+          onclick="javascript:this.form.ubbcode.focus();this.form.ubbcode.select();" type="button"
+          value="选择全部" name="button2"> </td>
+        </tr>
+</TBODY>
+      </table>
+      </td>
+    </tr>
+</TBODY>
+  </table>
+  <p><br>
+  </p>
+  <table cellSpacing="0" cellPadding="0" width="500" align="center" border="0">
+<TBODY>
+    <tr>
+      <td><span class="unnamed2"><font color="#00cccc">小知识：<br>
+      UBB代码是HTML的一个变种。你也许已经对它很熟悉了。一般情况下，如果允许你用HTML，也就可以使用UBB代码。
+      </font></span></td>
+    </tr>
+</TBODY>
+  </table>
+</form>
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

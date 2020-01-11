@@ -1,0 +1,94 @@
+
+<style>
+<!--
+.drag{position:relative;cursor:hand
+}
+#scontentmain{
+position:absolute;
+width:150px;
+}
+#scontentbar{
+cursor:hand;
+position:absolute;
+background-color:green;
+height:15;
+width:100%;
+top:0;
+}
+#scontentsub{
+position:absolute;
+width:100%;
+top:15;
+background-color:lightyellow;
+border:2px solid green;
+padding:1.5px;
+}
+-->
+</style>
+<script language="JavaScript1.2">
+<!--
+var dragapproved=false
+var zcor,xcor,ycor
+function movescontentmain(){
+if (event.button==1&&dragapproved){
+zcor.style.pixelLeft=tempvar1+event.clientX-xcor
+zcor.style.pixelTop=tempvar2+event.clientY-ycor
+leftpos=document.all.scontentmain.style.pixelLeft-document.body.scrollLeft
+toppos=document.all.scontentmain.style.pixelTop-document.body.scrollTop
+return false
+}
+}
+function dragscontentmain(){
+if (!document.all)
+return
+if (event.srcElement.id=="scontentbar"){
+dragapproved=true
+zcor=scontentmain
+tempvar1=zcor.style.pixelLeft
+tempvar2=zcor.style.pixelTop
+xcor=event.clientX
+ycor=event.clientY
+document.onmousemove=movescontentmain
+}
+}
+document.onmousedown=dragscontentmain
+document.onmouseup=new Function("dragapproved=false")
+//-->
+</script>
+<div id="scontentmain">
+<div id="scontentbar" >
+<font size="2">
+<img align="right" src="close.gif" onClick="onoffdisplay()" width="17" height="15">
+感谢使用网页助手！
+</font></div><div id="scontentsub"><font size="2">
+感谢您对傻猫软件的支持，欢迎您提出宝贵的意见和建议！
+</font></div></div>
+<script language="JavaScript1.2">
+var w=document.body.clientWidth-195
+var h=50
+w+=document.body.scrollLeft
+h+=document.body.scrollTop
+
+var leftpos=w
+var toppos=h
+scontentmain.style.left=w
+scontentmain.style.top=h
+
+function onoffdisplay(){
+if (scontentsub.style.display=='')
+scontentsub.style.display='none'
+else
+scontentsub.style.display=''
+}
+
+function staticize(){
+w2=document.body.scrollLeft+leftpos
+h2=document.body.scrollTop+toppos
+scontentmain.style.left=w2
+scontentmain.style.top=h2
+}
+window.onscroll=staticize
+
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

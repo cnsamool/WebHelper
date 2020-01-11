@@ -1,0 +1,58 @@
+<html>
+<head>
+<title></title>
+
+</head>
+<body>
+<!--把如下代码加入<body>区域中//-->
+<script language="JavaScript">
+<!-- Hide the script from old browsers --
+function compute(obj) 
+   {obj.expr.value = eval(obj.expr.value)}
+var one = '1'
+var two = '2'
+var three = '3'
+var four = '4'
+var five = '5'
+var six = '6'
+var seven = '7'
+var eight = '8'
+var nine = '9'
+var zero = '0'
+var plus = '+'
+var minus = '-'
+var multiply = '*'
+var divide = '/'
+var decimal = '.'
+function enter(obj, string) 
+   {obj.expr.value += string}
+function clear(obj) 
+   {obj.expr.value = ''}
+// --End Hiding Here -->
+</script>
+<form name="calc">
+<table border=1>
+<td colspan=4><input type="text" name="expr" size=30 action="http://best.vip.sina.com/javascript1/compute(this.form)"> <tr>
+<td><input type="button" value="  7  " onClick="enter(this.form, seven)">
+<td><input type="button" value="  8  " onClick="enter(this.form, eight)">
+<td><input type="button" value="  9  " onClick="enter(this.form, nine)">
+<td><input type="button" value="   /  " onClick="enter(this.form, divide)">
+<tr><td><input type="button" value="  4  " onClick="enter(this.form, four)">
+<td><input type="button" value="  5  " onClick="enter(this.form, five)">
+<td><input type="button" value="  6  " onClick="enter(this.form, six)">
+<td><input type="button" value="  *  " onClick="enter(this.form, multiply)">
+<tr><td><input type="button" value="  1  " onClick="enter(this.form, one)">
+<td><input type="button" value="  2  " onClick="enter(this.form, two)">
+<td><input type="button" value="  3  " onClick="enter(this.form, three)">
+<td><input type="button" value="   -  " onClick="enter(this.form, minus)">
+<tr><td colspan=2><input type="button" value="       0       " onClick="enter(this.form, zero)">
+<td><input type="button" value="   .  " onClick="enter(this.form, decimal)">
+<td><input type="button" value="  +  " onClick="enter(this.form, plus)">
+<tr><td colspan=2><input type="button" value="   =   " onClick="compute(this.form)">
+<td colspan=2><input type="button" value="AC" size= 3 onClick="clear(this.form)"> </table>
+</form>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

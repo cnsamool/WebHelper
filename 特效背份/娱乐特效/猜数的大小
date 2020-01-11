@@ -1,0 +1,89 @@
+<html>
+<head>
+<title></title>
+<!--第一步:把如下代码加入<head>区域中//-->
+<SCRIPT LANGUAGE="JavaScript">
+var js_mult1=3141
+var js_mult2=5821
+var js_m1=100000000
+var js_m2=10000
+var js_iseed=0
+var js_iseed1=0
+var js_iseed2=0
+function random(n)
+{
+    if (js_iseed == 0)
+    {
+        now = new Date()
+        js_iseed = now.getHours() + now.getMinutes() * 60 
+                    + now.getSeconds() * 3600
+    }
+    js_iseed1 = js_iseed / js_m2
+    js_iseed2 = js_iseed % js_m2
+    var tmp = (((js_iseed2 * js_mult1 + js_iseed1 * js_mult2) % js_m2) * 
+                js_m2 + (js_iseed2 * js_mult2)) % js_m1
+    js_iseed = (tmp + 1) % js_m1
+    return (Math.floor((js_iseed/js_m1) * n))
+}
+var myNumber = 0
+var nGuesses = 0
+function guessnum()
+{
+   var response
+    var num = parseInt(document.forms[0].guess.value)
+    document.forms[0].guess.value = num // visual feedback in case of NaN
+    nGuesses++ // increase the guess count
+    response = "哦，你猜的数 "
+    if (num < myNumber)    response = response + "太小了"
+    if (num > myNumber)    response = response + "太大了"
+    if (num == myNumber) 
+    {
+        response = response + "对了！！你猜到我了！"
+        nGuesses = 0
+        myNumber = random(100)+1
+    }
+    document.forms[1].result.value=response
+    document.forms[1].guesses.value=nGuesses
+    document.forms[0].guess.focus()
+    document.forms[0].guess.select()
+    return true
+}
+function giveup()
+{
+    var response
+    nGuesses = 0
+    response = "我的数字是" + myNumber +".  想猜我的新数吗？"
+    myNumber = random(100)+1
+    document.forms[1].result.value=response
+    document.forms[1].guesses.value=nGuesses
+    document.forms[0].guess.focus()
+    document.forms[0].guess.select()
+}
+</SCRIPT>
+
+<font size="3" color="#FF0000">
+我手中有一个数，它的范围在1~100之间，你能猜到它是几吗？</font></b><font size="4"> 
+</font>
+<SCRIPT>
+    myNumber = random(100)+1
+    nGuesses = 0
+</SCRIPT>
+<FORM onSubmit="guessnum(); return false">
+填入你猜的数: <INPUT TYPE="text" NAME="guess" SIZE=5>  
+<INPUT TYPE="button" VALUE="     我来猜   " onClick="guessnum()">  
+<INPUT TYPE="button" VALUE="  放弃  " onClick="giveup()">  
+</FORM>  
+<FORM>
+你已猜了: <INPUT TYPE="text" NAME="guesses" SIZE=3>次
+提示信息: <INPUT TYPE="text" NAME="result" SIZE=35>
+</FORM>  
+
+</head>
+<!--第二步:把<body>区域中的内容改为://-->
+<body bgcolor="#fef4d9" onLoad="document.forms[0].guess.focus(); document.forms[0].guess.select()">
+
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

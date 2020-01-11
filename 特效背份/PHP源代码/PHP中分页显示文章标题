@@ -1,0 +1,173 @@
+$page_size=10;(每页显示数量) 
+
+
+
+$sql='select count(*) as rnt from&nbs 
+p;mydbf'; 
+
+$sql .= ' order by mytime desc '; 
+
+$qh=mysql_query($sql); 
+
+$data=mysql_fetch_array($qh); 
+
+$nr=$data["cnt"]; 
+
+
+
+$pages=intval($nr/$page_size); 
+
+if($nr%$page_size) $pages++; 
+
+
+
+if(empty($page)) 
+
+{ 
+
+$page=1; 
+
+$offset=0; 
+
+} 
+
+else 
+
+{ 
+
+$offset=$page*$page_size-$page_size; 
+
+} 
+
+?> 
+
+
+
+<!-- 
+
+$total = mysql_numrows($qh); 
+
+$total=$nr; 
+
+echo "<td colspan=3>"; 
+
+//显示所有文章 
+
+if (!isset($page)){ 
+
+$page = 0; 
+
+} 
+
+//分页开始 
+
+$start= $page*$page_size; 
+
+$offset=$start; 
+
+$totalpage =ceil($total/$page_size); 
+
+$pagestr ='[<font color=green>总数</font>]:'.$total; 
+
+$pagestr.= "&nbsp".($page+1).'/'.$totalpage.'页'."&nbsp"; 
+
+
+
+$xjz1= "<a href=$php_self?"; 
+
+$sql  = 'select mytxt,content_id,clicknum,from mydbf '; 
+
+$sql .= ' order by ltime desc limit '.$offset.','.$pageno; 
+
+$res = mysql_query($ls_sql, $dbh);  
+
+$countloop = 0; 
+
+while ($row = mysql_fetch_array($res)) {  
+
+.... 
+
+} 
+
+
+
+$xjz1= "<a href=$php_self?"; 
+
+$xjz2=substr($xjz1,8); 
+
+?> 
+
+<table border="0" width="100%"  cellpadding="0" cellspacing="0" height="0"> 
+
+<form action="<?echo $php_self.$xjz2."&page=$page";?>" method="post"> 
+
+<td width="100%" height="9">  
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0"> 
+
+<tr><td width="72%" align="center" nowrap>&nbsp;<b>分页</b>:<?if($page==1){?>首页  
+
+上一页 <? 
+
+      } 
+
+      else 
+
+      { 
+
+      $p=$page-1; 
+
+      echo "$xjz1&page=1>首页</a> $xjz1&page=$p>上一页</a>"; 
+
+      } 
+
+      if($page>=$pages){?> 下一页 尾页 <? 
+
+      } 
+
+      else 
+
+      { 
+
+        $pp=$page+1; 
+
+        echo "&nbsp;$xjz1&page=$pp>下一页</a>&nbsp;$xjz1&page=$pages>尾页</a>"; 
+
+      } 
+
+?>&nbsp;页次:<b><?echo $page?></b>/<b><?echo $pages?></b>页 <b><?echo $page_size?></b>个/页&nbsp;共<b><?echo $nr?></b>篇文章 转到:  
+
+
+
+<!--<input type="text" name="page" size="4"   class="p1" style="border-style: groove; border-width: 1"> 
+
+<input type="submit" value="Go" name="B1"  class="p1" style="border-style: ridge; border-width: 1"> 
+
+</td><td>--> 
+
+
+
+<select name=pagex onChange="javascript:location.href=this.options[this.selectedIndex].value"> 
+
+<? 
+
+    for ($i=1;$i<=$pages;$i++){ 
+
+if($i==$page)$selectxjz="selected"; 
+
+else $selectxjz=''; 
+
+echo "<option value=\"".$xjz2."&page=".$i."\" ".$selectxjz.">".$i."</option>"; 
+
+} 
+
+?> 
+
+</select>&nbsp;页 
+
+</td></table></td></form></table> 
+
+<?} 
+
+?>  
+

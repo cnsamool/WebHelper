@@ -1,0 +1,76 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--将以下代码加到<body>中//-->
+<script language="JavaScript1.2">
+<!--
+
+var sliderwidth=330
+var sliderheight=145
+var slidespeed=4
+
+//以下改为你的自己的图片及路径,如果要增加更多的图片，上面的参数也要增加
+var leftrightslide=new Array()
+var finalslide=''
+leftrightslide[0]='<a href="http://"><img src="0.gif" border=1></a>'
+leftrightslide[1]='<a href="http://"><img src="1.gif" border=1></a>'
+leftrightslide[2]='<a href="http://"><img src="2.gif" border=1></a>'
+leftrightslide[3]='<a href="http://"><img src="0.gif" border=1></a>'
+leftrightslide[4]='<a href="http://"><img src="1.gif" border=1></a>'
+
+var copyspeed=slidespeed
+for (i=0;i<leftrightslide.length;i++)
+finalslide=finalslide+leftrightslide[i]+"&nbsp;&nbsp;"
+
+
+if (document.all){
+document.write('<marquee id="ieslider" scrollAmount=0 style="width:'+sliderwidth+'">'+finalslide+'</marquee>')
+ieslider.onmouseover=new Function("ieslider.scrollAmount=0")
+ieslider.onmouseout=new Function("if (document.readyState=='complete') ieslider.scrollAmount=slidespeed")
+}
+
+function regenerate(){
+window.location.reload()
+}
+function regenerate2(){
+if (document.layers){
+document.ns_slider01.visibility="show"
+setTimeout("window.onresize=regenerate",450)
+intializeleftrightslide()
+}
+if (document.all)
+ieslider.scrollAmount=slidespeed
+}
+
+function intializeleftrightslide(){
+document.ns_slider01.document.ns_slider02.document.write('<nobr>'+finalslide+'</nobr>')
+document. ns_slider01.document.ns_slider02.document.close()
+thelength=document.ns_slider01.document.ns_slider02.document.width
+scrollslide()
+}
+
+function scrollslide(){
+if (document.ns_slider01.document.ns_slider02.left>=thelength*(-1)){
+document.ns_slider01.document.ns_slider02.left-=slidespeed
+setTimeout("scrollslide()",100)
+}
+else{
+document.ns_slider01.document.ns_slider02.left=sliderwidth
+scrollslide()
+}
+}
+window.onload=regenerate2
+
+//-->
+</script>
+<ilayer width=&{sliderwidth}; height=&{sliderheight}; name="ns_slider01" visibility=hide>
+<layer name="ns_slider02" onMouseover="slidespeed=0;" onMouseout="slidespeed=copyspeed"></layer>
+</ilayer>
+
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

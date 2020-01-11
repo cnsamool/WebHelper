@@ -1,0 +1,200 @@
+<html>
+<head>
+<title></title>
+</head>
+<!--第一步:把如下代码加入<body>区域中//-->
+<body bgcolor="#fef4d9" onload="Type()">
+
+<!--第一步:把如下代码加入<body>区域中//-->
+<script language=javascript>
+
+	//Change the following 4 messages to your liking.
+
+	var txt = "欢迎你的光临"
+	var txt2 = "I love javascript"
+	var txt3 = "记得要经常来呀"
+	var txt4 = "谢谢你的光临"
+
+	//Make sure that "def" is longer than your longest message
+
+	var def = "_______________________________________"  
+
+	//Don't change any of the following
+
+	var end = txt4.length
+	var end2 = end / 2
+	var close = end2
+	var close2 = end2
+	var close3 = end
+	var max2 = txt3.length
+	var mid = max2 / 2
+	var max = txt2.length
+	var msg
+	var msg2
+	var msg3
+	var msg4
+	var msg5
+	var msg6
+	var word = 0
+	var word2 = txt.length
+	var scroll = 0
+	var door = max
+	var blink = 0
+	var blink2 = 20
+	var stay = 0
+	var timestay
+	var time
+	var time2
+	var doortime
+	var timeblink
+	var timescroll
+	var timeblink2
+	var timeclose
+
+function Type() {
+	if (word <= txt.length) { word++;
+	msg = txt.substring(0, word);
+	document.form1.text.value = msg
+	time = setTimeout("Type()", 100) }
+	else { word = 0;
+	clearTimeout(time);
+	Stay() }
+}
+
+function Stay() {
+	if (stay==0) { document.form1.text.value = txt;
+	stay = 1;
+	timestay = setTimeout("Stay()", 1000) }
+	else if (stay==1) { document.form1.text.value = txt;
+	stay = 0;
+	clearTimeout(timestay);
+	Erase() }
+}
+
+function Close() {
+	if(close2 <= end) {
+	close -= 1;
+	close2++;
+	close3 -= 2;
+	msg6 = txt4.substring(close, end2) + def.substring(0, close3) + txt4.substring(end2, close2);
+	document.form1.text.value = msg6;
+	timeclose = setTimeout("Close()", 100)
+	}
+	else { clearTimeout(timeclose);
+	close = end2;
+	close2 = end2;
+	close3 = end;
+	Stay2()}
+}
+
+function Stay2() {
+	if (stay==0) { document.form1.text.value = txt4;
+	stay = 1;
+	timestay = setTimeout("Stay2()", 1300) }
+	else if (stay==1) { document.form1.text.value = txt4;
+	stay = 0;
+	clearTimeout(timestay);
+	Doors() }
+}
+
+function Erase() {
+	if (word2 <= txt.length && word2 > 0) { word2 -= 1;
+	msg2 = txt.substring(0, word2)
+	document.form1.text.value = msg2
+	time2 = setTimeout("Erase()", 20)}
+	else  { word2 = txt.length;
+	clearTimeout(time2);
+	Close() }
+	
+}
+
+function Doors() {
+	if (door >= 0) {
+	door -= 1;
+	msg3 = txt2.substring(door, max) 
+	document.form1.text.value = msg3
+	doortime = setTimeout("Doors()", 100)
+	}
+	else { door = max;
+	clearTimeout(doortime);
+	Blink() }
+}
+
+function Blink() {
+	if (blink==0) { document.form1.text.value = txt2;
+	blink = 1;
+	timeblink = setTimeout("Blink()", 200) }
+	else if (blink==1) { document.form1.text.value = "";
+	blink = 2 ;
+	timeblink = setTimeout("Blink()", 200) }
+	else if (blink==2) { document.form1.text.value = txt2;
+	blink = 3;
+	timeblink = setTimeout("Blink()", 200) }
+	else if (blink==3) { document.form1.text.value = "";
+	blink = 4;
+	timeblink = setTimeout("Blink()", 200) }
+	else if (blink==4) { document.form1.text.value = txt2;
+	blink = 5;
+	timeblink = setTimeout("Blink()", 200) }
+	else if (blink==5) { document.form1.text.value = "";
+	blink = 0;
+	clearTimeout(timeblink);
+	Scroll() }
+}
+
+
+function Scroll() {
+	if(scroll <= txt2.length) { msg4 = txt2.substring(scroll, txt2.length);
+	document.form1.text.value = msg4;
+	scroll++;
+	timescroll = setTimeout("Scroll()", 100)
+	}
+	else { clearTimeout(timescroll);
+	scroll = 0
+	Blink2() }
+	
+}
+
+function Blink2() {
+	if (blink2==20) { msg5 = txt3;
+	document.form1.text.value = msg5;
+	blink2 = 0;
+	timeblink2 = setTimeout("Blink2()", 800) }
+	else if (blink2==0) { msg5 = txt3.substring(0, mid) + def.substring(0, mid);
+	document.form1.text.value = msg5;
+	blink2 = 1;
+	timeblink2 = setTimeout("Blink2()", 300) }
+	else if (blink2==1) { msg5 = def.substring(0, mid) + txt3.substring(mid, max2);
+	document.form1.text.value = msg5;
+	blink2 = 2 ;
+	timeblink2 = setTimeout("Blink2()", 300) }
+	else if (blink2==2) { msg5 = txt3.substring(0, mid) + def.substring(0, mid);
+	document.form1.text.value = msg5;
+	blink2 = 3;
+	timeblink2 = setTimeout("Blink2()", 300) }
+	else if (blink2==3) { msg5 = def.substring(0, mid) + txt3.substring(mid, max2);
+	document.form1.text.value =msg5;
+	blink2 = 4;
+	timeblink2 = setTimeout("Blink2()", 300) }
+	else if (blink2==4) { msg5 = txt3.substring(0, mid) + def.substring(0, mid);
+	document.form1.text.value = msg5;
+	blink2 = 5;
+	timeblink2 = setTimeout("Blink2()", 300) }
+	else if (blink2==5) { msg5 = def.substring(0, mid) + txt3.substring(mid, max2);
+	document.form1.text.value = msg5;
+	blink2 = 6;
+	timeblink2 = setTimeout("Blink2()", 300) }
+	else if (blink2==6) { document.form1.text.value = txt3;
+	blink2 = 20;
+	clearTimeout(timeblink2);
+	Type() }
+}
+
+
+</script>
+<form name=form1><input type=text name=text size=32,0></form>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

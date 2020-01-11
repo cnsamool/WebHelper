@@ -1,0 +1,25 @@
+<!--本特效需要将apmenu.jar select.au文件支持 -->
+<!--必须将apmenu.jar select.au和网页放在同一目录下才能显示效果 -->
+<!--C:\webhelpview\webhelpview 有这些文件-->
+
+<applet Code="apMenu" Archive="apMenu.jar" Width = "300" Height = "20">
+<param name="Copyright" value="Apycom Software - www.apycom.com">
+<param name="isHorizontal" value="true">
+<param name="overSound" value="select.au">
+<param name="status" value="link">
+<param name="backColor" value="008000">
+<param name="backHighColor" value="44ff44">
+<param name="fontColor" value="FFFFFF">
+<param name="fontHighColor" value="000000">
+<param name="fadeDelay" value="50">
+<param name="fadeSteps" value="40">
+<param name="fadeType" value="0">
+<param name="font" value="宋体,13,0">
+<param name="menuItems"        value="
+
+       {网页助手,http://samool.533.net,_self}
+       {新浪网站,http://www.sina.com.cn,_self}
+       {网易社区,http://www.163.net,_self}
+
+">
+</APPLET>

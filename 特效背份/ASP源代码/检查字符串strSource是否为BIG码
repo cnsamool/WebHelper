@@ -1,0 +1,15 @@
+Public Function CheckBIG(strSource As String) As Boolean  
+Dim idx As Long  
+Dim ByteTemp() As Byte  
+CheckBIG  
+= False  
+For idx = 1 To Len(strSource)  
+　　ByteTemp = StrConv(Mid(strSource, idx, 1), vbFromUnicode)  
+　　If UBound(ByteTemp) > 0 Then  
+　　　　If (ByteTemp(1) >= 64) And (ByteTemp(1) <= 126) Then  
+　　　　　　CheckBIG = True  
+　　　　　　Exit For  
+　　　　End If  
+　　End If  
+Next idx  
+End Function  

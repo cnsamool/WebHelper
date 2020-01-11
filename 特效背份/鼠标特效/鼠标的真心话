@@ -1,0 +1,88 @@
+<body bgcolor=#000000>
+<script language="JavaScript">
+<!--
+var speed=20,divTop=0,divLeft=0,angle=0,ypos=0,xpos=0,amount=13;
+if (document.layers){
+for (i = 0; i < amount; i++)
+{document.write('<layer name=nsa'+i+' top=0 left=0 width='+i/3+' height='+i/3+' bgcolor=#ffffff></layer>');}
+window.captureEvents(Event.MOUSEMOVE);
+function nsMouse(evnt){
+xpos=evnt.pageX;ypos=evnt.pageY;
+}
+window.onMouseMove = nsMouse;
+}
+else if (document.all){
+document.write('<div style="position:absolute;top:0px;left:0px">');
+document.write('<div style="position:relative">');
+for (i = 0; i < amount; i++)
+{document.write('<div id=k style="position:absolute;top:0px;left:0px;width:'+i/3+';height:'+i/3+';background:#ffffff;font-size:'+i/3+'"></div>')}
+document.write('</div></div>');
+function iMouse(){xpos=event.x;ypos=document.body.scrollTop+event.y}
+document.onmousemove = iMouse;
+}
+function getAngle(){
+Y = ypos - divTop;X = xpos - divLeft;angle = Math.round(Math.atan2(Y,X) * 180/Math.PI);
+if (angle < 0)angle += 360;
+}
+function bomb(){
+if (document.layers){
+Yscroll=window.pageYOffset;
+ybase=Math.round(Math.random()*window.innerHeight);xbase=Math.round(Math.random()*window.innerWidth);
+yybase=window.innerHeight-10;xxbase=window.innerWidth-10;
+}
+else if (document.all){
+Yscroll=document.body.scrollTop;
+ybase=Math.round(Math.random()*window.document.body.offsetHeight);xbase=Math.round(Math.random()*window.document.body.offsetWidth);
+xxbase=window.document.body.offsetWidth-10;yybase=window.document.body.offsetHeight-10;
+}
+if ((xbase > 10 && xbase < xxbase) && (ybase > 10 && ybase < yybase))
+bomb();
+else
+ {
+  if ((divLeft > xpos-speed/1.5) && (divLeft < xpos+speed/1.5) && (divTop >= ypos-speed/1.5) && (divTop <= ypos+speed/1.5))
+  {divTop=ybase+Yscroll;divLeft=xbase}
+y = Math.round(speed*Math.sin(angle*Math.PI/180));x = Math.round(speed*Math.cos(angle*Math.PI/180));
+divTop+=y;divLeft+=x;
+getAngle();
+T=setTimeout('bomb()',20);
+ }
+}
+function Split(){
+Clrs=new Array('fff000','ffffff','ffa500')
+var ntscp=document.layers,msie=document.all;
+
+if (document.layers){
+for (i = 0; i < amount; i++)
+{
+ if (i < amount-1) 
+ {ntscp['nsa'+i].top=ntscp['nsa'+(i+1)].top;ntscp['nsa'+i].left=ntscp['nsa'+(i+1)].left} 
+else  
+ {ntscp['nsa'+i].top=divTop;ntscp['nsa'+i].left=divLeft}
+}
+}
+else if (document.all){
+for (i = 0; i <  amount; i++)
+{
+ if (i < amount-1) 
+ {msie.k[i].style.top=msie.k[i+1].style.top;msie.k[i].style.left=msie.k[i+1].style.left} 
+  else 
+  {msie.k[i].style.top=divTop;msie.k[i].style.left=divLeft}
+}
+}
+for (i=0; i < amount-1; i++)
+  {
+   for (n=0; n < Clrs.length; n++)
+   {var x=Math.round(Math.random()*n)}
+   if (document.layers){ntscp['nsa'+i].bgColor=Clrs[x]}
+   else if (document.all){msie.k[i].style.background=Clrs[x]}
+  }
+setTimeout("Split()",20);
+}
+function StArT(){bomb();Split()}
+window.onload=StArT;
+//-->
+</script>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->
+</body>

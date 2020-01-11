@@ -1,0 +1,64 @@
+<!--脚本说明：
+第一步:把如下代码加入<head>区域中:-->
+<SCRIPT>
+
+messages = new Array()
+messages[0] = "你好,最近忙吗?"
+messages[1] = "欢迎你的到来"
+messages[2] = "请多呆一会"
+messages[3] = "你一定会有所收获的"
+messages[4] = "Netscape Navigator不太支持这个"
+
+mescolor = new Array()
+mescolor[0] = "000000"
+mescolor[1] = "FF0000"
+mescolor[2] = "008800"
+mescolor[3] = "0000FF"
+mescolor[4] = "888800"
+
+messize = new Array()
+messize[0] = "30pt"
+messize[1] = "40pt"
+messize[2] = "50pt"
+messize[3] = "30pt"
+messize[4] = "20pt"
+
+var i_messages = 0
+var timer
+
+function dotransition() {
+    if (document.all) {
+        content.filters[0].apply()
+        content.innerHTML = "<span style='color:"+mescolor[i_messages]+";font-size:"+messize[i_messages]+";filter: revealTrans(Transition=12, Duration=3)'>"+messages[i_messages]+"</span>"
+        content.filters[0].play()
+        if (i_messages >= messages.length-1) {
+            i_messages = 0
+        }
+        else {
+            i_messages++
+        }
+    } 
+    
+    if (document.layers) {
+       document.content.document.write("<span style='color:"+mescolor[i_messages]+"'>"+messages[i_messages]+"</span>")
+        if (i_messages >= messages.length-1) {
+            i_messages = 0
+        }
+        else {
+            i_messages++
+        }
+    } 
+    timer = setTimeout("dotransition()",5000)   
+}
+ 
+</SCRIPT>
+</head>
+<!--第二步：把<body>后的内容改为：-->
+<body  onload=dotransition()>
+
+<DIV id=content 
+style="FILTER: revealTrans(Transition=12, Duration=2); HEIGHT: 200px; LEFT: 80px; POSITION: absolute; TEXT-ALIGN: center; TOP: 150px; WIDTH: 559px"></DIV>
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

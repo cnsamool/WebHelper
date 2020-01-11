@@ -1,0 +1,24 @@
+<form name=loading>
+  <p align=center> <font color="#0066ff" size="2" face="Arial">载入中，请稍等...</font><br>
+    <input type=text name=chart size=46 style="font-family:Arial; font-weight:bolder; color:#0066ff; background-color:#fef4d9; padding:0px; border-style:none;">
+    <br>
+    <input type=text name=percent size=47 style="color:#0066ff; text-align:center; border-width:medium; border-style:none;">
+    <script> 
+var bar=0 
+var line="||" 
+var amount="||" 
+count() 
+function count(){ 
+bar=bar+2 
+amount =amount + line 
+document.loading.chart.value=amount 
+document.loading.percent.value=bar+"%" 
+if (bar<99) 
+{setTimeout("count()",100);} 
+else 
+{window.location = "#";} 
+}</script>
+</p>
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

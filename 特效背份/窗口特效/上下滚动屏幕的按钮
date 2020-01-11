@@ -1,0 +1,90 @@
+<html>
+<head>
+<script LANGUAGE="JavaScript">
+<!-- Begin
+function scrollit() {
+for (I=1; I<=750; I++){
+scroll(1,I)
+   }
+}
+
+function scrollit1() {
+for (I=750; I>1; I=I-1){
+scroll(1,I)
+   }
+}
+// End -->
+
+</script>
+</head>
+
+<body>
+
+<form>
+  <div align="center"><center><p><input type="button" value="向下滚屏"
+  onClick="scrollit()"></p>
+  </center></div>
+</form>
+
+<p><br>
+</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<form>
+  <div align="center"><center><p><input type="button" value="向上滚屏"
+  onClick="scrollit1()"></p>
+  </center></div>
+</form>
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

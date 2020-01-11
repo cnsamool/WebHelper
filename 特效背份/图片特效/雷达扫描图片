@@ -1,0 +1,42 @@
+<head>
+<script>
+<!--
+var Light_X=20
+var Light_Y=20
+var Light_Z=40
+var xInc=10;
+var yInc=10;
+var r=125;
+var deg=0;
+var deg1;
+var rad;
+var conversion=(2*3.1415926)/360
+
+function movefilt()
+{
+Light_X=r+r*Math.cos(deg*conversion);
+Light_Y=r+r*Math.sin(deg*conversion);
+deg+=10;
+if(deg==360)
+deg=0;
+Body1.filters[0].moveLight(0,Light_X,Light_Y,Light_Z,1);
+mytimeout=setTimeout('movefilt()',100);
+}
+
+function go(){
+Body1.filters.light.addCone(125,125,0,Light_X,Light_Y,0,255,0,150,20);
+Body1.filters.light.addAmbient(0,255,0,30)
+var x=0;
+movefilt();
+}
+
+
+</script>
+</head>
+<body bgColor="#000000" onload="go()">
+<p><img id="Body1" style="FILTER: light(); WIDTH: 300px; HEIGHT: 401px" height="401"
+src="sample.jpg" width="300"></p>
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

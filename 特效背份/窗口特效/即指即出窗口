@@ -1,0 +1,17 @@
+
+<!--第一步：将下列代码复制到<head></head>之间：-->
+<SCRIPT Language="JavaScript">
+function winopen () 
+{
+msg=open("http://samool.533.net","NewWindow","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=yes,width=400,height=260");
+}
+</SCRIPT>
+
+
+
+<!--第二步：将下列代码复制到<body></body>之间：-->
+<body>
+<font color="#008000">
+把鼠标放在</font><a href="" onMouseOver="winopen();return true;"><font color="#FF0000" size="4" face="黑体"><i>这里</i></font></a><font color="#008000">将产生新窗口。</font><BR><BR>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

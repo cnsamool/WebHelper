@@ -1,0 +1,116 @@
+<!--脚本说明:
+第一步：把如下代码加入<head>区域中-->
+<script language="JavaScript">
+
+<!-- Hide
+
+function test1(form) {
+
+
+
+  if (form.text1.value == "")
+
+
+
+    alert("您没写上任何东西，请再输入一次 !")
+
+
+
+  else { 
+
+
+
+   alert("嗨 "+form.text1.value+"! 您已输入完成 !");
+
+
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+function test2(form) {
+
+
+
+  if (form.text2.value == "" || 
+
+
+
+      form.text2.value.indexOf('@', 0) == -1) 
+
+
+
+        alert("这不是正确的 e-mail address! 请再输入一次 !");
+
+
+
+  else alert("您已输入完成 !");
+
+
+
+}
+
+
+
+// -->
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!--第二步：在<body>中加入如下代码：-->
+
+
+
+<form name="first">
+
+
+
+请输入您的名字<br>
+
+
+
+<input type="text" name="text1">
+
+
+
+<input type="button" name="button1" value="输入测试" onClick="test1(this.form)">
+
+
+
+<P>
+
+
+
+请输入您的E-mail地址:<br>
+
+
+
+<input type="text" name="text2">
+
+
+
+<input type="button" name="button2" value="输入测试" onClick="test2(this.form)">
+
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

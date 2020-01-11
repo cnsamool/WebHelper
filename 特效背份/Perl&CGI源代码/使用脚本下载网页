@@ -1,0 +1,40 @@
+/**  
+* Script: dlwebpage.js 
+* Purpose: Downloads the webpage specified by 'url' 
+* Author: Daren Thiel  
+* Date 
+: 17 May 1999 
+* 
+* Note: Rename this script dlwebpage.js 
+* Web: http://www.***.com 
+* Copyright 1999 Daren Thiel 
+**/ 
+
+// The URL to download 
+var url = "http://www.***.com/default.htm" 
+
+// Create instance of Inet Control 
+inet = new ActiveXObject("InetCtls.Inet"); 
+
+// Set the timeout property 
+inet.RequestTimeOut = 20; 
+
+// Set the URL property of the control 
+inet.Url = url; 
+
+// Actually download the file 
+var s = inet.OpenURL(); 
+
+// Show the raw HTML to the user 
+WScript.Echo( s ); 
+
+// Bonus - Find the title of the page 
+// Regular expression to find the string stored between 
+// the title tags. 
+rtitle = /<title>(.*)<\/title>/i; 
+
+// Execute the regular expression on the raw HTML 
+var title = rtitle.exec( s ); 
+
+// Display the result 
+WScript.Echo( RegExp.$1 

@@ -1,0 +1,96 @@
+<style>
+ .divstyle{position:absolute; width="0";height:"0"}
+</style>
+<script>
+<!--
+function showimg(form)
+{
+adres = form.image_file.value;
+index = adres.indexOf(".gif");
+index = index + adres.indexOf(".jpg");
+index = index + adres.indexOf(".bmp");
+if (form.image_file.value == "")
+  {alert("错误，未发现任何图片!");}
+else
+  {if (index == -3){alert("错误的图片格式");
+    form.width.value=0;
+    form.height.value=0;}
+  else
+    {
+    var img_obj = new Image();
+    img_obj = form.image_file.value;
+    document.changing.src = img_obj;
+    document.changing2.src= img_obj;
+    document.changing.width = document.changing2.width;
+    document.changing.height = document.changing2.height;
+    set();
+}
+
+  }
+}
+fast = 0;
+change = 0;
+function upw(){
+  document.image.width.value=parseInt(document.image.width.value)+2;//可以修改+2的数值,以提高速度
+  resize();}
+function over_upw(){upw();
+  change = 1;
+  changetime = setTimeout("fast_upw()","600");}
+function fast_upw(){clearTimeout(changetime);
+  upw();
+  fast = setTimeout("fast_upw()","100");}
+function clt(){
+if (change == 1){clearTimeout(changetime);}
+clearTimeout(fast);
+change = 0;
+}
+function resize()  {document.changing.height = document.image.height.value;
+  document.changing.width = document.image.width.value;}
+function downw(){document.image.width.value=parseInt(document.image.width.value)-2;//可以修改-2的数值,以提高速度
+
+  resize();}
+function over_downw(){downw();
+  change = 1;
+  changetime = setTimeout("fast_downw()","600");}
+function fast_downw(){clearTimeout(changetime);
+  downw();
+  fast = setTimeout("fast_downw()","100");}
+function uph(){document.image.height.value=parseInt(document.image.height.value)+2;//可以修改+2的数值,以提高速度
+
+ resize();}
+function over_downh(){downh();
+  change = 1;
+  changetime = setTimeout("fast_downh()","600");}
+function fast_downh(){clearTimeout(changetime);
+  downh();
+  fast = setTimeout("fast_downh()","100");}
+function over_uph(){uph();
+  change = 1;
+  changetime = setTimeout("fast_uph()","600");}
+function fast_uph(){clearTimeout(changetime);
+  uph();
+  fast = setTimeout("fast_uph()","100");}
+function downh(){document.image.height.value=parseInt(document.image.height.value)-2;//可以修改-2的数值,以提高速度
+
+  resize();}
+function set(){
+  document.image.width.value=document.changing.width;
+  document.image.height.value=document.changing.height;}
+-->
+</script><body><center>
+<form name="image">
+<input type="file" name="image_file" size="20"><input type="button" name="show" value="Show image" onclick="showimg(this.form)"><br>
+<br>
+宽:<input type="text" name="width" size="4" readonly value="300"><input type="button" value="升" name="B1"  onmousedown="over_upw()" onmouseup="clt()"><input type="button" value="降" name="B4" onmousedown="over_downw()" onmouseup="clt()"><p>高:<input type="text" name="height" size="4" readonly value="401"><input type="button" value="升" name="B2"  onmousedown="over_uph()" onmouseup="clt()" ><input type="button" value="降" name="B3"  onmousedown="over_downh()" onmouseup="clt()"></p>
+<table border ="1" cellspacing="0" cellpadding="6" style="border-collapse: collapse" bordercolor="#111111">
+<tr><td>
+<img src="sample.jpg" name="changing" width="300" height="401">
+</td></tr></table>
+</form>
+<div STYLE="left:-5000 px;top:0" class="divstyle">
+<P>
+<img src="sample.jpg" name="changing2" width="300" height="401"></p>
+</div>
+</center>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

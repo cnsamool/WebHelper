@@ -1,0 +1,148 @@
+MsChart是微软制作的功能强大的图表工具，用它可以很方便的建立各种图表。制作各种3维2维的直方图，折线图。结合前一段时间我对Mschart组件的认识，谈谈Mschart组件的使用方法。 
+1、 Chart Activex控件： 
+In the HTML page, insert an <OBJECT> tag for the License Manager object before any other <OBJECT> tags. The License Manager is an ActiveX control that is installed with Internet Explorer.  
+NOTE: This CLASSID, "5220cb21-c88d-11cf-b347-00aa00a28331", is for the License Manager and not for your ActiveX controls. You must use the same CLASSID every time you refer to the LPK file. In addition, you should keep the Name property of the <PARAM> tag as "LPKPath", and set the Value property for the <PARAM> tag of the License Manager object to the LPK file name and path. This path may be a relative path but must not refer to a UNC share or a URL on another domain.  
+Because you can only have one LPK file for each HTML page, make sure that you include all of the licensed ActiveX Controls for the page when you generate your LPK file. For example: 
+<object CLASSID="clsid:5220cb21-c88d-11cf-b347-00aa00a28331" 
+id="Microsoft_Licensed_Class_Manager_1_0"> 
+<param NAME="LPKPath" VALUE="mschart.lpk"> 
+</object> 
+Insert the <OBJECT> tag for your licensed control afterward. For example, an HTML page that displays the Microsoft Masked Edit control looks like this. 
+Here I downloaded the file mschart.cab from Microsoft''s website. It has been digitally signed. 
+<OBJECT classid="clsid:3A2B370C-BA0A-11D1-B137-0000F8753F5D"  
+id=mschart1 style="HEIGHT: 326px; WIDTH: 651px" CODEBASE="mschart.cab"></OBJECT> 
+You can look this acticle if you need help.  
+http://support.microsoft.com/support/kb/articles/Q159/9/23.ASP 
+2、 Mschart组件的一些常用属性介绍 
+a、charttype：图形的类型 
+charttype=0>三维直方图 
+charttype=1>二维直方图 
+charttype=2>三维折线图 
+charttype=3>二维折线图 
+charttype=4>三维面积图 
+charttype=5>二维面积图 
+charttype=14>饼图 
+b、showlegend：是否显示解说 
+c、titletext：标题 
+d、Columncount: The number of data columns 
+e、Rowcount:The number of data rows 
+f、Footnotetext:The footnote text. 
+g、Plot: Returns a reference to a Plot object that describes the area upon which a chart is displayed. 
+h、row: A row number in the current column. Rows are numbered from top to bottom beginning with 1. column: The current data column. 
+i、Rowlabel: The text for a row label. The label you specify sets the label for the data points identified by the Row property. This label appears along the category axis for most chart types and is used as the label for each individual pie in a pie chart. Label text may not be displayed if it is too long to fit on a chart.columnlabel: . Label text associated with a column in the data grid. 
+j、Data: The data point value. If the current data point already contains a value, it is replaced by the new value. The chart is redrawn to reflect the new value for the current data point. 
+k、ChartData: A two-dimensional array that holds the data used to draw the chart. If the first series of a multi-dimensional array contains strings, those strings will become the labels of the chart.ChartData is the default property for the MSChart control. 
+It is so many properities about Mschart Activex.I only introduce so much.Now,I will provide your two example to you!I wish it can help you understand it. 
+Example 1:It come from:  
+http://www.4guysfromrolla.com/webtech/MSChartExample.shtm 
+<object CLASSID="clsid:5220cb21-c88d-11cf-b347-00aa00a28331" 
+id="Microsoft_Licensed_Class_Manager_1_0"> 
+<param NAME="LPKPath" VALUE="mschart.lpk"> 
+</object> 
+<OBJECT classid="clsid:3A2B370C-BA0A-11D1-B137-0000F8753F5D"  
+id=mschart1 style="HEIGHT: 326px; WIDTH: 651px" CODEBASE="mschart.cab"></OBJECT>  
+<script LANGUAGE="Vbscript"> 
+MSChart1.ChartType =1 
+MSChart1.Plot.SeriesCollection(1).Pen.VtColor.Set 0,0,0 
+MSChart1.Plot.SeriesCollection(1).Pen.Width = 50 
+For i = 1 To MSChart1.Plot.Axis(1).Labels.Count 
+MSChart1.Plot.Axis(1).Labels(i).Format = "$0,###" 
+MSChart1.Plot.Axis(1).Labels(i).VtFont.Name = "Tahoma" 
+MSChart1.Plot.Axis(1).Labels(i).VtFont.Size = 10 
+Next 
+MSChart1.RowCount = 5 
+MSChart1.ColumnCount =2 
+MSChart1.ShowLegend = True 
+for y = 1 to 2 
+for x = 1 to 5  
+MSChart1.Row = x 
+MsChart1.Column= y 
+MSChart1.RowLabel = "Row " & x 
+call MSChart1.DataGrid.SetData(x, 1, x*5,nullFlag) 
+call MSChart1.DataGrid.SetData(x, 2, x*10,nullFlag) 
+next 
+Mschart1.ColumnLable=y 
+next  
+</script> 
+Example 2:We almost can see it everywhere. 
+<HTML> 
+<HEAD> 
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0"> 
+<SCRIPT ID=clientEventHandlersJS LANGUAGE=javascript> 
+<!-- 
+function window_onload()  
+{ 
+t=0; 
+mschart1.TitleText = "标题"; 
+mschart1.ShowLegend =true; 
+mschart1.ColumnCount =2; 
+mschart1.RowCount =3; 
+for (i=0;i<3;i++) 
+{for (j=0;j<2;j++) 
+{ mschart1.Row=i+1; 
+mschart1.Column=j+1; 
+if (2>1) 
+mschart1.ColumnLabel =document.form1.cname(j).value; 
+else 
+mschart1.ColumnLabel =document.form1.cname.value; 
+if ((document.form1.rcount.value*document.form1.ccount.value)>1) 
+mschart1.Data=document.form1.rc_data(t).value; 
+else 
+mschart1.Data=document.form1.rc_data.value; 
+t++; 
+} 
+if (document.form1.rcount.value>1) 
+mschart1.RowLabel =document.form1.rname(i).value ; 
+else 
+mschart1.RowLabel =document.form1.rname.value; 
+} 
+} 
+function select1_onchange() { 
+mschart1.chartType =select1.value 
+mschart1.Plot 
+} 
+//--> 
+</SCRIPT> 
+<TITLE>数据显示图</TITLE> 
+</HEAD> 
+<BODY LANGUAGE=javascript onload="return window_onload()"> 
+<object CLASSID="clsid:5220cb21-c88d-11cf-b347-00aa00a28331" 
+id="Microsoft_Licensed_Class_Manager_1_0"> 
+<param NAME="LPKPath" VALUE="mschart.lpk"> 
+</object> 
+<OBJECT classid="clsid:3A2B370C-BA0A-11D1-B137-0000F8753F5D"  
+id=mschart1 style="HEIGHT: 326px; WIDTH: 651px" CODEBASE="mschart.cab"></OBJECT>  
+<BR> 
+显示方式 
+<SELECT id=select1 name=select1 LANGUAGE=javascript onchange="return select1_onchange()"> 
+<OPTION value=1>二维直方图</OPTION> 
+<OPTION value=0>三维直方图</OPTION> 
+<OPTION value=3>二维折线图</OPTION> 
+<OPTION value=2>三维折线图</OPTION> 
+<OPTION value=5>二维面积图</OPTION> 
+<OPTION value=4>三维面积图</OPTION> 
+<OPTION value=14>饼图</OPTION></SELECT> 
+<! 
+chtitle 标题 
+rcount 列数 
+ccount 行数 
+rc_type 排列方式（1 以行方式，2以列方式） 
+rc_data 数据 
+rname 列名数组 
+cname 行名数组> 
+<form name=form1 id=form1> 
+<input type="hidden" name=rname id=rname value=1993> 
+<input type="hidden" name=rname id=rname value=1996> 
+<input type="hidden" name=rname id=rname value=1999> 
+<input type="hidden" name=cname id=cname value=身高> 
+<input type="hidden" name=cname id=cname value=体重> 
+<input type="hidden" name=rcount id=rcount value=3> 
+<input type="hidden" name=chtitle id=chtitle value=CoolFatMan的成长里程> 
+<input type="hidden" name=ccount id=ccount value=2> 
+<input type="hidden" name=rc_data id=rc_data value=179> 
+<input type="hidden" name=rc_data id=rc_data value=160> 
+<input type="hidden" name=rc_data id=rc_data value=180> 
+<input type="hidden" name=rc_data id=rc_data value=170> 
+<input type="hidden" name=rc_data id=rc_data value=182> 
+<input type="hidden" name=rc_data id=rc_data value=182> 
+</form></BODY></HTML>  

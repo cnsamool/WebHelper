@@ -1,0 +1,111 @@
+<head>
+<style type="text/css">
+<!--
+.aodu {FONT-SIZE: 9pt; LINE-HEIGHT: 13pt}
+a:link {text-decoration: none}
+a:visited {text-decoration: none}
+a:hover {text-decoration: underline}
+td {  font-size: 9pt; font-family: "宋体"}
+-->
+</style>
+</head>
+<body OnLoad="checkVersion4()">
+<div id="object1"
+style="position:absolute; visibility:show; left:50px; top:50px; z-index:2">
+
+<table border="1" cellspacing="0" cellpadding="0" bgcolor="#008000" bordercolor="#008000">
+<tr>
+<td class="aodu" align="center"><a href="javascript:void(0)" onmousedown="setObject(1)"><font color="#FFFFFF">单击移动双击放下</font></a></td>
+</tr>
+<tr>
+<td bgcolor="#CEFFCE" class="aodu" align="center">
+<a HREF="http://samool.533.net" target="_blank">傻猫软件</a><br>
+<a HREF="http://a3_.553.net target="_blank">网页助手</a><br>
+<a HREF="http://www.sina.com.cn" target="_blank">新浪网站</a><br>
+<a HREF="http://www.newhua.com.cn" target="_blank">华军软件</a><br>
+<a HREF="http://www.netease.com" target="_blank">网易社区</a>
+</td>
+</tr>
+</table>
+</div><div id="object11"
+style="position:absolute; visibility:show; left:-70px; top:-70px; z-index:2"></div>
+</body>
+
+<script LANGUAGE="JavaScript">
+function checkVersion4() {
+var x = navigator.appVersion;
+y = x.substring(0,4);
+if (y>=4) setVariables();moveOB();
+}
+
+function setVariables() {
+if (navigator.appName == "Netscape") {
+h=".left=";v=".top=";dS="document.";sD="";
+}
+else{
+h=".pixelLeft=";v=".pixelTop=";dS="";sD=".style";
+}
+objectX="object11"
+XX=-70;
+YY=-70;
+OB=11;
+}
+
+function setObject(a) {
+objectX="object"+a;
+OB=a;
+XX=eval("xpos"+a);
+YY=eval("ypos"+a);
+}
+
+function getObject() {
+if (isNav) document.captureEvents(Event.MOUSEMOVE);
+}
+
+function releaseObject() {
+if (isNav) document.releaseEvents(Event.MOUSEMOVE);
+check="no";
+objectX="object11";
+document.close();
+}
+
+function moveOB() {
+eval(dS + objectX + sD + h + Xpos);
+eval(dS + objectX + sD + v + Ypos);
+}
+
+var isNav = (navigator.appName.indexOf("Netscape") !=-1);
+var isIE = (navigator.appName.indexOf("Microsoft") !=-1);
+nsValue=(document.layers);
+check="no";
+function MoveHandler(e) {
+Xpos = (isIE) ? event.clientX : e.pageX;
+Ypos = (nsValue) ? e.pageY : event.clientY;
+if (check=="no") {
+diffX=XX-Xpos;
+diffY=YY-Ypos;
+check="yes";
+if (objectX=="object11") check="no";
+}
+Xpos+=diffX;
+Ypos+=diffY;
+if (OB=="1") xpos1=Xpos,ypos1=Ypos;
+moveOB();
+}
+if (isNav) {
+document.captureEvents(Event.CLICK);
+document.captureEvents(Event.DBLCLICK);
+}
+xpos1=50;  // make this the left pixel value for object1 below
+ypos1=50;  // make this the top pixel value for object1 below
+xpos11 = -50;
+ypos11 = -50;
+Xpos=5;
+Ypos=5;
+document.onmousemove = MoveHandler;
+document.onclick = getObject;
+document.ondblclick = releaseObject;
+
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

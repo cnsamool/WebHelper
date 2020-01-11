@@ -1,0 +1,163 @@
+<!--把如下代码加入<body>区域中://-->
+
+<script LANGUAGE="JavaScript1.1">
+
+<!--
+
+
+  var tname= new Array ();
+// ------------------------
+// Enter DATA HERE !!
+// ------------------------
+  tname[0]="Yahoo;www.yahoo.com";
+  tname[1]="Infoseek;www.infoseek.com";
+  tname[2]="Lycos;www.lycos.com";
+  tname[3]="WebCrawler;www.webcrawler.com";
+  tname[4]="Trovator;trovator.combios.es";
+  tname[5]="BIWE;biwe.cesat.es";
+  tname[6]="Ole;www.ole.es";
+  tname[7]="Fantastico;www.fantastico.com";
+  tname[8]="SOL;www.sol.es";
+  tname[9]="donde;donde.uji.es";
+  tname[10]="Telepolis;www.telepolis.com";
+  tname[11]="El Cano;www.elcano.com";
+// ------------------------
+
+function QuickSort (vec) {
+// ----------------------------------------
+// Algoritmo QuickSort 1.0 vs. JavaScript
+// Guillermo BT
+// ----------------------------------------
+ orderedVec= Ordenar (vec,0,vec.length-1);
+ return orderedVec
+}
+
+function Order (vec,iz,de) {
+// ------------------------------------------------------------
+// Order (subfuncion de QuickSort)
+// PARAMETERS (IN):
+//   *vec*      : vector to Order (Array object)
+//   *iz*       : lower bound (typically 0)
+//   *de*       : upper bound (typically array.length-1)
+//
+// OUT: returns the ordered vector (lexicographic order)
+// ------------------------------------------------------------
+  var i=iz;
+  var j=de;
+  var x= vec[Math.round((iz+de)/ 2)];       
+  while (i<=j) {
+    while (vec[i]<x) {i++};
+    while (vec[j]>x) {j--};
+    if (i<=j) {
+       var w= vec[i];
+       vec[i]= vec[j];
+       vec[j]= w;
+       i++;
+       j--;
+    }
+  }
+  if (iz<j) Order(vec,iz,j);
+  if (i<de) Order(vec,i,de);
+  return vec;
+}
+
+function Vector2URL (elem, separation) {
+  var cArray= elem.split(separation);
+  var url="<a href=http://"+cArray[1]+">";
+  //alert (url);
+  v.document.write ("<li>",cArray[0].fontcolor('red'));
+  v.document.write (" haves ",url,"web</a> page<br>");
+}
+
+function ShowEntries (vec) {
+  v= window.open ('jv_sor2b.html','ventana', 'scrollbars=1,width=400,height=220');
+  v.document.write ("<b>Available entries:</b><br><ul>");
+  var i = 0;
+  n=vec.length;
+  if (n != 0) {
+    while (i<n) {
+      Vector2URL(vec[i], ';');
+      i++
+    }
+  }
+  v.document.write ("</ul>");
+  v.document.write ("<form><input type=button value=Close onClick='self.close()'></form>");
+}
+
+function Manage (vector) {
+  if (vector.length==0) {
+    alert ("No entries were found!");
+  }
+  else {
+    alert ("Let's do it!");
+    ShowEntries (vector);
+  }
+}
+
+function Search (strng, vector) {
+// ----------------------------------------
+// Search 1.0-EN vs. JavaScript
+// Guillermo BT 
+// ----------------------------------------
+// IN:
+// *strng*  : string to search
+// *vector* : Array object whose elements have the format:
+//            "<name>;<web_page_URL>"
+//
+// OUT:
+// returns an Array with those elements whose <name> field
+// contains the *strng* string (substrings are allowed too)
+//
+// ---------------------------------------------------------------
+  var i=0; var j=0;
+  var array2= new Array();
+  while (i<(vector.length)) {
+    var cArray= vector[i].split(';');
+    nStr=new String (cArray[0]);
+    idx=nStr.toLowerCase().indexOf(strng);
+    if (idx != -1) {
+      array2[j]= vector[i];
+      j++
+    }
+    i++
+  }
+  return array2
+}
+
+// --> 
+
+</script>
+
+<FORM name=formSearch>
+<table border=2 bordercolor=blue cellpadding=3 cellspacing=4>
+<!-- FIRST ARROW -->
+<tr bgcolor=yellow>
+  <th colspan=2>Access to data:
+
+<!-- SECOND ARROW -->
+<tr align=center>
+  <td bgcolor=lightgreen><b>order</b>
+  <td>
+    <input type=button value="Chronological" name=botMostrar 
+     onClick="ShowEntries(tname)">
+    <input type=button value="Alphabetical" name=botOrder  
+     onClick="tname.sort(); ShowEntries(tname)">
+
+<!-- THIRD ARROW -->
+<tr align=center>
+  <td bgcolor=lightgreen><b>Search</b>
+  <td>
+     <input type=text size=20 name=who value=""><br>
+     <input type=button value="similar words" name=botSearch
+      onClick="
+        if (this.form.who.value=='') {
+          alert ('You must enter something to search!')
+        }
+        else {
+          valor=Search(this.form.who.value.toLowerCase(), tname);
+          Manage (valor)
+        }">
+</table>
+</FORM>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,25 @@
+<!--脚本说明:
+第一步:把如下代码加入<head>区域中-->
+<SCRIPT LANGUAGE="JavaScript">
+
+<!-- Begin
+function doColor(item, color, bg) {
+item.style.color = color; // changes text color
+item.style.backgroundColor = bg; // changes background
+}
+
+function undoColor(item) {
+item.style.color = "#000000"; // sets color back to black
+item.style.backgroundColor = ""; // sets background to default
+}
+//  End -->
+</script>
+</HEAD>
+
+<!--第二步:在<body>区中加入如下代码-->
+<a name="link1" href="http://samool.533.net/" onmouseover="doColor(link1, 'yellow','black');" onmouseout="undoColor(link1);">傻猫软件</a>
+<p>
+<a name="link2" href="http://www.sina.com.cn" onmouseover="doColor(link2, 'blue','red');" onmouseout="undoColor(link2);">新浪在线</a>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

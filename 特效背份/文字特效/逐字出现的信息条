@@ -1,0 +1,75 @@
+<!--脚本说明:
+第一步:把如下代码加入<body>区域中-->
+<script language="JavaScript">
+
+
+function makeArray() {
+
+                                this.length = makeArray.arguments.length
+
+                                for (var i = 0; i < this.length; i++)
+
+                                this[i+1] = makeArray.arguments[i]
+
+                          }
+
+                          var fArray = new makeArray;
+
+                          fArray[0]="傻猫软件";
+
+                          fArray[1]="网页助手"
+
+                          fArray[2]="http://samool.533.net"
+
+                          fArray[3]="如果你觉得好用，请推荐给你的朋友"
+
+
+
+                          var x = 1;
+
+                          var y = 0;
+
+                          var msg1 = fArray[y];
+
+
+
+                          function newsFeed() {
+
+                             if (x==msg1.length+1) {
+
+                                for (var z=0; z < 70000; z++);
+
+                                y+=1;
+
+                                if (y > 3) y=0;
+
+                                document.form1.news2.value=' ';
+
+                                msg1 = fArray[y];
+
+                                x=0;
+
+                             }
+
+                             document.form1.news2.value=msg1.substring(0,x);  
+
+                             x+=1;
+
+                             setTimeout("newsFeed() ",100);
+
+                          }
+
+
+</script>
+<form name="form1">
+<textarea wrap=physical rows=10 cols=25 name="news2">
+</textarea>
+</form>
+
+
+
+
+<!--第二步:把如下代码加入<body>区域中-->
+<body  onLoad="newsFeed()">
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

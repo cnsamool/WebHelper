@@ -1,0 +1,166 @@
+<body>
+<STYLE TYPE="text/css">
+.item{}
+.worm1 {
+  font-weight:bold;
+  font-size:12pt;
+  color:blue;
+  background:white;
+  width:150px;
+  BORDER-BOTTOM: #ffffff solid 0px;
+  BORDER-TOP: #ffffff solid 0px;
+  BORDER-LEFT: #ffffff solid 0px;
+  BORDER-RIGHT: #ffffff solid 0px;
+}
+.worm2 {
+  font-weight:bold;
+  font-size:12pt;
+  color:red;
+  background:white;
+  width:150px;
+  BORDER-BOTTOM: #ffffff solid 0px;
+  BORDER-TOP: #ffffff solid 0px;
+  BORDER-LEFT: #ffffff solid 0px;
+  BORDER-RIGHT: #ffffff solid 0px;
+}
+.info {
+  font-weight:bold;
+  font-size:10pt;
+  color:black;
+  background:white;
+  width:150px;
+  height:100px;
+  BORDER-BOTTOM: #ffffff solid 0px;
+  BORDER-TOP: #ffffff solid 0px;
+  BORDER-LEFT: #ffffff solid 0px;
+  BORDER-RIGHT: #ffffff solid 0px;
+}
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+var height = 20;
+var width = 20;
+var speed = 100
+width += 2;
+var a = 0;
+var b = 0;
+document.write("<table bgcolor=white bordercolor=black ");
+document.write("align=center border=1 cellpadding=0 cellspacing=0><tr><td>");
+for (b = 0; b < height+2; b++) {
+document.write("<img src=end.gif width=0 height=0>");
+for (a = 0; a < width- 2; a++) {
+if ((b == 0) || (b == height+1)) {
+document.write("<img src=end.gif width=0 height=0>");
+}
+else {
+document.write("<img src=blank.gif width=15 height=15>");
+   }
+}
+document.write("<img src=end.gif width=0 height=0><br>");
+}
+document.write("</td>");
+document.write("<td valign=top align=center bgcolor=white>");
+document.write("<p align=center><strong><font color=blue>Snake</font></strong></p>");
+document.write("<br>");
+document.write("<form name=info>");
+document.write("<input type=button size=28 value=0 class=worm1></form>");
+document.write("<br>请用上下左右键来控制此游戏</td></tr></table>");
+
+var points = 0;
+var go = 1;
+var di = 0;
+var x = 0;
+var y = 0;
+var n = 0;
+document.images[1].src = "blank.gif";
+var blank = document.images[1].src;
+var hw = (height * width);
+var o = Math.floor(Math.random() * hw - 2);
+do {
+o = Math.floor(Math.random() * hw-2);
+} while(document.images[o].src != blank);
+var i = o;
+var food = 0;
+do {
+food = Math.floor(Math.random() * hw-2);
+} while (document.images[food].src != blank);
+document.images[i].src = "worm.gif";
+document.images[width-1].src="end.gif";
+var end = document.images[width-1].src;
+var file = document.images[i].src;
+var length = 1;
+var worm = new Array();
+var k = 0;
+var ie = document.all ? 1 : 0;
+var  enableScroll = ((navigator.appName == "Microsoft Internet Explorer") && (parseInt(navigator.appVersion) >3)) ;
+var height = document.images[0].height;
+var tScroll;
+var d = 0;
+function runTimer() {
+if (d != 0) { n++; }
+if (d == 1) { i--; }
+if (d == 2) { i++; }
+if (d == 3) { i += width; }
+if (d == 4) { i -= width; }
+if (document.images[i].src == end) {
+speed -= 400; i = worm[n-1]; di = 1; die();
+}
+worm[n] = i;
+if(i == food) {
+length++; points += (10*length);
+do {
+food = Math.floor(Math.random() * hw-2);
+} while (document.images[food].src != blank);
+if (di == 0) {
+document.info.elements[0].value = points;
+   }
+}
+if (n > length){
+o = worm[n-length];
+}
+if ((document.images[i].src == file) && (n > 1)) {
+speed -= 400; d = 0; di = 1; die();
+}
+if(di == 0) {
+document.images[o].src = "blank.gif";
+document.images[i].src = "worm.gif";
+document.images[food].src = "food.gif";
+tScroll = window.setTimeout("runTimer();", speed);
+   }
+}
+if (enableScroll){
+if (ie) window.onload = runTimer;
+if (ie) window.onunload = new Function("clearTimeout(tScroll)");
+}
+systm = "";
+ver = navigator.appVersion;
+len = ver.length;
+for (iln = 0;iln < len; iln++) if (ver.charAt(iln) == "(") break;
+systm = ver.charAt(iln+1).toUpperCase();
+document.onkeydown = keyDown;
+if (systm != "C") {
+document.captureEvents(Event.KEYDOWN);
+}
+function keyDown(DnEvents) {
+if (systm != "C") {
+k = DnEvents.which;
+} else {
+k = window.event.keyCode;
+}
+if (k == 37) { d = 1; }
+if (k == 39) { d = 2; }
+if (k == 40) { d = 3; }
+if (k == 38) { d = 4; }
+}
+function die() {
+i = 0;
+o = 0;
+food = 0;
+document.info.elements[0].value = "Died with " + document.info.elements[0].value;
+var restart=confirm("Play Again?");
+if(restart){ location.reload(); }
+}
+
+</script>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

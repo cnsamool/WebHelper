@@ -1,0 +1,251 @@
+<!--要完成此效果把如下代码加入到<body>区域中-->
+
+<script>
+var menuwidth=123;
+var menutop=10;
+var menuspac=8/3;
+var menuleft=80;
+var menutitlewidth=80;
+var menubackground='eaeaea';
+var menuborder1='ffffff';
+var menuborder2='646464';
+var menuborder3='08246b';
+var menuborder4='5B589E';
+var menuselectcolor='AEACD1';
+
+var menu=new Array('导航菜单','导航菜单','导航菜单','导航菜单','导航菜单','导航菜单','导航菜单');
+
+var menudata=new Array();
+var menulist=new Array();
+
+menulist[0]=new Array('','菜单项目','aaa();','','菜单项目','bb.htm',0,'<hr>',0,'','菜单项目','a.htm');
+menulist[1]=new Array('','菜单项目','a.htm',0,'菜单项目','a.htm','','菜单项目','a.htm','','菜单项目','a.htm',0,'<hr>',0,'','菜单项目','a.htm',0,'<hr>',0,'','菜单项目','a.htm','','菜单项目','a.htm');
+menulist[2]=new Array('','菜单项目','a.htm',0,'菜单项目',0,0,'菜单项目',1,'','菜单项目',2,0,'<hr>',0,'','菜单项目','a.htm','','菜单项目','aa.htm','','菜单项目','a.htm','','菜单项目','a.htm',0,'<hr>',0,'','菜单项目','a.htm','','菜单项目','a.htm',0,'<hr>',0,'','菜单项目','a.htm');
+menulist[3]=new Array('','菜单项目','aaa();','','菜单项目','bb.htm',0,'<hr>',0,'','菜单项目','a.htm');
+menulist[4]=new Array('','菜单项目','aaa();','','菜单项目','bb.htm',0,'<hr>',0,'','菜单项目','a.htm');
+menulist[5]=new Array('','菜单项目','aaa();','','菜单项目','bb.htm',0,'<hr>',0,'','菜单项目','a.htm');
+menulist[6]=new Array('','菜单项目','aaa();','','菜单项目','bb.htm',0,'<hr>',0,'','菜单项目','a.htm');
+
+var menulist1=new Array();
+menulist1[0]=new Array('','菜单项目',0,'','菜单项目',1,'','菜单项目',2);
+menulist1[1]=new Array('','菜单项目','a.htm','','菜单项目','a.htm',0,'<hr>',0,'','菜单项目','a.htm','','菜单项目','a.htm',0,'<hr>',0,'','菜单项目','a.htm');
+menulist1[2]=new Array('','菜单项目','a.htm','','菜单项目','a.htm');
+
+var menulist2=new Array();
+menulist2[0]=new Array('','菜单项目','a.htm','','菜单项目','a.htm','','菜单项目','a.htm','','菜单项目','a.htm');
+menulist2[1]=new Array('','菜单项目','a.htm','','菜单项目','a.htm','','菜单项目','a.htm','','菜单项目','a.htm');
+menulist2[2]=new Array('','菜单项目','a.htm','','菜单项目','a.htm','','菜单项目','a.htm','','菜单项目','a.htm');
+
+
+//menuwidth,menutop,menuleft,menutitle,menutitlewidth,menunum,menubackground,menuborder3,menuselectcolor
+//pic,title,url
+
+var menuhtml=
+	'<style>' +
+	'td	{font:12.6px "宋体";}' +
+	'.menua{height:15px; cursor:hand; border:1 double #' + menuborder1 + ';}' +
+	'.menub{height:15px; cursor:hand; border:1 double #' + menuborder4 + '; background:' + menuselectcolor + ';}' +
+	'.menuimg{background:' + menubackground + '}' +
+	'</style>' +
+	'<table width="' + (menutitlewidth+menuspac*2+1)*menu.length + '" cellspacing="' + menuspac + '" cellpadding="0" style="position:absolute; top:' +menutop + 'px; left:' + menuleft + 'px; border:none;" onSelectStart="event.returnValue=false;" onConTextMenu="event.returnValue=false">' +
+	'  <tr>';
+  for(i=0;i<menu.length;i++) {
+    var menuarray=menu[i].split('(');
+    if (menuarray[1]!=null) {
+      menuarray[1]=menuarray[1].split(')');
+      menutext=menuarray[0] + '(<u>' + menuarray[1][0] + '</u>)';
+    } else menutext=menuarray[0];
+    menuhtml+=
+	'    <td class=menua onMouseOut="this.className=\'menua\';" onMouseOver="this.className=\'menub\';" onclick="menushow(' + menuwidth + ',' + (menutop+menuspac) + ',' + (menuleft+((menutitlewidth+6)*i)+menuspac) + ',\'' + menutext + '\',this.offsetWidth,' + i + ',\'' + menubackground + '\',\'' + menuborder2 + '\',\'' + menuselectcolor + '\');" style="width:' + menutitlewidth + 'pt; cursor:hand; text-align:center">' + menutext + '</td>';
+  }
+  menuhtml+=
+	'  </tr>' +
+	'</table>' +
+	'<div id="menu"  style="position:absolute; visibility:hidden; z-index:1000"></div>' +
+	'<div id="menu1" style="position:absolute; visibility:hidden; z-index:1001"></div>' +
+	'<div id="menu2" style="position:absolute; visibility:hidden; z-index:1002"></div>' +
+	'<div id="menu3" style="position:absolute; visibility:hidden; z-index:1003"></div>' +
+	'<div id="menu4" style="position:absolute; visibility:hidden; z-index:1004"></div>' +
+	'<div id="menu5" style="position:absolute; visibility:hidden; z-index:1005"></div>' +
+	'<div id="menu6" style="position:absolute; visibility:hidden; z-index:1006"></div>';
+document.write(menuhtml);
+
+
+function menushow(menuwidth,menutop,menuleft,menutitle,menutitlewidth,menunum,menubackground,menuborder2,menuselectcolor){
+  if (document.all.menu.style.visibility=='hidden' && menutitle!=null) {
+  document.all.menu.innerHTML=
+	'<table width="' + menuwidth + '" border="1" cellspacing="0" cellpadding="0" style="border:none;" onSelectStart="event.returnValue=false;" onConTextMenu="event.returnValue=false">\n' +
+	'  <tr onclick="menushow();">\n' +
+	'    <td width="' + (menutitlewidth) + '" style="height:18px; border-left:1 double #' + menuborder2 + '; border-right:1 double #' + menuborder2 + '; border-top:1 double #' + menuborder2 + '; border-bottom:none; background:' + menubackground + '; text-align:center; cursor:hand">' + menutitle + '</td>\n' +
+	'    <td width="' + (menuwidth-menutitlewidth+2) + '" style="border-left:none; border-right:none; border-top:none; border-bottom:1 double #' + menuborder2 + '">&nbsp;</td>\n' +
+	'  </tr>\n' +
+	'  <tr>\n' +
+	'     <td colspan="2" style="height:' + Math.round(menulist[menunum].length/3*18) + 'px; border:none">\n' +
+	'<iframe name=menutools frameborder="0" width="100%" height="100%" scrolling="no"></iframe>\n' +
+	'    </td>\n' +
+	'  </tr>\n' +
+	'</table>\n';
+
+  menushowlist(menuwidth,menutop,menuleft,menunum,menubackground,menuborder3,menuselectcolor);
+
+  document.all.menu.style.width=menuwidth;
+  document.all.menu.style.pixelTop=menutop;
+  document.all.menu.style.pixelLeft=menuleft;
+  document.all.menu.style.visibility='visible';
+
+  }else{
+
+    if (document.all["menu1"].style.visibility=='hidden') document.all.menu.style.visibility='hidden';
+    for(i=1;i<menulist.length;i++) document.all["menu"+i].style.visibility='hidden';
+
+  }
+}
+
+function menushowlist(menuwidth,menutop,menuleft,menunum,menubackground,menuborder3,menuselectcolor){
+
+  var menulisthtml=
+	'<style>\n' +
+	'td	{font:12.6px "宋体";}\n' +
+	'.menua{word-wrap:break-word; cursor:hand; border:none; height:15px}\n' +
+	'.menub{word-wrap:break-word; cursor:hand; border:1 double #' + menuborder3 + '; height:15px; background:' + menuselectcolor + '; filter:alpha(opacity=50);}\n' +
+	'.menuc{word-wrap:break-word; cursor:hand; border:1 double #' + menuborder3 + '; height:15px; background:' + menuselectcolor + '; filter:alpha(opacity=80);}\n' +
+	'.menuimg{height:15px; background:' + menubackground + ';}\n' +
+	'</style>\n' +
+	'<body topmargin="0" leftmargin="0" onSelectStart="event.returnValue=false;" onConTextMenu="event.returnValue=false">\n' +
+	'<table width="' + menuwidth + '" height="100%" border="0" cellspacing="0" cellpadding="0" style="position:absolute; z-index:1;">\n';
+  for(i=0;i<menulist[menunum].length/3;i++) {
+    if (menulist[menunum][i*3]!=0) menuimg='<img src="' + menulist[menunum][i*3] + '" width="12" height="12">'; else menuimg='';
+    if (menulist[menunum][i*3+2]>=0) menudown='<font style="font:10px webdings">4</font>'; else menudown='';
+    if (menulist[menunum][i*3+1]=='<hr>') {menudown='<font style="font:10px">————————</font>';menuimg='';}
+    menulisthtml+=
+	'   <tr><td class="menuimg" align="middle">' + menuimg + '</td><td width="' + (menuwidth-24) + '" align=right>' + menudown + '&nbsp;</td></tr>\n';
+  }
+  menulisthtml+=
+	' </table>\n' +
+	' <table width="' + menuwidth + '" height="100%" border="0" cellpadding="0" style="border-left:1 solid #' + menuborder2 + '; border-right:1 solid #' + menuborder2 + '; border-top:none; border-bottom:1 solid #' + menuborder2 + ';  table-layout:fixed; position:absolute; z-index:2">\n';
+  menulistleft=menuleft*1+menuwidth+2;
+  for(i=0;i<menulist[menunum].length/3;i++) {
+    menulisttop=menutop*1+(i+1)*17;
+    if (menulist[menunum][i*3+1]=='<hr>') menulisthtml+='<tr><td class="menua" style="cursor:default">&nbsp;</td></tr>';
+    else {
+    var menuarray=menulist[menunum][i*3+1].split('(');
+    if (menuarray[0].length>menuwidth/10-3)
+      menutext=' title="' + menuarray[0] + '">　　' + menuarray[0].substring(0,menuwidth/10)+"...";
+    else
+      menutext='>　　' + menuarray[0];
+    if (menuarray[1]!=null) {
+      menuarray[1]=menuarray[1].split(')');
+      menutext+='(<u>' + menuarray[1][0] + '</u>)';
+    }
+    menulisthtml+=
+	'   <tr><td class="menua" onMouseOut="this.className=\'menua\';" onMouseOver="this.className=\'menub\';" onMouseDown="this.className=\'menuc\';" onclick="parent.';
+    if (menulist[menunum][i*3+2]>=0) {
+      menulisthtml+='menushowlisttable(1,' + menuwidth + ',\'' + menulisttop + '\',\'' + menulistleft + '\',' + menulist[menunum][i*3+2] + ',\'' + menubackground + '\',\'' + menuborder3 + '\',\'' + menuselectcolor + '\');';
+    }
+    else {
+      var menuclick=menulist[menunum][i*3+2].split('.');
+      if (menuclick[1]=='htm') menulisthtml+='openwin(\'' + menulist[menunum][i*3+2] + '\');';
+      else menulisthtml+=menulist[menunum][i*3+2];
+    }
+    menulisthtml+=
+	'" valign="bottom"' + menutext + '</td></tr>\n';
+    }
+  }
+  menulisthtml+=
+	' </table>';
+  menutools.document.write(menulisthtml);
+}
+
+function menushowlisttable(menunum,menuwidth,menutop,menuleft,menudatanum,menubackground,menuborder3,menuselectcolor){
+  if (menunum==1){menudata=menulist1[menudatanum]}
+  else if (menunum==2){menudata=menulist2[menudatanum]}
+  else return;
+  if (document.all["menu"+menunum].style.visibility=='hidden') {
+  document.all["menu"+menunum].innerHTML=
+	'<table width="' + menuwidth + '" border="1" cellspacing="0" cellpadding="0" style="border:none" onSelectStart="event.returnValue=false;" onConTextMenu="event.returnValue=false">\n' +
+	'  <tr>\n' +
+	'     <td colspan="2" style="height:' + Math.round(menudata.length/3*18) + 'px; border:none">\n' +
+	'<iframe name="menutools'+ menunum +'" frameborder="0" width="100%" height="100%" scrolling="no"></iframe>\n' +
+	'    </td>\n' +
+	'  </tr>\n' +
+	'</table>\n';
+
+  menushowlistselect(menunum,menuwidth,menutop,menuleft,menudata,menubackground,menuborder3,menuselectcolor);
+
+  document.all["menu"+menunum].style.width=menuwidth;
+  document.all["menu"+menunum].style.pixelTop=menutop;
+  document.all["menu"+menunum].style.pixelLeft=menuleft;
+  document.all["menu"+menunum].style.visibility='visible';
+
+  }else{
+    if (document.all["menu"+menunum].style.visibility=='hidden') document.all["menu"+menunum].style.visibility='hidden';
+    for(i=menunum;i<menulist.length;i++) document.all["menu"+i].style.visibility='hidden';
+  }
+}
+
+function menushowlistselect(menunum,menuwidth,menutop,menuleft,menudata,menubackground,menuborder3,menuselectcolor){
+
+  var menulisthtml=
+	'<style>\n' +
+	'td	{font:12.6px "宋体";}\n' +
+	'.menua{word-wrap:break-word; cursor:hand; border:none; height:15px}\n' +
+	'.menub{word-wrap:break-word; cursor:hand; border:1 double #' + menuborder3 + '; height:13px; background:' + menuselectcolor + '; filter:alpha(opacity=50);}\n' +
+	'.menuc{word-wrap:break-word; cursor:hand; border:1 double #' + menuborder3 + '; height:13px; background:' + menuselectcolor + '; filter:alpha(opacity=80);}\n' +
+	'.menuimg{height:17px; background:' + menubackground + ';}\n' +
+	'</style>\n' +
+	'<body topmargin="0" leftmargin="0" onSelectStart="event.returnValue=false;" onConTextMenu="event.returnValue=false">\n' +
+	'<table width="' + menuwidth + '" height="100%" border="0" cellspacing="0" cellpadding="0" style="border-left:1 solid #' + menuborder2 + '; border-right:1 solid #' + menuborder2 + '; border-top:1 solid #' + menuborder2 + '; border-bottom:1 solid #' + menuborder2 + '; position:absolute; z-index:1;">\n';
+
+  for(i=0;i<menudata.length/3;i++) {
+    if (menudata[i*3]!=0) menuimg='<img src="' + menudata[i*3] + '" width="12" height="12">'; else menuimg='';
+    if (menudata[i*3+2]>=0) menudown='<font style="font:10px webdings">4</font>'; else menudown='';
+    if (menudata[i*3+1]=='<hr>') {menudown='<font style="font:10px">————————</font>';menuimg='';}
+    menulisthtml+=
+	'   <tr><td class="menuimg" align="middle">' + menuimg + '</td><td width="' + (menuwidth-24) + '" align=right>' + menudown + '&nbsp;</td></tr>\n';
+  }
+  menulisthtml+=
+	' </table>\n' +
+	' <table width="' + menuwidth + '" height="100%" border="0" cellpadding="0" style="border:none; table-layout:fixed; position:absolute; z-index:2">\n';
+  menulistleft=menuleft*1+menuwidth+2;
+  for(i=0;i<menudata.length/3;i++) {
+    menulisttop=menutop*1+i*17;
+    if (menudata[i*3+1]=='<hr>') menulisthtml+='<tr><td class="menua" style="cursor:default">&nbsp;</td></tr>';
+    else {
+    var menuarray=menudata[i*3+1].split('(');
+    if (menuarray[0].length>menuwidth/10-3)
+      menutext=' title="' + menuarray[0] + '">　　' + menuarray[0].substring(0,menuwidth/10)+"...";
+    else
+      menutext='>　　' + menuarray[0];
+    if (menuarray[1]!=null) {
+      menuarray[1]=menuarray[1].split(')');
+      menutext+='(<u>' + menuarray[1][0] + '</u>)';
+    }
+    menulisthtml+=
+	'   <tr><td class="menua" onMouseOut="this.className=\'menua\';" onMouseOver="this.className=\'menub\';" onMouseDown="this.className=\'menuc\';" onclick="parent.';
+    if (menudata[i*3+2]>=0)
+      menulisthtml+='menushowlisttable(2,' + menuwidth + ',\'' + menulisttop + '\',\'' + menulistleft + '\',' + menudata[i*3+2] + ',\'' + menubackground + '\',\'' + menuborder3 + '\',\'' + menuselectcolor + '\');';
+    else {
+      var menuclick=menudata[i*3+2].split('.');
+      if (menuclick[1]=='htm') menulisthtml+='openwin(\'' + menudata[i*3+2] + '\');';
+      else menulisthtml+=menudata[i*3+2];
+    }
+    menulisthtml+=
+	'" valign="bottom"' + menutext + '</td></tr>\n';
+    }
+  }
+  menulisthtml+=
+	' </table>';
+  parent.frames["menutools"+menunum].document.write(menulisthtml);
+
+}
+
+
+function openwin(a){
+  Win=open(a,'_top');
+}
+
+function aaa(){
+}
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

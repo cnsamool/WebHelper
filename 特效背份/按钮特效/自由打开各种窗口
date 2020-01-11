@@ -1,0 +1,93 @@
+<!--脚本说明:
+把如下代码加入<body>区域中-->
+<script language="JAVASCRIPT">
+<!--  hide        
+
+function customize(form) {    
+        var address = document.form1.url.value;   
+        var op_tool  = (document.form1.tool.checked== true)  ? 1 : 0;    
+        var op_loc_box  = (document.form1.loc_box.checked == true)  ? 1 : 0;    
+        var op_dir  = (document.form1.dir.checked == true)  ? 1 : 0;    
+        var op_stat  = (document.form1.stat.checked == true)  ? 1 : 0;    
+        var op_menu  = (document.form1.menu.checked == true)  ? 1 : 0;    
+        var op_scroll  = (document.form1.scroll.checked == true)  ? 1 : 0;    
+        var op_resize  = (document.form1.resize.checked == true)  ? 1 : 0;    
+        var op_wid  = document.form1.wid.value;   
+        var op_heigh = document.form1.heigh.value;                 
+        var option = "toolbar="      + op_tool +                ",location="    + op_loc_box +                ",directories=" 
+        + op_dir +                ",status="      + op_stat 
+        +                ",menubar="     + op_menu +                ",scrollbars="  
+
+        + op_scroll +                ",resizeable="  + op_resize 
+        +                ",width="       
+        + op_wid +                ",height="      + op_heigh;
+        var win3 = window.open("", "what_I_want", option);  
+        var win4 = window.open(address, "what_I_want");
+}
+function clear(form){ 
+        document.form1.wid.value=""; 
+        document.form1.heigh.value="";
+}
+// done hiding -->
+</script>
+
+ <form name="form1" action="javascript:" method="POST">
+                    <div align="left"> 
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr align="center"> 
+                          <td colspan="4" height="35"> URL： 
+                            <input type="text" size="40" name="url" value="http://">
+                          </td>
+                        </tr>
+                        <tr align="center"> 
+                          <td width="25%" height="25"> 
+                            <input
+type="checkbox" name="tool" value="ON">
+                            : 快捷键</td>
+                          <td width="25%" height="25"> 
+                            <input type="checkbox" name="loc_box" value="ON">
+                            : 地址栏 </td>
+                          <td width="25%" height="25"> 
+                            <input
+type="checkbox" name="dir" value="ON">
+                            : 链 接 </td>
+                          <td width="25%" height="25"> 
+                            <input type="checkbox" name="stat" value="ON">
+                            : 状态栏</td>
+                        </tr>
+                        <tr align="center"> 
+                          <td width="25%" height="25"> 
+                            <input
+type="checkbox" name="resize" value="ON">
+                            : 调大小 </td>
+                          <td width="25%" height="25"> 
+                            <input type="checkbox" name="scroll" value="ON">
+                            : 滚动条</td>
+                          <td width="25%" height="25"> 
+                            <input
+type="checkbox" name="menu" value="ON">
+                            : 菜 单 </td>
+                          <td width="25%" height="25"> </td>
+                        </tr>
+                        <tr align="center"> 
+                          <td colspan="2" height="35"> 
+                            <input type="text" name="wid"
+size="14">
+                            : 宽</td>
+                          <td colspan="2" height="25"> 
+                            <input type="text" name="heigh" size="14">
+                            : 高</td>
+                        </tr>
+                        <tr align="center"> 
+                          <td colspan="4" height="25"> 
+                            <input
+type="button" size="10" value="确认" onClick="customize(this.form)" name="button">
+                            <input type="reset"
+size="10" value="重填" onClick="clear(this.form)" name="reset">
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,90 @@
+
+<!--第一步：将下列代码复制到<head></head>之间：-->
+<SCRIPT>
+<!-- Beginning of JavaScript -
+
+// http://www.szren.com
+var message = new Array()
+message[0]="感谢使用网页助手V1.0"
+message[1]="傻猫软件，互动的世界"
+message[2]="网页助手，您的好朋友"
+var scrollerheight=200
+var scrollerwidth=800
+var font_family="宋体"
+var font_size=30
+var x_textposition=10
+var y_textposition=10
+var i_message=0
+var i_loop=0
+var max_loop=45
+var timer
+scrollerwidth=2*scrollerwidth
+y_textposition=y_textposition-scrollerheight+font_size
+x_textposition=x_textposition-Math.floor(scrollerwidth/2)
+
+
+function initiate() {
+	if (document.all) {		
+		document.all.rotationstyle.style.posLeft=x_textposition
+		document.all.rotationstyle.style.posTop=y_textposition
+        changemessage()
+	}
+}
+
+function changemessage() {
+		do_rotate="yes"
+		rotationstyle.innerHTML=
+		'<OBJECT ID="rotationobj" CLASSID="CLSID:369303C2-D7AC-11d0-89D5-00A0C90833E6" STYLE="position:relative;width:'+scrollerwidth+'px;height:'+2*scrollerheight+'px">'+
+        '<PARAM NAME="Line0001" VALUE="SetLineStyle(0)">'+
+        '<PARAM NAME="Line0002" VALUE="SetLineColor(255,255,255)">'+
+		'<PARAM NAME="Line0003" VALUE="SetFillColor(0,0,255)">'+
+		'<PARAM NAME="Line0004" VALUE="SetFont(\''+font_family+'\', '+font_size+', 400, 0, 0, 0)">'+
+		'<PARAM NAME="Line0005" VALUE="Text(\''+message[i_message]+'\',0, 2, 0)">'+
+		'</OBJECT>'		
+		rotationobj.Rotate(-90,0,0) 
+		startscroll()
+		
+}
+
+function startscroll() {
+	if (i_loop < max_loop) {
+        rotationobj.Rotate(2,0,0) 
+
+		i_loop++
+		timer=setTimeout("startscroll()",20)
+	}
+   else {
+		i_loop=0
+		timer=setTimeout("endscroll()",2000)
+	}
+}
+
+function endscroll() {
+	if (i_loop < max_loop) {
+        rotationobj.Rotate(-2,0,0) 
+
+		i_loop++
+		timer=setTimeout("endscroll()",50)
+	}
+   else {
+        i_message++
+		i_loop=0
+        if (i_message>=message.length) {i_message=0}
+		timer=setTimeout("changemessage()",1000)
+	}
+}
+
+// - End of JavaScript - -->
+</SCRIPT>
+
+
+
+
+<!--第二步：将下列代码复制到<body></body>之间：-->
+<BODY bgColor=#ffffff onload=initiate()><SPAN id=rotationstyle 
+style="POSITION: absolute">
+<OBJECT classid=CLSID:369303C2-D7AC-11d0-89D5-00A0C90833E6 
+id=rotationobj>
+</OBJECT></SPAN> 
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

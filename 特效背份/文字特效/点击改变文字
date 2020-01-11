@@ -1,0 +1,29 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中://-->
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+n = (document.layers) ? 1:0
+ie = (document.all) ? 1:0
+function change_content(divname, newtext) {
+    if (n) {
+        document.layers[divname].document.write(newtext)
+        document.layers[divname].document.close()
+    }
+    if (ie) document.all[divname].innerHTML = newtext
+}
+
+</SCRIPT>
+<font size="2">
+<A HREF="#" onClick="change_content('layer1', '傻猫软件')">请点击改变文字!</A><BR>
+<DIV ID="layer1" STYLE="position:absolute; top:100; left:10; visibility:visible">
+网页助手<BR>
+</DIV>
+</font>
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

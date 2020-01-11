@@ -1,0 +1,49 @@
+  <script>
+<!--
+
+
+var winheight=100
+var winsize=100
+var x=5
+
+/*
+Animated Window Opener Script (updated 00/04/24)- 
+?Dynamic Drive (lwjrj.yeah.net)
+For full source code, installation instructions, 100's more DHTML scripts, and Terms Of
+Use, visit dynamicdrive.com
+*/
+
+
+
+function openwindow(thelocation){
+temploc=thelocation
+if (!(window.resizeTo&&document.all)&&!(window.resizeTo&&document.getElementById)){
+window.open(thelocation)
+return
+}
+win2=window.open("","","scrollbars")
+win2.moveTo(0,0)
+win2.resizeTo(100,100)
+go2()
+}
+function go2(){
+if (winheight>=screen.availHeight-3)
+x=0
+win2.resizeBy(5,x)
+winheight+=5
+winsize+=5
+if (winsize>=screen.width-5){
+win2.location=temploc
+winheight=100
+winsize=100
+x=5
+return
+}
+setTimeout("go2()",50)
+}
+//-->
+</script>
+<p><a href="javascript:openwindow('lwjrj.yeah.net')">点这里试试</a>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

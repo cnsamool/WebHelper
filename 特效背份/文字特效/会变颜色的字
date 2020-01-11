@@ -1,0 +1,35 @@
+<script language=javascript>            
+<!-- 
+function initArray() {
+	this.length = initArray.arguments.length;
+	for (var i = 0; i < this.length; i++) {
+		this[i] = initArray.arguments[i];
+   	}
+}
+var ctext = "感觉好用的话，请向你的朋友推荐，傻猫不胜感激你";
+var speed = 1000;
+var x = 0;
+var color = new initArray(
+	"red", 
+	"blue", 
+	"green",
+	"black",
+	"yellow",
+	"pink");
+if (navigator.appVersion.indexOf("MSIE") != -1)
+{
+	document.write('<div id="c"><center>'+ctext+'</center></div>');
+}
+function chcolor()
+{ 
+	 if (navigator.appVersion.indexOf("MSIE") != -1)
+	 {
+		document.all.c.style.color = color[x];
+	 }
+	(x < color.length-1) ? x++ : x = 0;
+}
+setInterval("chcolor()",1000);
+-->
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

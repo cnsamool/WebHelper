@@ -1,0 +1,47 @@
+
+<div id=Out0 style="position:relative; left:20; top:+15px; width:90%;" >
+  <span id=Out1 class=Outline style="hand: hand; "></span><b id=Out1 class=Outline style="cursor: hand; ">点击出现更多链接</b>
+  <div id=Out1details style="display:None; position:relative; left:12;">
+        <U>链接1</u>
+<P>
+<u>链接2</u>
+<P>
+        <U>链接3</u>
+<P>
+<u>链接4</u>
+<P>     <U>链接5</u>
+<P>
+<u>链接6</u>
+<P>     <U>链接7</u>
+<P>
+<u>链接8</u>
+<P>     <U>链接9</u>
+<P>
+<u>链接10</u>
+<P>
+
+
+
+  </div>
+</div>
+<script language=JavaScript>
+
+function clickHandler() {
+  var targetId, srcElement, targetElement;
+  srcElement = window.event.srcElement;
+  if (srcElement.className == "Outline") {
+     targetId = srcElement.id + "details";
+     targetElement = document.all(targetId);
+     if (targetElement.style.display == "none") {
+        targetElement.style.display = "";
+     } else {
+        targetElement.style.display = "none";
+     }
+  }
+}
+
+document.onclick = clickHandler;
+
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

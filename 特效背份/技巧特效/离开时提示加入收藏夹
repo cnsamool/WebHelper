@@ -1,0 +1,11 @@
+<script language="javascript">
+function bookmark(){
+window.external.AddFavorite('http://samool.533.net', '网页助手')
+}
+</script>
+<body  onUnload="bookmark()">
+关闭窗口时，加入收藏！
+</body>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

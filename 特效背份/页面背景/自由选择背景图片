@@ -1,0 +1,13 @@
+<!--脚本说明：
+把如下代码加入<body>区域中:-->
+
+<SELECT onChange="document.body.style.background=this.options[this.selectedIndex].value"> 
+
+<OPTION VALUE="url('image1.gif')" SELECTED>第一种背景图片 
+
+<OPTION VALUE="url('image2.gif')"> 第二种背景图片 
+
+<OPTION VALUE="url('image3.gif')"> 第三种背景图片</SELECTED>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

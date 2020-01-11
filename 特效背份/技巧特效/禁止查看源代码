@@ -1,0 +1,5 @@
+<SCRIPT language=javascript>
+function click() {if (event.button==2) {alert('不许你偷看！');}}document.onmousedown=click
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

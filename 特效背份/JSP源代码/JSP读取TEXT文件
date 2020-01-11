@@ -1,0 +1,280 @@
+TextFileReader.java是一个bean， TextFileReader.jsp则是jsp文件。如果 
+你也使用djswdk，并使用相同的library environment，可叫bean文件放在jswdk1-0eaexamplesjsp下的textfileaccess目录（你可以创建它），jsp文件放在jswdk1-0eaexamplesWeb-infjspbeanstextfileaccess目录，你也必须创建它。 
+
+对于有经验的开发者：  
+
+在"header"信息中我们要申明要使用、识别哪一个bean，并设置其属性。 
+
+首先，我们导入bean，如果你的jswdk设置正确并已经将文件放在上述位置，那么找到 resource应该没有问题。page命令的意思是它将为整个jsp页面来进行导入。 
+
+<%@ page import ="textfileaccess.TextFileReader" %> 
+
+告诉编译器我们将使用一个bean，以及如何识别它，并进行初始化（instansiate）。 scope指明被申明的对象对当前页有效。 
+
+<jsp:useBean id="file_reader"class="textfileaccess.TextFileReader" scope="session"/> 
+
+然后我们决定要设置那些属性。这里是"FileName"。因为我们要使用Bean的setFileName 方法。所以Bean的名字必须包含。 
+
+<jsp:setProperty name="file_reader" property="FileName"/> 
+
+那就是header信息，现在我们开始实际的HTML页面。 
+
+<html> 
+
+<head><title>Read a text file</title></head> 
+
+<body bgcolor="white"> 
+
+<font size=4> 
+
+现在我们开始编写一些Java脚本。首先检查文件名是否已经设置好。如果设好了，我们就显示文件，否则我们要转到另一个页面。 
+
+<%if(file_reader.getFileName() != "") { %> 
+
+file_reader是一个bean，所以我们可以用Java类来存取它。 :-)现在我们得到文件名称！
+
+
+文件名称是： '<% out.println(file_reader.getFileName()); %>' : 
+
+
+文件内容，如果为空的话： 
+
+<%if (file_reader.getContent() != null) { %> 
+
+我们可以建立一个textarea (HTML) 并用getRows()和getColumns() 方法来调节到合适的位置。然后将文件内容放入。 
+
+<Form> 
+
+<TEXTAREArows=<%=file_reader.getRows()%>cols=<%= file_reader.getColumns()%>id= textarea1name= textarea1>< /FONT> 
+
+<%out.println(file_reader.getContent()); %> 
+
+</TEXTAREA> 
+
+</Form> 
+
+如果文件为空，那么一定是发生了错误，我们将得到出错信息： 
+
+<% }else { %> 
+
+<% out.println(file_reader.getErrorMessage()); %>  
+
+<% } %> 
+
+
+
+
+
+重置所有值并返回主页： 
+
+<% file_reader.reset(); %>  
+
+Do you want to <a href="TextFileReader.jsp">look at another file</a>? 
+
+<% }else { %> 
+
+文件名为空，则显示出错页面。 
+
+欢迎加入这里：'Read a file in JSP'
+  
+
+这个示例在textarea中简单地显示了文件内容?lt;p>  
+
+请填写你想看到什么文件。并确信键入了完整的路径。<p> 
+
+建立带textboxbutton的form。注意我们不必定义form的action，因为使用了同一个页面。并注意textbox中要填入文件名字。 
+
+<form method=get>< /FONT> 
+
+FileName? <input type=text name= FileName>< /FONT> 
+
+<input type=submit value="Show it!"> 
+
+</form> 
+
+<% } %> 
+
+</font> 
+
+</body> 
+
+</html> 
+
+jsp文件完成了。在仔细看以下Bean中的Java代码。假设你们中的大多数都熟悉java，否则你怎么会加入JSP的行列。  
+
+**************JSP代码： TextFileReader.jsp 
+<!-- 
+TextFileReader.jsp 
+Written by Martin Lindahl 
+Copyright 1999, w3it.com, distributed by JSPea 
+--> 
+
+<%@ page import = "textfileaccess.TextFileReader" %> 
+
+<jsp:useBean id="file_reader" class="textfileaccess.TextFileReader" scope="session"/> 
+<jsp:setProperty name="file_reader" property="FileName"/> 
+
+<html> 
+<head><title>Read a text file</title></head> 
+<body bgcolor="white"> 
+<font size=4> 
+
+<% if (file_reader.getFileName() != "") { %> 
+
+The content of the file '<% out.println(file_reader.getFileName()); %>' : 
+
+
+
+<% if (file_reader.getContent() != null) { %> 
+
+<Form> 
+<TEXTAREA rows=<%= file_reader.getRows() %> cols=<%= file_reader.getColumns() %> id=textarea1 name=textarea1> 
+
+<% out.println(file_reader.getContent()); %> 
+
+</TEXTAREA> 
+</Form> 
+
+<% } else { %> 
+<% out.println(file_reader.getErrorMessage()); %> 
+
+<% } %> 
+
+
+
+
+
+<% file_reader.reset(); %> 
+Do you want to <a href="TextFileReader.jsp">look at another file</a>? 
+
+
+<% } else { %> 
+
+Welcome to the 'Read a file in JSP' example.
+
+The example simply shows the file in a textarea.<p> 
+Please fill out what file you want to look at. Be sure to type the complete path.<p> 
+
+<form method=get> 
+FileName? <input type=text name=FileName> 
+<input type=submit value="Show it!"> 
+</form> 
+
+<% } %> 
+
+</font> 
+</body> 
+</html> 
+
+
+**************Java Bean TextFileReader.java  
+package textfileaccess; 
+
+import java.io.*; 
+import java.awt.event.*; 
+import java.util.*; 
+
+/** 
+* TextFileReader is a bean that provides the basic functionality for  
+* reading a textfile. 
+*/ 
+public class TextFileReader { 
+
+private String fileName, errorMessage; 
+private int columns, rowCount;  
+
+/** 
+* Constructs a TextFileReader. 
+*/ 
+public TextFileReader() { 
+reset();  
+} 
+
+/** 
+* Resets all the variables in this bean. 
+*/ 
+public void reset() { 
+fileName = ""; 
+errorMessage = ""; 
+columns = 0; 
+rowCount = 0; 
+} 
+
+/** 
+* Sets the error message, if an error occurs. 
+*/ 
+public void setErrorMessage(String errorMessage) { 
+this.errorMessage = errorMessage; 
+} 
+
+/** 
+* Returns the error message, if any. 
+*/ 
+public String getErrorMessage() { 
+return errorMessage; 
+} 
+
+/** 
+* Returns the filename. 
+*/ 
+public String getFileName() { 
+return fileName; 
+} 
+
+/** 
+* Sets the filename. 
+*/ 
+public void setFileName(String fileName) { 
+this.fileName = fileName; 
+} 
+
+/** 
+* Returns the amount of rows in the file. 
+*/ 
+public int getRows() { 
+return rowCount; 
+} 
+
+/** 
+* Returns the maximum amount of columns in a row. 
+*/ 
+public int getColumns() { 
+return columns; 
+} 
+
+/** 
+* Returns the content of the file in a String. 
+* If an error occurs, like if the file does not exists, null is returned. 
+*/ 
+public String getContent() { 
+String content = ""; 
+File file = new File(fileName); 
+if (!file.exists()) { 
+setErrorMessage("Error: The file '" + fileName + "' does not exists."); 
+return null; 
+}  
+else if (file != null) { 
+try { 
+// Create an BufferedReader so we can read a line at the time. 
+BufferedReader reader = new BufferedReader(new FileReader(file)); 
+String inLine = reader.readLine(); 
+while (inLine != null) { 
+if (inLine.length() + 1 > columns) 
+columns = inLine.length() + 1; 
+content += (inLine + System.getProperty("line.separator")); 
+inLine = reader.readLine(); 
+rowCount++; 
+} 
+return content; 
+} 
+catch (IOException e) { 
+setErrorMessage("Error reading the file: " + e.getMessage()); 
+return null; 
+} 
+} 
+else { 
+setErrorMessage("Unknown error!"); 
+return null; 
+} 
+} 
+}  

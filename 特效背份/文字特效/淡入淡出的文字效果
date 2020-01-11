@@ -1,0 +1,23 @@
+<script language="javaScript">
+<!--
+function checkBrowserForVersion4(){
+var x=navigator.appVersion;
+y=x.substring(0,4);
+if(y>=4) Effect();}
+var isNav=(navigator.appName.indexOf("Netscape")!=-1);
+var colors=new Array
+("FFFFFF","FFFFFF","FFFFFF","FFFFFF","FFFFFF","FFFFFF","FFFFFF","F9F9F9","F1F1F1","E9E9E9","E1E1E1","D9D9D9","D1D1D1","C9C9C9","C1C1C1","B9B9B9","B1B1B1","A9A9A9","A1A1A1","999999","919191","898989","818181","797979","717171","696969","616161","595959","515151","494949","414141","393939","313131","292929","212121","191919","111111","090909","000000")
+a=0,b=1
+function Effect(){
+color=colors[a];
+//*改改下面的文字内容即可,可使用HTML语法，但是注意引号不要混用。双引号内是单引号。*//
+aa="<font size='5'><font face='Arial, Helvetica, sans-serif'><font color="+color+">网页助手 你的制作网页的好朋友 !<p>Welcome to http://samool.533.net</font></font></font>"
+if(isNav) {document.object1.document.write(aa);document.object1.document.close();}
+else object1.innerHTML=aa
+a+=b;if (a==38) b-=2;if (a==0) b+=2;xx=setTimeout("Effect()",10);}
+//-->
+</script>
+<body onload="checkBrowserForVersion4()" >
+<div id="object1" style="position:absolute; visibility:show; left:181px; top:113px; z-index:2"></div>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

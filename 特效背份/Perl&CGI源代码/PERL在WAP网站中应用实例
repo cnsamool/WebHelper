@@ -1,0 +1,236 @@
+    WAP是无线应用程序通讯协议（Wireless Application Protocal的简称。WAP 定义了一套由 XML标准延伸而来的标记语言，称为「无线标记语言Wireless Markup Language, WML」），专门用来将准备传送给无线上网设备的内容进行编码。与HTML用来定义资料在一般网络浏览 
+器上面的显示与动作方式的标记语言那样，WML是用来定义资料如何在无线上网设备上显示与动作的标记语言。WAP与WML技术对于提供信息给客户与在办公室外工作的员工来说，都是相当适合的技术。在这里我将会通过几个简单的例子向大家介绍在Perl程序语言在WAP网站的的应用，使你对Perl语言有一个更深入的认识。  
+
+1、编写动态CGI程序 
+    由于 WAP 同样使用HTTP通讯协议，因此你可以依照为一般网络浏览器开发动态内容程序相同的设计策略来为无线上网工具开发应用程序。事实上，你甚至可以说两者的开发流程除了一些特定的细节部分以外，大致上都是相同的。首先，一般的网络浏览器接受的内容类型（HTTP 通讯中的 Content-Type 表头）信息为 text/html，而无线上网的客户端程序则要求你的程序送出 text/vnd.wap.wml 做为内容类型的值。其次，由于传送给无线上网客户端程序的文件事实上是一个XML文件，因此你必须将 XML 文件类型宣告字符串一并送出。只要你注意以上两点，那么你便可以开始传送你的内容了。下面是一个很简单的传送 WML 文件的 CGI 程序。 
+#!/usr/bin/perl 
+print "Content-type: text/vnd.wap.wml\n\n"; 
+print "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n"; 
+print "<!DOCTYPE wml PUBLIC \"-//WAPFORUM//DTD WML 1.1//EN\" 
+\"http://www.***.org/DTD/wml_1.1.xml\">\n"; 
+print "<wml>\n"; 
+print " <card id='card1'>\n"; 
+print " <p>欢迎来到我的WAP网站！</p>\n"; 
+print " </card>\n"; 
+print "</wml>\n"; 
+  
+    这个例子演示了如何在WML文件里面传送正确的HTTP与XML表头信息给浏览器。由于我们传送的实际上是一个XML文件，因此在输出资料的时候请记得要遵循正确的语法与格式。一般的网络浏览器对于内容类型或者表头宣告等信息的语法和格式都非常宽容，然而WAP客户端程序却非如此。 
+
+    上面这个程序所输出的内容虽然是实时产生的，但是它在任何状况下送出的内容都是完全相同的，互动性不是很好。为了解决这个问题，你可以通过CGI函式库来读取客户端送入的资料，并且根据这些传入的资料来实时建立新的内容传送回客户端。WML 本身被设计成尽可能内容能实时产生越好，这样的设计让页面中的每一个 deck 元素可以不需要送出新的 HTTP 请求给服务器便可以从一个card元素移动到另一个card 元素。不过这也意味着你在接收从 WML 文件传入的资料的时候要格外小心，必须确认最后一个card元素确实有传送所有的变量到服务器端才行。在下面的范例程序会从客户端读取来自不同card元素所送出的参数，并且将这些参数传送给服务器，然后据此建立一个新的deck元素。 
+#!/usr/bin/perl 
+use CGI; 
+print "Content-type: text/vnd.wap.wml\n\n"; 
+print "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n"; 
+print "<!DOCTYPE wml PUBLIC \"-//WAPFORUM//DTD WML 1.1//EN\" 
+\"http://www.***.org/DTD/wml_1.1.xml\">\n"; 
+my $input = new CGI; 
+if ($input->param("completed")) { 
+print "<wml>\n"; 
+print " <card id='card1'>\n"; 
+print " <p>Welcome to my dynamic wireless cgi\n</p>\n"; 
+print " <p>Your name is: "; 
+print " ".$input->param("first_name")." "; 
+print " ".$input->param("middle_name")." "; 
+print " ".$input->param("last_name")." "; 
+print " </p>\n"; 
+print " </card>\n"; 
+print "</wml>\n"; 
+} else { 
+print "<wml>\n"; 
+print " <card id=\"read_first_name\">\n"; 
+print " <do type=\"accept\" label=\"Next\">\n"; 
+print " <go href=\"#read_middle_name\"/>\n"; 
+print " </do>\n"; 
+print " <p>Please enter your first name</p>\n"; 
+print " <p><input name=\"first_name\" 
+emptyok=\"false\"/></p>\n"; 
+print " </card>\n"; 
+print " <card id=\"read_middle_name\">\n"; 
+print " <do type=\"accept\" label=\"Next\">\n"; 
+print " <go href=\"#read_last_name\"/>\n"; 
+print " </do>\n"; 
+print " <p>Please enter your middle name</p>\n"; 
+print " <p><input name=\"middle_name\" 
+emptyok=\"false\"/></p>\n"; 
+print " </card>\n"; 
+print " <card id=\"read_last_name\">\n"; 
+print " <do type=\"accept\" label=\"Next\">\n"; 
+print " <go href=\"#finish\"/>\n"; 
+print " </do>\n"; 
+print " <p>Please enter your last name</p>\n"; 
+print " <p><input name=\"last_name\" 
+emptyok=\"false\"/></p>\n"; 
+print " </card>\n"; 
+print " <card id=\"finish\">\n"; 
+print " <do type=\"accept\" label=\"Continue\">\n"; 
+print " <go method=\"get\" href=\"?\">\n"; 
+print " <postfield name=\"first_name\" 
+value=\"\$first_name\"/>\n"; 
+print " <postfield name=\"middle_name\" 
+value=\"\$middle_name\"/>\n"; 
+print " <postfield name=\"last_name\" 
+value=\"\$last_name\"/>\n"; 
+print " <postfield name=\"completed\" 
+value=\"true\"/>\n"; 
+print " </go>\n"; 
+print " </do>\n"; 
+print " <p>Deck Summary:</p>\n"; 
+print " <p>First name: \$first_name</p>\n"; 
+print " <p>Mid name: \$middle_name</p>\n"; 
+print " <p>Last name: \$last_name</p>\n"; 
+print " <p>Press Continue to send to server</p>\n"; 
+print " </card>\n"; 
+print "</wml>\n"; 
+} 
+  
+
+    这个程序会读取来自每个 card 元素所送出的参数，并且将他们以HTTP get请求的型式传送给服务器。请注意在最后一个名为finish的card元素里面，我们在每一个 WML 变量（例如 $first_name）的前面全都加上一个斜线，这样才可以避免 Perl 将它们误认为 Perl 程序本身的变量来看待。一旦这些变量成功传送给服务器，我们的CGI程序便可以像其它任何一般的CGI变量那样读取它们。 
+
+    2、编写控制客户端存取处理程序 
+    WAP设备是在低频宽的网络环境下运作的，因此它们首先将内容储存在自身的高速缓存里面，以避免无谓的资料请求与传送过程。只是传送CGI参数给我们的CGI程序并不能保证我们送出的内容不会被 WAP 设备储存在高速缓存里面。无线上网设备会将它们储存起来，以 URL 做为索引键值，接下来每当有指向到该 URL 的请求的时候便会直接把之前储存的资料传回去，而不会向服务器询问这个页面从上次浏览过后是否已有更新过的资料。 
+
+    在下面这个范例程序里面将时间与日期以WML的deck元素型式回传给WAP设备，并且附有一个OK按钮以便再次向服务器要求传送新的当时时间与日期。这个程序也要求使用者输入他的名字，以便自定回传的内容。 
+#!/usr/bin/perl 
+use CGI; 
+use Date::Format; 
+print "Content-type: text/vnd.wap.wml\n\n"; 
+print "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n"; 
+print "<!DOCTYPE wml PUBLIC \"-//WAPFORUM//DTD WML 1.1//EN\" 
+\"http://www.***.org/DTD/wml_1.1.xml\">\n"; 
+my $input = new CGI; 
+my $time = time2str("%a %b %e %T %Y\n", time); 
+print "<wml>\n"; 
+print " <card id=\"time_and_date\">\n"; 
+print " <do type=\"accept\" label=\"Ok\">\n"; 
+print " <go method=\"get\" href=\"?\">\n"; 
+print " <postfield name=\"name\" value=\"\$name\"/>\n"; 
+print " </go>\n"; 
+print " </do>\n"; 
+if ($input->param("name")) { 
+print " <p>".$input->param("name").", </p>\n"; 
+} 
+print " <p>现在时间是︰ ".$time."</p>\n"; 
+print " <p>请输入你的姓名︰\n"; 
+print " <input name=\"name\" emptyok=\"false\"/></p>\n"; 
+print " </card>\n"; 
+print "</wml>\n"; 
+  
+
+    当我们把上面这个程序放入模拟器去执行，我们在模拟器的请求纪录文件里面发现下面这些纪录： 
+cache miss: http://wap.***.com/wml4.cgi 
+cache miss: http://wap.***.com/wml4.cgi?name=James 
+cache hit: http://wap.***.com/wml4.cgi?name=James 
+cache hit: <http://wap.***.com/wml4.cgi?name=James> 
+  
+
+    第一行请求纪录没有带入任何 CGI 参数，该笔记录实际通过网络向服务器送出请求，而程序则传回当时的时间做为响应。第二行纪录有带入一个 CGI 参数，该纪录同样也实际通过网络向服务器送出了请求。然而从第三行记录开始，WAP模拟器便不再向服务器实际提出请求了，而是直接将之前存入高速缓存的数据取出并显示在画面上，此时使用者收到的便是不正确的资料了。 
+
+    有两种方式可以使WAP装置通过网络实际向服务器提出请求。第一种是在程序中手动送出 HTTP 表头，告知客户端这个页面已经过期并且需要重新取得更新过的版本。在上面的范例里面，你可以在 Content-type 表头后面再加上两个额外的表头，以强迫 WAP 装置向服务器取得新的内容而非直接取用高速缓存中的资料： 
+print "Content-type: text/vnd.wap.wml\n"; 
+print "Last-Modified: " . time2str("%a, %e %b %Y %T", time) . " GMT\n"; 
+print "Expires: " . time2str("%a, %e %b %Y %T", time) . " GMT\n"; 
+print "Cache-Control: no-cache, must-revalidate\n"; 
+print "Pragma: no-cache\n\n"; 
+  
+
+    第二个方式则是在送出的 WML 原始码的<head>区域里面加入与快取控制相关的<meta> 卷标： 
+<head> 
+<meta http-equiv="Cache-Control" content="max-age=60" forua=true /> 
+<meta http-equiv="Cache-Control" content="must-revalidate" forua= true/> 
+<meta http-equiv="Cache-Control" content="no-cache" forua= true/> 
+</head> 
+  
+
+    上面这些卷标和之前我们修改过后的 HTTP 表头具有相同的功用。 
+
+    3、编写请求表头 
+    现在你已经制作供无线上网设备读取的内容了，接下来的任务便是针对不同厂商与型号的移动电话制作合适的内容了。在建立 WAP 网站的时候将会面临的最大困扰是：不同的WAP浏览器所支持的功能都稍有不同。不过，无线上网设备所传送给服务器的请求表头里面会告诉我们该软件的类型与支持的功能种类。在下面的例子中会将 WAP 浏览器传送给服务器的请求表头全部显示出来︰ 
+#!/usr/bin/perl 
+use CGI; 
+print "Content-type: text/vnd.wap.wml\n\n"; 
+print "<?xml version=\"1.0\" eencoding=\"iso-8859-1\"?>\n"; 
+print "<!DOCTYPE wml PUBLIC \"-//WAPFORUM//DTD WML 1.1//EN\" 
+\"http://www.***.org/DTD/wml_1.1.xml\">\n"; 
+my $input = new CGI; 
+print "<wml>\n"; 
+print " <card id=\"time_and_date\">\n"; 
+foreach $header (%ENV) { 
+if ($header =~ /^HTTP/) { 
+print " <p>$header: $ENV{$header}</p>\n"; 
+} 
+} 
+print " </card>\n"; 
+print "</wml>\n"; 
+  
+
+    不同客户端所传送过来的表头信息基本上都是大致相同的，其中有些信息你可以略过不看。但是这当中的确有些信息对我们来说是格外有用的。举例来说，正如同一般的网络浏览器那样，WAP浏览器会传送一个User-Agent字符串给服务器，该字符串的内容指明了该型号的手机所使用的浏览器类型与版本。Perl 将这个表头信息以浏览器名称／版本的型式（BROWSER/VERSION）储存在HTTP_USER_AGENT这个变量里面。这项信息之所以有用之处在于并非每一种无线上网设备的浏览器都支持 WAP 格式。你可能会遇到有些浏览器仅接受 HDML格式的内容，而非WML。你可以建立一个索引表格来纪录这些不支持 WML 的浏览器，并且将它们屏除在程序服务的范围之外。或者你也可以检查 HTTP_ACCEPT 这个表头信息的值，看看其中是否有text/vnd.wap.wml这个字符串，如果没有的话就代表该浏览器并不支持 WML 格式的内容。 
+
+    此外，HTTP_X_UP_SUBNO这个表头信息代表该移动电话的全球唯一识别代码（每一部手机都不同）。你可以安全地通过这个信息来辨认出某支特定的移动电话，而不需要传送cookie。不同于没有唯一识别码的一般网络浏览器，同一支移动电话每次连结到你的服务器的时候都会传送同样的唯一识别码给你的程序。 
+
+    4、用Mason 组件来制作WAP网站如何提供 WML 格式的内容服务 
+如果你的网站是使用HTML的Mason 组件来建立的，你还是可以照样为 WAP 设备提供 WML 格式的内容服务的。不过你的确需要以与原本稍微不同的方式来撰写你的Mason 组件。这其中最重要的地方在于你必须记得要把 XML 格式宣告放在实际输出内容的第一行。如果在 HTTP 表头与 XML 格式宣告之间有任何内容被送出，那么WAP 设备便无法正常读取你所送出的内容了。其它唯一较为重要的改变在于 <%init> 区段，在这里面的 HTTP 内容类型资料必须符合WAP设备所要求的类型（即 text/vnd.wap.wml）。下面是用 Mason 来撰写 WAP 程序的例子： 
+#!/usr/bin/perl 
+use CGI; 
+print "Content-type: text/vnd.wap.wml\n\n"; 
+print "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n"; 
+print "<!DOCTYPE wml PUBLIC \"-//WAPFORUM//DTD WML 1.1//EN\" 
+\"http://www.****.org/DTD/wml_1.1.xml\">\n"; 
+my $input = new CGI; 
+if ($input->param("completed")) { 
+print "<wml>\n"; 
+print " <card id='card1'>\n"; 
+print " <p>Welcome to my dynamic wireless cgi\n</p>\n"; 
+print " <p>Your name is: "; 
+print " ".$input->param("first_name")." "; 
+print " ".$input->param("middle_name")." "; 
+print " ".$input->param("last_name")." "; 
+print " </p>\n"; 
+print " </card>\n"; 
+print "</wml>\n"; 
+} else { 
+print "<wml>\n"; 
+print " <card id=\"read_first_name\">\n"; 
+print " <do type=\"accept\" label=\"Next\">\n"; 
+print " <go href=\"#read_middle_name\"/>\n"; 
+print " </do>\n"; 
+print " <p>Please enter your first name</p>\n"; 
+print " <p><input name=\"first_name\" 
+emptyok=\"false\"/></p>\n"; 
+print " </card>\n"; 
+print " <card id=\"read_middle_name\">\n"; 
+print " <do type=\"accept\" label=\"Next\">\n"; 
+print " <go href=\"#read_last_name\"/>\n"; 
+print " </do>\n"; 
+print " <p>Please enter your middle name</p>\n"; 
+print " <p><input name=\"middle_name\" 
+emptyok=\"false\"/></p>\n"; 
+print " </card>\n"; 
+print " <card id=\"read_last_name\">\n"; 
+print " <do type=\"accept\" label=\"Next\">\n"; 
+print " <go href=\"#finish\"/>\n"; 
+print " </do>\n"; 
+print " <p>Please enter your last name</p>\n"; 
+print " <p><input name=\"last_name\" 
+emptyok=\"false\"/></p>\n"; 
+print " </card>\n"; 
+print " <card id=\"finish\">\n"; 
+print " <do type=\"accept\" label=\"Continue\">\n"; 
+print " <go method=\"get\" href=\"?\">\n"; 
+print " <postfield name=\"first_name\" 
+value=\"\$first_name\"/>\n"; 
+print " <postfield name=\"middle_name\" 
+value=\"\$middle_name\"/>\n"; 
+print " <postfield name=\"last_name\" 
+value=\"\$last_name\"/>\n"; 
+print " <postfield name=\"completed\" 
+value=\"true\"/>\n"; 
+print " </go>\n"; 
+print " </do>\n"; 
+print " <p>Deck Summary:</p>\n"; 
+print " <p>First name: \$first_name</p>\n"; 
+print " <p>Mid name: \$middle_name</p>\n"; 
+print " <p>Last name: \$last_name</p>\n"; 
+print " <p>Press Continue to send to server</p>\n"; 
+print " </card>\n"; 
+print "</wml>\n"; 
+} 

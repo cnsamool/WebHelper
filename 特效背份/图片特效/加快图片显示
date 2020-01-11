@@ -1,0 +1,39 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<table border=5 bordercolor=blue borderlight=green>
+<tr>
+      <td align=center width=450 height=70> 
+      <p align="left"><font size="2">预先读取图片的方法是比较简单的，用javascript这样实现。 <br>
+        将如下的类似代码放在HTML的&lt;head&gt区：<br> 
+&lt;SCRIPT LANGUAGE="JavaScript"&gt<br> 
+&lt;!-- <br> 
+Image1= new Image(100,50)<br> 
+Image1.src = "image1.gif"<br> 
+
+Image2 = new Image(100,50)<br> 
+Image2.src = "image2.gif"<br> 
+
+Image3 = new Image(100,50)<br> 
+Image3.src = "image3.gif"<br> 
+
+// --&gt<br> 
+&lt;/SCRIPT&gt <br> 
+
+
+这样浏览器在装载页面时就已经预先下载了3个图片<br> （image1.gif,images2.gif和image3.gif）。<br> 当激发onmouseover事件时，浏览器直接从Cache中读取图片，<br> 速度当然快多了。<br> 
+
+
+这里做一些小小说明：图片的名字可以是任意的，<br> 100和50分别是读入cache的图片的宽度和高度。<br> 但是脚本格式必须按照规定的格式写，"Image1=new Image"。<br> 如果图片在其它服务器的子目录内，<br> 只要用正确的绝对路径表示即可。<br>  
+
+      </font>  
+
+ </td>
+    </tr>
+</table>
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

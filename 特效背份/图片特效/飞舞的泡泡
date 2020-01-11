@@ -1,0 +1,140 @@
+<body>
+<SCRIPT language=JavaScript>
+function MM_reloadPage(init) {
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+function MM_findObj(n, d) {
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+function MM_showHideLayers() {
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+  for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
+    if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v='hide')?'hidden':v; }
+    obj.visibility=v; }
+}
+function MM_checkPlugin(plgIn, theURL, altURL, autoGo) {
+  var ok=false; document.MM_returnValue = false;
+  with (navigator) if (appName.indexOf('Microsoft')==-1 || (plugins && plugins.length)) {
+    ok=(plugins && plugins[plgIn]);
+  } else if (appVersion.indexOf('3.1')==-1) {
+    if (plgIn.indexOf("Flash")!=-1 && window.MM_flash!=null) ok=window.MM_flash;
+    else if (plgIn.indexOf("Director")!=-1 && window.MM_dir!=null) ok=window.MM_dir;
+    else ok=autoGo; }
+  if (!ok) theURL=altURL; if (theURL) window.location=theURL;
+}
+
+</SCRIPT>
+<SCRIPT language=JavaScript>
+var url = "#"
+var no = 6;
+var speed = 20;
+var snow = new Array();
+snow[0] = "pao_001.gif"
+snow[1] = "pao_002.gif"
+snow[2] = "pao_003.gif"
+snow[3] = "pao_004.gif"
+var ns4up = (document.layers) ? 1 : 0;
+var ie4up = (document.all) ? 1 : 0;
+var ns6up = (document.getElementById&&!document.all) ? 1 : 0;
+var dx, xp, yp;
+var am, stx, sty;
+var i, doc_width = 100, doc_height = 1800;
+
+if (ns4up||ns6up) {
+        doc_width = 100;
+        doc_height = self.innerHeight;
+} else if (ie4up) {
+        doc_width = 100;
+        doc_height = document.body.clientHeight;
+}
+dx = new Array();
+xp = new Array();
+yp = new Array();
+am = new Array();
+stx = new Array();
+sty = new Array();
+j = 0;
+for (i = 0; i < no; ++ i) {
+        dx[i] = 0;
+        xp[i] = Math.random()*50;
+        yp[i] = Math.random()*doc_height;
+        am[i] = Math.random()*20;
+        stx[i] = 0.02 + Math.random()/10;
+        sty[i] = 0.7 + Math.random();
+
+tag=j+1;
+        if (ns4up) {
+                        document.write("<layer name=\"dot"+ i +"\" left=\"15\" top=\"15\" visibility=\"show\" z-index=\""+ i + "\">" +
+"<a href=http://fx7.126.com target=\"_blank\" onMouseOver=\"MM_showHideLayers('tag" +i +"','','show')\" onMouseOut=\"MM_showHideLayers('tag" + i + "','','hide')\">" + 
+"<img src=\""+ snow[j] + "\" border=\"0\"></a>" + 
+															
+						"</layer></layer>");
+						} 
+						
+		else if (ie4up||ns6up) {
+                        document.write(
+						"<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: "+ i +"VISIBILITY: visible; TOP: 15px; LEFT: 15px; width:1;\">" +
+"<a href=http://samool.533.net target=\"_blank\" onMouseOver=\"MM_showHideLayers('tag" +i +"','','show')\" onMouseOut=\"MM_showHideLayers('tag" + i + "','','hide')\">" + 
+"<img src=\"" + snow[j] + "\" border=\"0\"></a>" +
+
+                                                "</div></div>");
+        }
+        if (j == (snow.length-1)) { j = 0; } else { j += 1; }
+}
+
+function snowNS() {
+        for (i = 0; i < no; ++ i) {
+                yp[i] -= sty[i];                if (yp[i] < -50) {
+                        xp[i] = Math.random()*(doc_width-am[i]-30);
+                        yp[i] = doc_height;
+                        stx[i] = 0.02 + Math.random()/10;
+                        sty[i] = 0.7 + Math.random();
+                        doc_width = 100;
+                        doc_height = self.innerHeight;                }
+                dx[i] += stx[i];
+                document.layers["dot"+i].top = yp[i];
+                document.layers["dot"+i].left = xp[i] +
+am[i]*Math.sin(dx[i]);
+        }
+        setTimeout("snowNS()", speed);
+}
+
+function snowIE_NS6() {
+        for (i = 0; i < no; ++ i) {
+                yp[i] -= sty[i];
+                if (yp[i] < -50) {
+                        xp[i] = Math.random()*(doc_width-am[i]-30);
+                        yp[i] = doc_height;
+                        stx[i] = 0.02 + Math.random()/10;
+                        sty[i] = 0.7 + Math.random();
+                        doc_width = ns6up?100:100;
+                        doc_height = ns6up?window.innerHeight-5:document.body.clientHeight;
+                }
+                dx[i] += stx[i];
+                if (ie4up){
+                document.all["dot"+i].style.pixelTop = yp[i];
+                document.all["dot"+i].style.pixelLeft = xp[i] + am[i]*Math.sin(dx[i]);
+                }
+                else if (ns6up){
+                document.getElementById("dot"+i).style.top=yp[i];
+                document.getElementById("dot"+i).style.left=xp[i] + am[i]*Math.sin(dx[i]);
+                }
+        }
+        setTimeout("snowIE_NS6()", speed);
+}
+if (ns4up) {
+        snowNS();
+} else if (ie4up||ns6up) {
+        snowIE_NS6();
+}
+</SCRIPT>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

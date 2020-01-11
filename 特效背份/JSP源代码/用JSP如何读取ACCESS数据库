@@ -1,0 +1,55 @@
+<%@page import="java.sql.*"  
+import ="java.util.*"  
+import ="java.io.*"  
+import="java.text.*"  
+contentType="text/html; charset=gb2312"&n 
+bsp; 
+buffer="20kb"  
+%><%! int all,i,m_count;  
+String odbcQuery;  
+Connection odbcconn;  
+Statement odbcstmt;  
+ResultSet odbcrs;  
+String username,title,content,work,email,url,time,date;  
+String datetime;  
+%>  
+<%  
+try{  
+Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");  
+}catch (ClassNotFoundException e)  
+{ out.print ("驱动程序不存在");  
+}   
+
+
+
+try{  
+odbcconn = DriverManager.getConnection("jdbc:odbc:db1");  
+odbcstmt = odbcconn.createStatement();       
+
+
+
+odbcQuery="Select * From book where datetime>2001-4-26 Order By datetime DESC";  
+odbcrs=odbcstmt.executeQuery(odbcQuery);  
+int i=0;  
+while (i<130) odbcrs.next();  
+while (odbcrs.next())  
+{  
+//*/////////////////////////显示数据库的内容用于调试程序是用//  
+int ii;  
+try{  
+try{  
+for (ii=1;;ii++)  
+out.print ("<br>Cloumn "+ii+" is: "+odbcrs.getString(ii));  
+}catch (NullPointerException e) {  
+out.print ("有空的指针");  
+}  
+}catch (SQLException e){  
+}  
+}  
+odbcrs.close();  
+odbcstmt.close();  
+odbcconn.close();  
+}catch (SQLException e)  
+{ out.print (e);  
+}  
+%>  

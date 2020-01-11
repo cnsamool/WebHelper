@@ -1,0 +1,109 @@
+<html>
+<head>
+<title></title>
+<!--第一步:把如下代码加入<head>区域中://-->
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var a = 21
+function create() {
+
+        this.line = ''
+}
+
+function skrivut(formet) {
+bild1 = formet.bilden.value;
+bild2 = formet.bildtva.value;
+kall1 = formet.srcen.value;
+kall2 = formet.srctva.value;
+bildnamn = formet.bildnmn.value;
+widd = formet.widden.value;
+hojd = formet.hojden.value;
+
+line = new Array()
+for(var i=1; i<=a; i++) { line[i] = new create() }
+line[1] = '<html><head><title>Code  Window</title></head><body bgcolor="#FFFFFF">'
+line[2] = '&lt;HTML&gt;&lt;HEAD&gt;<br>&lt;TITLE&gt;Title of your page&lt;/title&gt;<P>'
+line[3] = '&lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;<BR>&lt;!--<BR>/**luxiaoqing http://www.njcatv.net/javascript/dai1.htm**/<BR>Browser = false ;<BR>if(navigator.appName.indexOf("Netscape") != -1)<BR>'
+line[5] = '{ if( (navigator.appVersion.indexOf("3.") != -1) || (navigator.appVersion.indexOf("4.") != -1) )<BR>'
+line[6] = ' Browser = true}<BR>'
+line[7]='if(navigator.appVersion.indexOf("MSIE") != -1) { if( navigator.appVersion.indexOf("4.") != -1)<BR>'
+line[8]='Browser=true}<BR>'
+line[9]='if ( Browser == true) {<BR>'
+line[10] = bild1+'= new Image();<BR>'
+line[11] = bild1+'.src = "'+kall1+'";<BR>'
+line[12] = bild2+' = new Image();<BR>'
+line[13] = bild2+'.src = "'+kall2+'";<BR>}<P>'
+line[14] = 'function byt(place, imgName) {<BR>'
+line[15] = 'if (Browser == true) {<BR>'
+line[16] = 'document[place].src =eval(imgName + ".src");<BR>'
+line[17] = '} }<BR>'
+line[18] = '//--&gt;<BR>'
+line[19] = '&lt;/SCRIPT&gt;<P>&lt;/HEAD&gt;<br>&lt;BODY&gt;<P>Here comes the link:<BR>'
+line[20] = '&lt;A HREF=".html" onMouseOver="byt(&#039;'+bildnamn+'&#039;,&#039;'+bild2+'&#039;)" onMouseOut="byt(&#039;'+bildnamn+'&#039;,&#039;'+bild1+'&#039;)"&gt;'
+line[21] = '&lt;IMG SRC="'+kall1+'" NAME="'+bildnamn+'" HEIGHT="'+hojd+'" WIDTH="'+widd+'" BORDER="0"&gt;&lt;/A&gt;'
+line[22] = '<P>&lt;/BODY&gt;&lt;/HTML&gt;<P><FORM><INPUT TYPE="button" VALUE="关闭" OnClick="self.close()"></FORM></BODY></HTML>'
+nyaWin = window.open('','utskrift','toolbar=0,location=0,directories=0,status=1,menubar=1,scrollbars=1,resizable=0,copyhistory=0,width=600,height=400')
+nytt ()
+}
+g = 0
+function nytt() {
+g++
+nyaWin.document.writeln(line[g]);
+if (g < (a+1)) nytt()
+nyaWin.document.close()
+g = 0
+}
+
+Browser = false ;
+if(navigator.appName.indexOf("Netscape") != -1)
+{ if( (navigator.appVersion.indexOf("3.") != -1) ||
+(navigator.appVersion.indexOf("4.") != -1) )
+{ Browser = true;
+fredrik= new Image();
+fredrik.src = "knapp1.gif";
+sover = new Image();
+sover.src = "knapp2.gif";
+} }
+
+function byt(place, imgName) {
+if (Browser == true) {
+document[place].src =eval(imgName + ".src");
+} }
+//-->
+</SCRIPT>
+
+</head>
+<body>
+<!--第二步:把如下代码加入<body>区域中://-->
+<form>
+  图片1的名字： 
+  <INPUT TYPE="text" NAME="bilden" class="pt9" value="mouseoutpic">
+  <BR>
+  图片1的路径： 
+  <INPUT TYPE="text" NAME="srcen" class="pt9" value="images/pic1.gif">
+  <BR>
+  图片1的宽度： 
+  <INPUT TYPE="text" NAME="widden" class="pt9" value="100">
+  <BR>
+  图片1的高度： 
+  <INPUT TYPE="text" NAME="hojden" class="pt9" value="50">
+  <P> 图片2的名字： 
+    <INPUT TYPE="text" NAME="bildtva" class="pt9" value="mouseoverpic">
+    <BR>
+    图片2的路径： 
+    <INPUT TYPE="text" NAME="srctva" class="pt9" value="images/pic2.gif">
+    <BR>
+    操作的名字 ： 
+    <INPUT TYPE="text" NAME="bildnmn" class="pt9" value="first_pic">
+    <BR>
+    <INPUT TYPE="BUTTON" VALUE="生成代码" OnClick="skrivut(this.form)" class="pt9">
+  
+</FORM>
+<P>
+<P>说明：图片1==》mouse out时的图片，正常显示时。图片2==》mouse over时的图片。图片的名字和操作的名字可以随便取。有所区别即可。
+<P>2个图片的尺寸必须一致才可以。
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

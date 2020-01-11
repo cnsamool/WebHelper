@@ -1,0 +1,48 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--将以下代码在<body>中//-->
+<input type="button" value="缩小" onclick="small1()">    
+<input type="button" value="放大" onclick="big1()">              
+          
+<script>            
+function small(){            
+var height1=images0.height            
+var width1=images0.width            
+images0.height=height1/1.5            
+images0.width=width1/1.5           
+}             
+          
+function big(){            
+var height1=images0.height            
+var width1=images0.width            
+images0.height=height1*1.5          
+images0.width=width1*1.5           
+}             
+       
+       
+function small1(){            
+var height1=images1.height            
+var width1=images1.width            
+images1.height=height1/1.5            
+images1.width=width1/1.5           
+}             
+          
+function big1(){            
+var height1=images1.height            
+var width1=images1.width            
+images1.height=height1*1.5          
+images1.width=width1*1.5           
+}             
+          
+</script>         
+<p><img border="0"  name=images1 src="sample.jpg" width="74" height="125"></p>  
+<!--注意，NAME=images1   一定要，不然就由不得你了-->
+
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

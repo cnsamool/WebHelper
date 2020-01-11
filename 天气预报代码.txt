@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0045)http://app.news.qq.com/cgi-bin/news_qq_search -->
+<HTML><HEAD><TITLE>skin1</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<STYLE type=text/css>TABLE {
+	FONT-SIZE: 12px; LINE-HEIGHT: 14px
+}
+</STYLE>
+
+<SCRIPT language=javascript>
+function getweather(t)
+{
+ window.open("http://app.news.qq.com/cgi-bin/news_qq_search?city="+t, name="_self");
+}
+</SCRIPT>
+
+<META content="MSHTML 6.00.2800.1400" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0">
+<TABLE height=36 cellSpacing=0 cellPadding=0 width=156 align=center border=0>
+  <TBODY>
+  <TR>
+    <TD align=middle><SELECT 
+      style="FONT-SIZE: 12px; WIDTH: 78px; HEIGHT: 19px" align=absMiddle 
+      name=selectw><OPTION value=北京>北京</OPTION><OPTION 
+        value=上海>上海</OPTION><OPTION value=天津>天津</OPTION><OPTION 
+        value=石家庄>石家庄</OPTION><OPTION value=哈尔滨>哈尔滨</OPTION><OPTION 
+        value=沈阳>沈阳</OPTION><OPTION value=长春>长春</OPTION><OPTION 
+        value=太原>太原</OPTION><OPTION value=济南>济南</OPTION><OPTION 
+        value=郑州>郑州</OPTION><OPTION value=天津>天津</OPTION><OPTION 
+        value=呼和浩特>呼和浩特</OPTION><OPTION value=西安>西安</OPTION><OPTION 
+        value=银川>银川</OPTION><OPTION value=兰州>兰州</OPTION><OPTION 
+        value=西宁>西宁</OPTION><OPTION value=乌鲁木齐>乌鲁木齐</OPTION><OPTION 
+        value=合肥>合肥</OPTION><OPTION value=南昌>南昌</OPTION><OPTION 
+        value=南京>南京</OPTION><OPTION value=杭州>杭州</OPTION><OPTION 
+        value=武汉>武汉</OPTION><OPTION value=长沙>长沙</OPTION><OPTION 
+        value=广州>广州</OPTION><OPTION value=深圳 selected>深圳</OPTION><OPTION 
+        value=福州>福州</OPTION><OPTION value=厦门>厦门</OPTION><OPTION 
+        value=南宁>南宁</OPTION><OPTION value=桂林>桂林</OPTION><OPTION 
+        value=海口>海口</OPTION><OPTION value=重庆>重庆</OPTION><OPTION 
+        value=成都>成都</OPTION><OPTION value=贵阳>贵阳</OPTION><OPTION 
+        value=昆明>昆明</OPTION><OPTION value=拉萨>拉萨</OPTION><OPTION 
+        value=香港>香港</OPTION><OPTION value=澳门>澳门</OPTION><OPTION 
+        value=台北>台北</OPTION></SELECT></TD>
+    <TD width=60><INPUT onclick=getweather(selectw.value) type=image height=21 
+      width=47 src="news_qq_search.files/buttom-1.gif" border=0 
+    name=imageField></TD></TR>
+  <TR height=1 background="http://panel.qq.com/images/weather/bg-line.gif">
+    <TD colSpan=2></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width=157 align=center border=0>
+  <TBODY>
+  <TR>
+    <TD bgColor=#5a91d6>
+      <TABLE cellSpacing=0 cellPadding=0 width=157 align=center border=0>
+        <TBODY>
+        <TR>
+          <TD class=text02 width=20 bgColor=#ffffff>&nbsp;&nbsp;<FONT 
+            color=#ff0000>●</FONT></TD>
+          <TD class=text02 bgColor=#ffffff>深圳 </TD></TR></TBODY></TABLE>
+      <TABLE cellSpacing=1 cellPadding=2 width=157 align=center border=0>
+        <TBODY>
+        <TR align=middle bgColor=#5a91d6>
+          <TD colSpan=2><FONT color=#ffffff>03月05日</FONT></TD></TR>
+        <TR align=middle bgColor=#ffffff>
+          <TD width=40>天气</TD>
+          <TD width=117><IMG height=23 
+            src="news_qq_search.files/weather_p01.gif" width=23>多云</TD></TR>
+        <TR align=middle bgColor=#ffffff>
+          <TD>气温</TD>
+          <TD>13℃-21℃</TD></TR>
+        <TR align=middle bgColor=#ffffff>
+          <TD>风力</TD>
+          <TD>微风</TD></TR>
+        <TR align=middle bgColor=#5a91d6>
+          <TD colSpan=2><FONT color=#ffffff>03月06日</FONT></TD></TR>
+        <TR align=middle bgColor=#ffffff>
+          <TD width=40>天气</TD>
+          <TD width=117><IMG height=23 
+            src="news_qq_search.files/weather_p02.gif" width=23>晴</TD></TR>
+        <TR align=middle bgColor=#ffffff>
+          <TD>气温</TD>
+          <TD>14℃-19℃</TD></TR>
+        <TR align=middle bgColor=#ffffff>
+          <TD>风力</TD>
+          <TD>微风</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><BR>
+<TABLE cellSpacing=0 cellPadding=0 width=157 align=center border=0>
+  <TBODY>
+  <TR>
+    <TD align=middle colSpan=3 height=20><STRONG>北京</STRONG></TD></TR>
+  <TR>
+    <TD background=news_qq_search.files/bg-1.gif colSpan=3 height=18>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR align=middle>
+          <TD width="50%">03月05日</TD>
+          <TD width="50%">03月06日</TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD align=middle width=78><IMG 
+      src="news_qq_search.files/weather_p01.gif">多云转晴</TD>
+    <TD width=1 background=news_qq_search.files/bg-line2.gif></TD>
+    <TD align=middle width=78><IMG 
+    src="news_qq_search.files/weather_p02.gif">晴</TD></TR>
+  <TR bgColor=#999999 height=1>
+    <TD colSpan=3></TD></TR>
+  <TR>
+    <TD align=middle height=28>0℃-3℃</TD>
+    <TD width=1 background=news_qq_search.files/bg-line2.gif></TD>
+    <TD align=middle>-5℃-8℃</TD></TR>
+  <TR bgColor=#000000>
+    <TD colSpan=3 height=1></TD></TR>
+  <TR>
+    <TD align=middle colSpan=3 height=20><STRONG>上海</STRONG></TD></TR>
+  <TR>
+    <TD background=news_qq_search.files/bg-1.gif colSpan=3 height=18>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR align=middle>
+          <TD width="50%">03月05日</TD>
+          <TD width="50%">03月06日</TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD align=middle width=78><IMG 
+      src="news_qq_search.files/weather_p01.gif">晴转多云</TD>
+    <TD width=1 background=news_qq_search.files/bg-line2.gif></TD>
+    <TD align=middle width=78><IMG 
+      src="news_qq_search.files/weather_p01.gif">多云转晴</TD></TR>
+  <TR bgColor=#999999 height=1>
+    <TD colSpan=3></TD></TR>
+  <TR>
+    <TD align=middle height=28>4℃-14℃</TD>
+    <TD width=1 background=news_qq_search.files/bg-line2.gif></TD>
+    <TD align=middle>2℃-12℃</TD></TR>
+  <TR bgColor=#000000>
+    <TD colSpan=3 height=1></TD></TR>
+  <TR>
+    <TD align=middle colSpan=3 height=20><STRONG>广州</STRONG></TD></TR>
+  <TR>
+    <TD background=news_qq_search.files/bg-1.gif colSpan=3 height=18>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR align=middle>
+          <TD width="50%">03月05日</TD>
+          <TD width="50%">03月06日</TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD align=middle width=78><IMG 
+      src="news_qq_search.files/weather_p01.gif">多云</TD>
+    <TD width=1 background=news_qq_search.files/bg-line2.gif></TD>
+    <TD align=middle width=78><IMG 
+      src="news_qq_search.files/weather_p01.gif">多云转晴</TD></TR>
+  <TR bgColor=#999999 height=1>
+    <TD colSpan=3></TD></TR>
+  <TR>
+    <TD align=middle height=28>10℃-20℃</TD>
+    <TD width=1 background=news_qq_search.files/bg-line2.gif></TD>
+    <TD align=middle>11℃-18℃</TD></TR>
+  <TR bgColor=#000000>
+    <TD colSpan=3 height=1></TD></TR>
+  <TR>
+    <TD align=middle colSpan=3 height=20><STRONG>重庆</STRONG></TD></TR>
+  <TR>
+    <TD background=news_qq_search.files/bg-1.gif colSpan=3 height=18>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR align=middle>
+          <TD width="50%">03月05日</TD>
+          <TD width="50%">03月06日</TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD align=middle width=78><IMG 
+    src="news_qq_search.files/weather_p02.gif">晴</TD>
+    <TD width=1 background=news_qq_search.files/bg-line2.gif></TD>
+    <TD align=middle width=78><IMG 
+      src="news_qq_search.files/weather_p01.gif">晴转多云</TD></TR>
+  <TR bgColor=#999999 height=1>
+    <TD colSpan=3></TD></TR>
+  <TR>
+    <TD align=middle height=28>8℃-18℃</TD>
+    <TD width=1 background=news_qq_search.files/bg-line2.gif></TD>
+    <TD align=middle>10℃-18℃</TD></TR>
+  <TR bgColor=#000000>
+    <TD colSpan=3 height=1></TD></TR>
+  <TR>
+    <TD align=middle colSpan=3 height=20><STRONG>武汉</STRONG></TD></TR>
+  <TR>
+    <TD background=news_qq_search.files/bg-1.gif colSpan=3 height=18>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR align=middle>
+          <TD width="50%">03月05日</TD>
+          <TD width="50%">03月06日</TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD align=middle width=78><IMG 
+      src="news_qq_search.files/weather_p01.gif">晴转多云</TD>
+    <TD width=1 background=news_qq_search.files/bg-line2.gif></TD>
+    <TD align=middle width=78><IMG 
+      src="news_qq_search.files/weather_p01.gif">晴转多云</TD></TR>
+  <TR bgColor=#999999 height=1>
+    <TD colSpan=3></TD></TR>
+  <TR>
+    <TD align=middle height=28>7℃-17℃</TD>
+    <TD width=1 background=news_qq_search.files/bg-line2.gif></TD>
+    <TD align=middle>5℃-17℃</TD></TR>
+  <TR bgColor=#000000>
+    <TD colSpan=3 height=1></TD></TR>
+  <TR>
+    <TD align=middle colSpan=3 height=20><STRONG>乌鲁木齐</STRONG></TD></TR>
+  <TR>
+    <TD background=news_qq_search.files/bg-1.gif colSpan=3 height=18>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR align=middle>
+          <TD width="50%">03月05日</TD>
+          <TD width="50%">03月06日</TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD align=middle width=78><IMG 
+      src="news_qq_search.files/weather_p01.gif">晴转多云</TD>
+    <TD width=1 background=news_qq_search.files/bg-line2.gif></TD>
+    <TD align=middle width=78><IMG 
+      src="news_qq_search.files/weather_p04.gif">小雪</TD></TR>
+  <TR bgColor=#999999 height=1>
+    <TD colSpan=3></TD></TR>
+  <TR>
+    <TD align=middle height=28>-7℃-2℃</TD>
+    <TD width=1 background=news_qq_search.files/bg-line2.gif></TD>
+    <TD align=middle>-5℃-3℃</TD></TR>
+  <TR bgColor=#000000>
+    <TD colSpan=3 height=1></TD></TR>
+  <TR>
+    <TD align=middle colSpan=3 height=20><STRONG>哈尔滨</STRONG></TD></TR>
+  <TR>
+    <TD background=news_qq_search.files/bg-1.gif colSpan=3 height=18>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR align=middle>
+          <TD width="50%">03月05日</TD>
+          <TD width="50%">03月06日</TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD align=middle width=78><IMG 
+    src="news_qq_search.files/weather_p02.gif">晴</TD>
+    <TD width=1 background=news_qq_search.files/bg-line2.gif></TD>
+    <TD align=middle width=78><IMG 
+    src="news_qq_search.files/weather_p02.gif">晴</TD></TR>
+  <TR bgColor=#999999 height=1>
+    <TD colSpan=3></TD></TR>
+  <TR>
+    <TD align=middle height=28>-19℃--7℃</TD>
+    <TD width=1 background=news_qq_search.files/bg-line2.gif></TD>
+    <TD align=middle>-18℃--6℃</TD></TR>
+  <TR bgColor=#000000>
+    <TD colSpan=3 height=1></TD></TR></TBODY></TABLE></BODY></HTML>

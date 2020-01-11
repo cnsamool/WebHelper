@@ -1,0 +1,122 @@
+<BODY>
+<!--将以下代码加入HTML的<Body></Body>之间-->
+<script language="javascript">
+  var line=new Array();
+  var w=35;     
+var left=50;
+var top=10;
+var width=4;
+var height=3;
+  Bg="red";
+  line[0]="ff"+Number(25).toString(16)+Number(25).toString(16);
+  line[1]="ff"+Number(50).toString(16)+Number(50).toString(16);
+  line[2]="ff"+Number(75).toString(16)+Number(75).toString(16);
+  line[3]="ff"+Number(100).toString(16)+Number(100).toString(16);
+  line[4]="ff"+Number(125).toString(16)+Number(125).toString(16);
+  line[5]="ff"+Number(150).toString(16)+Number(150).toString(16);
+  line[6]="ff"+Number(175).toString(16)+Number(175).toString(16);
+  line[7]="ff"+Number(200).toString(16)+Number(200).toString(16);
+  line[8]="ff"+Number(225).toString(16)+Number(225).toString(16);
+  line[9]="ff"+Number(225).toString(16)+Number(225).toString(16);
+  line[10]="ff"+Number(225).toString(16)+Number(225).toString(16);
+  line[11]="ff"+Number(225).toString(16)+Number(225).toString(16);
+  line[12]="ff"+Number(200).toString(16)+Number(200).toString(16);
+  line[13]="ff"+Number(175).toString(16)+Number(175).toString(16);
+  line[14]="ff"+Number(150).toString(16)+Number(150).toString(16);
+  line[15]="ff"+Number(125).toString(16)+Number(125).toString(16);
+  line[16]="ff"+Number(100).toString(16)+Number(100).toString(16);
+  line[17]="ff"+Number(75).toString(16)+Number(75).toString(16);
+  line[18]="ff"+Number(50).toString(16)+Number(50).toString(16);
+  line[19]="ff"+Number(25).toString(16)+Number(25).toString(16);
+
+  function writes(num)
+  {
+    var temp;
+    var s;
+    var tl,tt;
+    var tw,th;
+    temp=num+1;
+    if(num==0)
+    {
+      tl = left;
+      tt = top;
+      tw = w*width;
+      th = height;
+      s="<table style='position: absolute; left: "+tl+"px; top: "+tt+"px; width: "+tw+"px; height: "+th+"px;' cellspacing='0' cellpadding='0'><tr>";
+      for(r=0;r<w;r++)
+      {
+        temp=r+w*num;
+        s+="<td id=tab"+temp+" bgcolor=red></td>";
+      }
+      s+="</tr></table>";
+    }
+    if(num==1)
+    {
+      tl = left+w*width;
+      tt = top;
+      tw = height;
+      th = w*width;
+      s="<table style='position: absolute; left: "+tl+"px; top: "+tt+"px; width: "+tw+"px; height: "+th+"px;' cellspacing='0' cellpadding='0'>";
+      for(r=0;r<w;r++)
+      {
+        temp=r+w*num;
+        s+="<tr><td id=tab"+temp+" bgcolor=red></td></tr>";
+      }
+      s+="</table>";
+    }
+    if(num==2)
+    {
+      tl = left+height;
+      tt = top+w*width;
+      tw = w*width;
+      th = height;
+      s="<table style='position: absolute; left: "+tl+"px; top: "+tt+"px; width: "+tw+"px; height: "+th+"px;' cellspacing='0' cellpadding='0'><tr>";
+      for(r=w;r>0;r--)
+      {
+        temp=r-1+w*num;
+        s+="<td id=tab"+temp+" bgcolor="+Bg+"></td>";
+      }
+      s+="</tr></table>";
+    }
+    if(num==3)
+    {
+      tl = left;
+      tt = top+height;
+      tw = height;
+      th = w*width;
+      s="<table style='position: absolute; left: "+tl+"px; top: "+tt+"px; width: "+tw+"px; height: "+th+"px;' cellspacing='0' cellpadding='0'>";
+      for(r=w;r>0;r--)
+      {
+        temp=r-1+w*num;
+        s+="<tr><td id=tab"+temp+" bgcolor="+Bg+"></td></tr>";
+      }
+      s+="</table>";
+    }
+    return s;
+  }
+  function count()
+  {
+    var i;
+    var temp;
+    var total;
+    total = w*4;
+    for(i=0; i<line.length; i++)
+    {
+      temp=pos+i-line.length/2;
+      temp=temp<0?(total+temp):temp;
+      temp=temp>(total-1)?(temp-total):temp;
+      document.all["tab"+temp].style.backgroundColor=line[line.length-i];
+    }
+    pos=(pos+1)>total?0:(pos+1);
+  }
+
+  for(i=0;i<=3;i++)
+  {
+    document.write(writes(i));
+  }
+  var pos=0;
+  setInterval("count()", 1);
+</script>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

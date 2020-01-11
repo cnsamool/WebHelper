@@ -1,0 +1,261 @@
+<!--第一步：将下列代码复制到<head></head>之间：-->
+<SCRIPT>
+<!-- 
+
+
+// 把下面信息改成你的
+var mes = new Array()
+mes[0]="网页助手，您明智的选择"
+mes[1]="傻猫软件，互动的世界"
+mes[2]="傻猫软件官方网站：http://samool.533.net"
+
+// 以下是文本运动的五线谱
+var path= new Array(554,9,552,10,550,13,542,13,538,13,532,10,528,9,528,9,522,7,519,8,512,9,510,11,507,13,505,16,500,17,495,18,492,17,488,15,482,9,477,9,473,9,466,12,461,17,459,19,452,20,448,21,443,18,439,15,434,9,431,9,424,8,419,9,416,11,412,12,410,15,408,17,406,19,398,19,391,20,383,19,379,17,372,14,369,10,364,9,356,7,348,8,340,9,334,11,323,13,315,17,301,18,293,17,288,12,285,10,278,7,274,7,269,9,268,9,265,12,260,17,250,17,241,17,229,16,220,10,216,9,213,9,208,9,203,9,194,14,188,16,177,16,166,16,157,14,149,13,146,8,135,7,124,6,114,9,104,14,94,16,69,16,61,15,41,15,34,15,22,16,12,16,13,15)
+
+// 舞曲的节奏
+var stoptime=2
+
+// 字体的种类与大小，
+var textfont="宋体"
+var textsize=16
+
+// 文本的颜色
+var textcolor=new Array("FF0000","0000FF","00FF00","FF00FF")
+
+//  1 为 粗体, 0 为 正常
+var fontweight=1
+
+// 1 为 发光，0 为 正常
+var gloweffect=0
+
+// 字符间的间隔，字体大应相对加大
+var letterspace=16
+
+
+var tickerleft=path[path.length-2]
+var tickertop=path[path.length-1]
+var timer
+var finalxpos=tickerleft
+var i_mes=0
+var message=""
+var i_path=0
+var stoptimemilli=stoptime*10
+var maxtextlength=0
+var i_endposition=0
+
+var pathx= new Array()
+var ii=0
+for (i=0;i<=path.length-1;i=i+2) {
+	pathx[ii]=path[i]
+	ii++
+}
+ii=0
+var pathy= new Array()
+for (i=1;i<=path.length-1;i=i+2) {
+	pathy[ii]=path[i]
+	ii++
+}
+
+if (gloweffect==1) {
+	gloweffect="style='filter:glow(strength=1,color=yellow)'"
+}
+else {
+	gloweffect=""
+}
+
+if (fontweight==1) {
+	fontweight="<b>"
+}
+else {
+	fontweight=""
+}
+
+
+for (i=0;i<=mes.length-1;i++) {
+	if (mes[i].length>=maxtextlength) {maxtextlength=mes[i].length}
+}
+
+for (i=0;i<=mes.length-1;i++) {
+	mes[i]=mes[i]+" "
+}
+
+if (document.layers) {
+	if (textsize>20) {textsize=6}
+	else if (textsize>20) {textsize=5}
+	else if (textsize>14) {textsize=4} 
+	else if (textsize>10) {textsize=3}
+	else if (textsize>8) {textsize=2}
+	else if (textsize<=7) {textsize=1}
+}
+
+var xpos=new Array()
+for (i=0;i<=maxtextlength;i++) {
+	xpos[i]=5000
+}
+
+var ypos=new Array()
+for (i=0;i<=maxtextlength;i++) {
+	ypos[i]=5000
+}
+
+function randomizer(range) {		
+	return Math.floor(range*Math.random())
+}
+
+function makesnake() {
+	if (i_path<=pathx.length-1) {
+		for (i=message.length-1; i>=1; i--) {
+   			xpos[i]=xpos[i-1]
+			ypos[i]=ypos[i-1]
+    	}
+		xpos[0]=pathx[i_path]
+		ypos[0]=pathy[i_path]
+		if (document.all) {
+			for (i=0; i<message.length-1; i++) {
+    			var thisspan = eval("document.all.span"+(i)+".style")
+    			thisspan.posLeft=xpos[i]+(i*letterspace)
+				thisspan.posTop=ypos[i]
+    		}
+		}
+		if (document.layers) {
+			for (i=0; i<message.length-1; i++) {
+    			var thisspan = eval("document.span"+i)
+    			thisspan.left=xpos[i]+(i*letterspace)
+				thisspan.top=ypos[i]
+    		}
+		}
+		i_path++
+		timer=setTimeout("makesnake()",20)
+	}
+	else {
+		clearTimeout(timer)
+		endposition()
+	}
+}
+
+
+function endposition() {
+	if (i_endposition<=stoptimemilli) {
+		if (document.all) {
+			for (i=0; i<message.length-1; i++) {
+    			var thisspan = eval("document.all.span"+(i)+".style")
+				thisspan.posTop+=Math.ceil(8*Math.random())-4
+    		}
+		}
+		if (document.layers) {
+			for (i=0; i<message.length-1; i++) {
+    			var thisspan = eval("document.span"+i)
+				thisspan.top+=Math.ceil(8*Math.random())-4
+    		}
+		}
+		i_endposition++
+		timer=setTimeout("endposition()",10)
+	}
+	else {
+		clearTimeout(timer)
+		i_endposition=0
+		endposition2()
+	}
+}
+
+function endposition2() {
+	if (i_endposition<=30) {
+		if (document.all) {
+			for (i=0; i<message.length-1; i++) {
+    			var thisspan = eval("document.all.span"+(i)+".style")
+				thisspan.posTop+=Math.ceil(200*Math.random())-70
+    		}
+		}
+		if (document.layers) {
+			for (i=0; i<message.length-1; i++) {
+    			var thisspan = eval("document.span"+i)
+				thisspan.top+=Math.ceil(200*Math.random())-70
+    		}
+		}
+		i_endposition++
+		timer=setTimeout("endposition2()",20)
+	}
+	else {
+		clearTimeout(timer)
+		i_endposition=0
+		clearmessage()
+	}
+}
+
+
+function clearmessage() {
+		finalxpos=tickertop
+		i_path=0
+		for (i=0;i<=maxtextlength;i++) {
+			xpos[i]=5000
+		}
+		if (document.all) {
+			for (i=0;i<=maxtextlength;i++) {
+				var thisspan = eval("document.all.span"+i)
+    			thisspan.innerHTML=" "
+				var thisspan = eval("document.all.span"+(i)+".style")
+    			thisspan.posLeft=xpos[i]=5000
+			}
+		}
+		if (document.layers) {
+			for (i=0;i<=maxtextlength;i++) {
+				var thisspan = eval("document.span"+i+".document")
+    			thisspan.write("<p> </p>")
+				thisspan.clear()
+				thisspan = eval("document.span"+i)
+    			thisspan.left=5000
+			}
+		}
+		timer=setTimeout("changemessage()",2000)
+}
+
+function changemessage() {
+		var messa=mes[i_mes]
+		message=messa.split("")
+		if (document.all) {
+			for (i=0;i<=message.length-1;i++) {
+				var thisspan = eval("document.all.span"+i)
+    			thisspan.innerHTML="<p style='font-family:"+textfont+";font-size:"+textsize+";color:"+textcolor[Math.floor((textcolor.length)*Math.random())]+"'>"+fontweight+message[i]+"</p>"
+			}
+		}
+		if (document.layers) {
+			for (i=0; i<message.length-1; i++) {
+    			var thisspan=eval("document.span"+i+".document")
+    			thisspan.write("<p><font size="+textsize+" color="+textcolor[Math.floor((textcolor.length)*Math.random())]+" face="+textfont+">"+fontweight+message[i]+"</font></p>")
+				thisspan.clear()
+    		}
+		}
+		i_mes++ 
+		if (i_mes>=mes.length) {i_mes=0}
+		finalxpos=tickertop
+		i_path=0
+		timer=setTimeout("makesnake()",1000)
+}
+
+// - End of JavaScript - -->
+</SCRIPT>
+
+<STYLE>A {
+	COLOR: #000000; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; FONT-WEIGHT: bold; LEFT: 8px; POSITION: absolute; TOP: 250px
+}
+.dance {
+	LEFT: 5000px; POSITION: absolute; VISIBILITY: visible
+}
+</STYLE>
+
+
+
+<!--第二步：将下列代码复制到<body></body>之间：-->
+<BODY bgColor=#ffffff onload=changemessage()>
+<SCRIPT>
+<!-- Beginning of JavaScript -
+	for (i=0;i<=maxtextlength;i++) {
+    	document.write("<span id='span"+i+"' class='dance' "+gloweffect+">")
+		document.write(message)
+    	document.write("</span>")
+	}
+
+// - End of JavaScript - -->
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

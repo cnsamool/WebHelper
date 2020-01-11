@@ -1,0 +1,307 @@
+
+<!--第一步：先将下列代码复制到<head></head>之间：-->
+<script>
+function ShowMenu(bMenu) {
+document.all.idFinder.style.display = (bMenu) ? "none" : "block" 
+document.all.idMenu.style.display = (bMenu) ? "block" : "none"
+idML.className = (bMenu) ? "cOn" : "cOff"
+idRL.className = (bMenu) ? "cOff" : "cOn"
+return false
+}
+</script>
+
+<style>
+<!--
+A.cOn {text-decoration:none;font-weight:bolder}
+#article {font: 12pt Verdana, geneva, arial, sans-serif;  background: white; color: black; padding: 10pt 15pt 0 5pt}
+#article P.start {text-indent: 0pt}
+#article P {margin-top:0pt;font-size:10pt;text-indent:12pt}
+#article #author {margin-bottom:5pt;text-indent:0pt;font-style: italic}
+#pageList P {padding-top:10pt}
+#article H3 {font-weight:bold}
+#article DL, UL, OL {font-size: 10pt}
+-->
+</style>
+<script>
+<!--
+function addList(url,desc) {
+if ((navigator.appName=="Netscape") || (parseInt(navigator.appVersion)>=4)) {
+var w=window.open("","_IDHTML_LIST_","top=0,left=0,width=475,height=150,history=no,menubar=no,status=no,resizable=no")
+var d=w.document
+if (!w._init) {
+d.open()
+d.write("<TITLE>Loading...</TITLE><EM>Loading...</EM>")
+d.close()
+d.location.replace("/assist/listing.asp?url="+escape(url)+"&desc="+escape(desc))  
+w.opener=self    
+window.status="Personal Assistant (Adding): " + desc
+} else {
+window.status=w.addOption(url,desc)    
+w.focus()
+}
+}
+else
+alert("Your browser does not support the personal assistant.")
+return false
+}
+// -->
+</script>
+
+<style>
+#board {font-family: arial}
+.dot {position: absolute; width: 5px; height: 5px; font-size: 0pt; background: black}
+#line {position: absolute; font-size: 0pt; height: 5px}
+.p1 {position: absolute; font-size: 0pt;background: navy}
+.p2 {position: absolute; font-size: 0pt;  background: red}
+.p1B {position: absolute; font-size: 8pt; color: navy;text-align: center; font-weight: bold}
+.p2B {position: absolute; font-size: 8pt; color: red; text-align: center; font-weight: bold}
+</style>
+
+
+<!--第二步：再将下列代码复制到<body></body>之间：-->
+
+<div align="center"><center>
+
+<table CELLPADDING="0" CELLSPACING="0" BORDER="0" width="509">
+  <tr>
+    <td WIDTH="10"></td>
+    <td valign="top" WIDTH="499" ID="article"><p class="start" STYLE="text-align: left"><font
+    size="+2" style="font-weight:bold;font-size: 14pt"><b>看谁围的框子多？</b></font></p>
+    <p>这是一个双人游戏，蓝色的先行，看谁围的框子多，谁就赢。</p>
+    <p STYLE="margin-top: 5pt"><script>
+  /* DHTML Dots is copyright 1998 insideDHTML.com, LLC. All rights reserved.
+     DHTML Dots cannot be reproduced in any manner without prior consent from insideDHTML.com */
+
+  var scale= 25
+  var size = 5
+
+  var totalSize = ((size+1)*scale) + 6
+  var cache = new Object()
+  var move=0,point=0
+  var player = true
+
+  function initCache() {
+    cache.x = 0
+    cache.y = 0
+    cache.red = 0
+    cache.navy = 0
+    move=0,point=0    
+  }
+
+  function updateScore() {
+    document.all.red.innerText = cache.red
+    document.all.navy.innerText = cache.navy
+    if ((cache.red+cache.navy)==((size-1)*(size-1))) {
+      board.onclick = null
+      document.all.message.innerText = "Game Over!"
+    }
+     
+  }
+
+  function fillPos(x,y) {
+    document.all.board.insertAdjacentHTML("beforeEnd","<DIV class=" + (player ? "p1B" : "p2B") + " ID=\"point"+point+"\">" + (player ? "N" : "R") + "</DIV>")
+    var el = document.all["point"+point].style
+    el.pixelTop = (y*scale)+5
+    el.pixelLeft = (x*scale)+5
+    el.pixelWidth = scale - 5
+    el.pixelHeight = scale - 5
+
+  }
+
+  function checkBoard(x,y,dir, player) {
+    var piece=0
+    if ("vertical"==dir) {
+      if ((x==size) || (x>1)) {
+        var bPos = boardArray[x-1][y]
+        var nextV = boardArray[x-1][y+1]
+        if ((bPos["vertical"]) && (bPos["horizontal"]) && (nextV["horizontal"])) {
+          point++
+          piece++
+          fillPos(x-1,y)
+        }
+      } 
+      if ((x==1) || (x<size)) {
+          var nextV = boardArray[x+1][y]
+          var nextH = boardArray[x][y+1]
+          if ((nextV["vertical"]) && (nextH["horizontal"]) && (boardArray[x][y]["horizontal"])) {
+            point++
+            piece++
+            fillPos(x,y)
+          }
+      }   
+    }    
+    else {
+      if ((y==size) || (y>1)) {
+        var nextV = boardArray[x+1][y-1]
+        var bPos = boardArray[x][y-1]
+        if ((bPos["vertical"]) && (bPos["horizontal"]) && (nextV["vertical"])) {
+          point++
+          piece++
+          fillPos(x,y-1)
+        } 
+      }
+      if ((y==1) || (y<size)) {
+        var nextV = boardArray[x+1][y]
+        var nextH = boardArray[x][y+1]
+        if ((nextV["vertical"]) && (nextH["horizontal"]) && (boardArray[x][y]["vertical"])) {
+          point++
+          piece++
+          fillPos(x,y)
+        }
+      }
+    } 
+    if (piece>0) {
+      if (player)
+       cache.navy+=piece
+      else
+       cache.red+=piece
+      document.all.message.innerText = "Score! Go Again."
+      updateScore()
+      return player
+    }
+    else
+      return !player
+        
+  }
+
+  function doMouseMove() {
+    if (event.srcElement.className!="dot") {
+      var x = Math.floor(event.offsetX / scale) 
+      var y = Math.floor(event.offsetY / scale) 
+      var dirX = (event.offsetX % scale)
+      var dirY = (event.offsetY % scale)
+      if ((x<size+1) && (y<size+1) && (y>0) && (x>0)) {
+        if (dirX>=dirY) {
+          if (x<size) {
+            line.style.pixelHeight = 5 
+            line.style.pixelWidth = scale  - 5
+            line.style.pixelTop = (y * scale) 
+            line.style.pixelLeft = (x * scale) + 5
+            cache.direction = "horizontal"
+          }
+        } else
+        {
+          if (y<size) { 
+            line.style.pixelWidth = 5 
+            line.style.pixelHeight = scale - 5
+            line.style.pixelTop = (y * scale) + 5
+            line.style.pixelLeft = x * scale
+            cache.direction = "vertical"
+          }
+        }
+        cache.x = x
+        cache.y = y
+      }
+    }
+    
+  }
+
+  function doClick() {
+
+    if (cache.x==0) return
+    if (boardArray[cache.x][cache.y][cache.direction])
+      document.all.message.innerText="That spot is taken! Choose again"
+    else {
+      document.all.board.insertAdjacentHTML("beforeEnd","<DIV class=" + (player ? "p1" : "p2") + " ID=move"+move+"></DIV>")
+      var el = document.all["move"+move]
+      el.style.top = line.style.top 
+      el.style.left = line.style.left 
+      el.style.width = line.style.width
+      el.style.height = line.style.height
+      boardArray[cache.x][cache.y][cache.direction]=true
+      var nextPlayer = checkBoard(cache.x,cache.y,cache.direction, player)
+      if (nextPlayer!=player) {
+        player = nextPlayer
+        if (player) {
+          document.all.message.innerText = "Navy players turn"
+          line.style.border = "1px navy solid"
+        }
+        else {
+          document.all.message.innerText = "Red players turn"
+          line.style.border = "1px red solid"
+        }
+      }
+    }
+
+ 
+    move++
+  }
+
+  function buildDiv(x,y, scale) {
+    return ("<DIV CLASS=dot STYLE=\"top:" +  (x*scale) + "; left: " + (y*scale) + "\"></DIV>")
+  }   
+
+  var boardArray = new Object
+
+
+  function buildBoard() {
+    initCache()
+    board = ("<DIV ID=line STYLE=\"border: 1px navy solid; width: 0; height: 0\"></DIV>")
+    boardArray = new Object()
+    for (var x=1; x < size+1; x++) {
+      boardArray[x] = new Object()
+      for (var y=1; y < size+1; y++) {
+        boardArray[x][y] = new Object
+        boardArray[x][y]["vertical"] = false
+        boardArray[x][y]["horizontal"] = false
+        board+=(buildDiv(x,y, scale))
+      }
+    }
+
+    return board
+  }
+
+  function createGame() {
+    size=parseInt(document.all.setSize.value)
+    if (size>12)
+      size=12
+    if (size<3)
+      size=3
+    document.all.setSize.value = size
+    document.all.board.innerHTML = buildBoard()
+    document.all.board.onclick = doClick
+    totalSize = ((size+1)*scale) + 6
+    document.all.board.style.pixelWidth = totalSize
+    document.all.board.style.pixelHeight = totalSize
+    document.all.message.innerText = "Navy player goes first. Good Luck!"
+    updateScore()    
+  }
+  document.write("<DIV ID=board STYLE=\"position: relative; height: "+ totalSize + "; width:" + totalSize + "; border: 1px black solid\">" + buildBoard() + "</DIV>")
+  document.all.board.onmousemove = doMouseMove
+  document.all.board.onclick = doClick
+
+</script> </p>
+    <div STYLE="margin-left: 10pt; margin-top: 5pt"><p class="start" ID="message">Navy player 
+    goes first. Good Luck!</p>
+    <dd><br>
+      <table border="1" width="100">
+        <tr>
+          <td style="color: red"><b>Red</b></td>
+          <td ID="red">0</td>
+        </tr>
+        <tr>
+          <td style="color: navy"><b>Navy</b></td>
+          <td ID="navy">0</td>
+        </tr>
+      </table>
+      <p><br>
+      </p>
+      <table width="200">
+        <tr>
+          <td>游戏大小: </td>
+          <td><input TYPE="Text" VALUE="5" ID="setSize" SIZE="2"></td>
+        </tr>
+        <tr>
+          <td COLSPAN="2" align="center"><input TYPE="button" ONCLICK="createGame()"
+          VALUE="New Game"></td>
+        </tr>
+      </table>
+      <p CLASS="copyright">　</p>
+    </dd>
+    </div></td>
+  </tr>
+</table>
+</center></div>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

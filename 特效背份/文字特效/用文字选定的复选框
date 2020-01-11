@@ -1,0 +1,13 @@
+<form>
+
+              <label for="check1">经常来这里</label> 
+
+              <input type="CHECKBOX" id="check1" value="often" name="checkoften">
+
+              <label for="check2">偶尔来看看</label> 
+
+              <input type="CHECKBOX" id="check2" value="seldom" name="checkseldom">
+
+            </form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

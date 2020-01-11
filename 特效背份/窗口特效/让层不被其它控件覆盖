@@ -1,0 +1,7 @@
+<div z-Index:2><object xxx></object></div> ＃ 前面 
+<div z-Index:1><object xxx></object></div> ＃ 后面 
+<div id="Layer2" style="position:absolute; top:40;width:400px; height:95px;z-index:2"><table height=100% width=100% bgcolor="#ff0000"><tr><td height=100% width=100%></td></tr></table><iframe width=0 height=0></iframe></div>
+<div id="Layer1" style="position:absolute; top:50;width:200px; height:115px;z-index:1"><iframe height=100% width=100%></iframe></div>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

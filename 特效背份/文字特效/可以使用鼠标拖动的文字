@@ -1,0 +1,32 @@
+<STYLE>.drag {
+	CURSOR: hand; POSITION: relative
+}
+</STYLE>
+<SCRIPT language=JavaScript>
+<!-- 使用说明：使用时将文字换成你需要的文字即可！-->
+var dragapproved=false
+var z,x,y
+function move(){
+if (event.button==1&&dragapproved){
+z.style.pixelLeft=temp1+event.clientX-x
+z.style.pixelTop=temp2+event.clientY-y
+return false}}
+function drags(){
+if (!document.all)
+return
+if (event.srcElement.className=="drag"){
+dragapproved=true
+z=event.srcElement
+temp1=z.style.pixelLeft
+temp2=z.style.pixelTop
+x=event.clientX
+y=event.clientY
+document.onmousemove=move}}
+document.onmousedown=drags
+document.onmouseup=new Function("dragapproved=false")
+</SCRIPT>
+<SPAN style="FONT-FAMILY: 新宋体; FONT-SIZE: 9pt"><FONT class=drag color=#000000>
+使用鼠标来拖动这些文字
+</FONT></SPAN>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

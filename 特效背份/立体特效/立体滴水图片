@@ -1,0 +1,35 @@
+<!--本特效需要anwater.class和lware.class支持-->
+<!--必需将这两个文件与网页放在同一目录下才能正常显示-->
+<!--C:\webhelpview\webhelpview 有这些文件-->
+
+
+<applet code="AnWater.class" width=755 height=100>
+<param name=image value="banner.jpg">
+<param name=res value="1">
+<param name=light value="YES">
+<param name=autodesign value="YES">
+<param name=density value="5">
+<param name=fishnum value="2">
+<param name=cross value="NO">
+<param name=crossfactor value="30">
+<param name=rainsize value="0">
+<param name=rainfactor value="10">
+<param name=srainsize value="0">
+<param name=srainfactor value="10">
+<param name=textoffset value="132">
+<param name=textspeed value="2">
+<param name=textfont value="Arial">
+<param name=textbold value="NO">
+<param name=textsize value="14">
+<param name=textshadow value="YES">
+<param name=TextColR value="255">
+<param name=TextColG value="255">
+<param name=TextColB value="200">
+<param name=TextSColR value="20">
+<param name=TextSColG value="20">
+<param name=TextSColB value="50">
+<param name=TextJumpAmp value="10">
+<param name=TextJumpSpd value="4">
+<param name=memdelay value="1000">
+<param name=priority value="3">
+</applet>

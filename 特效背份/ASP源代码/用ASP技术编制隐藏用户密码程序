@@ -1,0 +1,106 @@
+    这段ASP程序(名字为DEFAULT.ASP)所实现的功能是对数据库的查询操作，仅取其隐藏用户名和密码的一部分进行说明。
+
+<% WEB_USER =Request("WEB_USER") ''WEB用户名 %>
+
+<% WEB_USER_PASSWD =Request("WEB_USER_PASSWD") ''WEB用户的密码 %>
+
+<% ''将WEB用户名和密码加密，方法是，将变量值从左至右每个字符的ASCII码加32，生成新的字符串，当执行到此时，地址行上显示出的，是“加密”以后的用户名和密码，而不是真正的用户名和密码，达到保密目的% >
+
+<% TEMP1="" % >
+
+<% For i=1 To Len(WEB_USER) %>
+
+<% TEMP2=Mid(WEB_USER,i,1) %>
+
+<% TEMP2=Chr(Asc(TEMP2)+32) %>
+
+<% TEMP1=TEMP1&TEMP2 %>
+
+<% Next %>
+
+<% WEB_USER=TEMP1 %>
+
+<% TEMP1="" %>
+
+<% For i=1 To Len(WEB_USER_PASSWD) %>
+
+<% TEMP2=Mid(WEB_USER_PASSWD,i,1) %>
+
+<% TEMP2=Chr(Asc(TEMP2)+32) %>
+
+<% TEMP1=TEMP1&TEMP2 %>
+
+<% Next %>
+
+<% WEB_USER_PASSWD=TEMP1 %>
+
+<%''建立和数据库的连接,定义ODBC名字（odbcname）、ORACLE用户名（orauser）及口令（orauser_passwd）%>
+
+<%Set Conn = Server.CreateObject("ADODB.Connection")
+
+Conn.Open "odbcname","orauser","orauser_passwd"
+
+%>
+
+<% ''建立查询语句-SQL语句%>
+
+<%
+
+var_sql="SELECT * FROM verifytab,dw_tab where verifytab.user_pd=''"&WEB_USER_PASSWD&"''"
+
+Set RS = Conn.Execute(var_sql) ’符合条件的记录生成于RS之中%>
+
+<%''将用户名和口令翻译成正确的 ，但此时地址栏里显示不出来，达到了保密要求%>
+
+<% TEMP1="" %>
+
+<% For i=1 To Len(WEB_USER) %>
+
+<% TEMP2=Mid(WEB_USER,i,1) %>
+
+<% TEMP2=Chr(Asc(TEMP2)-32) %>
+
+<% TEMP1=TEMP1&TEMP2 %>
+
+<% Next %>
+
+<% WEB_USER=TEMP1 %>
+
+<% TEMP1="" %>
+
+<% For i=1 To Len(WEB_USER_PASSWD) %>
+
+<% TEMP2=Mid(WEB_USER_PASSWD,i,1) %>
+
+<% TEMP2=Chr(Asc(TEMP2)-32) %>
+
+<% TEMP1=TEMP1&TEMP2 %>
+
+<% Next %>
+
+<% WEB_USER_PASSWD=TEMP1 %>
+
+<% ''验证输入的WEB用户名和口令是否正确，若是，往下进行，否则，返回到default.htm调用，它是IIS默认的调用文件%>〈〉
+
+<%If WEB_USER="superuser" and WEB_USER_PASSWD="superuserpd" Then
+
+else
+
+If RS.EOF Then
+
+Response.Redirect("default.htm")
+
+End If
+
+End If 
+
+%>
+
+<%''下边是用FRONTPAGE 98 设计的FORM界面，内容省略%>
+
+<html>
+
+<head>
+
+……
+

@@ -1,0 +1,88 @@
+<STYLE>
+.spanstyle {
+position:absolute;
+visibility:visible;
+top:-50px;
+font-size:12pt;
+font-family:宋体;
+font-weight:normal;
+color:#FF0000;
+}
+</STYLE>
+</head>
+<!--把你html文件的<body>部分改为-->
+<body onLoad="makesnake()" style="width:100%;overflow-x:hidden;overflow-y:scroll">
+
+<script>
+var x,y
+var step=20
+var flag=0
+
+var message="《网页助手》制作网页特效真酷！"
+message=message.split("")
+
+var xpos=new Array()
+for (i=0;i<=message.length-1;i++) {
+xpos[i]=-50
+}
+
+<!-- 使用说明：使用时将上面的文字"心梦网页特效精灵"替换成你需要的文字即可!-->
+var ypos=new Array()
+for (i=0;i<=message.length-1;i++) {
+ypos[i]=-50
+}
+
+function handlerMM(e){
+x = (document.layers) ? e.pageX : document.body.scrollLeft+event.clientX
+y = (document.layers) ? e.pageY : document.body.scrollTop+event.clientY
+flag=1
+}
+
+function makesnake() {
+if (flag==1 && document.all) {
+for (i=message.length; i>=1; i--) {
+xpos[i]=xpos[i-1]+step
+ypos[i]=ypos[i-1]
+}
+xpos[0]=x+step
+ypos[0]=y
+
+for (i=0; i<message.length; i++) {
+var thisspan = eval("span"+(i)+".style")
+thisspan.posLeft=xpos[i]
+thisspan.posTop=ypos[i]
+}
+}
+
+else if (flag==1 && document.layers) {
+for (i=message.length-1; i>=1; i--) {
+xpos[i]=xpos[i-1]+step
+ypos[i]=ypos[i-1]
+}
+xpos[0]=x+step
+ypos[0]=y
+
+for (i=0; i<message.length-1; i++) {
+var thisspan = eval("document.span"+i)
+thisspan.left=xpos[i]
+thisspan.top=ypos[i]
+}
+}
+var timer=setTimeout("makesnake()",30)
+}
+</script>
+
+<!--把下面代码加入你html文件<body>和</body>之间:-->
+<script>
+for (i=0;i<=message.length-1;i++) {
+document.write("<span id='span"+i+"' class='spanstyle'>")
+document.write(message[i])
+document.write("</span>")
+}
+if (document.layers){
+document.captureEvents(Event.MOUSEMOVE);
+}
+document.onmousemove = handlerMM;
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

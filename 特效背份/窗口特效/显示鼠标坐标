@@ -1,0 +1,32 @@
+
+ <SCRIPT LANGUAGE="JavaScript">
+if (navigator.appName == 'Netscape')
+ {
+	document.captureEvents(Event.MOUSEMOVE);
+	document.onmousemove = netscapeMouseMove;
+}
+
+function netscapeMouseMove(e) {
+if (e.screenX != document.test.x.value && e.screenY != document.test.y.value)
+ {
+	document.test.x.value = e.screenX;
+	document.test.y.value = e.screenY;
+} 
+}
+
+function micro$oftMouseMove() {
+if (window.event.x != document.test.x.value && window.event.y != document.test.y.value)
+ {
+	document.test.x.value = window.event.x;
+	document.test.y.value = window.event.y;
+}
+}
+</SCRIPT>
+<FORM NAME="test">
+X: <INPUT TYPE="TEXT" NAME="x" SIZE="4"> Y: <INPUT 
+TYPUE="TEXT" NAME="y" SIZE="4">
+</FORM>
+
+<body bgcolor="#fef4d9" onMousemove="micro$oftMouseMove()">
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

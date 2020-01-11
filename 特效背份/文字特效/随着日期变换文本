@@ -1,0 +1,54 @@
+<!--脚本说明:
+把如下代码加入<body>区域中-->
+<script language="JavaScript"> 
+<!-- Hide
+  var now = new Date();
+  var month = now.getMonth() + 1;
+  var date = now.getDate();
+  var year = now.getYear();
+
+      
+        msgs = new Array
+        msgs[1] = "每月1号的信息"
+        msgs[2] = "每月2号的信息"
+        msgs[3] = "每月3号的信息"
+        msgs[4] = "每月4号的信息"
+        msgs[5] = "每月5号的信息"
+        msgs[6] = "每月6号的信息"
+        msgs[7] = "每月7号的信息"
+        msgs[8] = "每月8号的信息"
+        msgs[9] = "每月9号的信息"
+        msgs[10] = "每月10号的信息"
+        msgs[11] = "每月11号的信息"
+        msgs[12] = "每月12号的信息"
+        msgs[13] = "每月13号的信息"
+        msgs[14] = "每月14号的信息"
+        msgs[15] = "每月15号的信息"
+        msgs[16] = "每月16号的信息"
+        msgs[17] = "每月17号的信息"
+        msgs[18] = "每月18号的信息"
+        msgs[19] = "每月19号的信息"
+        msgs[20] = "每月20号的信息"
+        msgs[21] = "每月21号的信息"
+        msgs[22] = "每月22号的信息"
+        msgs[23] = "每月23号的信息"
+        msgs[24] = "每月24号的信息"
+        msgs[25] = "每月25号的信息"
+        msgs[26] = "每月26号的信息"
+        msgs[27] = "每月27号的信息"
+        msgs[28] = "每月28号的信息"
+        msgs[29] = "每月29号的信息"
+        msgs[30] = "每月30号的信息"
+        msgs[31] = "每月31号的信息"
+        var msg = msgs[date]
+
+//-->
+
+</script>
+                  <script>
+<!--
+document.write(msg);
+//-->
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

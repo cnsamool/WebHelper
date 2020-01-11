@@ -1,0 +1,86 @@
+<!--脚本说明:
+第一步:把如下代码加入<head>区域中-->
+<SCRIPT language="JavaScript">
+<!--
+bname=navigator.appName;
+bversion=parseInt(navigator.appVersion)
+if (bname=="Netscape")
+brows=true
+else
+brows=false
+var x=0;
+var link=new Array();
+
+function dspl(msg,bgcolor,dtop,delft){
+this.msg=msg;
+this.bgcolor=bgcolor;
+this.dtop=dtop;
+this.dleft=delft;
+}
+
+
+link[0]=new dspl('［本站宗旨］<BR>为制作交互的动态页面提供全面的分类齐全的JS脚本资源和主页制作技巧。','bisque',150,430)
+
+link[1]=new dspl('［本站论坛］<BR>讨论一些我们共同关心的问题,主页制作,JS脚本的应用技巧等。','bisque',175,430)
+
+link[2]=new dspl('［本站栏目］<BR>分类齐全的JS脚本资源,JavaApplet小程序,精彩动画欣赏,各种实用资源及邮件列表(JS脚本先睹为快)等。','bisque',200,430)
+
+link[3]=new dspl('［关于本站］<BR>创建于99年8月25日,Webmaster:天涯网人','bisque',235,430)
+
+// Do not edit anything else in the script !!!!
+
+function don(x){
+if ((bname=="Netscape" && bversion>=4) || (bname=="Microsoft Internet Explorer" && bversion>=4)){
+if (brows){
+with(link[x]){
+document.layers['linkex'].bgColor=bgcolor;
+document.layers['linkex'].document.writeln(msg);
+document.layers['linkex'].document.close();
+document.layers['linkex'].top=dtop;
+document.layers['linkex'].left=dleft;
+}
+document.layers['linkex'].visibility="show";
+}
+else{
+with(link[x]){
+linkex.innerHTML=msg;
+linkex.style.top=dtop;
+linkex.style.left=dleft;
+linkex.style.background=bgcolor;
+}
+linkex.style.visibility="visible";
+}
+}
+}
+
+function doff(){
+if ((bname=="Netscape" && bversion>=4) || (bname=="Microsoft Internet Explorer" && bversion>=4)){
+if (brows)
+document.layers['linkex'].visibility="hide";
+else
+linkex.style.visibility="hidden";
+}
+}
+
+//-->
+
+
+</SCRIPT>
+
+
+<!--第二步:把如下代码加入<body>区域中-->
+<Div id="linkex" style="position: absolute; visibility: hidden; width=80%">
+</Div>
+<Layer name="linkex" visibility="hide" width=80%>
+</Layer>
+<p align="center">
+<a href="time1" onmouseover="don(0)" onmouseout="doff()" target="_blank">［本站宗旨］</a><BR>
+  <BR>
+  <a href="time2" onmouseover="don(1)" onmouseout="doff()" target="_blank">［本站论坛］</a><BR>
+  <br>
+  <a href="time3" onmouseover="don(2)" onmouseout="doff()" target="_blank">［本站栏目］</a><BR>
+  <BR>
+  <a href="time4" onmouseover="don(3)" onmouseout="doff()" target="_blank">［关于本站］</a> 
+</p>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

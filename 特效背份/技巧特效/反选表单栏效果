@@ -1,0 +1,5 @@
+<textarea rows="4" name="S1" cols="39" onMouseOver="this.focus()"
+onFocus="this.select()">&lt;input type=&quot;text&quot; name=&quot;emailaddr&quot; value=&quot;your e-mail&quot;
+ size=&quot;31&quot;  onMouseOver=&quot;this.focus()&quot; onFocus=&quot;this.select()&quot;&gt; </textarea>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

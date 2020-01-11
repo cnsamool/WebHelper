@@ -1,0 +1,41 @@
+Ò»¡¢ ¡¡ 
+<% Response.Buffer = True %> 
+<% 
+'' Setup the variables necessary to accomplish the task 
+Dim Tim 
+erStart, TimerEnd, TimerNow, TimerWait 
+'' How many seconds do you want them to wait... 
+TimerWait = 5 
+'' Setup and start the timers 
+TimerNow = Timer 
+TimerStart = TimerNow 
+TimerEnd = TimerStart + TimerWait 
+'' Keep it in a loop for the desired length of time 
+Do While (TimerNow < TimerEnd) 
+'' Determine the current and elapsed time 
+TimerNow = Timer 
+If (TimerNow < TimerStart) Then 
+TimerNow = TimerNow + 86400 
+End If 
+Loop 
+'' Okay times up, lets git em outa here 
+Response.Redirect "nextpage.html" %> 
+
+¶þ¡¢ 
+
+<% 
+Sub TimeDelaySeconds(DelaySeconds) 
+SecCount = 0 
+Sec2 = 0 
+While SecCount < DelaySeconds + 1 
+Sec1 = Second(Time()) 
+If Sec1 <> Sec2 Then 
+Sec2 = Second(Time()) 
+SecCount = SecCount + 1 
+End If 
+Wend 
+End Sub 
+%> 
+
+'' To change delay adjust here 
+<% TimeDelaySeconds(2) %> 

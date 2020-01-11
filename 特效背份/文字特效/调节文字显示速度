@@ -1,0 +1,156 @@
+<html>
+<head>
+<title></title>
+</head>
+<!--第一步:把如下代码加入<body>区域中//-->
+<body bgcolor="#fef4d9" onload="start(document.forms[0])" onunload="cleartids()">
+<!--第二步:把如下代码加入<body>区域中//-->
+<script language="javascript">
+tid = 0;
+pause = 0;
+var to;
+var bcount;
+var tcount;
+
+function bannerArray() {
+   this.length = 54;
+   this[1] = "                           W";
+   this[2] = "                          We";
+   this[3] = "                         Wel";
+   this[4] = "                        Welc";
+   this[5] = "                       Welco";
+   this[6] = "                      Welcom";
+   this[7] = "                     Welcome";
+   this[8] = "                    Welcome ";
+   this[9] = "                   Welcome t";
+   this[10] = "                 Welcome to";
+   this[11] = "                Welcome to ";
+   this[12] = "               Welcome to I";
+   this[13] = "              Welcome to IM";
+   this[14] = "             Welcome to IMA";
+   this[15] = "            Welcome to IMA S";
+   this[16] = "           Welcome to IMA ST";
+   this[17] = "          Welcome to IMA STU";
+   this[18] = "         Welcome to IMA STUD";
+   this[19] = "        Welcome to IMA STUDI ";
+   this[20] = "       Welcome to IMA STUDIO";
+   this[21] = "      Welcome to IMA STUDIOS";
+   this[22] = "     Welcome to IMA STUDIOS'";
+   this[23] = "    Welcome to IMA STUDIOS' Si";
+   this[24] = "   Welcome to IMA STUDIOS' Sit";
+   this[25] = "  Welcome to  IMA STUDIOS' Site!";
+   this[26] = " ";
+   this[27] = "  Welcome to  IMA STUDIOS' Site! ";
+   this[28] = " ";
+   this[29] = "  Welcome to IMA STUDIOS' Site! ";
+   this[30] = " Welcome to IMA STUDIOS' Site! ";
+   this[31] = "Welcome to IMA STUDIOS'  Site! ";
+   this[32] = "elcome to IMA STUDIOS'  Site!   ";
+   this[33] = "lcome to IMA STUDIOS' Site!   ";
+   this[34] = "come to IMA STUDIOS' Site!  ";
+   this[35] = "ome to IMA STUDIOS'  Site! ";
+   this[36] = "me to IMA STUDIOS'  Site!";
+   this[37] = "e to IMA STUDIOS'  Site! ";
+   this[38] = "to IMA STUDIOS'  Site!";
+   this[39] = "o IMA STUDIOS'  Site! ";
+   this[40] = " IMA STUDIOS'  Site!";
+   this[41] = " MA STUDIOS'  Site!";
+   this[42] = "A STUDIOS'  Site ";
+   this[43] = "STUDIOS'  Site!";
+   this[44] = "TUDIOS'  Site!";
+   this[45] = "UDIOS'  Site!";
+   this[46] = "DIOS'  Site!";
+   this[47] = "'IOS'  Site!";
+   this[48] = "OS'  Site!";
+   this[49] = " S'  Site!";
+   this[50] = "'  Site!";
+   this[51] = "  Site!";
+   this[52] = "ite!";
+   this[53] = "te!";
+   this[54] = " e!";
+   return this
+}
+
+
+function MakeArray(n) {
+        this.length = n;
+        return this
+}
+
+
+banner = new bannerArray();
+IMAbanner = 1;
+
+
+function banner1(n) {
+                tid=window.setTimeout("banner1(IMAbanner)",to);
+                f.result.value = banner[IMAbanner];
+                window.status = banner[IMAbanner];
+                IMAbanner = IMAbanner + 1;
+                if (IMAbanner == 55) {
+                        IMAbanner = 1;
+                                window.clearTimeout(tid);
+                                tid=window.setTimeout("banner1()",to);
+                }
+}
+
+
+function start(x) {
+                f=x;
+                to=60;
+                banner1(x);
+}
+
+
+function pausing(x) {
+        if (pause == 0) {
+                pause = 1;
+                f.P.value = "Paused";
+                window.clearTimeout(tid);
+        }
+        else {
+                pause = 0;
+                f.P.value = " ";
+                banner1(x);
+        }
+}
+
+
+function speedup() {
+        if (to != 0) {
+                to = to-30;
+        }
+}
+
+function slowdown() {
+        to = to+30;
+}
+
+
+function refr() {
+        to = 90;
+        IMAbanner = 1;
+}
+
+
+function cleartids() {
+        window.clearTimeout(tid);
+}
+
+
+
+</script>
+
+<form name="banner">
+<input type="button" name="加速" value="加速" onClick="speedup()">
+<input type="button" name="减速" value="减速" onClick="slowdown()">
+<input type="button" name="暂停" value="暂停" onclick="pausing(this.form)">
+<input type="text" name="P" size=6>
+<input type="text" name="result" size=28>
+<input type="reset" name="复原" value="复原" onclick="refr()">
+</form>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

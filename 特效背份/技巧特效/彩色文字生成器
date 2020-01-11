@@ -1,0 +1,480 @@
+<html>
+<head>
+<title></title>
+<!--d第一步:把如下代码加入<head>区域中://-->
+<script language=JavaScript1.2>
+<!--
+var bName=navigator.appName;
+var bVer=parseInt(navigator.appVersion);
+var NS4=(bName=="Netscape" && bVer >= 4);
+var IE4=(bName=="Microsoft Internet Explorer" && bVer >= 4);
+var fstr_r;
+var fstr_g;
+var fstr_b;
+var sItem="S";
+
+function display(id, str){
+  if(NS4 || IE4){
+    if(NS4){
+      with (document[id].document){
+        open(); write(str); close();
+      }
+    }else document.all[id].innerHTML=str;
+  }else{
+    document.fsample2.startcolor.value=document.GradForm.start.value;
+    document.fsample2.endcolor.value=document.GradForm.end.value;
+  }
+}
+
+function makeArray(){
+  for(i = 0; i<makeArray.arguments.length; i++)
+    this[i] = makeArray.arguments[i];
+}
+
+var convert = new makeArray('0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+
+function returnBase(number,base) {
+  eval("var output=parseInt(number)");
+  if(isNum(number,base)){
+    if(number < base) output = convert[output];
+    else{
+      var MSD = '' + Math.floor(number / base);
+      var LSD = number - MSD*base;
+      if(MSD > base) output = returnBase(MSD,base) + convert[LSD];
+      else output = convert[MSD] + convert[LSD];
+    }
+  }else{
+    output=0;
+  }
+  return output;
+}
+
+function isNum(no, base){
+  var cmp="0123456789";
+  var chkStr=no;
+  var chkChar;
+  var rc=true;
+  var nLen;
+
+  if(base == 16){
+    cmp+="ABCDEFabcdef";
+  }else if(base == 10){
+    eval("chkStr=''+parseInt(chkStr)");
+  }
+  nLen=chkStr.length;
+
+  for(var i=0; i<nLen; i++){
+     chkChar=chkStr.substring(i,i+1)
+     if(i==0 && chkChar == "#" && base == 16){
+     }else if(cmp.indexOf(chkChar)<0){
+       rc=false;
+     }
+     if(rc == false) i=nLen;
+  }
+  return rc;
+}
+
+function chkNum(obj,base){
+  var form=document.GradForm;
+  var rc=true;
+
+  if(base==10){
+    eval("rc=form."+obj+".value <= 255");
+  }
+
+  if(rc){
+    eval("rc=isNum(form."+obj+".value,"+base+")");
+    if(!rc){
+      alert("输入的数值不正确！");
+      eval("form."+obj+".focus()");
+    }
+  }else{
+    alert("输入的数值大于255！");
+    eval("form."+obj+".focus()");
+  }
+  return rc;
+}
+
+function twobyte(no){
+  var str=no;
+
+  if(isNum(no,16)){
+    str="0"+str;
+    str=str.substring((str.length-3)+1);
+  }else{
+    str="00";
+  }
+  return str;
+}
+
+function CstrLen(cStr){
+  var sLen=cStr.length;
+  var j=0;
+  for(var i=0;i<sLen;i++){
+     str=cStr.charAt(i);
+     if(NS4 && str.charCodeAt(0)<1){
+       i++;
+     }
+     j++;
+  }
+  return j;
+}
+
+function GradientText(form, color1, color2, color3, gStr, gType){
+  var redStep, greenStep, BlueStep;
+  var str_r, str_g, str_b, str;
+
+  var gStep=CstrLen(gStr);
+
+  var b1 = color1 % 0x100; if(isNaN(b1)) b1=0;
+  var g1 = parseInt(color1 / 0x100) % 0x100; if(isNaN(g1)) g1=0;
+  var r1 = parseInt(color1 / 0x10000) % 0x100; if(isNaN(r1)) r1=0;
+
+  var b2 = color2 % 0x100; if(isNaN(b2)) b2=0;
+  var g2 = parseInt(color2 / 0x100) % 0x100; if(isNaN(g2)) g2=0;
+  var r2 = parseInt(color2 / 0x10000) % 0x100; if(isNaN(r2)) r2=0;
+
+  var cStepAdd = parseInt(256 / gStep);
+
+  if(g1 > g2){
+    greenStep = 0;
+  }else if(g2 > g1){
+    greenStep = 1;
+  }else{
+    greenStep = 2;
+  }
+
+  if(r1 > r2){
+    redStep = 0;
+  }else if(r2 > r1){
+    redStep = 1;
+  }else{
+    redStep = 2;
+  }
+
+  if(b1 > b2){
+    BlueStep = 0;
+  }else if(b2 > b1){
+    BlueStep = 1;
+  }else{
+    BlueStep = 2;
+  }
+
+  var GradStr="";
+  if(gType == 'S'){
+    GradStr+='<TABLE WIDTH="100%" BORDER=0 CELLSPACING=0 CELLPADDING=0><TR><TD ALIGN=CENTER BGCOLOR="'+color3+'"><br>';
+  }
+
+  for(var i=0; i<gStr.length; i++){
+     str_r=twobyte(returnBase(r1,16));
+     str_g=twobyte(returnBase(g1,16));
+     str_b=twobyte(returnBase(b1,16));
+
+     str=gStr.charAt(i);
+     if(NS4 && str.charCodeAt(0)<1){
+       str=str+gStr.charAt(i+1);
+       i++;
+     }
+
+     GradStr+='<font color="#'+str_r+str_g+str_b+'">'+str+'</font>';
+
+     if(redStep==1){
+       r1 = r1 + cStepAdd;
+       if(r1 > r2) r1 = r2;
+     }else if(redStep==0){
+       r1 = r1 - cStepAdd;
+       if(r1 < r2) r1 = r2;
+     }
+        
+     if(greenStep==1){
+       g1 = g1 + cStepAdd;
+       if(g1 > g2) g1 = g2;
+     }else if(greenStep==0){
+       g1 = g1 - cStepAdd;
+       if(g1 < g2) g1 = g2;
+     }
+
+     if(BlueStep==1){
+       b1 = b1 + cStepAdd;
+       if(b1 > b2) b1 = b2;
+     }else if(BlueStep==0){
+       b1 = b1 - cStepAdd;
+       if(b1 < b2) b1 = b2;
+     }
+  }
+
+  if(gType == 'S'){
+    GradStr+='<br>&nbsp;</TD></TR></TABLE>';
+  }
+
+  return GradStr;
+}
+
+function GenTag(form){
+  var ss,ee,bb;
+
+  if(!isNum(form.start.value,16)){
+    alert("请检查起始颜色数值");
+  }else if(!isNum(form.end.value,16)){
+    alert("请检查结束颜色数值");
+  }else if(!isNum(form.bg.value,16)){
+    alert("请检查背景颜色数值");
+  }else{
+    eval("ss=0x"+form.start.value.substring(1)+";");
+    eval("ee=0x"+form.end.value.substring(1)+";");
+    eval("bb=form.bg.value");
+    form.code.value=GradientText(form,ss,ee,bb,form.showstr.value,"C");
+  }
+}
+
+function newRGB(type, field2){
+  var form=document.GradForm;
+  var chkOK=true;
+  var vNo;
+
+  if(field2==""){
+    if(sItem=="S"){
+      chkOK=chkNum('start',16);
+    }else if(sItem=="E"){
+      chkOK=chkNum('end',16);
+    }else if(sItem=="B"){
+      chkOK=chkNum('bg',16);
+    }
+  }
+
+  if(chkOK){
+    if(type==0){
+      if(field2 != "") eval("chkOK=isNum(form.rgb_"+field2+".value,10)");
+      if(chkOK){
+        if(field2 != "") eval("chkOK=chkNum('rgb_"+field2+"',10)");
+        if(chkOK){
+          fstr_r=twobyte(returnBase(form.rgb_r.value,16));
+          fstr_g=twobyte(returnBase(form.rgb_g.value,16));
+          fstr_b=twobyte(returnBase(form.rgb_b.value,16));
+          if(sItem=="S"){
+            form.start.value="#"+fstr_r+fstr_g+fstr_b;
+          }else if(sItem=="E"){
+            form.end.value="#"+fstr_r+fstr_g+fstr_b;
+          }else if(sItem=="B"){
+            form.bg.value="#"+fstr_r+fstr_g+fstr_b;
+          }
+        }
+      }else{
+        alert("输入的颜色数值不正确。");
+        eval("form.rgb_"+field2+"s.focus()");
+      }
+    }else{
+      if(sItem=="S"){
+        fstr_r=form.start.value.substring(1,3);
+        fstr_g=form.start.value.substring(3,5);
+        fstr_b=form.start.value.substring(5,7);
+      }else if(sItem=="E"){
+        fstr_r=form.end.value.substring(1,3);
+        fstr_g=form.end.value.substring(3,5);
+        fstr_b=form.end.value.substring(5,7);
+      }else if(sItem=="B"){
+        fstr_r=form.bg.value.substring(1,3);
+        fstr_g=form.bg.value.substring(3,5);
+        fstr_b=form.bg.value.substring(5,7);
+      }
+      form.rgb_r.value=parseInt(fstr_r,16);
+      form.rgb_g.value=parseInt(fstr_g,16);
+      form.rgb_b.value=parseInt(fstr_b,16);
+    }
+    if(chkOK) AddText();
+  }
+}
+
+function AddText(){
+  var form=document.GradForm;
+  var ss,ee,bb;
+
+  eval("ss=0x"+form.start.value.substring(1)+";");
+  eval("ee=0x"+form.end.value.substring(1)+";");
+  eval("bb=form.bg.value");
+
+  str=GradientText(form,ss,ee,bb,form.showstr.value,"S");
+  display("fsample", str);
+}
+
+function setRGB(id,no){
+  var form=document.GradForm;
+  var nid="rgb_"+id;
+
+  if(id){
+    var tmp=eval("parseInt(form."+nid+".value)+parseInt("+no+")");
+    if(tmp<0) tmp=255;
+    else if(tmp>255) tmp=0;
+
+    eval("form."+nid+".value="+tmp);
+  }
+
+  fstr_r=twobyte(returnBase(form.rgb_r.value,16));
+  fstr_g=twobyte(returnBase(form.rgb_g.value,16));
+  fstr_b=twobyte(returnBase(form.rgb_b.value,16));
+
+  if(sItem=="S"){
+    form.start.value="#"+fstr_r+fstr_g+fstr_b;
+  }else if(sItem=="E"){
+    form.end.value="#"+fstr_r+fstr_g+fstr_b;
+  }else if(sItem=="B"){
+    form.bg.value="#"+fstr_r+fstr_g+fstr_b;
+  }
+
+  AddText();
+}
+
+function SetColor(clr){
+  if(sItem=="S"){
+    document.GradForm.start.value="#"+clr;
+  }else if(sItem=="E"){
+    document.GradForm.end.value="#"+clr;
+  }else if(sItem=="B"){
+    document.GradForm.bg.value="#"+clr;
+  }
+
+  ResetValue();
+  AddText();
+}
+
+function set(swtch){
+  if(swtch == 1) sItem="S";
+  else if (swtch == 2) sItem="E";
+  else if (swtch == 0) sItem="B";
+  ResetValue();
+}
+
+function ResetValue(){
+  var form=document.GradForm;
+  var str_r, str_g, str_b;
+
+  if(sItem=="S"){
+    str_r=form.start.value.substring(1,3);
+    str_g=form.start.value.substring(3,5);
+    str_b=form.start.value.substring(5,7);
+  }else if(sItem=="E"){
+    str_r=form.end.value.substring(1,3);
+    str_g=form.end.value.substring(3,5);
+    str_b=form.end.value.substring(5,7);
+  }else if(sItem=="B"){
+    str_r=form.bg.value.substring(1,3);
+    str_g=form.bg.value.substring(3,5);
+    str_b=form.bg.value.substring(5,7);
+  }
+  form.rgb_r.value=parseInt(str_r,16);
+  form.rgb_g.value=parseInt(str_g,16);
+  form.rgb_b.value=parseInt(str_b,16);
+}
+
+function nomsg(){
+  self.status="";
+}
+
+function myReset(){
+  AddText();
+}
+
+//-->
+</script>
+
+</head>
+<body>
+<!--第二步:把如下代码加入<body>区域中://-->
+<form name=GradForm>
+<table border=1><tr><td>
+ <INPUT type=radio name=setitem value="bg" onClick="set(0)">背景色<input type=text name="bg" size=6 value="#FFFFFF" onChange="newRGB(1,'')">
+<INPUT type=radio name=setitem value="start" onClick="set(1)" checked>起始色<input type=text name="start" size=6 value="#FF0000" onChange="newRGB(1,'')">
+ <INPUT type=radio name=setitem value="end" onClick="set(2)">结束色<input type=text name="end" size=6 value="#0000FF" onChange="newRGB(1,'')">
+</td></tr>
+
+<tr><td>
+<font color="#FF0000">红</font> <input type="Button" value="+" onClick="setRGB('r',1)"><INPUT type=text name=rgb_r size=3 value=0 onChange="newRGB(0,'r')"><input type="Button" value="-" onClick="setRGB('r',-1)">
+<font color="#009900">绿</font> <input type="Button" value="+" onClick="setRGB('g',1)"><INPUT type=text name=rgb_g size=3 value=0 onChange="newRGB(0,'g')"><input type="Button" value="-" onClick="setRGB('g',-1)">
+<font color="#0000FF">蓝</font> <input type="Button" value="+" onClick="setRGB('b',1)"><INPUT type=text name=rgb_b size=3 value=255 onChange="newRGB(0,'b')"><input type="Button" value="-" onClick="setRGB('b',-1)">
+
+</td></tr>
+
+<tr><td>
+<TABLE BORDER=1 CELLSPACING=-1 CELLPADDING=1>
+<TR>
+<TD BGCOLOR="#FFFFFF"><a href="#" onClick="SetColor('FFFFFF');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#FFFF00"><a href="#" onClick="SetColor('FFFF00');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#FFE000"><a href="#" onClick="SetColor('FFE000');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#FFC000"><a href="#" onClick="SetColor('FFC000');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#FFA000"><a href="#" onClick="SetColor('FFA000');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#FF8000"><a href="#" onClick="SetColor('FF8000');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#FF6000"><a href="#" onClick="SetColor('FF6000');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#FF4000"><a href="#" onClick="SetColor('FF4000');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#FF0000"><a href="#" onClick="SetColor('FF0000');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#E00000"><a href="#" onClick="SetColor('E00000');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#C00000"><a href="#" onClick="SetColor('C00000');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#FFC0FF"><a href="#" onClick="SetColor('FFC0FF');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#FFA0FF"><a href="#" onClick="SetColor('FFA0FF');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#FF80FF"><a href="#" onClick="SetColor('FF80FF');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#FF60FF"><a href="#" onClick="SetColor('FF60FF');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#FF00FF"><a href="#" onClick="SetColor('FF00FF');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#E000FF"><a href="#" onClick="SetColor('E000FF');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#C000FF"><a href="#" onClick="SetColor('C000FF');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#A000FF"><a href="#" onClick="SetColor('A000FF');return false" onMouseOver="nomsg();return true">  </a></TD>
+</tr><tr>
+<TD BGCOLOR="#8000FF"><a href="#" onClick="SetColor('8000FF');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#00FFFF"><a href="#" onClick="SetColor('00FFFF');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#00E0FF"><a href="#" onClick="SetColor('00E0FF');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#00C0FF"><a href="#" onClick="SetColor('00C0FF');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#00A0FF"><a href="#" onClick="SetColor('00A0FF');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#0080FF"><a href="#" onClick="SetColor('0080FF');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#0060FF"><a href="#" onClick="SetColor('0060FF');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#0000FF"><a href="#" onClick="SetColor('0000FF');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#0000E0"><a href="#" onClick="SetColor('0000E0');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#0000C0"><a href="#" onClick="SetColor('0000C0');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#D0FF00"><a href="#" onClick="SetColor('D0FF00');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#A0FF00"><a href="#" onClick="SetColor('A0FF00');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#80FF00"><a href="#" onClick="SetColor('80FF00');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#00FF00"><a href="#" onClick="SetColor('00FF00');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#00E000"><a href="#" onClick="SetColor('00E000');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#00C000"><a href="#" onClick="SetColor('00C000');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#00A000"><a href="#" onClick="SetColor('00A000');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#008000"><a href="#" onClick="SetColor('008000');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#00A0A0"><a href="#" onClick="SetColor('00A0A0');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#A0A000"><a href="#" onClick="SetColor('A0A000');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#A0A0A0"><a href="#" onClick="SetColor('A0A0A0');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#A0A0E0"><a href="#" onClick="SetColor('A0A0E0');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#E0A0A0"><a href="#" onClick="SetColor('E0A0A0');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#A0E0A0"><a href="#" onClick="SetColor('A0E0A0');return false" onMouseOver="nomsg();return true">  </a></TD>
+<TD BGCOLOR="#000000"><a href="#" onClick="SetColor('000000');return false" onMouseOver="nomsg();return true">  </a></TD>
+</TR>
+</TABLE>
+</td></tr>
+
+<tr><td>
+显示文字：<input type=text name="showstr" value="欢迎使用网页助手" onChange="AddText()">
+</td></tr>
+
+<tr><td>
+<input type=hidden name="tempVal" value="">
+代码如下：<br>
+<TEXTAREA wrap=soft name=code COLS=62 ROWS=6"></TEXTAREA>
+</td></tr><tr><td>
+<INPUT TYPE="button" VALUE="生成代码" onClick='GenTag(this.form)'>
+<INPUT TYPE="button" VALUE="预览效果" onClick='AddText()'>
+<INPUT TYPE="reset" VALUE="全部清除">
+</td></tr></table>
+</form>
+</CENTER>
+<SPAN ID="fsample" STYLE="position: absolute;left:280;top:460; color: black; font-weight: normal; font-size: 9pt">
+<form name="fsample2">
+起始颜色<input type=text name="startcolor" size=8 onfocus="this.blur()">
+结束颜色<input type=text name="endcolor" size=8 onfocus="this.blur()">
+</form>
+</SPAN>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+onload = myReset;
+//-->
+</SCRIPT>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

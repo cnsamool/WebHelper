@@ -1,0 +1,94 @@
+<SCRIPT language=JavaScript>
+var osd = "   "
+osd +="";
+var timer;
+var msg = "";
+function scrollMaster () {
+msg = customDateSpring(new Date())
+clearTimeout(timer)
+msg += " " + showtime() + " " + osd
+for (var i= 0; i < 100; i++){
+msg = " " + msg;
+}
+scrollMe()
+}
+function scrollMe(){
+window.status = msg;
+msg = msg.substring(1, msg.length) + msg.substring(0,1);
+timer = setTimeout("scrollMe()", 200);
+}
+function showtime (){
+var now = new Date();
+var hours= now.getHours();
+var minutes= now.getMinutes();
+var seconds= now.getSeconds();
+var months= now.getMonth();
+var dates= now.getDate();
+var years= now.getYear();
+var timeValue = ""
+timeValue += ((months >9) ? "" : " ")
+timeValue += ((dates >9) ? "" : " ")
+timeValue = ( months +1)
+timeValue +="/"+ dates
+timeValue +="/"+  years
+var ap="A.M."
+if (hours == 12) {
+ap = "P.M."
+}
+if (hours == 0) {
+hours = 12
+}
+if(hours >= 13){
+hours -= 12;
+ap="P.M."
+}
+var timeValue2 = " " + hours
+timeValue2 += ((minutes < 10) ? ":0":":") + minutes + " " + ap
+return timeValue2;
+}
+function MakeArray(n) {
+this.length = n
+return this
+}
+
+monthNames = new MakeArray(12)
+monthNames[1] = "一月"
+monthNames[2] = "二月"
+monthNames[3] = "三月"
+monthNames[4] = "四月"
+monthNames[5] = "五月"
+monthNames[6] = "六月"
+monthNames[7] = "七月"
+monthNames[8] = "八月"
+monthNames[9] = "九月"
+monthNames[10] = "十月"
+monthNames[11] = "十一月"
+monthNames[12] = "十二月"
+daysNames = new MakeArray(7)
+daysNames[1] = "周日"
+daysNames[2] = "周一"
+daysNames[3] = "周二"
+daysNames[4] = "周三"
+daysNames[5] = "周四"
+daysNames[6] = "周五"
+daysNames[7] = "周六"
+function customDateSpring(oneDate) {
+var theDay = daysNames[oneDate.getDay() +1]
+var theDate =oneDate.getDate()
+var theMonth = monthNames[oneDate.getMonth() +1]
+var dayth="号"
+if ((theDate == 1) || (theDate == 21) || (theDate == 31)) {
+dayth="st";
+}
+if ((theDate == 2) || (theDate ==22)) {
+dayth="nd";
+}
+if ((theDate== 3) || (theDate  == 23)) {
+dayth="rd";
+}
+return theDay + ", " + theMonth + " " + theDate + dayth + ","
+}
+scrollMaster();
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

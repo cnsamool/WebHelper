@@ -1,0 +1,65 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+把如下代码加入<body>区域中
+<script language="JavaScript">
+
+<!--
+
+function equa1() {
+        a = document.form1.aa.value;
+        b = document.form1.ab.value;
+        c = a-b;
+        document.form1.total1.value = c
+        }
+function equa2() {
+        a = document.form1.ba.value;
+        b = document.form1.bb.value;
+        c = (a*1)+(b*1);
+        document.form1.total2.value = c
+        }
+function equa3() {
+        a = document.form1.ca.value;
+        b = document.form1.cb.value;
+        c = a/b;
+        document.form1.total3.value = c
+        }
+function equa4() {
+        a = document.form1.da.value;
+        b = document.form1.db.value;
+        c = a*b;
+        document.form1.total4.value = c
+        }
+//-->
+
+</script>
+<form name="form1"><center>
+<table border=1 cellpadding=1 cellspacing=1>
+<tr>
+<td><input type="text" size=5 name="aa"> - <input type="text" name="ab" size=5></td>
+<td> =<input type="text" name="total1" size=5></td>
+<td><input type="button" value="Calculate" onClick="equa1()"></td>
+<tr>
+<td><input type="text" size=5 name="ba"> + <input type="text" name="bb" size=5></td>
+<td> =<input type="text" name="total2" size=5></td>
+<td><input type="button" value="Calculate" onClick="equa2()"></td>
+<tr>
+<td><input type="text" size=5 name="ca"> / <input type="text" name="cb" size=5></td>
+<td>=<input type="text" name="total3" size=5></td>
+<td><input type="button" value="Calculate" onClick="equa3()"></td>
+<tr>
+<td><input type="text" size=5 name="da"> * <input type="text" name="db" size=5></td>
+<td> =<input type="text" name="total4" size=5></td>
+<td><input type="button" value="Calculate" onClick="equa4()"></td>
+<tr>
+<td colspan=3 align=center>
+<input type="reset" value="Reset"></td>
+</table>
+</form>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

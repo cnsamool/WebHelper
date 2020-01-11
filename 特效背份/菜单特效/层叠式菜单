@@ -1,0 +1,100 @@
+<style type="text/css">
+<!--
+.t {  filter: Alpha(Opacity=50)}
+td {  font-size: 12px; line-height: 22px}
+a:link {  color: #FFFFFF; text-decoration: none; height: 20px; width: 63px; border-color: #33CCFF #30CCFF #30CCFF; background-color: #0099FF; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+a:visited {  color: #FFFFFF; text-decoration: none; height: 20px; width: 63px; border-color: #33CCFF #30CCFF #30CCFF; background-color: #0099FF; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+a:hover {  background-color: #FF66FF; height: 20px; width: 61px; border: #FFFFFF; border-style: dotted; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+-->
+</style>
+<script language="JavaScript">
+
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+function P7AniMagic(el, x, y, a, b, c, s) { //v2.5 PVII
+ var g,elo=el,f="",m=false,d="";x=parseInt(x);y=parseInt(y);
+ var t = 'g.p7Magic = setTimeout("P7AniMagic(\''+elo+'\','; 
+ if ((g=MM_findObj(el))!=null) {d=(document.layers)?g:g.style;}else{return;}
+ if (parseInt(s)>0) {eval(t+x+','+y+','+a+','+b+','+c+',0)",' + s+')');return;}
+ var xx=(parseInt(d.left))?parseInt(d.left):0;
+ var yy=(parseInt(d.top))?parseInt(d.top):0;
+ if(parseInt(c)==1) {x+=xx;y+=yy;m=true;c=0;}
+ else if (c==2) {m=false;clearTimeout(g.p7Magic);}
+ else {var i=parseInt(a);
+  if (eval(g.moved)){clearTimeout(g.p7Magic);}
+  if (xx<x){xx+=i;m=true;if(xx>x){xx=x;}}
+  if (xx>x){xx-=i;m=true;if(xx<x){xx=x;}}
+  if (yy<y){yy+=i;m=true;if(yy>y){yy=y;}}
+  if (yy>y){yy-=i;m=true;if(yy<y){yy=y;}}}
+ if (m) {if((navigator.appName=="Netscape") && parseInt(navigator.appVersion)>4){
+    xx+="px";yy+="px";}
+  d.left=xx;d.top=yy;g.moved=true;eval(t+x+','+y+','+a+','+b+','+c+',0)",'+b+')');
+  }else {g.moved=false;}
+}
+//-->
+</script><p><div id="Layer1" style="position:absolute; width:200px; height:115px; z-index:1">
+  <div id="Layer2" style="position:absolute; left:666px; top:59px; width:67px; height:52px; z-index:2; background-color: #0068FF; layer-background-color: #0068FF; border: 1px none #000000; visibility: visible" class="t"> 
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
+      <tr> 
+        <td align="center" valign="top"><font color="#FFFFFF" onMouseOver="P7AniMagic('Layer2',611,35,5,30,0,0)" onMouseOut="P7AniMagic('Layer2',666,59,5,30,0,0)">on 
+          1<br>
+          <a href="#">第一項</a><br>
+          <a href="#">第二項</a><br>
+          <a href="#">第三項</a><br>
+          </font></td>
+      </tr>
+    </table>
+  </div>
+  <div id="Layer3" style="position:absolute; left:666px; top:81px; width:66px; height:84px; z-index:3; background-color: #0066FF; layer-background-color: #0066FF; border: 1px none #000000; visibility: visible" class="t"> 
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td>
+          <div align="center"><font color="#FFFFFF" onMouseOver="P7AniMagic('Layer3',611,55,5,30,0,0)" onMouseOut="P7AniMagic('Layer3',666,81,5,30,0,0)">on 2<br>
+            <a href="#">第一項</a><br>
+            <a href="#">第二項</a><br>
+            <a href="#">第三項</a><br>
+            </font></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div id="Layer4" style="position:absolute; width:68px; height:80px; z-index:4; left: 666px; top: 102px; background-color: #0064FF; layer-background-color: #0064FF; border: 1px none #000000; visibility: visible" class="t"> 
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td>
+          <div align="center"><font color="#FFFFFF" onMouseOver="P7AniMagic('Layer4',611,75,5,30,0,0)" onMouseOut="P7AniMagic('Layer4',666,102,5,30,0,0)">on 3<br>
+            <a href="#">第一項</a><br>
+            <a href="#">第二項</a><br>
+            <a href="#">第三項</a><br>
+            </font></div>
+        </td>
+      </tr>
+    </table>
+  </div>  <div id="Layer5" style="position:absolute; width:65px; height:127px; z-index:5; left: 265px; top: 56px"> 
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" height="72">
+      <tr> 
+        <td height="24" onMouseOver="P7AniMagic('Layer2',611,35,5,30,0,0)" onMouseOut="P7AniMagic('Layer2',666,59,5,30,0,0)">    </td>
+      </tr>
+      <tr>
+        <td height="24" onMouseOver="P7AniMagic('Layer3',611,55,5,30,0,0)" onMouseOut="P7AniMagic('Layer3',666,81,5,30,0,0)">    </td>
+      </tr>
+      <tr>
+        <td height="24" onMouseOver="P7AniMagic('Layer4',611,75,5,30,0,0)" onMouseOut="P7AniMagic('Layer4',666,102,5,30,0,0)">    </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

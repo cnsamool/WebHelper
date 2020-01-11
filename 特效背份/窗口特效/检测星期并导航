@@ -1,0 +1,27 @@
+
+    <SCRIPT>
+ <!--
+ 
+ function initArray() 
+ {
+   this.length = initArray.arguments.length;
+   for (var i = 0; i < this.length; i++)
+   this[i+1] = initArray.arguments[i];
+ }
+ 
+  var DOWArray = new
+  initArray("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
+  var today = new Date();
+  var day = DOWArray[today.getDay()];
+ alert("Today is " + day + "! If the file " + day + ".html had existed, you would have been taken there.")
+  if (day == "Monday") window.location = "http://samool.533.net"
+  if (day == "Tuesday") window.location = "Tuesday.html"
+  if (day == "Wednesday") window.location = "Wednesday.html"
+  if (day == "Thursday") window.location = "Thursday.html"
+  if (day == "Friday") window.location = "Friday.html"
+  if (day == "Saturday") window.location = "Saturday.html"
+  if (day == "Sunday") window.location = "Sunday.html"
+ //-->
+ </SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

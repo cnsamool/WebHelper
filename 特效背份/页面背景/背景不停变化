@@ -1,0 +1,31 @@
+<!--脚本说明:
+第一步:把如下代码加入<body>区域中-->
+<SCRIPT language=javascript><!--
+var pos=10;function initArray(){this.length=initArray.arguments.length;
+for(var i=0;i<this.length;i++){this[i]=initArray.arguments[i];}}
+var col=new initArray("4b","5b","8b","8b");
+col[0]="yellow";col[1]="coral";col[2]="orange";col[3]="red";
+col[4]="greenyellow";col[5]="lime";col[6]="turquoise";col[7]="coral";
+col[8]="blueviolet";col[9]="violet";
+function chgCol(){pos++;if(pos<0||pos>9){pos=0;}document.bgColor=col[pos];
+setTimeout("chgCol()",3000);/*这里你可以改变时间间隔.*/
+}
+var yourwords="不断变化背景色彩";var buffer1=" ";
+var buffer2=" ";
+var message1=buffer1+yourwords+buffer2;
+var dir="left";var speed=150;function pingpong(){
+if(dir=="left")
+{message2=message1.substring(2,message1.length)+" ";
+window.status=message2;setTimeout("pingpong();",speed);message1=message2;
+if(message1.substring(0,1)=="*")dir="right";}
+else{message2=" "+message1.substring(0,message1.length-2);
+window.status=message2;setTimeout("pingpong();",speed);
+message1=message2;if(message1.substring(message1.length-1,message1.length)=="*")dir="left";}}//
+-->
+</SCRIPT>
+
+
+<!--第二步:把<body>改为-->
+<body bgColor=#ffffff onload="chgCol(); pingpong();">
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

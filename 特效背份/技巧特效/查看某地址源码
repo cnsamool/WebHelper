@@ -1,0 +1,29 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--将以下代码加到<body>中//-->
+<SCRIPT LANGUAGE="JavaScript">
+function viewSource() {
+document.getSource.view.value="请稍等...";
+setTimeout("document.getSource.view.value='查看源代码'",6000);
+window.location.href= "view-source:" + document.getSource.url.value;
+return false;
+}
+</script>
+<center>
+打入完整的网址，按"查看源代码"就可看到它的源代码啦：）
+<br>
+<br>
+<form name=getSource onSubmit="return viewSource();">
+<input type=text name=url value="http://">
+<br>
+<br>
+<input type=submit name=view value="查看源代码">
+</form>
+</center>
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,22 @@
+<!--脚本说明：
+把如下代码加入<body>区域中:-->
+<script>
+<!-- Script by Juan Valdez
+function hate()
+{
+alert('  from ');
+alert('  what');
+alert('  you');
+alert('  can');
+alert('  see');
+alert('   this');
+alert('   is');
+alert(' annoying');
+return hate()
+}
+//-- done -->
+</script>
+<a href="javascript:hate()" onmouseover="window.status='按了可就关不掉了!';return true">
+<b>最好别按</b></a>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,7 @@
+<!--本特效需要jsnow.class和fjell.gif moon.gif santa.gif文件支持-->
+<!--把这四个文件同网页放在同一目录时才能显示特效-->
+<!--C:\webhelpview\webhelpview 有这个四个文件-->
+
+
+<applet code="jSnow" align="middle" width="400"
+        height="400"><param name="numFlakes" value="600"></applet>

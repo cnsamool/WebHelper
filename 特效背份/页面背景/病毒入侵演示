@@ -1,0 +1,89 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中://-->
+<script>
+window.onerror=null;
+
+var down;
+
+function Minutes(data) {
+
+        for(var i=0;i<data.length;i++) 
+
+                if(data.substring(i,i+1)==":") 
+
+                break;  
+
+                return(data.substring(0,i)); 
+
+}
+
+
+
+function Seconds(data) {        
+
+        for(var i=0;i<data.length;i++) 
+
+                if(data.substring(i,i+1)==":") 
+
+                break;  
+
+                return(data.substring(i+1,data.length)); 
+
+}
+
+
+
+function faketake(percent1){
+
+ if(percent1 < 100){
+
+   percent1++;
+
+   window.status="正在下载病毒: In Progress: "+percent1+"% Complete";
+
+   fid1=window.setTimeout("faketake("+percent1+")",25)
+
+
+ } else {
+
+
+   fid1=window.setTimeout("fakeformat(0)",150);
+
+
+ }
+
+}
+
+
+
+function fakeformat(percent){
+
+  if(percent < 100){
+
+    percent++;
+
+    window.status="正在把病毒传给 C:\\  "+percent+"% Complete";
+
+    fid=window.setTimeout("fakeformat("+percent+")",150); // 900
+
+  } else {
+
+    window.status="文件已经被病毒感染，下次启动时发作，世界真是黑暗..哈哈！！！";
+
+    }
+
+}
+
+window.setTimeout('faketake(-1)',200);
+
+
+</SCRIPT>
+<P>看看状态栏</p>
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

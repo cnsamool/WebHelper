@@ -1,0 +1,43 @@
+
+<body bgcolor="#FFFFFF"  onLoad="position_at_top();expand()">
+<div style="position:absolute" id="test"></div>
+
+<script>
+
+
+var themessage="ª∂”≠π‚¡Ÿ°∂…µ√®Õ¯°∑£°"
+var fontsize=8
+
+var appearfor=3000
+
+function position_at_top(){
+if (document.layers)
+document.test.top=pageYOffset
+else if (document.all){
+test.innerHTML='<div align=center><font face="ÀŒÃÂ">'+themessage+'</font></div>'
+setTimeout("test.style.top=document.body.scrollTop",100)
+}
+}
+
+function expand(){
+if (document.layers){
+document.test.document.write('<div align=center style="font-size:'+fontsize+'px"><font face="ÀŒÃÂ">'+themessage+'</font></div>')
+document.test.document.close()
+}
+else if (document.all)
+test.style.fontSize=fontsize+'px'
+fontsize+=5
+if (fontsize>80){
+if (document.layers)
+setTimeout("document.test.visibility='hide'",appearfor)
+else if (document.all)
+setTimeout("test.style.visibility='hidden'",appearfor)
+return
+}
+else
+setTimeout("expand()",50)
+}
+
+</script>
+<!--±æÕ¯“≥”…°∂Õ¯“≥÷˙ ÷V1.1°∑÷∆◊˜    ∞Ê»®À˘”–£∫…µ√®»Ìº˛ -->
+<!--«Î∑√Œ …µ√®»Ìº˛πŸ∑ΩÕ¯’æ   http://samool.533.net  -->

@@ -1,0 +1,131 @@
+<script LANGUAGE="JAVASCRIPT">
+<!-- hide this script tag's contents from old browsers
+function ClearForm(form){
+form.weight.value = "";
+form.height.value = "";
+form.bmi.value = "";
+form.my_comment.value = "";
+}
+function bmi(weight, height) {
+bmindx=weight/eval(height*height);
+return bmindx;
+}
+function checkform(form) {
+if (form.weight.value==null||form.weight.value.length==0 
+|| form.height.value==null||form.height.value.length==0){
+alert("\n哈哈！你比我还要疯，数字都不会输");
+ return false;
+ }
+else if (parseFloat(form.height.value) <= 0||
+parseFloat(form.height.value) >=500||
+parseFloat(form.weight.value) <= 0||
+parseFloat(form.weight.value) >=500){
+alert("\n生产的这个机器可不是成能的 \n你输的天数字我头都大了 \n快改正一下，再测试一遍……");
+ClearForm(form);
+ return false;
+ }
+ return true;
+}
+function computeform(form) {
+if (checkform(form)) {
+yourbmi=Math.round(bmi(form.weight.value, form.height.value/100));
+form.bmi.value=yourbmi;
+if (yourbmi >30) {
+form.my_comment.value="不要在闹了!!!哪有这种身材";
+
+       }
+else if (yourbmi >28 && yourbmi <=30) {
+ form.my_comment.value="您是猪吗?";
+
+       }
+
+else if (yourbmi >23 && yourbmi <=28) {
+form.my_comment.value="两头猪也没有你这么重吧?";
+
+}
+else if (yourbmi >21 && yourbmi <=23) {
+form.my_comment.value="我敢打赌，你一定经常抢吃的，不然不会偏胖";
+}
+
+else if (yourbmi >=19 && yourbmi <=21) {
+form.my_comment.value="哇!!!您棒级了!是标准身材，你是不是女孩子，小心会有很多人爱上你喽";
+
+ }
+
+else if (yourbmi >=18 && yourbmi <19) {
+
+ form.my_comment.value="朋友你是不是吃草的，很明显的营养不良?????";
+
+ }
+
+ else if (yourbmi >=17 && yourbmi <18) {
+ form.my_comment.value="这个不是火柴杆吗????";
+ }
+
+ else if (yourbmi <17) {
+ form.my_comment.value="按照生物学来说这种生物是不能生存的";
+  }
+  }
+return;
+
+  }
+ // -- done hiding from old browsers -->
+</script>
+
+<form NAME="BMI" method="POST">
+
+<div align="center">
+  <center>
+
+  <table border="1" bordercolorlight="#808080" cellspacing="1" bordercolordark="#FFFFFF" bgcolor="#F0F0F0" width="613">
+
+    <tr>
+
+      <td width="72"><div align="center"><center><p>体重 (kg)  
+          </div>
+        </center></td>
+
+      <td align="center" width="64"><div align="center"><center><p>身高(cm)
+          </div>
+        </center></td>
+
+      <td align="center" width="55"><div align="center"><center><p>健康值
+          </div>
+        </center></td>
+
+      <td align="center" width="313"><div align="center"><center><p>电脑对您的评价
+          </div>
+        </center></td>
+
+      <td align="center" width="75"><input TYPE="reset" VALUE="取 消"
+
+  onClick="ClearForm(this.form)"> </td>
+
+    </tr>
+
+    <tr align="center">
+
+      <td width="72"><input TYPE="TEXT" NAME="weight" SIZE="6" onFocus="this.form.weight.value=''"></td>
+
+      <td width="64"><input TYPE="TEXT" NAME="height" SIZE="6" onFocus="this.form.height.value=''"></td>
+
+      <td width="55"><input TYPE="TEXT" NAME="bmi" SIZE="5"></td>
+
+      <td width="313"><input TYPE="TEXT" NAME="my_comment" size="40"></td>
+
+      <td width="75"><input TYPE="button" VALUE="确 定"
+
+  onClick="computeform(this.form)"></td>
+
+    </tr>
+
+  </table>
+
+  </center>
+</div>
+
+  <div align="center"><center><p>&nbsp; </p>
+ </center></div>
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

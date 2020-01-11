@@ -1,0 +1,55 @@
+<SCRIPT LANGUAGE=JAVASCRIPT>
+<!-- 
+function makeArray(n) {
+this.length = n;
+}
+function stopBanner() {
+if (bannerRunning)
+clearTimeout(timerID);
+bannerRunning = false;
+}
+function startBanner() {
+stopBanner();
+showBanner();
+}
+function showBanner() {
+var text = ar[currentMessage];
+if (offset < text.length) {
+if (text.charAt(offset) == " ")
+offset++; 
+var partialMessage = text.substring(0, offset + 1);
+window.status = partialMessage;
+offset++;
+timerID = setTimeout("showBanner()", speed);
+bannerRunning = true;
+} else {
+offset = 0;
+currentMessage++;
+if (currentMessage == arlength)
+currentMessage = 0;
+timerID = setTimeout("showBanner()", pause);
+bannerRunning = true;
+}
+}
+var speed = 100 /* 数越小速度越快 */
+var pause = 1000 /* 数越大停顿越长 */
+var timerID = null;
+var bannerRunning = false;
+var currentMessage = 0;
+var offset = 0;
+var arlength = 3; /* 字幕的条数 */
+var ar = new makeArray(arlength);
+ar[0] = "网页助手欢迎你"; /* 填入你的信息 */
+ar[1] = "制作最精彩的特效    你离不开网页助手"; /* 填入你的信息 */
+ar[2] = "如果你觉得好用请将《网页助手》推荐给你的朋友！" /* 填入你的信息 */
+-->
+</SCRIPT>
+
+<!--将你Html文件的<body>改为-->
+<BODY onload=startBanner()>
+
+
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,103 @@
+<head>
+<SCRIPT LANGUAGE="JavaScript">
+
+<!-- Begin
+pX = 100;
+pY = 100;
+obs = new Array(13);
+function ob() {
+for (i = 0; i < 13; i++) {
+if (document.all) obs[i] = new Array (eval('ob'+i).style,-100,-100);
+else obs[i] = new Array (eval('document.ob'+i),-100,-100);
+   }
+}
+function cl(a, b, c) {
+if (document.all) {
+if (a != 0) b += -1;
+eval('c'+a+'.style.pixelTop='+(pY+(c)));
+eval('c'+a+'.style.pixelLeft='+(pX+(b)));
+}
+else {
+if (a != 0) b += 10;
+eval('document.c'+a+'.top='+(pY+(c)));
+eval('document.c'+a+'.left='+(pX+(b)));
+   }
+}
+function runClock() {
+for (i = 0; i < 13; i++) {
+obs[i][0].left=obs[i][1]+pX;
+obs[i][0].top=obs[i][2]+pY;
+   }
+}
+var lastsec;
+function timer() {
+time = new Date ();
+sec = time.getSeconds();
+if (sec != lastsec) {
+lastsec = sec;
+sec = Math.PI * sec / 30;
+min = Math.PI * time.getMinutes() / 30;
+hr = Math.PI * time.getHours() / 6 + Math.PI * parseInt(time.getMinutes()) / 360;
+for (i = 1; i < 6; i++) {
+obs[i][1] = Math.sin(sec) * (44 - (i-1) * 11) - 16;
+if (document.layers)obs[i][1] += 10;
+obs[i][2] = -Math.cos(sec) * (44 - (i-1) * 11) - 27;
+}
+for (i = 6;i < 10; i++) {
+obs[i][1] = Math.sin(min) * (40 - (i-6) * 10) - 16;
+if (document.layers)obs[i][1] += 10;
+obs[i][2] = -Math.cos(min) * (40 - (i-6) * 10) - 27;
+}
+for (i = 10; i < 13; i++) {
+obs[i][1] = Math.sin(hr) * (37 - (i-10) * 11) - 16;
+if (document.layers)obs[i][1] += 10;
+obs[i][2] = -Math.cos(hr) * (37 - (i-10) * 11) - 27;
+      }
+   }
+}
+function startClock() {
+ob();
+setInterval('timer()', 100);
+setInterval('runClock()', 100);
+}
+// End -->
+</script>
+</head>
+
+<body onLoad="javascript:startClock();" bgcolor="#000000">
+<div id="c0" style="position:absolute;left:26;top:37;z-index:2;">
+<table border=0>
+<tr>
+<td width=120 height=120 background=chinaclock.gif> 
+</td>
+</tr>
+</table>
+</div>
+<div id="ob0" class="num" style="position:absolute;left:-22;top:-20;z-index:1"></div>
+<div id="ob1" class="num" style="position:absolute;left:-22;top:-20;z-index:8">
+<font size="+3" color="#0000ff"><b>.</b></font></div>
+<div id="ob2" class="num" style="position:absolute;left:-22;top:-20;z-index:8">
+<font size="+3" color="#0000ff"><b>.</b></font></div>
+<div id="ob3" class="num" style="position:absolute;left:-22;top:-20;z-index:8">
+<font size="+3" color="#0000ff"><b>.</b></font></div>
+<div id="ob4" class="num" style="position:absolute;left:-22;top:-20;z-index:8">
+<font size="+3" color="#0000ff"><b>.</b></font></div>
+<div id="ob5" class="num" style="position:absolute;left:-22;top:-20;z-index:8">
+<font size="+3" color="#0000ff"><b>.</b></font></div>
+<div id="ob6" class="num" style="position:absolute;left:-22;top:-20;z-index:7">
+<font size="+3" color="#00ffff"><b>.</b></font></div>
+<div id="ob7" class="num" style="position:absolute;left:-22;top:-20;z-index:7">
+<font size="+3" color="#00ffff"><b>.</b></font></div>
+<div id="ob8" class="num" style="position:absolute;left:-22;top:-20;z-index:7">
+<font size="+3" color="#00ffff"><b>.</b></font></div>
+<div id="ob9" class="num" style="position:absolute;left:-22;top:-20;z-index:7">
+<font size="+3" color="#00ffff"><b>.</b></font></div>
+<div id="ob10" class="num" style="position:absolute;left:-22;top:-20;z-index:6">
+<font size="+3" color="#ffff00"><b>.</b></font></div>
+<div id="ob11" class="num" style="position:absolute;left:-22;top:-20;z-index:6">
+<font size="+3" color="#ffff00"><b>.</b></font></div>
+<div id="ob12" class="num" style="position:absolute;left:-22;top:-20;z-index:6">
+<font size="+3" color="#ffff00"><b>.</b></font></div>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

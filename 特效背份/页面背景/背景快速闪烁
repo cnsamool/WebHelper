@@ -1,0 +1,58 @@
+<html>
+<head>
+<title></title>
+<!--第一步:把如下代码加入<head>区域中//-->
+<SCRIPT LANGUAGE="JavaScript">
+
+<!-- Hide from old browsers
+var Color= new Array(9);
+Color[1] = "ff";
+Color[2] = "ee";
+Color[3] = "dd";
+Color[4] = "cc";
+Color[5] = "bb";
+Color[6] = "aa";
+Color[7] = "99";
+Color[8] = "88";
+Color[9] = "77";
+Color[10] = "66";
+Color[11] = "55";
+Color[12] = "44";
+Color[13] = "33";
+Color[14] = "22";
+Color[15] = "11";
+Color[16] = "00";
+/* Do not display text on a fading background. Instead, let it
+fade in and out once or twice, then load a new page.        */
+function fadeIn(where) {
+if (where >= 1) {
+document.bgColor="#" + Color[where] +"0000";   
+where -= 1;
+setTimeout("fadeIn("+where+")", 15);
+} else {
+setTimeout('fadeOut(1)', 15);
+   }
+}
+function fadeOut(where) {
+if (where <=16) {
+document.bgColor="#" + Color[where] +"0000";
+where += 1;
+setTimeout("fadeOut("+where+")", 15)
+} else {
+setTimeout("fadeIn(16)", 15);
+// window.location.href="http://www.netscape.com/";
+   }
+}
+// Unhide -->
+</SCRIPT>
+
+</head>
+<!--第二步:把<body>中的内容改为://-->
+<body bgcolor="#fef4d9" onLoad="fadeIn(16)">
+
+
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

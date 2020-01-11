@@ -1,0 +1,481 @@
+
+<!--第一步：将以下代码插入到<head>之间：-->
+<style type="text/css">
+<!--
+a.link{font-size:12px;line-height:14px;color: #FF9000; text-decoration: none}
+a.link:hover{font-size:12px;line-height:14px;color: #FF0000; text-decoration: none}
+.p2 {  font-size: 12px; line-height: 16px; color: #000000; text-decoration: none}
+.p4 {  font-size: 14px; line-height: 18px; color: #000000; text-decoration: none}
+-->
+</style>
+<script language="JavaScript">
+<!--
+
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+<SCRIPT language=JavaScript>
+function processForm(form){
+var xf=0;
+hc=new Array(40);
+var roll_call=hc.length;
+for (i=roll_call;i>0;i--)
+{hc[i-1]=0};
+if (form.c1[0].checked==1) hc[0]=1;
+if (form.c1[1].checked==1) hc[0]=0;
+if (form.c2[0].checked==1) hc[1]=0;
+if (form.c2[1].checked==1) hc[1]=1;
+if (form.c3[0].checked==1) hc[2]=0;
+if (form.c3[1].checked==1) hc[2]=1;
+if (form.c4[0].checked==1) hc[3]=1;
+if (form.c4[1].checked==1) hc[3]=0;
+if (form.c5[0].checked==1) hc[4]=1;
+if (form.c5[1].checked==1) hc[4]=0;
+if (form.c6[0].checked==1) hc[5]=0;
+if (form.c6[1].checked==1) hc[5]=1;
+if (form.c7[0].checked==1) hc[6]=0;
+if (form.c7[1].checked==1) hc[6]=1;
+if (form.c8[0].checked==1) hc[7]=0;
+if (form.c8[1].checked==1) hc[7]=1;
+if (form.c9[0].checked==1) hc[8]=0;
+if (form.c9[1].checked==1) hc[8]=1;
+if (form.c10[0].checked==1) hc[9]=0;
+if (form.c10[1].checked==1) hc[9]=1;
+if (form.c11[0].checked==1) hc[10]=1;
+if (form.c11[1].checked==1) hc[10]=0;
+if (form.c12[0].checked==1) hc[11]=1;
+if (form.c12[1].checked==1) hc[11]=0;
+if (form.c13[0].checked==1) hc[12]=0;
+if (form.c13[1].checked==1) hc[12]=1;
+if (form.c14[0].checked==1) hc[13]=1;
+if (form.c14[1].checked==1) hc[13]=0;
+if (form.c15[0].checked==1) hc[14]=1;
+if (form.c15[1].checked==1) hc[14]=0;
+if (form.c16[0].checked==1) hc[15]=1;
+if (form.c16[1].checked==1) hc[15]=0;
+if (form.c17[0].checked==1) hc[16]=1;
+if (form.c17[1].checked==1) hc[16]=0;
+if (form.c18[0].checked==1) hc[17]=1;
+if (form.c18[1].checked==1) hc[17]=0;
+if (form.c19[0].checked==1) hc[18]=1;
+if (form.c19[1].checked==1) hc[18]=0;
+if (form.c20[0].checked==1) hc[19]=1;
+if (form.c20[1].checked==1) hc[19]=0;
+if (form.c21[0].checked==1) hc[20]=0;
+if (form.c21[1].checked==1) hc[20]=1;
+if (form.c22[0].checked==1) hc[21]=0;
+if (form.c22[1].checked==1) hc[21]=1;
+if (form.c23[0].checked==1) hc[22]=0;
+if (form.c23[1].checked==1) hc[22]=1;
+if (form.c24[0].checked==1) hc[23]=0;
+if (form.c24[1].checked==1) hc[23]=1;
+if (form.c25[0].checked==1) hc[24]=0;
+if (form.c25[1].checked==1) hc[24]=1;
+if (form.c26[0].checked==1) hc[25]=0;
+if (form.c26[1].checked==1) hc[25]=1;
+if (form.c27[0].checked==1) hc[26]=0;
+if (form.c27[1].checked==1) hc[26]=1;
+if (form.c28[0].checked==1) hc[27]=0;
+if (form.c28[1].checked==1) hc[27]=1;
+if (form.c29[0].checked==1) hc[28]=0;
+if (form.c29[1].checked==1) hc[28]=1;
+if (form.c30[0].checked==1) hc[29]=0;
+if (form.c30[1].checked==1) hc[29]=1;
+if (form.c31[0].checked==1) hc[30]=0;
+if (form.c31[1].checked==1) hc[30]=1;
+if (form.c32[0].checked==1) hc[31]=0;
+if (form.c32[1].checked==1) hc[31]=1;
+if (form.c33[0].checked==1) hc[32]=0;
+if (form.c33[1].checked==1) hc[32]=1;
+if (form.c34[0].checked==1) hc[33]=1;
+if (form.c34[1].checked==1) hc[33]=0;
+if (form.c35[0].checked==1) hc[34]=1;
+if (form.c35[1].checked==1) hc[34]=0;
+if (form.c36[0].checked==1) hc[35]=1;
+if (form.c36[1].checked==1) hc[35]=0;
+if (form.c37[0].checked==1) hc[36]=1;
+if (form.c37[1].checked==1) hc[36]=0;
+if (form.c38[0].checked==1) hc[37]=1;
+if (form.c38[1].checked==1) hc[37]=0;
+if (form.c39[0].checked==1) hc[38]=1;
+if (form.c39[1].checked==1) hc[38]=0;
+if (form.c40[0].checked==1) hc[39]=0;
+if (form.c40[1].checked==1) hc[39]=1;
+
+for (i=roll_call;i>0;i--)
+{xf+=hc[i-1]};	
+form.answer.value="你的得分为"+xf+"分";
+}</SCRIPT>
+
+
+<!--第二步：将以下代码插入到<body>之间：-->
+<body topmargin=0>
+<div align="center"><form name=count> 
+  <table width="780" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td rowspan="2" width=56>&nbsp;</td>
+      <td colspan="2" bgcolor="#DDEBF1" align="center" width=698>
+        <table width="698" border="0" cellspacing="0" cellpadding="8">
+            <tr align="center" valign="bottom"> 
+              <td colspan="2" bgcolor=#DDEBF1><font size="3" color="#FF0033"><b>&nbsp;你 是 个 自 信 的 人 吗 ？</b></font></td> 
+          </tr>
+          <tr bgcolor="#B4D2DF"> 
+            <td width=31 align=center valign=top>1</td>
+            <td width=667 class=p2>一旦您下定决心，即使没有人赞同，你仍然会坚持做到底吗？<br>
+              <input type=radio name=c1 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c1 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">2</td>
+              <td class=p2 width=667 bgcolor="#DDEBF1">参加晚宴时，即使很想上洗手间，您也会忍着直到宴会结束吗？ 
+                <br>
+              <input type=radio name=c2 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c2 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">3</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">如果想买性感内衣，你会尽量邮购，而不亲自到店里去吗？<br>
+              <input type=radio name=c3 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c3 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">4</td>
+              <td class=p2 width=667 bgcolor="#DDEBF1">你认为你是绝佳的情人吗？<br>
+              <input type=radio name=c4 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c4 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">5</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">如果店员的服务态度不好，你会告诉他们经理吗？<br>
+              <input type=radio name=c5 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c5 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">6</td>
+            <td class=p2 width=667 bgcolor="#DDEBF1">你不常欣赏自己的照片吗？<br>
+              <input type=radio name=c6 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c6 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">7</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">别人批评你，你会觉得难过吗？<br>
+              <input type=radio name=c7 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c7 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">8</td>
+            <td class=p2 width=667 bgcolor="#DDEBF1">你很少对人说出你真正的意见吗？<br>
+              <input type=radio name=c8 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c8 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">9</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">对别人的赞美，你持怀疑态度吗？<br>
+              <input type=radio name=c9 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c9 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">10</td>
+            <td class=p2 width=667 bgcolor="#DDEBF1">你总是觉得的你比别人差吗？<br>
+              <input type=radio name=c10 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c10 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">11</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">你对自己的外表满意吗？<br>
+              <input type=radio name=c11 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c11 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">12</td>
+            <td class=p2 width=667 bgcolor="#DDEBF1">你认为自己的能力比别人强吗？<br>
+              <input type=radio name=c12 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c12 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">13</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">在聚会上，只有你一个人穿的不正式，你会感到不自在吗？<br>
+              <input type=radio name=c13 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c13 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">14</td>
+            <td class=p2 width=667 bgcolor="#DDEBF1">你是个受欢迎的人吗？<br>
+              <input type=radio name=c14 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c14 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">15</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">你认为自己很有魅力吗？<br>
+              <input type=radio name=c15 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c15 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">16</td>
+            <td class=p2 width=667 bgcolor="#DDEBF1">你有幽默感吗？<br>
+              <input type=radio name=c16 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c16 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">17</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">目前的工作是你的专长吗？<br>
+              <input type=radio name=c17 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c17 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">18</td>
+            <td class=p2 width=667 bgcolor="#DDEBF1">你懂得搭配衣服吗？<br>
+              <input type=radio name=c18 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c18 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">19</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">危急时，你很冷静吗？<br>
+              <input type=radio name=c19 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c19 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">20</td>
+            <td class=p2 width=667 bgcolor="#DDEBF1">你与别人合作无间吗？<br>
+              <input type=radio name=c20 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c20 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">21</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">你认为自己只是个寻常人吗？<br>
+              <input type=radio name=c21 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c21 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">22</td>
+            <td class=p2 width=667 bgcolor="#DDEBF1">你经常希望自己长的象某某人吗？<br>
+              <input type=radio name=c22 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c22 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">23</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">你经常羡慕别人成就吗？<br>
+              <input type=radio name=c23 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c23 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">24</td>
+            <td class=p2 width=667 bgcolor="#DDEBF1">你为不使他人难过，而放弃自己喜欢做的事吗？<br>
+              <input type=radio name=c24 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c24 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">25</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">你会为了讨好别人而打扮吗？<br>
+              <input type=radio name=c25 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c25 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">26</td>
+            <td class=p2 width=667 bgcolor="#DDEBF1">你勉强自己作很多不愿意作的事吗？<br>
+              <input type=radio name=c26 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c26 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">27</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">你任由他人来支配您的生活吗？<br>
+              <input type=radio name=c27 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c27 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">28</td>
+            <td class=p2 width=667 bgcolor="#DDEBF1">您认为你的优点比缺点多吗？<br>
+              <input type=radio name=c28 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c28 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">29</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">你经常跟人说抱歉吗？即使在不是你错的情况下。<br>
+              <input type=radio name=c29 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c29 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">30</td>
+            <td class=p2 width=667 bgcolor="#DDEBF1">如果在非故意的情况下上了别人的心，你会难过吗？<br>
+              <input type=radio name=c30 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c30 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">31</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">你希望自己具备更多的才能和天赋吗？<br>
+              <input type=radio name=c31 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c31 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">32</td>
+            <td class=p2 width=667 bgcolor="#DDEBF1">你希望听取别人的意见吗？<br>
+              <input type=radio name=c32 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c32 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">33</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">在聚会上，你经常等别人跟你打招呼吗？<br>
+              <input type=radio name=c33 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c33 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">34</td>
+            <td class=p2 width=667 bgcolor="#DDEBF1">你每天照镜子超过3次吗？<br>
+              <input type=radio name=c34 value=1>
+              <font color=#20617D>是</font>　　　  
+              <input type=radio name=c34 value=2>
+              <font color=#20617D>否</font> </td> 
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">35</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">你个性很强吗？<br>
+              <input type=radio name=c35 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c35 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">36</td>
+            <td class=p2 width=667 bgcolor="#DDEBF1">你是个优秀的领导者吗？<br>
+              <input type=radio name=c36 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c36 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">37</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">你记性很好吗？<br>
+              <input type=radio name=c37 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c37 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">38</td>
+            <td class=p2 width=667 bgcolor="#DDEBF1">你对异性有吸引力吗？<br>
+              <input type=radio name=c38 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c38 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width=31 align=center valign=top bgcolor="#B4D2DF">39</td>
+            <td width=667 class=p2 bgcolor="#B4D2DF">你懂得理财吗？<br>
+              <input type=radio name=c39 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c39 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td align=center valign=top width=31 bgcolor="#DDEBF1">40</td>
+              <td class=p2 width=667 bgcolor="#DDEBF1"> 买衣服前，你通常先听取别人的意见吗？<br>
+              <input type=radio name=c40 value=1>
+              <font color=#20617D>是</font>　　　 
+              <input type=radio name=c40 value=2>
+              <font color=#20617D>否</font> </td>
+          </tr>
+          <tr> 
+            <td width="31" align="center" valign="top" bgcolor="#B4D2DF">&nbsp;</td>
+            <td width="667" class="p2" bgcolor="#B4D2DF"> 
+              <p><br>
+                <input type="button" value="答完了，看看得分" name="button" onClick=processForm(this.form) style="FONT-FAMILY: 宋体; FONT-SIZE: 12px">
+              　  
+                <input name=answer type=textfield  style="COLOR: rgb(255,0,0); FONT-FAMILY: 宋体; FONT-SIZE: 12px">
+                <br>
+                <br>
+              </p>
+            </td>
+          </tr>
+          <tr> 
+            <td align="center" valign="top" width="31" bgcolor="#DDEBF1">&nbsp;</td>
+            <td class="p2" width="667" bgcolor="#DDEBF1"><font color="#FF0000"><b><br>
+              说明</b></font> 
+              <p>如果你的分数是25~40，说明你对自己信心十足，明白自己的优点，同时也清楚自己的缺点。不过，在此警告你一声<br>
+                如果你的得分将近40的话，别人可能会认为你很自大狂妄，甚至气焰太甚。你不妨在别人面前谦虚一点，这样人缘才会好。<br>
+                如果你的分数是12~24，说明你对自己颇有信心，但是你仍或多或少缺乏安全感，对自己产生怀疑。你不妨提醒自己，在优点和长处各方面并不输人，特别强调自己的才能和成就。<br>
+                如果你的分数是11以下，说明你对自己显然不太有信心。你过于谦虚和自我压抑，因此经常受人支配。从现在起，尽量不要去想自己的弱点，多往好的一面去衡量；先学会看重自己，别人才会真正看重你。<br>
+                <br>
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td rowspan="2" width=26>&nbsp; </td>
+    </tr>
+    <tr> 
+      <td width="698" colspan="2"> 
+      </td>
+    </tr>
+  </table>
+  </form>
+</div>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

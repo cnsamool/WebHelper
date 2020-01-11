@@ -1,0 +1,59 @@
+<html>
+<head>
+<title></title>
+<!--第一步:把如下代码加入<head>区域中//-->
+
+<SCRIPT LANGUAGE="JavaScript">
+
+  <!--
+
+   var a,b,go,word;
+
+   function greenlight(word){
+
+    a="欢迎使用网页助手";
+
+    word.style.color="red";
+
+    linkSwitch();
+
+   }  
+
+   function linkSwitch(){
+
+    clearTimeout(go);
+
+    b=a;
+
+    a=a.substring(1,100)+a.charAt(0);
+
+    esh.innerText=a;
+
+    go=setTimeout("linkSwitch()",100);
+
+   }
+
+   function stp(word){
+
+    clearTimeout(go);
+
+    esh.innerText="欢迎使用网页助手";
+
+    word.style.color="blue";
+
+   }
+
+  //-->
+
+  </SCRIPT>
+
+</head>
+<body>
+<!--第二步:把如下代码加入<body>区域中//-->
+
+  <A HREF="http://samool.533.net" tppabs="http://samool.533.net" onmouseover="greenlight(this)"; onmouseout="stp(this)"><span id="esh"> 网页之作站点</span></A> 
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

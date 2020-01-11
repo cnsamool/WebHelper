@@ -1,0 +1,192 @@
+
+<!--第一步：将下列代码复制到<head></head>之间：-->
+<SCRIPT>
+<!-- Beginning of JavaScript -
+
+
+var mes = new Array()
+mes[0]="欢迎光临http://samool.533.net "
+mes[1]="这里是网页特效的家。 "
+
+var maxtextlength=30
+// 下以为路线，中间不能有空格
+var path= new Array(548,316,581,296,598,257,577,215,559,202,503,193,464,203,446,222,448,255,468,274,500,280,526,267,541,237,537,209,526,187,499,161,462,146,412,133,368,129,326,132,293,142,272,159,250,184,239,204,234,213,226,230,201,253,186,259,165,265,136,268,110,270,83,267,58,260,36,243,26,229,22,210,24,191,29,174,39,163,56,154,76,150,96,149,110,148,135,152,165,156,196,165,208,172,231,181,254,192,280,203,305,210,339,210,366,206,389,195,405,182,419,167,428,148,442,116,448,80,443,41,401,8,347,0,300,11,280,30,256,50,230,58,198,61,169,56,141,50,113,45,87,36,70,29,52,24,28,18,7,15)
+
+// 第二个信息间隔多久出现
+var stoptime=5
+
+// 字体的属性
+var textfont="宋体"
+var textsize=12
+var textcolor="#000000"
+
+// 字符的间距，如果你改变字体的大小也要改变这里
+var letterspace=12
+
+var tickerleft=path[path.length-2]
+var tickertop=path[path.length-1]
+var timer
+var finalxpos=tickerleft
+var i_mes=0
+var message=""
+var i_path=0
+var stoptimemilli=stoptime*stoptime+1000
+var pathx= new Array()
+
+if (document.layers) {
+	if (textsize>20) {textsize=6}
+	else if (textsize>20) {textsize=5}
+	else if (textsize>14) {textsize=4} 
+	else if (textsize>10) {textsize=3}
+	else if (textsize>8) {textsize=2}
+	else if (textsize<=7) {textsize=1}
+}
+
+var ii=0
+for (i=0;i<=path.length-1;i=i+2) {
+	pathx[ii]=path[i]
+	ii++
+}
+
+ii=0
+
+var pathy= new Array()
+for (i=1;i<=path.length-1;i=i+2) {
+	pathy[ii]=path[i]
+	ii++
+}
+
+var xpos=new Array()
+for (i=0;i<=maxtextlength;i++) {
+	xpos[i]=5000
+}
+
+var ypos=new Array()
+for (i=0;i<=maxtextlength;i++) {
+	ypos[i]=5000
+}
+
+function makesnake() {
+	if (i_path<=pathx.length-1) {
+		for (i=message.length-1; i>=1; i--) {
+   			xpos[i]=xpos[i-1]
+			ypos[i]=ypos[i-1]
+    	}
+		xpos[0]=pathx[i_path]
+		ypos[0]=pathy[i_path]
+		if (document.all) {
+			for (i=0; i<message.length-1; i++) {
+    			var thisspan = eval("document.all.span"+(i)+".style")
+    			thisspan.posLeft=xpos[i]
+				thisspan.posTop=ypos[i]
+    		}
+		}
+		if (document.layers) {
+			for (i=0; i<message.length-1; i++) {
+    			var thisspan = eval("document.span"+i)
+    			thisspan.left=xpos[i]
+				thisspan.top=ypos[i]
+    		}
+		}
+		i_path++
+		timer=setTimeout("makesnake()",20)
+	}
+	else {
+		clearTimeout(timer)
+		endposition()
+	}
+}
+
+function endposition() {
+		if (document.all) {
+			for (i=0; i<message.length-1; i++) {
+    			var thisspan = eval("document.all.span"+(i)+".style")
+    			thisspan.posLeft=tickerleft+finalxpos
+				thisspan.posTop=tickertop
+				finalxpos+=letterspace
+    		}
+		}
+		if (document.layers) {
+			for (i=0; i<message.length-1; i++) {
+    			var thisspan = eval("document.span"+i)
+    			thisspan.left=tickerleft+finalxpos
+				thisspan.top=tickertop
+				finalxpos+=letterspace
+    		}
+		}
+		timer=setTimeout("clearmessage()",stoptimemilli)
+}
+
+function clearmessage() {
+		finalxpos=tickertop
+		i_path=0
+		for (i=0;i<=maxtextlength;i++) {
+			xpos[i]=5000
+		}
+		if (document.all) {
+			for (i=0;i<=maxtextlength;i++) {
+				var thisspan = eval("document.all.span"+i)
+    			thisspan.innerHTML=" "
+				var thisspan = eval("document.all.span"+(i)+".style")
+    			thisspan.posLeft=xpos[i]=5000
+			}
+		}
+		if (document.layers) {
+			for (i=0;i<=maxtextlength;i++) {
+				var thisspan = eval("document.span"+i+".document")
+    			thisspan.write("<p> </p>")
+				thisspan.clear()
+				thisspan = eval("document.span"+i)
+    			thisspan.left=5000
+			}
+		}
+		timer=setTimeout("changemessage()",2000)
+}
+
+function changemessage() {
+		var messa=mes[i_mes]
+		message=messa.split("")
+		if (document.all) {
+			for (i=0;i<=message.length-1;i++) {
+				var thisspan = eval("document.all.span"+i)
+    			thisspan.innerHTML="<p style='font-family:"+textfont+";font-size:"+textsize+";color:"+textcolor+"'>"+message[i]+"</p>"
+			}
+		}
+		if (document.layers) {
+			for (i=0; i<message.length-1; i++) {
+    			var thisspan=eval("document.span"+i+".document")
+    			thisspan.write("<p><font size="+textsize+" color="+textcolor+" face="+textfont+">"+message[i]+"</font></p>")
+				thisspan.clear()
+    		}
+		}
+		i_mes++ 
+		if (i_mes>=mes.length) {i_mes=0}
+		finalxpos=tickertop
+		i_path=0
+		timer=setTimeout("makesnake()",1000)
+}
+
+// - End of JavaScript - -->
+</SCRIPT>
+
+<STYLE>.spanstyle {
+	LEFT: 5000px; POSITION: absolute; VISIBILITY: visible
+}
+</STYLE>
+
+
+
+<!--第二步：将下列代码复制到<body></body>之间：-->
+<BODY bgColor=#ffffff onload=changemessage()>
+<SCRIPT>
+<!-- Beginning of JavaScript -
+	for (i=0;i<=maxtextlength;i++) {
+    	document.write("<span id='span"+i+"' class='spanstyle'>")
+		document.write(message)
+    	document.write("</span>")
+	}
+
+// - End of JavaScript - -->
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

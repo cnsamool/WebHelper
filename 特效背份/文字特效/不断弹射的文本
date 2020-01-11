@@ -1,0 +1,134 @@
+<html>
+<head>
+<title></title>
+</head>
+
+<body>
+ 
+
+<style type="text/css">
+#supertext {
+position:absolute;
+left:0;
+top:0;
+visibility:hide;
+visibility:hidden;
+}
+</style>
+<script language="JavaScript1.2">
+var thecontent='<h2><font size="2" face="宋体" color="000000">不断弹射文本</font></h2>'
+var hidetimer='';
+var BallSpeed = 20;
+var contentWidth;
+var contentHeight;
+var maxBallSpeed = 50;
+
+
+var xMax;
+var yMax;
+var xPos = 0;
+var yPos = 0;
+var xDir = 'right';
+var yDir = 'down';
+var superballRunning = true;
+var tempBallSpeed;
+var currentBallSrc;
+var newXDir;
+var newYDir;
+
+function initializeBall() {
+   if (document.all) {
+      xMax = document.body.clientWidth
+      yMax = document.body.clientHeight
+      document.all("supertext").style.visibility = "visible";
+      contentWidth=supertext.offsetWidth
+      contentHeight=supertext.offsetHeight
+      }
+   else if (document.layers) {
+      xMax = window.innerWidth;
+      yMax = window.innerHeight;
+      contentWidth=document.supertext.document.width
+      contentHeight=document.supertext.document.height
+      document.layers["supertext"].visibility = "show";
+      }
+   setTimeout('moveBall()',400);
+   if (hidetimer!='')
+   setTimeout("hidetext()",hidetimer)
+   }
+
+function moveBall() {
+   if (superballRunning == true) {
+      calculatePosition();
+      if (document.all) {
+         document.all("supertext").style.left = xPos + document.body.scrollLeft;
+         document.all("supertext").style.top = yPos + document.body.scrollTop;
+         }
+      else if (document.layers) {
+         document.layers["supertext"].left = xPos + pageXOffset;
+         document.layers["supertext"].top = yPos + pageYOffset;
+         }
+      animatetext=setTimeout('moveBall()',20);
+      }
+   }
+
+function calculatePosition() {
+   if (xDir == "right") {
+      if (xPos > (xMax - contentWidth - BallSpeed)) {
+         xDir = "left";
+         }
+      }
+   else if (xDir == "left") {
+      if (xPos < (0 + BallSpeed)) {
+         xDir = "right";
+         }
+      }
+   if (yDir == "down") {
+      if (yPos > (yMax - contentHeight - BallSpeed)) {
+         yDir = "up";
+         }
+      }
+   else if (yDir == "up") {
+      if (yPos < (0 + BallSpeed)) {
+         yDir = "down";
+         }
+      }
+   if (xDir == "right") {
+      xPos = xPos + BallSpeed;
+      }
+   else if (xDir == "left") {
+      xPos = xPos - BallSpeed;
+      }
+   else {
+      xPos = xPos;
+      }
+   if (yDir == "down") {
+      yPos = yPos + BallSpeed;
+      }
+   else if (yDir == "up") {
+      yPos = yPos - BallSpeed;
+      }
+   else {
+      yPos = yPos;
+      }
+   }
+
+function hidetext(){
+if (document.all)
+supertext.style.visibility="hidden"
+else if (document.layers)
+document.supertext.visibility="hide"
+clearTimeout(animatetext)
+}
+
+if (document.all||document.layers){
+document.write('<span id="supertext"><nobr>'+thecontent+'</nobr></span>')
+window.onload = initializeBall;
+window.onresize = new Function("window.location.reload()");
+}
+
+</script>
+</body>
+
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

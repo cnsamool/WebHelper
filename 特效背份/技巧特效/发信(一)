@@ -1,0 +1,13 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中//-->
+<form>
+<INPUT TYPE="button" VALUE="e-mail" onClick="parent.location='mailto:wangdayong_21@sohu.com?subject=这里写入你发信的主题!'"></FORM>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

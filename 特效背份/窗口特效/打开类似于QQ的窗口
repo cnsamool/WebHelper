@@ -1,0 +1,11 @@
+<SCRIPT LANGUAGE="JavaScript1.2">
+function myAvailable() {
+window.open('about:blank','myName', 'width=100,height='+screen.availHeight+',top='+screen.availTop+',left='+screen.availLeft);
+}
+
+</SCRIPT>
+<form>
+<input type=button value="打开类似于QQ的窗口" onClick="myAvailable();" name="button2">
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

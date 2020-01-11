@@ -1,0 +1,136 @@
+    解决上述问题主要有两种途径：一种途径是将查询条件相对固定，利用相对固定的查询条件对原始数据进行加工，生成一个小数据量的中间库，每次查询都对中间库进行操作。这样虽然会提高程序的性能，但会影响程序的灵活性，而且 Server端还需定时对原始数据进行加工维护。另一个途径是在Server端保存查询的结果。这样虽然不能改善查询的性能，但Client端换页时Server端能够很快响应。第一种途径的实现比较简单，本文介绍第二种途径的实现方法。  
+ 
+    实现方法  
+    将Server端的查询结果保存在一个动态数组中，即在 Session_OnStart过程中声明一个二维的动态数组。当Server端收到Client端提交的申请后，首先判断申请是条件查询还是换页，如是条件查询则判别查询条件是否与上次提交的查询条件不同，如不同则执行查询，将查询结果保存在该数组中，然后向Client端返回第一页的内容，否则直接从该数组中返回相应页的内容。  
+程序实现  
+    1．定义二维数组及其他变量  
+Sub Session_OnStart 
+dim TempDb()  
+redim Preserve TempDb(1,2)  
+session(“StoredArray") = TempDb  
+’定义一个Session数组 
+session(“iPageCount")=0 
+session(“iPageNo")=0 
+...... 
+End Sub 
+ 
+    2．调用存储过程返回数据  
+ 
+Sub GetRecordSet(strBbmc,strKssj , 
+strZzsj ,strNodeCode ,strFxzl ) 
+''参数为报表名称和各个限制条件 
+select case strBbmc 
+case “交易汇总表" 
+strCnn=“PROVIDER=MSDASQL;dsn=sqldb; 
+uid=sa;pwd=123456;database=vlog;" 
+Set objcnn=Server.CreateObje(“ADODB.Connection") 
+objcnn.CommandTimeout = 9999999 
+objcnn.ConnectionTimeout = 99999999 
+objcnn.CursorLocation = adUseClient 
+objcnn.Open strCnn ''打开连接  
+Set objRs =Server.CreateObject 
+(“ADODB.Recordset")  
+objRS.PageSize = iPageSize 
+objRS.CacheSize = iPageSize 
+objRs.Open “sszhatmlog ‘“ ＆ strKssj ＆ "'' , 
+‘“ ＆ strZzsj ＆ "'', ‘“ ＆ strNodeCode ＆ "'' , 
+‘“ ＆ strFxzl ＆ "''",objcnn,adOpenStatic , 
+adLockReadOnly,1 
+’执行存储过程返回查询结果 
+...... 
+End Sub  
+ 
+    3．将查询结果保存到动态数组  
+ 
+Sub SaveRecordSet()  
+if objRs.EOF = false then 
+objRs.movelast 
+session(“iRowCount") = objRs.recordCount 
+session(“iFieldCount") = objRs.Fields.Count 
+session(“iPageCount") = objRs.pagecount 
+redim Preserve TempArray(session 
+(“iRowCount"),session(“iFieldCount"))  
+’TempArray是一个二维动态数组，  
+根据记录集大小重新定义其大小 
+objRs.MoveFirst 
+iCount=0  
+do while objRs.EOF=false 
+iCount = iCount ＋ 1  
+for i= 1 to session(“iFieldCount") 
+TempArray(iCount,i)=objRs.Fields.Item 
+(i－1).value 
+next  
+objRs.MoveNext  
+loop 
+session(“StoredArray") = TempArray  
+objRs.Close  
+else 
+session(“iPageCount") = 0 
+end if 
+End Sub 
+ 
+    4．显示记录内容  
+ 
+Sub ShowRecord() 
+...... 
+LocalArray=session(“StoredArray")  
+iShowTotal=(iPageCurrent－1)＊iPageSize＋1  
+iRowLoop = 1 
+do while iRowLoop < = iPageSize and iShowTotal 
+< = session(“iRowCount") 
+Response.Write(“< TR >")  
+for i = 1 To session(“iFieldCount") 
+Response.write(“< TD >"  
+＆ LocalArray(iShowTotal,i)) Next 
+Response.Write(“< /TR >")  
+iShowTotal = iShowTotal ＋ 1  
+iRowLoop = iRowLoop ＋ 1 loop 
+Response.Write(“< /TABLE >")  
+if iPageCurrent < > 1 and  
+iPageCurrent < session 
+(“iPageCount") then 
+％ > 
+< center >< A HREF=“db_pag.asp?page=< ％=  
+iPageCurrent － 1 ％ >" >前一页< /A >< A HREF= 
+“db_pag.asp?page=< ％= iPageCurrent ＋ 1 ％ >" > 
+后一页< /A >< /center >  
+< ％  
+else  
+if iPageCurrent < > 1 then 
+％ > 
+< center >< A HREF=“db_pag.asp?page=< ％= 
+iPageCurrent － 1 ％ >" >前一页 < /A >< /center >  
+< ％ 
+end if 
+if iPageCurrent < session(“iPageCount")then 
+％ > 
+< center >< A HREF=“db_pag.asp?page= 
+< ％= iPageCurrent ＋ 1 ％ >" >后一页 < /A > 
+< /center > 
+< ％ 
+end if 
+end if 
+End Sub 
+ 
+    5．主程序  
+ 
+if Request.QueryString(“page") = “" then  
+’提交查询申请并且查询条件与上一次不同 
+...... 
+call GetRecordSet(strBbmc,strKssj,strZzsj, 
+strNodeCode,strFxzl)  
+call SaveRecordSet  
+Else 
+iPageCurrent=CInt(Request.QueryString(“page")) 
+strKssj=session(“strKssj") 
+end if  
+if session(“iPageCount") = 0 then  
+Response.Write “抱歉！没有满足条件的记录" 
+Response.Write “< Br >" 
+else  
+call showrecord()  
+end if 
+ 
+    结束语  
+    本程序的关键在于Session数组的定义及其赋值的实现，通过应用Session数组可以提高处理大量数据的应用程序的性能 
+  

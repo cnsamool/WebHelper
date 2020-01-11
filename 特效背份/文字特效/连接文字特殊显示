@@ -1,0 +1,43 @@
+<!--脚本说明：
+第一步:把如下代码加入<head>区域中:-->
+<style type="text/css">
+<!-- 
+.GlowFilter {filter : Glow(Color="#3300ff",Strength="10")}
+.noglow {}
+-->
+</style>
+
+
+
+
+
+<!--第二步:把如下代码加入<body>区域中:-->
+<div ID="rollover1"
+STYLE="height:10; font:bold 10pt Arial; color:#0080ff; cursor:hand;><a href=" #"
+Onmouseover="rollover1.className='GlowFilter'" Onmouseout="rollover1.className='noglow'"
+onclick="window.location='http://www.163.com';">
+
+<p>网易</p>
+</div>
+
+<p><br>
+</p>
+<div ID="rollover2"
+STYLE="height:10; font:bold 10pt Arial; color:#0080ff; cursor:hand;><a href=" #"
+Onmouseover="rollover2.className='GlowFilter'" Onmouseout="rollover2.className='noglow'"
+onclick="window.location='http://www.sina.com.cn';">
+
+<p>新浪</p>
+</div>
+
+<p><br>
+</p>
+<div ID="rollover3"
+STYLE="height:10; font:bold 10pt Arial; color:#0080ff; cursor:hand;><a href=" #"
+Onmouseover="rollover3.className='GlowFilter'" Onmouseout="rollover3.className='noglow'"
+onclick="window.location='http://www.sohu.com';">
+
+<p>搜狐</p>
+</div>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

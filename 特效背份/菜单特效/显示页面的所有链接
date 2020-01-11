@@ -1,0 +1,18 @@
+<!--显示当前页的所有链接-->
+<script language="JavaScript1.2">
+<!--
+function extractlinks(){
+var links=document.all.tags("A")
+var total=links.length
+var win2=window.open("","","menubar,scrollbars,toolbar")
+win2.document.write("<font size='2'>一共有"+total+"个连接</font><br>")
+for (i=0;i<total;i++){
+win2.document.write("<font size='2'>"+links[i].outerHTML+"</font><br>")
+}
+}
+//-->
+</script>
+<input type="button" onClick="extractlinks()" value="显示所有的连接">
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

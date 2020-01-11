@@ -1,0 +1,25 @@
+1.php的Java模块  
+
+php发布版中包含一个Java扩展模块，可以用来调用Java对象，例如：  
+
+<?php  
+$system=new Java("java.lang.System");  
+print "Java version=".$system->getP 
+roperty("java.version")." 
+ ";  
+?>  
+
+
+2.minij2ee应用服务器SJOP协议实现  
+
+minij2ee应用服务器实现SJOP协议的主要目的是使php中能够访问EJB企业级组件，因此minij2ee提供了一个EJB-PHP编译器，可以把EJB组件编译成php的类，使php程序中能够方便的调用EJB组件，例如：  
+
+<?php  
+require("Cart.php"); //Cart.php是编译Cart EJB后生成的Cart EJB的php类定义    
+。  
+
+$home=new CartHome(); //创建EJB的Home接口。  
+$objref=$home->create($cart_name); //创建Cart EJB。  
+$cart=new Cart($objref);  
+
+$cart->add("some goods"); //向购物车中添加一个物品。 

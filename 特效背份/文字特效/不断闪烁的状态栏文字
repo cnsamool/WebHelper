@@ -1,0 +1,27 @@
+<script language="">
+<!--
+var yourwords = "ÉµÃ¨Èí¼þ http://samool.533.net";
+var speed = 700;
+var control = 1;
+function flash()
+{
+  if (control == 1)
+    {
+      window.status=yourwords;
+      control=0;
+    }  
+  else
+    {
+      window.status="   ";
+      control=1;
+    }
+  setTimeout("flash()",speed);
+}
+window.onload=flash
+
+// -->
+</script>
+
+
+<!--±¾ÍøÒ³ÓÉ¡¶ÍøÒ³ÖúÊÖV1.1¡·ÖÆ×÷    °æÈ¨ËùÓÐ£ºÉµÃ¨Èí¼þ -->
+<!--Çë·ÃÎÊÉµÃ¨Èí¼þ¹Ù·½ÍøÕ¾   http://samool.533.net  -->

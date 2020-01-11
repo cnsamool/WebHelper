@@ -1,0 +1,50 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+<!--第一步:把<body>区域改为//-->
+<body bgcolor="#fef4d9" onload="begintimer()">
+
+<!--第二步:把如下代码加入<body>区域中//-->
+<SCRIPT language="JavaScript">
+<!--
+var limit="0:59"
+if (document.images){
+var parselimit=limit.split(":")
+parselimit=parselimit[0]*60+parselimit[1]*1
+}
+function begintimer(){
+if (!document.images)
+return
+if (parselimit==1)
+//下面是限制时间到了后去的连接页面,自己修改。
+window.location="zh1.htm"
+else{ 
+parselimit-=1
+curmin=Math.floor(parselimit/60)
+cursec=parselimit
+if (curmin!=0)
+curtime="你只有"+curmin+"分"+cursec+"秒的时间保存此页。"
+else
+curtime="你只有"+cursec+"秒的时间访问此页。"
+setTimeout("begintimer()",1000)
+//下一句告诉访问者剩余的时间，在文本框中显示，不想要去掉即可。
+document.lefttime.left.value=curtime
+//下一句告诉访问者剩余的时间，在状态栏中显示。
+//window.status=curtime
+}
+}
+
+//-->
+
+
+</SCRIPT>
+<form name="lefttime">
+<p><input type="text" name="left" size="25">
+</p>
+</form>
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

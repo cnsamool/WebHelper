@@ -1,0 +1,13 @@
+<form name="myform">
+<select name="select" size="1" onchange="location=this.options[this.selectedIndex].value">
+<option value="目录">目 录 </option>
+<option value="http://samool.533.net">傻猫软件</option>
+<option value="http://www.163.com">163</option>
+<option value="http://www.sohu.com">sohu</option>
+<option value="http://www.sina.com.cn">sina</option>
+<option value="http://www.flash.com">Flash</option>
+</select>
+</form>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

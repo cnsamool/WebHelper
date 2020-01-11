@@ -1,0 +1,68 @@
+<style>
+.menulines{
+border:1px solid white;
+}
+
+.menulines a{
+text-decoration:none;
+color:black;
+}
+</style>
+<body bgcolor="#FFFFFF" text="#000000">
+<script language="JavaScript1.2">
+function borderize(what,color){
+what.style.borderColor=color
+}
+
+function borderize_on(e){
+if (document.all)
+source3=event.srcElement
+else if (document.getElementById)
+source3=e.target
+if (source3.className=="menulines"){
+borderize(source3,"black")
+}
+else{
+while(source3.tagName!="TABLE"){
+source3=document.getElementById? source3.parentNode : source3.parentElement
+if (source3.className=="menulines")
+borderize(source3,"black")
+}
+}
+}
+
+function borderize_off(e){
+if (document.all)
+source4=event.srcElement
+else if (document.getElementById)
+source4=e.target
+if (source4.className=="menulines")
+borderize(source4,"white")
+else{
+while(source4.tagName!="TABLE"){
+source4=document.getElementById? source4.parentNode : source4.parentElement
+if (source4.className=="menulines")
+borderize(source4,"white")
+}
+}
+}
+
+</script>
+<table border="0" width="123" cellpadding="2" onMouseOver="borderize_on(event)" onMouseOut="borderize_off(event)">
+  <tr>
+    <td width="121" bgcolor="#E6E6E6">
+      <p align="center"><b><font size="3">主菜单</font></b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="121" class="menulines" align="center"><a href="help.htm"><font size="2">网页助手帮助文件</font></a></td>
+  </tr>
+  <tr>
+    <td width="121" class="menulines" align="center"><a href="intro.htm"><font size="2">网页助手操作指南</font></a></td>
+  </tr>
+  <tr>
+    <td width="121" class="menulines" align="center"><font size="2"><a href="http://samool.533.net">网页助手官方网站</a></font></td>
+  </tr>
+</table>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

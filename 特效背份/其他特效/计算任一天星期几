@@ -1,0 +1,193 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中//-->
+<SCRIPT LANGUAGE="LiveScript">
+<!--
+function mod(x, x_div){    
+
+        for (var i=x; i>=x_div; i -= x_div);    
+
+                return i;
+
+}
+
+
+
+function checkNum(str, min, max) {    
+
+        if (str == "") {        
+
+                alert("Enter a number in the field, please.");        
+
+                return false;    
+
+        }    
+
+        for (var i = 0; i < str.length; i++) {        
+
+                var ch = str.substring(i, i + 1);        
+
+                if (ch < "0" || ch > "9") {            
+
+                        alert("Try a number, please.");            
+
+                        return false;        
+
+                }    
+
+        }    
+
+        var val = parseInt(str, 10);    
+
+        if ((val < min) || (val > max)) {        
+
+                alert("Try a number from 1 to "+max+".");        
+
+                return false;    
+
+        }    
+
+        return true;
+
+}
+
+
+
+function pushbutton(form){     
+
+        //Check for a valid date                             
+
+        if ((checkNum(form.day.value,1,31)) && (checkNum(form.month.value,1,12)) && (checkNum(form.year.value,0,99))){
+
+                var cur_day = parseInt(form.day.value,10);      
+
+                var cur_month = parseInt(form.month.value,10);  
+
+                var cur_year = parseInt(form.year.value,10);    
+
+        //alert(" "+cur_day+" "+cur_month+" "+cur_year);        
+
+        //Significant value     
+
+        var sig_val;    
+
+        if (cur_month == 1)             
+
+                sig_val = 0;    
+
+        else if (cur_month == 2)                
+
+                sig_val = 3;    
+
+        else if (cur_month == 3)                
+
+                sig_val = 3;    
+
+        else if (cur_month == 4)                
+
+                sig_val = 6;    
+
+        else if (cur_month == 5)                
+
+                sig_val = 1;    
+
+        else if (cur_month == 6)                
+
+                sig_val = 4;    
+
+        else if (cur_month == 7)                
+
+                sig_val = 6;    
+
+        else if (cur_month == 8)                
+
+                sig_val = 2;    
+
+        else if (cur_month == 9)                
+
+                sig_val = 5;    
+
+        else if (cur_month == 10)               
+
+                sig_val = 0;    
+
+        else if (cur_month == 11)               
+
+                sig_val = 3;    
+
+        else if (cur_month == 12)               
+
+                sig_val = 5;            
+
+                var val1 = mod((cur_year + parseInt(cur_year/4) + cur_day + sig_val),7);                
+
+        
+
+        //Display the correct file        
+
+                if (val1 == 0)          
+
+                        alert("Sunday");
+
+                else if (val1 == 1)             
+
+                        alert("Monday");
+
+                else if (val1 == 2)             
+
+                        alert("Tuesday");
+
+                else if (val1 == 3)             
+
+                        alert("Wednesday");
+
+                else if (val1 == 4)             
+
+                        alert("Thursday");
+
+                else if (val1 == 5)             
+
+                        alert("Friday");
+
+                else if (val1 == 6)             
+
+                        alert("Saturday");
+
+                        return true;     
+
+                }     
+
+                else    
+
+                return false;
+
+}
+
+//-->
+</SCRIPT>
+<FORM NAME = "What_Day">
+
+<PRE><B>Day:</B>   
+
+<INPUT TYPE="num" name="day" onChange="if (!checkNum(this.value, 1, 31)){this.focus();this.select();} else {}" size=10 value="">        
+
+<B>Month:</B> 
+
+<INPUT TYPE="num" name="month" onChange="if (!checkNum(this.value, 1, 12)){this.focus();this.select();} else {}" size=10 value="">
+
+<B>Year:</B>  
+
+<INPUT TYPE="num" name="year" onChange="if (!checkNum(this.value, 0, 99)){this.focus();this.select();} else {}" size=10 value="">        
+
+<INPUT TYPE="button" name="Find_Out" value="OK, I'm ready" onclick="pushbutton(this.form)"></PRE>
+
+</FORM>
+
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,74 @@
+<SCRIPT language=javascript>
+var cellwidth=10;                 // EACH "CELL" WIDTH IN PIXELS
+var cellheight=10;                  // EACH "CELL" HEIGHT IN PIXELS
+var fontsize=11;                  // FONT SIZE OF THE NUMBERS. SETTING THIS TOO BIG CAUSES UNDESIRED EFFECTS.
+var fontcolor="080080";            // ENTER ANY HTML OR RGB COLOR CODE
+var fontstyle="bold";            // ENTER EITHER BOLD, ITALICS, NONE
+var oncolor="red";                // COLOR OF ACTIVE CELLS
+var offcolor="lightgrey";      // COLOR OF INACTIVE CELLS
+
+var NS4 = (navigator.appName.indexOf("Netscape")>=0 && parseFloat(navigator.appVersion) >= 4 && parseFloat(navigator.appVersion) < 5)? true : false;
+var IE4 = (document.all)? true : false;
+var NS6 = (parseFloat(navigator.appVersion) >= 5 && navigator.appName.indexOf("Netscape")>=0 )? true: false;
+var binclk, now;
+var t='<table cellspacing="1" cellpadding="0" border="0"><tr><td align="center"> </td>';
+for(i=0;i<=58;i+=2)t+='<td align="left" colspan="2"><font style="font-size:'+fontsize+'px; font-weight:'+fontstyle+'; color: '+fontcolor+'">'+i+'<br> |</font></td>';
+t+='<td> </td></tr><tr><td align="center"><font style="font-size:'+fontsize+'px; font-weight:'+fontstyle+'; color: '+fontcolor+'">时: </font></td>';
+for(i=0;i<=23;i++){
+t+='<td>';
+t+=(NS4)? '<ilayer name="hrs'+i+'" height="'+cellheight+'" width="'+cellwidth+'" bgcolor="'+offcolor+'"></ilayer>' : '<div id="hrs'+i+'" style="position:relative; width:'+cellwidth+'px; font-size:1px; height:'+cellheight+'px; background-color:'+offcolor+'"></div>';
+t+='</td>';
+}
+t+='<td colspan="36"><td> </td></tr><tr><td align="center"><font style="font-size:'+fontsize+'px; font-weight:'+fontstyle+'; color: '+fontcolor+'">分: </font></td>';
+for(i=0;i<=59;i++){
+t+='<td>';
+t+=(NS4)? '<ilayer name="min'+i+'" width="'+cellwidth+'" height="'+cellheight+'" bgcolor="'+offcolor+'"></ilayer>' : '<div id="min'+i+'" style="position:relative; width:'+cellwidth+'px; font-size:1px; height:'+cellheight+'px; background-color:'+offcolor+'"></div>';
+t+='</td>';
+}
+t+='<td> </td></tr><tr><td align="center"><font style="font-size:'+fontsize+'px; font-weight:'+fontstyle+'; color: '+fontcolor+'">秒: </font></td>';
+for(i=0;i<=59;i++)
+{
+t+='<td>';
+t+=(NS4)? '<ilayer name="sec'+i+'" width="'+cellwidth+'" height="'+cellheight+'" bgcolor="'+offcolor+'"></ilayer>' : '<div id="sec'+i+'" style="position:relative; width:'+cellwidth+'px; font-size:1px; height:'+cellheight+'px; background-color:'+offcolor+'"></div>';
+t+='</td>';
+}
+t+='<td> </td></tr><tr><td> </td><td> </td>';
+for(i=1;i<=59;i+=2)t+='<td align="left" colspan="2"><font style="font-size:'+fontsize+'px; font-weight:'+fontstyle+'; color: '+fontcolor+'"> |<br>'+i+'</font></td>';
+t+='</tr></table>';
+document.write(t);
+function init(){
+getvals();
+for(i=0;i<=now.h;i++)setbgcolor('hrs'+i, oncolor);
+for(i=0;i<=now.m;i++)setbgcolor('min'+i, oncolor);
+for(i=0;i<=now.s;i++)setbgcolor('sec'+i, oncolor);
+setInterval('setclock()', 100);
+}
+function getvals(){
+now=new Date();
+now.s=now.getSeconds();
+now.h=now.getHours();
+now.m=now.getMinutes();
+}
+function setclock(){
+getvals();
+if((now.h==0)&&(now.m==0)) for(i=1;i<=23;i++)setbgcolor('hrs'+i, offcolor);
+if((now.s==0)&&(now.m==0)) for (i=1;i<=59;i++)setbgcolor('min'+i, offcolor);
+if(now.s==0) for(i=1;i<=59;i++)setbgcolor('sec'+i, offcolor);
+setbgcolor('hrs'+now.h, oncolor);
+setbgcolor('min'+now.m, oncolor);
+setbgcolor('sec'+now.s, oncolor);
+}
+
+function resize(){
+if(NS4)history.go(0);
+}
+function setbgcolor(idstr, color){
+if(IE4)document.all[idstr].style.backgroundColor=color;
+if(NS4)document.layers[idstr].bgColor=color;
+if(NS6)document.getElementById(idstr).style.backgroundColor=color;
+}
+window.onload=init;
+window.onresize=resize;
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

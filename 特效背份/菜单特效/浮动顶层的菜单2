@@ -1,0 +1,35 @@
+<script language="javascript">
+<!--
+function stat(){
+var a = pageYOffset+window.innerHeight-document.bar.document.height-15
+document.bar.top = a
+setTimeout('stat()',2)
+}
+function fix(){
+nome=navigator.appName
+if(nome=='Netscape'){
+stat()
+}
+else{
+var a=document.body.scrollTop+document.body.clientHeight-document.all.bar.offsetHeight+15
+bar.style.top = a
+}}
+//-->
+</script> 
+<body onLoad='fix()' onScroll="fix()" onResize="fix()"> <!--这一行不要忘记写
+/*span标签内放入一个TABLE，里面就是你的站点连接菜单，用TABLE的目的是比较容易控制布局。你
+可以自由修改下一行的代码，修正菜单出现的绝对位置。-->
+<span id="bar" style="position:absolute; left:68px; top:455px; width:614px; height:45px; z-index:9" > 
+<table border="1" hspace="1" cellpadding="1" bordercolor="#000000" bgcolor="#FFFFFF">
+<tr align="center"> 
+<td width="190"> <a href="http://samool.533.net">最新动态 </a></td>
+<td width="147"> <a href="http://samool.533.net">软件下载</a></td>
+<td width="96"> <a href="http://samool.533.net">雁过留声</a></td>
+<td width="158"> <a href="http://samool.533.net" target="_blank">心情日记</a> 
+</td>
+</tr>
+</table>
+</span>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

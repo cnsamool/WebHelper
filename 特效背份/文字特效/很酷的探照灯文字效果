@@ -1,0 +1,37 @@
+<body bgcolor=#000000>
+<!-- 使用说明：使用时将文字换成你需要的文字即可！-->
+<script language="VBScript">
+Option Explicit
+sub window_OnLoad()
+    call myLightObject.filters.light(0).addambient(0,0,255,30)
+	call myLightObject.filters.light(0).addcone(400,400,200,100,100,200,204,200,80,10)
+end sub
+sub document_onMouseMove()
+    call myLightObject.filters.light(0).MoveLight(1,window.event.x,window.event.y,0,1)
+end sub	
+</script>
+<div id="myLightObject" style="position: relative; height: 400px; width: 400px; top: 10px; left: 0px; color: White; filter: light">
+<center>
+对你的思念 是一天又一天，<BR>
+孤单的我 还是没有改变，<BR>
+美丽的梦 何时才能出现，<BR>
+亲爱的你 好想再见你一面。<BR>
+<BR>
+秋天的风 一阵阵地吹过，<BR>
+想起了去年的这个时候，<BR>
+你的心到底在想些什么，<BR>
+为什么留下这个结局让我承受。<BR>
+<BR>
+最爱你的人是我，<BR>
+你怎么舍得我难过，<BR>
+在我最需要你的时候<BR>
+没有一句话就走，<BR>
+<BR>
+最爱你的人是我，<BR>
+你怎么舍得我难过，<BR>
+对你付出了这么多<BR>
+你却没有感动过<BR>
+</center></div>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

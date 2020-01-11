@@ -1,0 +1,201 @@
+建立标签，实现该标签的功能。 
+
+1.命名package为：com.acme.mytags(为了和原文相同， 
+我不做改动) 
+
+package com.acme.mytags; 
+
+2.import相关class 
+
+import javax.servlet.jsp.*; 
+
+import javax.servlet.jsp.tagext.*; 
+
+3.实现javax.servlet.jsp.tagext.Tag接口： 
+
+public class HelloWorld implements Tag  
+
+{ 
+
+4.定义局部变量 
+
+private PageContext pageContext;  
+
+private Tag parent;  
+
+5.调用标签开始的实现方法 
+
+public int doStartTag() throws javax.servlet.jsp.JspException  
+
+{ 
+
+return SKIP_BODY;  
+
+}  
+
+注意：这个方法返回 SKIP_BODY，就是标签的body为空的时候，将返回这个值，否则将返回：EVAL_BODY_INCLUDE 
+
+6.调用标签结束的实现方法 
+
+public int doEndTag() throws javax.servlet.jsp.JspException  
+
+{  
+
+try  
+
+{  
+
+pageContext.getOut().write("Hello World!");  
+
+}  
+
+catch(java.io.IOException e)  
+
+{  
+
+throw new JspException("IO Error: " + e.getMessage());  
+
+}  
+
+return EVAL_PAGE;  
+
+}  
+
+这样将在jsp文件的自定义标签结束地方输出“Hello World!” 
+
+7.还不够，我们还要写下面的方法： 
+
+public void release() {}  
+
+对于本简单的例子，上面的方法不需要任何实现。 
+
+8.JSP的容器要调用下面的方法： 
+
+public void setPageContext(final javax.servlet.jsp.PageContext pageContext) {  
+
+this.pageContext=pageContext;  
+
+}  
+
+JSP容器通过上面的方法调用标签，而且上面的方法用来设置标签的PageContext. 
+
+9.JSP的容器还要调用下面的方法： 
+
+public void setParent(final javax.servlet.jsp.tagext.Tag parent)  
+
+{  
+
+this.parent=parent;  
+
+} 
+
+JSP容器通过上面的方法设置标签的parent-Tag，因为每个标签的PageContext都要保留它的parent标签。  
+
+10.最后，实现方法： 
+
+public javax.servlet.jsp.tagext.Tag getParent()  
+
+{  
+
+return parent; 
+
+} 
+
+}  
+
+11. 编译标签。 
+
+描叙标签 
+
+现在将要写一个描叙文件，描叙该标签。 
+
+1.建立一个taglib.tld文件， 
+
+2.taglib.tld是一个XML格式的文本文件，XML的头如下： 
+
+<?xml version="1.0" encoding="ISO-8859-1" ?>  
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"  
+"http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">  
+
+3.描叙标签库 
+
+<taglib>  
+
+<tlibversion>1.0</tlibversion>  
+
+<jspversion>1.1</jspversion> 
+
+<shortname>mt</shortname> <uri>http://www.orionserver.com/tutorials/tagtut/lesson1/mytags.jar </uri> 
+
+<info>My first Tag library</info>  
+
+4.描叙标签 
+
+<tag> 
+
+<name>helloWorld</name> 
+
+<tagclass>com.acme.mytags.HelloWorld</tagclass>  
+
+<bodycontent>empty</bodycontent>  
+
+<info>A Hello world Tag</info> 
+
+</tag> 
+
+5.结束 
+
+</taglib> 
+
+打包 
+
+名称为：mytags.jar 
+
+其目录结构为： 
+
+com/acme/mytags/HelloWorld.class 
+
+META-INF/taglib.tld 
+
+在jsp文件中使用自定义标签 
+
+建立hello.jsp如下： 
+
+<%@ taglib uri="mytags.jar" prefix="mt" %>  
+
+<HTML>  
+
+<HEAD>  
+
+<TITLE>Hello World!</TITLE> 
+
+</HEAD> <BODY BGCOLOR="#FFFFFF">  
+
+<HR>  
+
+<mt:helloWorld/> 
+
+<HR>  
+
+</BODY>  
+
+</HTML>  
+
+测试运行 
+
+在orion目录下，建立如下结构，其中，tag是自己建立的，前面的目录是本来就有的。 
+
+E:\orion\default-web-app\tag 
+
+将jar文件和jsp文件全部放到这个目录下。 
+
+然后，访问： 
+
+http://localhost:[port]/tag/hello.jsp 
+
+将出现： 
+
+--------------------------------------------------------------- 
+
+Hello World!　 
+

@@ -1,0 +1,51 @@
+<!--脚本说明:
+第一步:把如下代码加入<head>区域中-->
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Original:  Tarjei Davidsen (the@rescueteam.com) -->
+
+<!-- This script and many more are available free online at -->
+<!-- The JavaScript Source!! http://javascript.internet.com -->
+
+<!-- Begin
+var max=0;
+function textlist() {
+max=textlist.arguments.length;
+for (i=0; i<max; i++)
+this[i]=textlist.arguments[i];
+}
+tl = new textlist( 
+" 随着INTERNET时代的逐步到来,人们对网络的认识与感知越来越深刻",
+"上网主要是进行web页面浏览，所以web页面的精彩程度对一个网站的生",
+"人通过制作个人主页展现自己的才华，而且，由于出现了多种制作网页的软件",
+"但是，光用软件就成制作出你想要的各种页面效果吗？答案肯定是否定的但是，光用软件就成制作出你想要的各种页面效果吗？答案肯定是否定的",
+"JavaScript是Netscape(网景)公司首先推出的一种针对WEB页面的解释型语"
+);
+
+var x = 0; pos = 0;
+var l = tl[0].length;
+function textticker() {
+document.tickform.tickfield.value = tl[x].substring(0, pos) + "_";
+if(pos++ == l) {
+pos = 0; 
+setTimeout("textticker()", 2000); 
+if(++x == max) x = 0; 
+l = tl[x].length;
+} else
+setTimeout("textticker()", 50);
+}
+//  End -->
+</script>
+</HEAD>
+
+
+<!--第二步:把如下代码加入<body>区域中-->
+<form name=tickform>
+<textarea name=tickfield rows=3 cols=38 style="background-color: rgb(0,0,0); color: rgb(255,255,255); cursor: default; font-family: Arial; font-size: 12px" wrap=virtual>The news will appear here when the page has finished loading.</textarea>
+</form>
+
+
+<!--第三步:把<body>改为-->
+<body  OnLoad="textticker()">
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,57 @@
+
+<!--第一步:把如下代码加入<head>区域中:-->
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+function playGame(choice) {
+with (document.game) {
+comp = Math.round((Math.random() * 2) + 1); 
+var choicename;
+if (comp == 1) choicename = "“石头”";
+if (comp == 2) choicename = "“布”";
+if (comp == 3) choicename = "“剪子”";
+msg.value = '计算机选择了 ' + choicename + ';  ';
+
+switch(choice) { // calculates score
+case 1 : // rock
+         if (comp == 1) {  draw.value++; msg.value += 'SO，平局！'; break; }
+         if (comp == 2) {  loss.value++;  msg.value += 'SO，你输了！';     break; }
+         if (comp == 3) {  win.value++; msg.value += 'SO，你赢了！';      break; }
+case 2 : // paper
+         if (comp == 1) {  win.value++;  msg.value += 'SO，你赢了！';      break; }
+         if (comp == 2) {  draw.value++; msg.value += 'SO，平局！'; break; }
+         if (comp == 3) {  loss.value++; msg.value += 'SO，你输了！';     break; }
+case 3 : // scissors
+         if (comp == 1) {  loss.value++;  msg.value += 'SO，你输了！';     break; }
+         if (comp == 2) {  win.value++; msg.value += 'SO，你赢了！';      break; }
+         if (comp == 3) {  draw.value++; msg.value += 'SO，平局！'; break; }
+      }
+      msg.value += '  继续？';
+   }
+}
+//  End -->
+</script>
+
+
+<!--第二步:把如下代码加入<body>区域中-->
+<form name=game>
+<table border=1 cellpadding=5>
+<tr>
+<td align=center><font color="#3333FF"><b>你出什么:</b></font></td>
+<td align=center><a href="javascript:void(0);" onClick="playGame(1);"><img src="rock.gif" width=29 height=23 border=0></a></td>
+<td align=center><a href="javascript:void(0);" onClick="playGame(2);"><img src="paper.gif" width=29 height=23 border=0></a></td>
+<td align=center><a href="javascript:void(0);" onClick="playGame(3);"><img src="scissors.gif" width=29 height=23 border=0></a></td>
+</tr>
+<tr>
+<td colspan=4 align=center><input type=text name=msg size=45></td>
+</tr>
+<tr>
+<td colspan=4 align=center>
+<input type=text name=win readonly value="0" size="2"> 赢 <input type=text name=loss readonly value="0" size="2"> 
+输 <input type=text name=draw readonly value="0" size="2">  平
+</td>
+</tr>
+</table>
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

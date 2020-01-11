@@ -1,0 +1,167 @@
+<style type="text/css">
+<!--
+A {FONT-SIZE: 9pt; COLOR: #339933; TEXT-DECORATION: none}
+A:hover {COLOR: #ff33ff; TEXT-DECORATION: none}
+A:link {TEXT-DECORATION: none}
+A:visited {TEXT-DECORATION: none}
+A.normal {FONT-SIZE: 9pt; COLOR: #bb0011; TEXT-DECORATION: none}
+A.normal:hover {COLOR: #0000ff; TEXT-DECORATION: none}
+BODY {FONT-SIZE: 9pt}
+BR {FONT-SIZE: 9pt}
+TD {FONT-SIZE: 9pt; LINE-HEIGHT: 11pt}
+SELECT {FONT-SIZE: 9pt; BACKGROUND-COLOR: #eeeeee; TEXT-ALIGN: center}
+SELECT.smallselsect {FONT-SIZE: 9pt; COLOR: rgb(0,0,128)}
+TH {FONT-WEIGHT: bold; FONT-SIZE: 11pt}
+.input {BORDER-RIGHT: #000000 2px dotted; BORDER-TOP: #000000 2px dotted; FONT-SIZE: 9pt; BORDER-LEFT: #000000 2px dotted; BORDER-BOTTOM: #000000 2px dotted; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: center}
+INPUT.smallinput {FONT-SIZE: 9pt; COLOR: rgb(0,0,128); HEIGHT: 12pt}
+.comm {BACKGROUND-COLOR: #fff2ac}
+FONT.bigfont {FONT-SIZE: 11pt; FONT-FAMILY: "宋体"; TEXT-DECORATION: none}
+TEXTAREA.smallarea {FONT-SIZE: 9pt; COLOR: rgb(0,0,128); BACKGROUND-COLOR: white}
+.shadow {FONT-SIZE: 9pt; FILTER: dropshadow(color="#000011", offx=1, offy=1, positive=2); MARGIN: 10px; WIDTH: 100%; COLOR: #aaaaaa; POSITION: relative}
+.3d {FONT-SIZE: 9pt; FILTER: glow(color=ffffff,strength=1) shadow(color=#aaaaaa,direction:90); MARGIN: 0px; WIDTH: 100%; COLOR: #3333ff; POSITION: relative}
+.menuitems {PADDING-RIGHT: 15px; PADDING-LEFT: 5px; FONT-SIZE: 9pt; CURSOR: hand; COLOR: black; FONT-FAMILY: "宋体"}
+.skin {BORDER-RIGHT: buttonhighlight 2px outset; BORDER-TOP: buttonhighlight 2px outset; FONT-SIZE: 10pt; VISIBILITY: hidden; BORDER-LEFT: buttonhighlight 2px outset; WIDTH: 120px; CURSOR: default; LINE-HEIGHT: 20px; BORDER-BOTTOM: buttonhighlight 2px outset; FONT-FAMILY: "宋体"; POSITION: absolute; BACKGROUND-COLOR: menu; TEXT-ALIGN: left}
+-->
+</style>
+
+<script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+ if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+   document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+ else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+</script>
+
+<SCRIPT language="JavaScript">
+<!--
+var menuskin = "skin";
+var display_url = 0; // Show URLs in status bar?
+
+function showmenuie5() {
+	var rightedge = document.body.clientWidth-event.clientX;
+	var bottomedge = document.body.clientHeight-event.clientY;
+	if (rightedge < ie5menu.offsetWidth)
+		ie5menu.style.left = document.body.scrollLeft + event.clientX - ie5menu.offsetWidth;
+	else
+		ie5menu.style.left = document.body.scrollLeft + event.clientX;
+	if (bottomedge < ie5menu.offsetHeight)
+		ie5menu.style.top = document.body.scrollTop + event.clientY - ie5menu.offsetHeight;
+	else
+		ie5menu.style.top = document.body.scrollTop + event.clientY;
+	showHideLayers("document.layers['ie5menu']","document.all['ie5menu']","show");
+	nereidFade(document.all["ie5menu"],100,50,20);
+	return false;
+}
+
+function hidemenuie5() {
+	nereidFade(document.all["ie5menu"],0,50,10);
+	showHideLayers("document.layers['ie5menu']","document.all['ie5menu']","hide");
+}
+
+function highlightie5() {
+	if (event.srcElement.className == "menuitems") {
+		event.srcElement.style.backgroundColor = "highlight";
+		event.srcElement.style.color = "white";
+		if (display_url)
+			window.status = event.srcElement.url;
+	}
+}
+
+function lowlightie5() {
+	if (event.srcElement.className == "menuitems") {
+		event.srcElement.style.backgroundColor = "menu";
+		event.srcElement.style.color = "black";
+		window.status = "";
+	}
+}
+
+function jumptoie5() {
+	if (event.srcElement.className == "menuitems") {
+		if (event.srcElement.getAttribute("target") != null)
+			window.open(event.srcElement.url, event.srcElement.getAttribute("target"));
+		else
+			window.location = event.srcElement.url;
+	}
+}
+//-->
+</script>
+<SCRIPT language=JavaScript>
+<!--
+function showHideLayers()
+{
+var i,visStr,args,theObj;
+args=showHideLayers.arguments;
+for(i=0;i<(args.length-2);i+=3)
+ {
+   visStr=args[i+2];
+   if(navigator.appName=='Netscape'&&document.layers!=null)
+    {
+      theObj=eval(args[i]);
+      if(theObj)theObj.visibility=visStr;
+    }
+   else if(document.all!=null)
+    {
+      if(visStr=='show')visStr='visible';
+      if(visStr=='hide')visStr='hidden';
+      theObj=eval(args[i+1]);
+      if(theObj)theObj.style.visibility=visStr;
+    }
+ }
+}
+
+nereidFadeObjects = new Object();
+nereidFadeTimers = new Object();
+
+function nereidFade(object, destOp, rate, delta){
+if (!document.all)
+return
+    if (object != "[object]"){
+        setTimeout("nereidFade("+object+","+destOp+","+rate+","+delta+")",0);
+        return;
+    }
+        
+    clearTimeout(nereidFadeTimers[object.sourceIndex]);
+    
+    diff = destOp-object.filters.alpha.opacity;
+    direction = 1;
+    if (object.filters.alpha.opacity > destOp){
+        direction = -1;
+    }
+    delta=Math.min(direction*diff,delta);
+    object.filters.alpha.opacity+=direction*delta;
+
+    if (object.filters.alpha.opacity != destOp){
+        nereidFadeObjects[object.sourceIndex]=object;
+        nereidFadeTimers[object.sourceIndex]=setTimeout("nereidFade(nereidFadeObjects["+object.sourceIndex+"],"+destOp+","+rate+","+delta+")",rate);
+    }
+}
+//-->
+</SCRIPT>
+
+<body onSelectStart="window.event.returnValue=false" ONDRAGSTART="window.event.returnValue=false" bgcolor="#FFFFFF" leftmargin="0" topmargin="0">
+<div class=skin id="ie5menu" onmouseover=highlightie5() onclick=jumptoie5(); onmouseout=lowlightie5() style="filter:alpha(opacity=0); position:absolute; width:97px; height:5px; z-index:2; visibility: hidden; left: 243px; top: 261px;"> 
+
+<a class=menuitems url="http://samool.533.net" target="_blank">傻猫软件</a><br>
+<a class=menuitems url="http://yangshiy.533.net" target="_blank">仕毅风采</a><br>
+<HR>
+<a class=menuitems url="http://www.sina.com.cn" target="_blank">新浪网站</a><br>
+<a class=menuitems url="http://www.onlinedown.net" target="_blank">华军软件</a><br>
+<a class=menuitems url="http://www.163.com" target="_blank">网易社区</a><br>
+<a class=menuitems url="http://www.sohu.com" target="_blank">　搜狐　</a><br>
+
+</div>
+<SCRIPT language=JavaScript1.2>
+<!--
+if (document.all && window.print) {
+	ie5menu.className = menuskin;
+	document.oncontextmenu = showmenuie5;
+	document.body.onclick = hidemenuie5;
+}
+//-->
+</SCRIPT>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

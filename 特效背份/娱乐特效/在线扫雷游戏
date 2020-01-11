@@ -1,0 +1,165 @@
+<BODY onkeydown=javascript:keyDown(); onkeyup=javascript:keyUp(); text=#999999 vLink=#33ff33 aLink=#33ff33 link=#33ff33 bgColor=#000000>
+<CENTER><FONT face=隶书 color=red size=6>在线扫雷游戏</FONT></CENTER>
+<LAYER name="imagepreload" visibility="hidden">
+<DIV style="VISIBILITY: hidden">
+<IMG src="sl-tile0.gif">
+<IMG src="sl-tile1.gif">
+<IMG src="sl-tile2.gif">
+<IMG src="sl-0.gif">
+<IMG src="sl-1.gif">
+<IMG src="sl-2.gif">
+<IMG src="sl-3.gif">
+<IMG src="sl-4.gif">
+<IMG src="sl-5.gif">
+<IMG src="sl-6.gif">
+<IMG src="sl-7.gif">
+<IMG src="sl-8.gif">
+<IMG src="sl-bomb.gif">
+<IMG src="sl-nobomb.gif">
+</DIV></LAYER>
+<CENTER>
+<SCRIPT language=JavaScript>
+<!-- 
+function onEroor(){return true;}
+window.onerror = onEroor;
+
+var mines = [];
+var shown = [];
+var gridx = 16, gridy = 16, maxmines = 40;
+var squaresleft, flagsleft;
+var elapsedtime;
+var playing;
+var placeflag;
+
+function keyDown(e) {
+if(document.layers)
+placeflag = (e.modifiers & Event.CONTROL_MASK) > 0;
+else
+
+placeflag = window.event.ctrlKey;thebombs();}
+
+function keyUp(e) {placeflag = false;thebombs();}
+
+function newgame() {
+var y;
+for(y = 0; y < gridy; ++y)
+{mines[y] = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+shown[y] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];}
+
+var m;
+for(m = 0; m < maxmines; ++m) {
+var x,y;
+do {x = Math.floor(Math.random() * gridx);y = Math.floor(Math.random() * gridy);
+} while(mines[y][x]);
+mines[y][x] = true;
+}
+
+squaresleft = gridy * gridx;
+flagsleft = maxmines;
+elapsedtime = 0;
+playing = true;
+placeflag = false;
+
+buildgrid();
+
+if (document.layers)
+window.captureEvents(Event.KEYDOWN | Event.KEYUP);
+window.onKeyDown = keyDown;window.onKeyUp = keyUp;
+
+setInterval("ticker()", 1000);}
+
+function ticker() {if (playing) {elapsedtime++;thebombs();   }}
+
+function thebombs() {
+self.document.my_form.my_input_1.value=flagsleft;
+self.document.my_form.my_input_2.value=elapsedtime;
+
+}
+
+function buildgrid() {var s = "";var x, y;
+for(y = 0; y < gridy; ++y) {
+for(x = 0; x < gridx; ++x) {
+s = s + '<a href="javascript:gridclick(' + y + ',' + x +');">' +'<img src="sl-tile0.gif" name="grd'+y+'_'+x+'"></a>'}
+s = s + "<br>";
+}
+document.write(s);
+}
+
+function surrounding(y,x) {
+var count = 0;
+if (y > 0 && x > 0 && mines[y-1][x-1]) count++;
+if (y > 0 && mines[y-1][x]) count++;
+if (y > 0 && x < gridx-1 && mines[y-1][x+1]) count++;
+if (x > 0 && mines[y][x-1]) count++;
+if (x < gridx-1 && mines[y][x+1]) count++;
+if (y < gridy-1 && x > 0 && mines[y+1][x-1]) count++;
+if (y < gridy-1 && mines[y+1][x]) count++;
+if (y < gridy-1 && x < gridx-1 && mines[y+1][x+1]) count++;
+return count;
+}
+
+
+function rollback(y,x) {
+if (y >= 0 && y < gridy && x >=0 && x < gridx) {
+if (shown[y][x] != 3) {
+var c = surrounding(y,x);shown[y][x] = 3;squaresleft--;document.images["grd"+y+"_"+x].src = "sl-"+c+".gif";
+if (c == 0) {rollback(y-1,x-1);rollback(y-1,x);rollback(y-1,x+1);rollback(y,x-1);rollback(y,x+1);rollback(y+1,x-1);rollback(y+1,x);rollback(y+1,x+1);         }      }   }}
+
+function dead() {
+var y, x;
+for(y = 0; y < gridy; ++y) {
+for(x = 0; x < gridx; ++x) {
+if (mines[y][x]) {
+if (shown[y][x] != 1) {
+document.images["grd"+y+"_"+x].src = "sl-bomb.gif";
+   }}
+else if (shown[y][x] == 1) {document.images["grd"+y+"_"+x].src = "sl-nobomb.gif";}
+   }}
+alert("噢！你踩到地雷，游戏结束！\n" + "点击刷新按钮重新开始！");playing = false;
+}
+
+
+function gridclick(y, x) {
+if (playing) {
+if (placeflag) {
+if (shown[y][x] < 3) {var s = shown[y][x];var change = true;
+if (s == 1) {flagsleft++;squaresleft++;}
+if (flagsleft == 0 && s == 0) {change = false;}
+else {if (s == 2) s = 0;
+else s++;if (s == 1) {
+flagsleft--;squaresleft--;   }}
+if (change) {shown[y][x] = s;document.images["grd"+y+"_"+x].src =  "sl-tile"+s+".gif";thebombs();}
+if (squaresleft == 0) {alert("非常好！你在 "+elapsedtime+" 秒内扫除了所有地雷！\n"+"点击刷新按钮重新开始游戏！");playing = false;
+      }   }}
+
+else if (shown[y][x] != 1) {
+if (mines[y][x]) {document.images["grd"+y+"_"+x].src = "sl-bomb.gif";dead();}
+else  {rollback(y,x);
+
+         }      }   }}
+
+newgame();
+//-->
+
+</SCRIPT>
+</CENTER>
+<P align=center>
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <FORM name=my_form method=post>剩下地雷：<INPUT 
+      style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BACKGROUND: white; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" 
+      value=40 name=my_input_1> </FORM></TD></TR>
+  <TR>
+    <TD>时间(秒)：<INPUT 
+      style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BACKGROUND: white; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" 
+      value=0 name=my_input_2></TD></TR>
+  <TR>
+    <TD>游戏规则与winmine扫雷游戏相同！</TD></TR>
+  <TR>
+    <TD>使用[Ctrl]+左键标记一个地雷</TD></TR></TBODY></TABLE>
+<P></P><BR>
+</BODY></HTML>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

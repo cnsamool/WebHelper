@@ -1,0 +1,45 @@
+BODY{FONT-SIZE: 12px;COLOR: #000000;FONT-FAMILY:  ËÎÌו;
+scrollbar-face-color: #DEE3E7;
+scrollbar-highlight-color: #FFFFFF;
+scrollbar-shadow-color: #DEE3E7;
+scrollbar-3dlight-color: #D1D7DC;
+scrollbar-arrow-color:  #006699;
+scrollbar-track-color: #EFEFEF;
+scrollbar-darkshadow-color: #98AAB1;}
+
+
+	scrollbar-face-color: #FDFDFD;
+	scrollbar-shadow-color: #FFFFFF;
+	scrollbar-3dlight-color:  #CCCCCC;
+	scrollbar-darkshadow-color:  #CCCCCC;
+	scrollbar-track-color: #FFFFFF;
+	scrollbar-arrow-color:  #CCCCCC;
+
+BODY{FONT-SIZE: 11.5px;COLOR: #000000;FONT-FAMILY: Verdana,ËÎÌו;
+scrollbar-face-color: #DEE3E7;
+scrollbar-highlight-color: #FFFFFF;
+scrollbar-shadow-color: #DEE3E7;
+scrollbar-3dlight-color: #D1D7DC;
+scrollbar-arrow-color:  #006699;
+scrollbar-track-color: #EFEFEF;
+scrollbar-darkshadow-color: #98AAB1;}
+
+
+body{ scrollbar-base-color: #F8F8F8; 
+scrollbar-arrow-color: #cccccc;
+ font-size: 10pt; background-color: #666666 }
+
+
+BODY {
+	SCROLLBAR-BASE-COLOR: #606096;
+	SCROLLBAR-ARROW-COLOR: #FFF788;
+}
+
+
+BODY    {CURSOR: default; FONT-FAMILY:MS Shell Dlg,Tahoma ; FONT-SIZE: 9px;
+SCROLLBAR-BASE-COLOR: #789CC0;
+	SCROLLBAR-ARROW-COLOR: #f0f0f0;}
+
+
+
+

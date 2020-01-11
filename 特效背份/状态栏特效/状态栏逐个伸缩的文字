@@ -1,0 +1,26 @@
+<script LANGUAGE="JavaScript">
+<!--
+// Scrolling message settings
+var MessageText = "如果你觉得《网页助手》好用，请推荐给你的朋友"
+var DisplayLength = 260
+var pos = 1 - DisplayLength;
+function ScrollInStatusBar(){
+var scroll = "";
+pos++;
+if (pos == MessageText.length) pos = 1 - DisplayLength;
+if (pos<0) {
+for (var i=1; i<=Math.abs(pos); i++)
+scroll = scroll + "";
+scroll = scroll + MessageText.substring(0, DisplayLength - i + 1);
+}
+else
+scroll = scroll + MessageText.substring(pos, pos + DisplayLength);
+window.status = scroll;
+//Scrolling speed
+setTimeout("ScrollInStatusBar()",0);
+}
+ScrollInStatusBar()
+//-->
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

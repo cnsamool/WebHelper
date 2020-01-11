@@ -1,0 +1,132 @@
+<body bgcolor="#000000">
+<script language="JavaScript1.2"> 
+
+var no = 6; 
+var speed = 10; 
+snow = new Array(); 
+snow[0] = "seafish1.gif";	
+snow[1] = "seafish2.gif";
+snow[2] = "seafish3.gif"; 
+snow[3] = "seafish4.gif"; 
+snow[4] = "seafish5.gif"; 
+snow[5] = "seafish6.gif"; 
+var maxsize = 80;   
+ 
+var ns4up = (document.layers) ? 1 : 0;  
+var ie4up = (document.all) ? 1 : 0; 
+var dx, xp, yp;    
+var am, stx, sty;  
+var i, doc_width = 500, doc_height = 700; 
+ 
+if (ns4up) { 
+	doc_width = self.innerWidth; 
+	doc_height = self.innerHeight; 
+} else if (ie4up) { 
+	doc_width = document.body.clientWidth; 
+	doc_height = document.body.clientHeight; 
+} 
+ 
+dx = new Array(); 
+xp = new Array(); 
+yp = new Array(); 
+am = new Array(); 
+stx = new Array(); 
+sty = new Array(); 
+var j = 0; 
+ 
+for (i = 0; i < no; ++ i) { 
+	dx[i] = 0;                        
+	xp[i] = Math.random()*(doc_height-maxsize);  
+	yp[i] = Math.random()*(doc_width-maxsize); 
+	am[i] = Math.random()*10;         
+	stx[i] = 0.02 + Math.random()/10; 
+	sty[i] = 0.7 + Math.random();     
+ 
+	if (ns4up) {                     
+		if (i == 0) { 
+			document.write("<layer name=\"dot"+ i +"\" left=\"15\" top=\"15\" visibility=\"show\"><img src=\"" + snow[j] + "\" border=\"0\"></layer>"); 
+		} else { 
+			document.write("<layer name=\"dot"+ i +"\" left=\"15\" top=\"15\" visibility=\"show\"><img src=\"" + snow[j] + "\" border=\"0\"></layer>"); 
+		} 
+	} else if (ie4up) { 
+		if (i == 0) { 
+			document.write("<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: "+ i +"; VISIBILITY: visible; TOP: 15px; LEFT: 15px; width:1;\"><img src=\"" + snow[j] + "\" border=\"0\"></div>"); 
+		} else { 
+			document.write("<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: "+ i +"; VISIBILITY: visible; TOP: 15px; LEFT: 15px; width:1;\"><img src=\"" + snow[j] + "\" border=\"0\"></div>"); 
+		} 
+	} 
+	if (j == (snow.length-1)) { j = 0; } else { j += 1; } 
+} 
+ 
+document.write("<div id=\"damy\" style=\"POSITION: absolute; width:1; Z-INDEX: "+ i +"; VISIBILITY: visible; TOP: 15px; LEFT: " + (doc_width+maxsize) + "px;\">&nbsp;</div>"); 
+ 
+ 
+function snowNS() {  // Netscape main animation function 
+	for (i = 0; i < no; ++ i) {  // iterate for every dot 
+		if (i%2) { 
+			yp[i] += sty[i]; 
+			if (yp[i] > doc_width) { 
+				xp[i] = Math.random()*(doc_height-am[i]-maxsize); 
+				yp[i] = 0-maxsize; 
+				stx[i] = 0.02 + Math.random()/10; 
+				sty[i] = 0.7 + Math.random(); 
+				doc_width = self.innerWidth; 
+				doc_height = self.innerHeight; 
+			} 
+		} else { 
+			yp[i] -= sty[i]; 
+			if (yp[i] < -maxsize) { 
+				xp[i] = Math.random()*(doc_height-am[i]-maxsize); 
+				yp[i] = doc_width; 
+				stx[i] = 0.02 + Math.random()/10; 
+				sty[i] = 0.7 + Math.random(); 
+				doc_width = self.innerWidth; 
+				doc_height = self.innerHeight; 
+			} 
+		} 
+		dx[i] += stx[i]; 
+		document.layers["dot"+i].top = xp[i] + am[i]*Math.sin(dx[i]); 
+		document.layers["dot"+i].left = yp[i]; 
+	} 
+	setTimeout("snowNS()", speed); 
+} 
+ 
+function snowIE() {  // IE main animation function 
+	for (i = 0; i < no; ++ i) {  // iterate for every dot 
+		if (i%2) { 
+			yp[i] += sty[i]; 
+			if (yp[i] > doc_width) { 
+				xp[i] = Math.random()*(doc_height-am[i]-maxsize); 
+				yp[i] = 0-maxsize; 
+				stx[i] = 0.02 + Math.random()/10; 
+				sty[i] = 0.7 + Math.random(); 
+				doc_width = document.body.clientWidth; 
+				doc_height = document.body.clientHeight; 
+			} 
+		} else { 
+			yp[i] -= sty[i]; 
+			if (yp[i] < -maxsize) { 
+				xp[i] = Math.random()*(doc_height-am[i]-maxsize); 
+				yp[i] = doc_width; 
+				stx[i] = 0.02 + Math.random()/10; 
+				sty[i] = 0.7 + Math.random(); 
+				doc_width = document.body.clientWidth; 
+				doc_height = document.body.clientHeight; 
+			} 
+		} 
+		dx[i] += stx[i]; 
+		document.all["dot"+i].style.pixelTop = xp[i] + am[i]*Math.sin(dx[i]); 
+		document.all["dot"+i].style.pixelLeft = yp[i]; 
+	} 
+	setTimeout("snowIE()", speed); 
+} 
+ 
+if (ns4up) { 
+	snowNS(); 
+} else if (ie4up) { 
+	snowIE(); 
+} 
+</script>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

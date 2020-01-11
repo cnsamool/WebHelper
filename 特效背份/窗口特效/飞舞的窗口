@@ -1,0 +1,34 @@
+<SCRIPT language=javascript>
+function WinScroll(direction,xWidth,xHeight){
+if ((navigator.appVersion.indexOf('4')!= -1)){
+self.resizeTo(xWidth,xHeight)
+if (direction == 1){
+self.moveTo((screen.availWidth-xWidth)/2,screen.availHeight-10)
+for (var c=1; c<=(screen.availHeight-(-xHeight))/2; c++)
+self.moveTo((screen.availWidth-xWidth)/2,screen.availHeight-c)
+}
+if (direction == 2){
+var x=screen.availHeight+screen.Height
+self.moveTo((screen.availWidth-xWidth)/2,(screen.availHeight-x))
+for (var c=0; c<=(screen.availHeight-(-xHeight/2)); c++)
+self.moveTo((screen.availWidth-xWidth)/2,(screen.availHeight-x)+c)
+}
+if (direction == 3){
+var x=screen.availWidth-10
+self.moveTo(x,(screen.availHeight-xHeight)/2)
+for (var c=1; c<=(x-(-xWidth))/2; c++)
+self.moveTo((x-c),(screen.availHeight-xHeight)/2)
+}
+
+if (direction == 4){
+var x=screen.availWidth+(xWidth-10)
+self.moveTo((screen.availWidth-x),(screen.availHeight-xHeight)/2)
+for (var c=1; c<=(screen.availWidth-(-xWidth))/2; c++)
+self.moveTo(((screen.availWidth-x)+c),(screen.availHeight-xHeight)/2)
+}
+}
+}
+for (c=1; c<=4; c++) WinScroll(c,400,400)
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

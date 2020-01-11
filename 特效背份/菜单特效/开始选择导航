@@ -1,0 +1,52 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+把如下代码加入<body>区域中:
+<script>
+alert("你可以输入1,2,3,4,5分别进入1.htm,2.htm,3.htm,4.htm,5.htm,如果输入不对页面就会没现象")
+</script>
+<script language="JavaScript">
+
+
+right1 = "1.htm";
+ 
+right2 = "2.htm";
+
+right3 = "3.htm";
+
+right4 = "4.htm";
+
+right5 = "5.htm";
+ 
+name1 = "1"
+
+name2 = "2"
+
+name3 = "3"
+ 
+name4 = "4"
+
+name5 = "5"
+
+var name = prompt("Please Type In Your Name","");
+// if... else statement... right, // confirm this, wrong, go to // wrong... 
+
+if (name ==name1) {location.href=right1}
+
+if (name ==name2) {location.href=right2}
+
+if (name ==name3) {location.href=right3}
+
+if (name ==name4) {location.href=right4}
+
+if (name ==name5) {location.href=right5}
+</script>
+
+
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

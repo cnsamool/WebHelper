@@ -1,0 +1,59 @@
+<head>
+<script>
+<!-- Beginning of JavaScript -
+
+var now
+var second
+var minute
+var hour
+var degreeSecond
+var degreeMinute
+var degreeHour
+var timer
+var stepDegree=6
+var stepDegreeHour=30
+
+function checkTime() {
+	if (document.all) {
+		now=new Date()
+		second=now.getSeconds()
+		minute=now.getMinutes()
+		hour=now.getHours()
+		if (hour>=12) {hour=hour-12}
+		spinIt()
+		timer=setTimeout("checkTime()",200)
+	}
+}
+
+function spinIt() {
+	window.status=hour
+	secondObj.SetIdentity()
+	minuteObj.SetIdentity()
+	hourObj.SetIdentity()
+	
+	degreeSecond=180+stepDegree*second
+	degreeMinute=180+stepDegree*minute
+	degreeHour=180+stepDegreeHour*hour+(Math.floor(stepDegree*minute/12))
+	
+	secondObj.Rotate(0,0,degreeSecond)
+	minuteObj.Rotate(0,0,degreeMinute)
+	hourObj.Rotate(0,0,degreeHour)
+}
+
+// - End of JavaScript - -->
+</script>
+</head>
+
+<body onload=checkTime()>
+<DIV style="LEFT: 10px; POSITION: absolute; TOP: 10px">
+<DIV style="LEFT: 0px; POSITION: absolute; TOP: 0px"><IMG height=102 src="bgclock.gif" width=100> </DIV>
+<DIV style="LEFT: 0px; POSITION: absolute; TOP: 0px">
+<OBJECT classid=CLSID:369303C2-D7AC-11D0-89D5-00A0C90833E6 height=14 id=secondObj style="HEIGHT: 102px; WIDTH: 100px" width=14><PARAM NAME="HighQuality" VALUE="1"><PARAM NAME="Line0001" VALUE="SetFillStyle(1)"><PARAM NAME="Line0002" VALUE="SetLineColor(80,20,20)"><PARAM NAME="Line0003" VALUE="SetFillColor(80,20,20)"><PARAM NAME="Line0004" VALUE="Rect(0,0,1,32)"></OBJECT></DIV>
+<DIV style="LEFT: 0px; POSITION: absolute; TOP: 0px">
+<OBJECT classid=CLSID:369303C2-D7AC-11D0-89D5-00A0C90833E6 height=14 id=minuteObj style="HEIGHT: 102px; WIDTH: 100px" width=14><PARAM NAME="HighQuality" VALUE="1"><PARAM NAME="Line0001" VALUE="SetFillStyle(1)"><PARAM NAME="Line0002" VALUE="SetLineColor(50,50,50)"><PARAM NAME="Line0003" VALUE="SetFillColor(50,50,50)"><PARAM NAME="Line0004" VALUE="Rect(0,0,1,30)"></OBJECT></DIV>
+<DIV style="LEFT: 0px; POSITION: absolute; TOP: 0px">
+<OBJECT classid=CLSID:369303C2-D7AC-11D0-89D5-00A0C90833E6 height=14 id=hourObj style="HEIGHT: 102px; WIDTH: 100px" width=14><PARAM NAME="HighQuality" VALUE="1"><PARAM NAME="Line0001" VALUE="SetFillStyle(1)"><PARAM NAME="Line0002" VALUE="SetLineColor(50,50,50)"><PARAM NAME="Line0003" VALUE="SetFillColor(50,50,50)"><PARAM NAME="Line0004" VALUE="Rect(0,0,1,16)"></OBJECT></DIV></DIV>
+<DIV style="COLOR: #444444; FONT-SIZE: 8pt; LEFT: 200px; LETTER-SPACING: 0.6em; LINE-HEIGHT: 200%; POSITION: absolute; TEXT-ALIGN: center; TOP: 20px; WIDTH: 200px; fomnt-family: Verdana"></DIV>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

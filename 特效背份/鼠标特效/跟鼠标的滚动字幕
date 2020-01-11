@@ -1,0 +1,28 @@
+<script language="JavaScript1.2">
+var scroller_msg='网页助手 http://samool.533.net'
+var dismissafter=0
+var initialvisible=0
+if (document.all)
+document.write('<marquee id="curscroll" style="position:absolute;width:150px;border:1px solid black;font-family:宋体;font-size:12px;color:#FF0000;background-color:#FFFFFF;visibility:hidden">'+scroller_msg+'</marquee>')
+function followcursor(){
+//move cursor function for IE
+if (initialvisible==0){
+curscroll.style.visibility="visible"
+initialvisible=1
+}
+curscroll.style.left=document.body.scrollLeft+event.clientX+10
+curscroll.style.top=document.body.scrollTop+event.clientY+10
+}
+function dismissmessage(){
+curscroll.style.visibility="hidden"
+}
+if (document.all){
+document.onmousemove=followcursor
+document.ondblclick=dismissmessage
+if (dismissafter!=0)
+setTimeout("dismissmessage()",dismissafter*1000)
+}
+
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

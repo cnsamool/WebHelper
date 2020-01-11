@@ -1,0 +1,51 @@
+<script language="JavaScript">
+if (!document.layers&&!document.all)
+event="test"
+function showtip2(current,e,text){
+
+
+if (document.all&&document.readyState=="complete"){
+document.all.tooltip2.innerHTML='<marquee style="border:1px dashed #008000">'+text+'</marquee>'
+document.all.tooltip2.style.pixelLeft=event.clientX+document.body.scrollLeft+10
+document.all.tooltip2.style.pixelTop=event.clientY+document.body.scrollTop+10
+document.all.tooltip2.style.visibility="visible"
+}
+
+else if (document.layers){
+document.tooltip2.document.nstip.document.write('<b>'+text+'</b>')
+document.tooltip2.document.nstip.document.close()
+document.tooltip2.document.nstip.left=0
+currentscroll=setInterval("scrolltip()",100)
+document.tooltip2.left=e.pageX+10
+document.tooltip2.top=e.pageY+10
+document.tooltip2.visibility="show"
+}
+}
+function hidetip2(){
+if (document.all)
+document.all.tooltip2.style.visibility="hidden"
+else if (document.layers){
+clearInterval(currentscroll)
+document.tooltip2.visibility="hidden"
+}
+}
+
+function scrolltip(){
+if (document.tooltip2.document.nstip.left>=-document.tooltip2.document.nstip.document.width)
+document.tooltip2.document.nstip.left-=5
+else
+document.tooltip2.document.nstip.left=150
+}
+</script>
+
+<body>
+<div id="tooltip2" style="background-color: #BBFFBB; clip: rect(0px 200px 50px 0px); height: 1px; left: -800px; position: absolute; top: 0px; visibility: visible; width: 150px; z-index: 2"></div>
+<a href="http://www.sina.com.cn" onmouseout="hidetip2()" onmouseover="showtip2(this,event,'我喜欢看它的新闻！')" target="_blank">新浪网站</a><br>
+<a href="http://www.newhua.com.cn" onmouseout="hidetip2()" onmouseover="showtip2(this,event,'要下载软件就到这里找。')" target="_blank">华军软件园</a><br>
+<a href="http://www.netease.com" onmouseout="hidetip2()" onmouseover="showtip2(this,event,'三大门户网站之一呀！')" target="_blank">网易</a><br>
+<a href="http://fx7.126.com" onmouseout="hidetip2()" onmouseover="showtip2(this,event,'作者雁去无声在这里等待你的到来')" target="_blank">傻猫软件</a><br>
+<a href="http://f7x.126.com" onmouseout="hidetip2()" onmouseover="showtip2(this,event,'一个朋友的个人网站')" target="_blank">仕毅风采</a><br>
+</body>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

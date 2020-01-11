@@ -1,0 +1,33 @@
+<SCRIPT LANGUAGE=JAVASCRIPT>
+function makeArray(n)
+{
+this.length = n;
+for (i=0; i<n; i++) this[i]="";
+}
+stcnt = 16;
+msg = "ÉµÃ¨Èí¼þ http://samool.533.net";
+wmsg = new makeArray(32);
+wmsg[0]=msg;
+blnk ="                    ";
+for (i=1; i<32; i++)
+{
+b = blnk.substring(0,i);
+for (j=0; j<msg.length; j++)
+wmsg[i]=wmsg[i]+msg.charAt(j)+b;
+}
+function wiper()
+{
+if (stcnt > -1) str = wmsg[stcnt]; else str = wmsg[0];
+if (stcnt-- < -40) stcnt=31;
+window.status = str;
+timeID = window.setTimeout("wiper()",150);
+}
+// -->
+
+</SCRIPT>
+<body ONLOAD="wiper()">
+
+
+
+<!--±¾ÍøÒ³ÓÉ¡¶ÍøÒ³ÖúÊÖV1.1¡·ÖÆ×÷    °æÈ¨ËùÓÐ£ºÉµÃ¨Èí¼þ -->
+<!--Çë·ÃÎÊÉµÃ¨Èí¼þ¹Ù·½ÍøÕ¾   http://samool.533.net  -->

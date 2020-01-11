@@ -1,0 +1,43 @@
+<SCRIPT language=javascript><!--
+function out()
+{
+if(window.event.toElement.id!="menu" && window.event.toElement.id!="link")
+  menu.style.visibility="hidden";
+}
+//-->
+function out1()
+{
+if(window.event.toElement.id!="menu1" && window.event.toElement.id!="link")
+  menu1.style.visibility="hidden";
+}
+//-->
+</SCRIPT>
+
+<body>
+<div id="back" onmouseout="out()"style="position:absolute;top:225;left:250;width:160;height:40;z-index:1;visibility:visible;">
+<span id="menubar"  onmouseover="menu.style.visibility='visible'">
+<font color=red size=2>菜单一</span>
+<div border=1  id="menu" style="position:absolute;top:15;left:0;width:75;height:10;z-index:2;visibility:hidden;">
+<a id="link" href="LINK1.htm">LINK1</a>
+<a id="link" href="LINK2.htm">LINK2</a>
+<a id="link" href="LINK3.htm">LINK3</a>
+<a id="link" href="LINK4.htm">LINK4</a>
+<a id="link" href="LINK5.htm">LINK5</a>
+<a id="link" href="LINK6.htm">LINK6</a>
+</div>
+</div>
+<div id="back" onmouseout="out1()"style="position:absolute;top:225;left:330;width:160;height:40;z-index:3;visibility:visible;">
+<span id="menubar"  onmouseover="menu1.style.visibility='visible'">
+<font  color=red size=2>菜单二</span>
+<div border=1  id="menu1" style="position:absolute;top:15;left:0;width:50;height:10;z-index:4;visibility:hidden;">
+<a id="link" href="LINK1.htm">LINK1</a>
+<a id="link" href="LINK2.htm">LINK2</a>
+<a id="link" href="LINK3.htm">LINK3</a>
+<a id="link" href="LINK4.htm">LINK4</a>
+<a id="link" href="LINK5.htm">LINK5</a>
+<a id="link" href="LINK6.htm">LINK6</a>
+</div>
+</div>
+</div>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,148 @@
+    计数器(Access Counter)可以记录网页被访问的次数，在万维网上的使用十分普遍，其编写方法很多，从简单的SSI命令到用CGI程序生成内嵌图像等。计数器除了记录点击次数外，还可以记录访问者的IP、OS、浏览器类型等内容，使你对自己网站的访问情况有个全面的了解，本章主要介绍点击次数的统计和显示方法。
+
+    一、记录(log)文件 
+    1、grep
+    对于Web服务器而言，都有记录文件记录着详细的访问信息，其名称通常为access_log，下面是一个例子：
+
+01: dialup-9.austin.io.com - - [02/Oct/1995:20:18:05 -0500] "GET /phoenix/ HTTP/1.0" 200 2330
+02: crossnet.org - - [08/Oct/1995:19:56:45 -0500] "HEAD / HTTP/1.0" 200 0
+03: dialup-2.austin.io.com - - [09/Oct/1995:07:54:56 -0500] "GET /leading-rein/orders HTTP/1.0" 401 -
+04: onramp1-9.onr.com - - [10/Oct/1995:11:11:40 -0500] "GET / HTTP/1.0" 200 1529
+05: onramp1-9.onr.com - - [10/Oct/1995:11:11:43 -0500] "GET /accn.jpg HTTP/1.0" 200 20342
+06: onramp1-9.onr.com - - [10/Oct/1995:11:11:46 -0500] "GET /home.gif HTTP/1.0" 200 1331
+07: dialup-3.austin.io.com - - [12/Oct/1995:08:04:27 -0500] "GET /cgi-bin/env.cgi?
+08: SavedName=+&First+Name=Eric&Last+Name=Herrmann&Street=&City=&State=&
+09: zip=&Phone+Number=%28999%29+999-9999+&Email+Address=&
+10: simple=+Submit+Registration+ HTTP/1.0" 200 1261
+11: dialup-20.austin.io.com - - [14/Oct/1995:16:40:04 -0500] "GET /leading-rein/index.cgi?unique_id=9658-199.170.89.58-813706781 HTTP/1.0" 200 1109 
+    注；当主页在srm.conf中被命名为welcome.html、index.cgi、index.shtml等时，对其的访问记录，可能只含有目录名而不包含该文件名。
+    我们可以用UNIX命令grep来统计主页被访问的次数，grep命令通常输出每一行匹配结果，但可以加上参数-c以输出匹配行的数目，grep详见UNIX帮助。下面是一个简单的例子grep.cgi：
+
+1: #!/usr/local/bin/perl
+2: print "content-type: text/html\n\n";
+3: $num = `grep -c 'GET / HTTP' /your-server-root/logs/access_log` ;
+4: $num += `grep -c 'GET /index.shtml' /your-server-root/logs/access_log` ;
+5: $num += `grep -c 'GET /index.html' /your-server-root /logs/access_log` ;
+6: print "$num\n"; 
+    现在就可以在主页中加上SSI指令来显示计数了，例如：
+
+01: <html>
+02: <head><title>grep test</title>
+03: <body>
+04: <hr noshade>
+05: This page has been accessed
+06: <!--#exec cgi="grep1.cgi" --> times.
+07: <hr noshade>
+08: </body>
+09: </html> 
+    别忘了把此文件扩展名改为.shtml。在grep.cgi中，grep命令中包围模式的单引号告诉UNIX shell不改变该串的内容以精确匹配。
+    这种方法有许多缺陷，首先是效率低，用grep来匹配花时间较长，可能要几秒钟的时间，这对一个简单的文本计数器而言太长了。其次，对每一个需要计数器的页面CGI文件均不相同。最后一个对某些人来说不算是个问题，就是要把Web服务器设置成允许SSI执行，即将其目录映射略加修改。
+    2、page-stats
+    有一个叫page-stats的程序较好地解决了grep的问题。它查看HTTP daemon的access_log并寻找在标识文件中指定网页的访问，然后计算其数目并生成一个HTML形式的统计页面。这样，你既得到了页面的详细统计信息，同时又得到了可显示的结果页面，这样的例子可在http://www.nease.net/tppmsgs/msgs0.htm#35找到。还可以用grep命令在统计页面中查找所需信息并生成自己的显示形式，这样速度就快多了。
+    注意不应在建立自己的统计时运行该程序，否则会导致冲突。应该把它放到任务列表中用UNIX命令cron定时执行，每天、每小时甚至每几分钟运行一次。cron详见UNIX帮助。
+    3、wusage
+    另外一个广为应用的服务器统计程序是由Thomas Boutell(boutell@boutell.com)编写的应用于整个服务器的wusage，它生成很详细的信息，包括服务器怎样、何时及从何处被访问等等。它每周运行一次，可以生成漂亮的图表结果，十分直观。
+    使用wrsage要求使用ncSA或CERN的Web Server或任何有标准记录文件格式的服务器，还需要有C编译器。
+随着时间推移，access_file会越来越庞大，必须定期截留，这时先查看最近一周wusage是否已生成了完整的报表，确定统计结束时间，然后把access_log中该时间前的访问记录删掉，并把wusage生成的结果保存在一个目录中，以便wusage可以生成过去访问情况的图表。
+
+    二、创建自己的计数器
+    除了使用access_log记录文件外，我们可以创建自己的计数器。这时首先必须决定用何种形式存贮计数结果，是用文本文件还是用DBM文件，然后要决定是否进行文件同步访问的保护，这是用文件锁定来实现的，最后就是确定数据的存贮格式了。
+    1、使用DBM文件
+    对DBM文件而言，常用的函数有dbmopen()、dbmclose()、reset()、each()、values()和keys()，用于计数器时，主要使用前两个函数。dbmopen()函数把DBM文件与关联数组绑定，调用语法为：
+dbmopen (%array_name, DB_filename, Read_write_mode);
+如果这时指定的数据库文件不存在，则自动创建两个名为DB_filename.dir和DB_filename.pag的文件，除非把读写模式设为undef值。 
+缺省的，只有64个记录被读进内存，可以通过给%array_name分配大小来改变此缺省值。如果你只是给自己的网页做计数，缺省值已经足够了，但如果是给整个服务器建立计数器，一般需要更大的值。
+现在看看这三个参数。当调用dbmopen时，%array_name原有的值都被清除(如果有的话)，用DBM文件中的值替换掉，给之赋予新值很简单：$array_name{'new_key'} = value; 当调用dbmclose （%array_name);语句时绑定被解除，关联数组中的内容被写如DBM文件，也可以不关闭文件而将内容写入，方法是调用reset (%array_name);语句，注意此语句并不是重置DBM文件，而是将内存中的数据写入文件。第二个参数DB_filename是不包含扩展名的，至于读写模式详见本教程的语言部分。
+下面是个使用DBM文件的计数器的简单例子：
+
+1: dbmopen(%COUNTERS, $DOCUMENT_ROOT/DBM_FILES/counters,0666);
+2: if(!(defined($counters{'my_counter'})){
+3: $counters{'my_counter'}=0;}
+4: $counters{'my_counter'})++;
+5: $count=$counters{'my_counter'};
+6: dbmclose (counters); 
+    2、文本文件
+    如果不用DBM文件而用文本文件，除了打开、关闭文件外，还要涉及到数据的读写问题，必须确定合适的数据格式，基本步骤如下： 
+(1)打开文件
+(2)读取计数
+(3)自增
+(4)写入新值
+(5)关闭文件 
+    3、文件锁定
+    当更新文件内容时，该文件可能同时被另一个进程修改。对计数器程序而言，如果两个或多个人同时访问页面调用了计数器程序，就会出现多个进程同时修改同一文件的情况，这样有的进程的修改就会失效。当然这并不是太大的问题，只是失去一些计数而已，不过计数器就不准确了，访问的人越多，这个问题就越大。解决办法就是修改时通知其它试图打开该文件的进程等待，或叫文件锁定，修改完再释放，允许其它进程打开文件并修改。有两种方法，一是创建自己的锁定机制，一种是使用系统函数flock()。
+    (1)创建自己的文件锁
+    这种方法具体实现是创建和删除一个特定名称的文件，这在资源共享机制中通常称作semaphore。下面是个例子：
+
+01: While(-f counter.lock){
+02: select(undef,undef,undef,0.1);}
+03: open(LOCKFILE,">counter.lock);
+04: dbmopen(%COUNTERS, $DOCUMENT_ROOT/DBM_FILES/counters,0666);
+05: if(!(defined($counters{'my_counter'})){
+06: $counters{'my_counter'}=0;}
+07: $counters{'my_counter'})++;
+08: $count=$counters{'my_counter'};
+09: dbmclose (counters);
+10: close(LOCKFILE);
+11: unlink(counter.lock); 
+    首先检查锁定标志文件是否存在，如果存在，就说明另一个进程正在使用该文件，于是等待直到该文件(此处命名为counter.lock)不存在为止。此处用select()的特殊形式循环等待，此语句使程序进入休眠状态一段时间，该时间段由最后一个参数定义。之所以不用sleep()函数是因为其基本单位为秒，对这种文件锁定而言太长了，几个微秒就足够了。
+当锁定标志文件不再存在，就创建自己的锁定标志文件并开始修改计数，完成后关闭该文件并用unlink函数将之删除，这样其它的进程又被允许修改计数。锁定标志文件并不是特殊的文件，其文件名也可以由你自己随意选择。 
+(2)使用flock()
+    其实锁定文件是很普通的编程步骤，系统函数flock()提供了这一功能，如果在你的系统上不提供的话，可以使用前面介绍的方法自己实现。
+flock()的语法为：
+flock (filehandle, lock_type);
+参数filehandle为用open()函数打开的文件句柄，lock_type可以为下面四个值之一：
+
+1:定义共享锁。对计数器而言不适用。
+2:定义排他锁。
+3:定义非阻止锁。此处亦不用。
+4:解除锁定。 
+使用flock()实现的文件锁定例子如下：
+
+1a: dbmopen(%counters,"filename", 0666);
+or
+1b: OPEN(counters,"<filename")'
+2: flock(counters,2);
+3: if(!(defined($counters{'my_counter'})){
+4: $counters{'my_counter'}=0;}
+5: $counters{'my_counter'})++;
+6: $count=$counters{'my_counter'};
+7: dbmclose (counters);
+8: flock(counters,8); 
+4、输出计数结果
+    现在一切就绪，只剩下输出我们的计数结果了，有三种输出方法：
+    (1)用上面谈到的SSI方法输出。
+    (2)创建各种文本格式输出。
+    (3)生成各种漂亮的图形结果输出，本教程的《动态创建图像》一章讲述了基本原理并提供了一个x-bitmap格式的小例子，下面介绍两个更完善和漂亮的程序/库，这两个例子均需要C编译器。 
+    5、www Homepage Access Counter
+    这是一个广为应用的网页计数程序，它利用已有的GIF图象连接起来生成一个GIF图象，此程序是用C语言写的，有适用于各种操作系统的版本。它提供了很多参数，功能比较齐全，生成的图象结果也很漂亮，可以选择图像格式，其自带了一些数字样式，但你可以增加自己的数字图像生成各种想要的图像，cervantes.comptons.com/digits/digits.htm提供了很多GIF数字图象。其参数通过QUERY_STRING传递，且必须是小写字母，下面是个较复杂的调用例子： 
+<img src="/cgi-bin/Count.cgi?ft=9|frgb=69;139;50|tr=0|trgb=0;0;0|wxh=15;20|md=6|dd=A|st=5|sh=1|df=count.dat" align=absmiddle>; 
+    其参数详细说明和使用方法详见上述下载网址。如果有必要的话，研究并修改一下其源程序可以使你生成更适合于自己需要的图象。
+    6、使用GD图形库
+    www Homepage Access Counter利用现有的数字图象简化了一部分的工作，其目的就是用于图形计数器。GD图形库的功能更加强大，不仅可以用于创建图形计数器，还可以生成各种统计图表，还提供了Perl接口库。GD及其衍生的程序详见本教程《动态创建图像》一章。 
+    在下载的程序中有一个名为gddemo.c的程序演示了其使用方法，在sparke.cs.nyu.edu:8086/cgi.htm有其用于计数器的例子。下面是一个通过GD.pm调用GD图形库生成图像的Perl程序例：
+
+#!/usr/bin/perl
+
+use GD;
+
+# create a new image
+$im = new GD:Image(100,100);
+# allocate some colors
+$white = $im->colorAllocate(255,255,255);
+$black = $im->colorAllocate(0,0,0);
+$red = $im->colorAllocate(255,0,0);
+$blue = $im->colorAllocate(0,0,255);
+# make the background transparent and interlaced
+$im->transparent($white);
+$im->interlaced('true');
+# Put a black frame around the picture
+$im->rectangle(0,0,99,99,$black);
+# Draw a blue oval
+$im->arc(50,50,95,75,0,360,$blue);
+# And fill it with red
+$im->fill(50,50,$red);
+# Convert the image to GIF and print it on standard output
+print $im->gif; 
+
+
+

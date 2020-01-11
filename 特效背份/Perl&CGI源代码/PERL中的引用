@@ -1,0 +1,191 @@
+语句@array = list;可以创建数组的引用，中括号可以创建匿名数组的引用。下面语句为用于画图的三维数组的例子： 
+$line = ['solid' , 'black' , ['1','2','3'] , ['4','5','6']]; 
+此语句建立了一个含四个元素的三维数组，变量$line指向该数组。前两个元素是标量，存贮线条的类型和颜色，后两个元素是匿名数组的引用，存贮线条的起点和终点。访问其元素语法如下： 
+
+$arrayReference->[$index] single-dimensional array 
+$arrayReference->[$index1][$index2] two-dimensional array 
+$arrayReference->[$index1][$index2][$index3] three-dimensional array 
+
+可以创建在你的智力、设计经验和计算机的内存允许的情况下极尽复杂的结构，但最好对可能读到或管理你的代码的人友好一些--尽量使代码简单些。另一方面，如果你想向别人炫耀你的编程能力，Perl给你足够的机会和能力编写连自己都难免糊涂的代码。
+建议：当你想使用多于三维的数组时，最好考虑使用其它数据结构来简化代码。 
+下面为创建和使用二维数组的例子： 
+
+1 #!/usr/bin/perl 
+2 # 
+3 # Using Multi-dimensional Array references 
+4 # 
+5 $line = ['solid', 'black', ['1','2','3'] , ['4', '5', '6']]; 
+6 print "$line->[0] = $line->[0] n"; 
+7 print "$line->[1] = $line->[1] n"; 
+8 print "$line->[2][0] = $line->[2][0] n"; 
+9 print "$line->[2][1] = $line->[2][1] n"; 
+10 print "$line->[2][2] = $line->[2][2] n"; 
+11 print "$line->[3][0] = $line->[3][0] n"; 
+12 print "$line->[3][1] = $line->[3][1] n"; 
+13 print "$line->[3][2] = $line->[3][2] n"; 
+14 print "n"; # The obligatory output beautifier. 
+
+结果输出如下： 
+
+$line->[0] = solid 
+$line->[1] = black 
+$line->[2][0] = 1 
+$line->[2][1] = 2 
+$line->[2][2] = 3 
+$line->[3][0] = 4 
+$line->[3][1] = 5 
+$line->[3][2] = 6 
+
+那么三维数组又如何呢？下面是上例略为改动的版本。 
+
+1 #!/usr/bin/perl 
+2 # 
+3 # Using Multi-dimensional Array references again 
+4 # 
+5 $line = ['solid', 'black', ['1','2','3', ['4', '5', '6']]]; 
+6 print "$line->[0] = $line->[0] n"; 
+7 print "$line->[1] = $line->[1] n"; 
+8 print "$line->[2][0] = $line->[2][0] n"; 
+9 print "$line->[2][1] = $line->[2][1] n"; 
+10 print "$line->[2][2] = $line->[2][2] n"; 
+11 print "$line->[2][3][0] = $line->[2][3][0] n"; 
+12 print "$line->[2][3][1] = $line->[2][3][1] n"; 
+13 print "$line->[2][3][2] = $line->[2][3][2] n"; 
+14 print "n"; 
+
+结果输出如下： 
+
+$line->[0] = solid 
+$line->[1] = black 
+$line->[2][0] = 1 
+$line->[2][1] = 2 
+$line->[2][2] = 3 
+$line->[2][3][0] = 4 
+$line->[2][3][1] = 5 
+$line->[2][3][2] = 6 
+
+访问第三层元素的方式形如$line->[2][3][0]，类似于C语言中的Array_pointer[2][3][0]。本例中，下标均为数字，当然亦可用变量代替。用这种方法可以把数组和哈希表结合起来构成复杂的结构，如下： 
+
+1 #!/usr/bin/perl 
+2 # 
+3 # Using Multi-dimensional Array and Hash references 
+4 # 
+5 %cube = ( 
+6 '0', ['0', '0', '0'], 
+7 '1', ['0', '0', '1'], 
+8 '2', ['0', '1', '0'], 
+9 '3', ['0', '1', '1'], 
+10 '4', ['1', '0', '0'], 
+11 '5', ['1', '0', '1'], 
+12 '6', ['1', '1', '0'], 
+13 '7', ['1', '1', '1'] 
+14 ); 
+15 $pointer = %cube; 
+16 print "n Da Cube n"; 
+17 foreach $i (sort keys %$pointer) { 
+18 $list = $$pointer{$i}; 
+19 $x = $list->[0]; 
+20 $y = $list->[1]; 
+21 $z = $list->[2]; 
+22 printf " Point $i = $x,$y,$z n"; 
+23 } 
+
+结果输出如下： 
+
+Da Cube 
+Point 0 = 0,0,0 
+Point 1 = 0,0,1 
+Point 2 = 0,1,0 
+Point 3 = 0,1,1 
+Point 4 = 1,0,0 
+Point 5 = 1,0,1 
+Point 6 = 1,1,0 
+Point 7 = 1,1,1 
+
+这是一个定义立方体的例子。%cube中保存的是点号和坐标，坐标是个含三个数字的数组。变量$list获取坐标数组的引用：$list = $$ pointer{$i}; 然后访问各坐标值：$x = $list->[0]; ... 也可用如下方法给$x、$y和$z赋值：($x,$y,$z) = @$list; 
+使用哈希表和数组时，用$和用->是类似的，对数组而言下面两个语句等效： 
+$$names[0] = "kamran"; 
+$names->[0] = "kamran"; 
+对哈希表而言下面两个语句等效： 
+$$lastnames{"kamran"} = "Husain"; 
+$lastnames->{"kamran"} = "Husain"; 
+Perl中的数组可以在运行中创建和扩展。当数组的引用第一次在等式左边出现时，该数组自动被创建，简单变量和多维数组也是一样。如下句，如果数组contours不存在，则被创建： 
+$contours[$x][$y][$z] = &xlate($mouseX, $mouseY); 
+
+六、子程序的引用 
+
+perl中子程序的引用与C中函数的指针类似，构造方法如下： 
+$pointer_to_sub = sub {... declaration of sub ...}; 
+通过所构造的引用调用子程序的方法为： 
+&$pointer_to_sub(parameters); 
+子程序模板 
+子程序的返回值不仅限于数据，还可以返回子程序的引用。返回的子程序在调用处执行，但却是在最初被创建的调用处被设置，这是由Perl对Closure处理的方式决定的。Closure意即如果你定义了一个函数，它就以最初定义的内容运行。(Closure详见OOP的参考书)下面的例子中，设置了多个错误信息显示子程序，这样的子程序定义方法可用于创建模板。 
+
+#!/usr/bin/perl 
+sub errorMsg { 
+my $lvl = shift; 
+# 
+# define the subroutine to run when called. 
+# 
+return sub { 
+my $msg = shift; # Define the error type now. 
+print "Err Level $lvl:$msgn"; }; # print later. 
+} 
+$severe = errorMsg("Severe"); 
+$fatal = errorMsg("Fatal"); 
+$annoy = errorMsg("Annoying"); 
+
+&$severe("Divide by zero"); 
+&$fatal("Did you forget to use a semi-colon?"); 
+&$annoy("Uninitialized variable in use"); 
+
+结果输出如下： 
+
+Err Level Severe:Divide by zero 
+Err Level Fatal:Did you forget to use a semi-colon? 
+Err Level Annoying:Uninitialized variable in use 
+
+上例中，子程序errorMsg使用了局域变量$lvl，用于返回给调用者。当errorMsg被调用时，$lvl的值设置到返回的子程序内容中，虽然是用的my函数。三次调用设置了三个不同的$lvl变量值。当errorMsg返回时，$lvl的值保存到每次被声明时所产生的子程序代码中。最后三句对产生的子程序引用进行调用时$msg的值被替换，但$lvl的值仍是相应子程序代码创建时的值。 
+很混淆是吗？是的，所以这样的代码在Perl程序中很少见。 
+
+七、数组与子程序 
+
+数组利于管理相关数据，本节讨论如何向子程序传递多个数组。前面我们讲过用@_传递子程序的参数，但是@_是一个单维数组，不管你传递的参数是多少个数组，都按序存贮在@_中，故用形如my(@a,@b)=@_; 的语句来获取参数值时，全部值都赋给了@a，而@b为空。那么怎么把一个以上的数组传递给子程序呢？方法是用引用。见下例： 
+
+#!/usr/bin/perl 
+@names = (mickey, goofy, daffy ); 
+@phones = (5551234, 5554321, 666 ); 
+$i = 0; 
+sub listem { 
+my ($a,$b) = @_; 
+foreach (@$a) { 
+print "a[$i] = " . @$a[$i] . " " . "tb[$i] = " . @$b[$i] ."n"; 
+$i++; 
+} 
+} 
+&listem(@names, @phones); 
+
+结果输出如下： 
+
+a[0] = mickey b[0] = 5551234 
+a[1] = goofy b[1] = 5554321 
+a[2] = daffy b[2] = 666 
+注意： 
+
+1、当想传递给子程序的参数是多于一个的数组时一定要使用引用。 
+2、一定不要在子程序中使用形如 (@variable)=@_; 的语句处理参数，除非你想把所有参数集中到一个长的数组中。 
+
+八、文件句柄的引用 
+
+有时，必须将同一信息输出到不同的文件，例如，某程序可能在一个实例中输出到屏幕，另一个输出到打印机，再一个输出到记录文件，甚至同时输出到这三个文件。相比较于每种处理写一个单独的语句，可以有更好的实现方式如下： 
+spitOut(*STDIN); 
+spitOut(*LPHANDLE); 
+spitOut(*LOGHANDLE); 
+其中子程序spitOut的代码如下： 
+
+sub spitOut { 
+my $fh = shift; 
+print $fh "Gee Wilbur, I like this lettucen"; 
+} 
+
+注意其中文件句柄引用的语法为*FILEHANDLE。 

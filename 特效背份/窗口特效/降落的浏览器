@@ -1,0 +1,24 @@
+
+<!--第一步：先将下列代码复制到<head></head>之间：-->
+<script>
+function drop(n) {
+if(self.moveBy){
+self.moveBy (0,-900);
+for(i = n; i > 0; i--){
+self.moveBy(0,3);
+}
+for(j = 8; j > 0; j--){
+self.moveBy(0,j);
+self.moveBy(j,0);
+self.moveBy(0,-j);
+self.moveBy(-j,0);
+}
+}
+}
+</script>
+
+
+<!--第二步：再将下列代码复制到<body></body>之间：-->
+<body onLoad="drop(300)">
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

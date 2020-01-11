@@ -1,0 +1,223 @@
+在开始具体的程序设计之前，我们先学习一下几个下面需要用到的重要概念和函数： 
+
+　　 首先是cookie，我们需要用他来防止同一台机器进行重复投票。 
+
+　　 那么什么是cookie？如果你的英文够好，又想吃块原味的cookie，那么先到这里来尝尝鲜；要不然你就只有吃地藏给你热的啦………
+
+　　 cookie原义在美语中是小甜饼的意思，当然我们现在不是要吃饼，在这cookie指的是一个有许多限制的ASCII文件。它是由服务器发给用户用于记录着用户在浏览过程中的一些信息。Cookies的文件大小被限制在4K以内。 cookie的用途是非常多的，比如你到过的一些网站有记录你来过次数，那就多半是用了cookie。 在这里我们用他来记录访问者是否已经投过票。 
+
+　　 在PHP里我们可以非常方便的用setcookie函数来使用cookie，cookie实际上是HTTP协议中header的一部分。因此setcookie函数必须在没有任何其它信息输出到浏览器之前调用。说简单点就是要在< html>标志前用这个函数啦………。下面是setcookie的用法示例，来自星空浪子的PHP4中文手册，大家等下还可以再参照一下我们在程序中的具体用法。 
+
+  　　 setcookie 
+
+　　 送出 Cookie 资讯到浏览器。  
+
+　　 语法: int setcookie(string name, string value, int expire, string path, string domain, int secure); 
+
+　　 传回值: 整数 
+
+　　 函式种类: 网路系统  
+
+　　 内容说明  
+
+　　 本函式会跟着标头 Header 送出一段小资讯字串到浏览器。使用本函式要在送出 HTML 资料前，实际上 cookie 也算标头的一部份。本函式的参数除了第一个 name 之外，都是可以省略的。参数 name 表示 cookie 的名称；value 表示这个 cookie 的值，这个参数为空字串则表示取消浏览器中该 cookie 的资料；expire 表示该 cookie 的有效时间；path 为该 cookie 的相关路径；domain 表示 cookie 的网站；secure 则需在 https 的安全传输时才有效。 
+
+　　 expire时间的格式如下： 
+
+　　 Wdy, DD-Mon-YYYY HH:MM:SS GMT 
+
+　　 GMT表示格林尼治标准时间 
+
+　　 使用范例  
+
+　　 dante@mpath.com (27-May-1999) 所提供的 setcookie() 及 header() 范例。 
+
+　　 < ?php 
+　　 $status = 0; 
+　　 if (isset($myTstCky) && ($myTstCky == "ChocChip")) $status = 1; 
+　　 if (!isset($CCHK)) { 
+　　 setcookie("myTstCky", "ChocChip"); 
+　　 header("Location: $PHP_SELF?CCHK=1"); 
+　　 exit; 
+　　 } 
+　　 ?> 
+　　 < html> 
+　　 < head>< title>Cookie Check< /title>< /head> 
+　　 < body bgcolor="#FFFFFF" text="#000000"> 
+　　 Cookie Check Status:  
+　　 < ?php  
+　　 printf ('< font color="#%s">%s< /font>< br>;',  
+　　 $status ? "00FF00" : "FF0000", 
+　　 $status ? "PASSED!" : "FAILED!");  
+　　 ?> 
+　　 < /body> 
+　　 < /html>  
+  
+
+
+　　 怎么样？大家对cookie的用法是不是有所了解呢？地藏在这里告诉大家一个关于expire日期的小技巧，如果你想让cookie的expire日期为从当前算起的第三天。那么你可以使用time()函数，这个函数将返回一个以秒为单位的当前时间（注意哟！这个时间是包括了年月日的，是不是很奇怪？：）），那么如果你想把expire日期定为第三天，那么就是 time()+60*60*24*3。 
+
+　　 PHP的数组使用非常简单，大家只要注意它默认的起始下标是象C语言一样从零开始的，当然你也可以自己设定它的下标，如下面这样： 
+
+  　　 $descArray=array( 
+　　 1=>"英文：源代码、程序下载", 
+　　 2=>"英文：php动态",  
+　　 3=>"英文：新闻组、公告栏", 
+　　 4=>"英文：教学类", 
+　　 5=>"中文：源代码、程序下载",  
+　　 6=>"中文：新闻组、公告栏",  
+　　 7=>"中文：教学类" );  
+  
+
+
+　　 使用的时候 $descArray[1]= "英文：源代码、程序下载"。更绝的是你还可以……… 
+
+  　　 $MyArray2 = array( " 
+　　 地支" => array("子", "丑", "寅", "卯"), 
+　　 "生肖" => array("鼠", "牛", "虎", "兔"),  
+　　 "数字" => array(1, 2, 3, 4) );  
+  
+
+
+　　 用的时候$MyArray2["地支"][0]="子"; 怎么样？是不是很有人情味啊，：） 
+
+　　 最后我们来看看PHP的档案处理，PHP中用于档案处理的函数有大概几十个，在我们这一节里，使用了其中的五个函数fopen(); fclose(); flock();fexists();fwrite(); 其中我想重点说一下flock()；其它的大家就去自己查手册吧。 
+
+　　 为什么要重点说flock()？因为这是一个对于网络编程非常重要的功能，我举个例子，两个人同时投票，而且选的都是选项A，假设他们同时打开数据文件，这时A的选票是2，然后两个进程都在原有的基础上加1，接着一个写入了数据，另外一个也跟着写完了写入，大家想这时会出现什么情况？A的选票是多少？正确结果应该是4，但实际上却会是3。为什么会这样？这就是因为网络的多人环境的特点啦，所以我们在投票前一定要先用flock()函数把文件锁住，投完后再打开文件让其它的进程进行操作，这样才能防止出现上面的那类错误。下面是flock函数的用法说明。 
+
+  　　 flock 锁住档案。 
+
+　　 语法: boolean flock(int fp, int operation);  
+
+　　 传回值: 布林值 
+
+　　 函式种类: 档案存取  
+
+　　 内容说明 本函式用来锁住档案，使别的行程无法存取。传入的参数 fp 为档案的指标。参数 operation 的值为下列的数字之一： 
+
+　　 1.表示设定锁住档案可以允许别的行程读取； 
+
+　　 2.表示只有该行程可以写入档案； 
+
+　　 3.表示读写均锁住； 
+
+　　 4.不锁住区块 (block)。 
+
+　　 而本函式无论在 UNIX 或是 Windows 系列中的锁住效果都相近。执行成功则传回 true 值，否则传回 false 值。 
+  
+
+
+　　 好了，基础的东西已经学完，让我们来进行实战吧！大家先下这个范例程序。然后可以在自己的平台上先试试看。相信这样会得到一点感性认识。 
+
+　　 在这个应用中一共使用了三个文件vote.php，config.php，1.gif以及一个保存数据的文件（该文件的名字可以自由设定，在这里我们设为sum.txt），其中vote.php是主程序文件，config.php则用于设置一些经常需要修改的信息。 
+
+  　　 //config.php文件 
+
+　　 < ? 
+
+　　 //title变量设定本html档中的title标记，也就是在浏览器标题栏里出现的标题 
+　　 $title=读者类型调查表; 
+
+　　 //设定调查内容。这里用了一个数组，注意用""号把内容括起来 
+　　 $option= array("学生","工人","农民","知识分子","资本家","流氓"); 
+
+　　 //设定调查结果保存到哪个文件中去 
+　　 $countfile = "sum.txt"; 
+
+　　 //设定同一机器可以再次投票的时间 
+　　 $limitdate = time()+60*60*24*365; 
+
+　　 ?> 
+  
+  　　 // vote.php文件 
+
+　　 /*首先将配置信息装进来，这里我简单说明一下 require和include的区别，require通常放在PHP 程序的最前面，PHP 程式在执行前，就会先读入 require 所指定引入的档案，使它变成 PHP 程式网页的一部份。常用的函式，亦可以这个方法将它引入网页中。 include 则一般是放在流程控制的处理区段中。PHP 程式网页在读到 include 的档案时，才将它读进来。这种方式可以把程式执行时的流程简单化。 */ 
+
+　　 < ? require "config.php";?> 
+
+　　 /*下面这部分就是cookie了，它的expire时间在上面的config.php中设置，另外大家可能已经发现了，在这里有两个 if比较语句，第一个是检测是否已经有cookie设置，第二个则是为了避免人家还没有投票程序就把cookie发出去。*/ 
+　　 < ? 
+　　 if (isset($vote) && $vote=="Ready") $status = 1; 
+　　 else $status=0; 
+　　 if ($ready=="true") 
+　　 { 
+　　 setcookie("vote","Ready",$limitdate); 
+　　 } 
+　　 ?> 
+
+　　 < html> 
+　　 < head> 
+　　 < title>< ? echo $title ?>< /title> 
+　　 < meta http-equiv="Content-Type" content="text/html; charset=gb2312"> 
+　　 < /head> 
+
+　　 < body bgcolor="#FFFFFF"> 
+
+　　 //读出原来的选票结果，赋给变量$result 
+　　 < ? 
+　　 if (file_exists ($countfile)){ 
+　　 $result = file($countfile); 
+　　 } 
+　　 ?> 
+
+　　 /*下面是主程序 用switch做了三个分支，Case 1、查看结果；Case 2、提交选择；Case 3、生成表　　 单*/ 
+　　 < ? 
+　　 switch ($elect) { 
+
+
+　　 /* 查看结果，实际就是把上面用file()函数读出来的变量显示出来*/ 
+　　 case "查看结果": 
+　　 echo "< table border='0'>"; 
+　　 for($i=0;$i< count($result);$i++){ 
+　　 echo "< tr>"."< td>".$option[$i]."< /td>"; 
+　　 echo "< td>"."< img src='1.gif' width='"; 
+　　 echo "$result[$i]*10"; 
+　　 echo "' height='8'> < /td>"; 
+　　 echo "< td>"."    ".$result[$i]."< /td>< /tr>"; 
+　　 } 
+　　 echo "< /table>"; 
+　　 break; 
+
+
+　　 /*把选择结果写入到文件中去，注意要用flock把文件锁住！虽然对投票程序来说这个问题不是特别　　 突出*/ 
+　　 case "提交": 
+　　 if ($status == 1){ 
+　　 echo "你已经投过票了"; 
+　　 }elseif($sugest == 0){ 
+　　 echo "you havn't choice"; 
+　　 }else{ 
+　　 if($fp=fopen($countfile,"w")){ 
+　　 if(flock($fp,3)){ 
+　　 for ($i=0; $i< count ($option); $i++){ 
+　　 if ($sugest == $i+1){ 
+　　 $result[$i]=$result[$i]+1; 
+　　 }else $result[$i]=$result[$i] + 0; 
+　　 echo $option[$i]."    ".$result[$i]."< br>"; 
+　　 fwrite($fp,$result[$i]." "); 
+　　 } 
+　　 }else "投票失败"; 
+　　 }else echo "投票失败"; 
+　　 fclose($fp); 
+　　 } 
+　　 break; 
+
+　　 /*显示投票的表单*/ 
+　　 default: 
+　　 echo "< form action='vote.php' method='post' name='form1'>"; 
+　　 $sum = count($option); 
+　　 for ($i=0; $i< $sum; $i++){ 
+　　 echo "< input type='radio' name='sugest' value="; 
+　　 echo $i+1; 
+　　 if ($i==0) echo " CHECKED"; 
+　　 echo ">".$option[$i]."< br>"; 
+　　 } 
+　　 echo "< input type='hidden' name='ready' value='true'>"; 
+　　 echo "< br>"; 
+　　 echo "< input type='submit' name = 'elect' value='提交'>"; 
+　　 echo "< input type='submit' name='elect' value='查看结果'>"; 
+　　 echo "< /form>"; 
+　　 } 
+　　 ?> 
+　　 < /p> 
+　　 < /body> 
+　　 < /html> 

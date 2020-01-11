@@ -1,0 +1,62 @@
+<SCRIPT>
+<!--
+
+var flyingwin
+var popupwidth=200
+var popupheight=150
+var marginright
+var windowcenter
+var i_top=200
+var i_left=-popupwidth-50
+var step=40
+var timer
+var waitingtime=2000 //时间为两秒
+var pause=20
+
+function showWindow() {
+	flyingwin = window.open("", "flyingwin", "toolbar=no,width="+popupwidth+",height="+popupheight+",top=100,left="+(-popupwidth)+"");
+	flyingwin.document.open();
+	flyingwin.document.write("<html><title>漂浮的窗口</title><body><p align=center>请不要关闭窗口，我立马滚蛋。</body></html>");
+	flyingwin.document.close();
+	
+	if (document.all) {
+		marginright = screen.width+50
+	}
+	if (document.layers) {
+		marginright = screen.width+50
+	}
+	windowcenter=Math.floor(marginright/2)-Math.floor(popupwidth/2)
+	movewindow()
+		
+}
+
+function movewindow() {
+		if (i_left<=windowcenter) {
+			flyingwin.moveTo(i_left,i_top)
+			i_left+=step
+			timer= setTimeout("movewindow()",pause)
+		}
+		else {
+			clearTimeout(timer)
+			timer= setTimeout("movewindow2()",waitingtime)
+		}
+}
+
+function movewindow2() {
+		if (i_left<=marginright) {
+			flyingwin.moveTo(i_left,i_top)
+			i_left+=step
+			timer= setTimeout("movewindow2()",pause)
+		}
+		else {
+			clearTimeout(timer)
+			flyingwin.close()
+		}
+}
+
+// -->
+</SCRIPT> 
+
+<BODY onload=showWindow()> 
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

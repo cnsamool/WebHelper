@@ -1,0 +1,55 @@
+<BODY>
+<!--将以下代码加入HTML的<Body></Body>之间-->
+<SCRIPT language=javascript>function shake_xy(n)
+{
+ if (self.moveBy)
+ {
+  for (i = 10; i > 0; i--)
+  {
+   for (j = n; j > 0; j--)
+   {
+    self.moveBy(0,i);
+    self.moveBy(i,0);
+    self.moveBy(0,-i);
+    self.moveBy(-i,0);
+   }
+  }
+ }
+}
+
+function shake_x(n)
+{
+ if (self.moveBy)
+ {
+  for (i = 10; i > 0; i--)
+  {
+   for (j = n; j > 0; j--)
+   {
+    self.moveBy(i,0);
+    self.moveBy(-i,0);
+   }
+  }
+ }
+}
+
+function shake_y(n)
+{
+ if (self.moveBy)
+ {
+  for (i = 10; i > 0; i--)
+  {
+   for (j = n; j > 0; j--)
+   {
+    self.moveBy(0,i);
+    self.moveBy(0,-i);
+   }
+  }
+ }
+}
+</SCRIPT>
+<A href="#" onclick=shake_x(5)>左右震动</A> 
+<A href="#" onclick=shake_y(5)>上下震动</A>
+<A href="#" onclick=shake_xy(2)>整屏震动</A>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

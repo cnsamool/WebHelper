@@ -1,0 +1,31 @@
+<!--脚本说明:
+把如下代码加入<body>区域中-->
+<script language="">
+function winconfirm(){
+
+
+
+	question = confirm("你确认要到傻猫软件官方网站http://samool.533.net吗?")
+
+
+
+	if (question != "0"){
+
+
+
+		window.open("http://samool.533.net")
+
+
+
+	}
+
+}
+
+</script>
+
+<a href="javascript:winconfirm()">http://samool.533.net</a>
+
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

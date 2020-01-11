@@ -1,0 +1,66 @@
+<HTML>
+<Body Bgcolor="#BFBFBF" Text="#000000" style="font-size:10pt;font-family:宋体" onLoad="dspltip()">
+<Div style="position:absolute;left:10;top:10;background-color:#808080;text-align:center;width:58;height:79%">
+<IMG SRC="light.gif" WIDTH="23" HEIGHT="31" BORDER="0" style="position:relative;top:18"><BR>
+<Span Id="cntr" style="position:relative;top:140px;font-family:Arial;font-size:10pt;font-weight:bold;color:#FFFFF0">
+</Span>
+</Div>
+<Div style="position:absolute;left:68;top:10;background-color:#FFFFFF;width:346;height:79%;border:solid 1px #808080">
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><font size="2" face="宋体">你知道吗？</font></b>
+<HR size="1" style="position:relative;top:10">
+<Span Id="mtxt" style="position:relative;top:10px;padding:15px 10px 10px 10px;font-family:Arial;font-size:10pt;width:100%;overflow:auto;height:138px">
+</Span>
+</Div>
+<Div style="position:absolute;left:10;top:222;width:100%">
+<Input id="dspl1" type="checkbox" checked>&nbsp;<Span onclick="chgstatus()">每次启动时显示</Span><Input type="button" Value="下一贴" style="width:70;position:relative;left:113;background-color:#BFBFBF;color:#000000;font-family:Arial;font-size:9pt;border:2px outset #FFFFFF" onclick="ntip()"><Input type="button" Value="关闭" style="width:70;position:relative;left:123;background-color:#BFBFBF;color:#000000;font-family:Arial;font-size:9pt;border:2px outset #FFFFFF" onclick="endf()">
+</Div>
+<Script Language="JavaScript">
+todmsg=new Array();
+
+todmsg[0]="你在做网页嘛,如果是的话,这是你不可多得的超Cool工具."
+todmsg[1]="这是可以自动生成网页特效的软件，包括近800个经典特效，每个特效都可以有您进行参数设置,100%傻瓜性。收集了包括时间特效，文字特效，图像处理，鼠标特，页面特效，菜单特效，在线游戏，其它特效在内的八类上百个精彩特效。这些特效都是使用率比较高的JavaScript代码，您可以直接使用。软件内置浏览器，您可以随时预览特效效果；特效制作好之后，您可以把它复制到剪贴板，或者保存到文件中；软件的界面美观新颖，操作简单明了，极易上手。"
+todmsg[2]="轻轻点几下鼠标,又炫又酷的网页任你选!其中有关图片的特效，请使用者自行修改！"
+todmsg[3]="此特效由《网页助手》编译制作"
+todmsg[4]="支持Win9X、ME、NT、2000、XP操作系统!"
+
+</Script>
+<Script Language="JavaScript">
+cnt=0;
+todmsg.sort(rndm)
+
+function rndm(a,b){
+return (Math.random()-Math.random())
+}
+
+function chgstatus(){
+if (dspl1.checked)
+dspl1.checked=false;
+else
+dspl1.checked=true;
+}
+
+function dspltip(){
+mtxt.innerHTML=todmsg[0]
+cntr.innerHTML="1/"+todmsg.length
+}
+
+function ntip(){
+if (cnt<todmsg.length-1)
+cnt++;
+else
+cnt=0;
+mtxt.innerHTML=todmsg[cnt];
+cntr.innerHTML=(cnt+1)+"/"+todmsg.length
+}
+
+function endf(){
+if (!dspl1.checked)
+window.returnValue=1
+else
+window.returnValue=0
+window.close();
+}
+</Script>
+</BODY>
+</HTML>

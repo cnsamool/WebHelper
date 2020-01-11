@@ -1,0 +1,203 @@
+配置
+
+(1)JDBC
+
+　　 需要将用到的JDBC驱动Copy到[ORION]/lib目录下
+
+(2)data-source
+
+　　 在[ORION]/config/data-sources.xml文件中加入如下：
+
+〈data-source 
+
+class="com.evermind.sql.DriverManagerDataSource" 
+
+name="mySqlDbpage" 
+
+location="jdbc/HypersonicCoreDS" 
+
+xa-location="jdbc/xa/HypersonicXADS" 
+
+ejb-location="jdbc/mysqlDbPage"
+
+connection-driver="org.gjt.mm.mysql.Driver" 
+
+username="root"
+
+password=""
+
+url="jdbc:mysql://localhost/test" 
+
+inactivity-timeout="30"
+
+/〉
+
+需要注意的是：
+
+(1)ejb-location这个后面的“jdbc/mysqlDbPage”是JNDI要来查找的。
+
+(2)connection-driver为JDBC数据库驱动
+
+(3)url是JDBC中的URL
+
+(4)username为数据库用户名
+
+(5)password为用户密码
+
+(6)inactivity-timeout为数据库连接超时，默认为30秒
+
+对于其他的地方不要改。
+
+改写后的代码如下：
+
+<%@ page contentType="text/html;charset=gb2312" %>
+
+<%@ page import="java.sql.*, javax.sql.DataSource, javax.naming.InitialContext" %>
+
+<% 
+
+//建立一个JNDI查找对象 
+
+InitialContext JNDI_Context = new InitialContext(); 
+
+//JNDI查找数据源 
+
+DataSource ds = (DataSource) JNDI_Context.lookup("jdbc/mysqlDbPage"); 
+
+//得到一个数据源连接
+
+Connection conn = ds.getConnection(); 
+
+int intPageSize; //一页显示的记录数 
+
+int intRowCount; //记录总数 
+
+int intPageCount; //总页数 
+
+int intPage; //待显示页码 
+
+java.lang.String strPage; 
+
+int i;
+
+//设置一页显示的记录数
+
+intPageSize = 2;
+
+//取得待显示页码 
+
+strPage = request.getParameter("page"); 
+
+if(strPage==null){
+
+//表明在QueryString中没有page这一个参数，此时显示第一页数据 
+
+intPage = 1; 
+
+} else{
+
+//将字符串转换成整型 
+
+intPage = java.lang.Integer.parseInt(strPage); 
+
+if(intPage<1) intPage = 1;
+
+} 
+
+// 得到结果
+
+stmt = conn.createStatement(); 
+
+ResultSet sqlRst = stmt.executeQuery("select f1 from test"); 
+
+//获取记录总数 
+
+sqlRst.last(); 
+
+intRowCount = sqlRst.getRow(); 
+
+//记算总页数 
+
+intPageCount = (intRowCount+intPageSize-1) / intPageSize; 
+
+//调整待显示的页码 
+
+if(intPage>intPageCount) 
+
+intPage = intPageCount;
+
+%>
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"> 
+
+<title>JSP数据库操作例程 - 数据分页显示 - JDBC 2.0 - mysql</title> 
+
+</head> 
+
+<body> 
+
+<table border="1" cellspacing="0" cellpadding="0">
+
+<tr> 
+
+<th>姓名</th> 
+
+</tr>
+
+<% if(intPageCount>0)
+
+{ 
+
+//将记录指针定位到待显示页的第一条记录上 
+
+sqlRst.absolute((intPage-1) * intPageSize + 1); 
+
+//显示数据 
+
+i = 0;
+
+while(i<intPageSize && !sqlRst.isAfterLast()){ %> 
+
+<tr> 
+
+<td>
+
+<%=sqlRst.getString(1)%>
+
+</td> 
+
+</tr>
+
+<% sqlRst.next(); 
+
+i++; 
+
+} 
+
+} 
+
+%> 
+
+</table>
+
+第<%=intPage%>页 共<%=intPageCount%>页 
+
+<%if(intPage<intPageCount){%><a href="mysqlpage.jsp?page=<%=intPage+1%>">下一页</a><%}%>
+
+<%if(intPage>1){%><a href="mysqlpage.jsp?page=<%=intPage-1%>">上一页</a><%}%> 
+
+</body> 
+
+</html>
+
+<% 
+
+//关闭结果集 
+
+sqlRst.close(); 
+
+%>

@@ -1,0 +1,70 @@
+
+<!--第一步：将下列代码复制到<head></head>之间：-->
+<script language="javaScript">
+<!--
+
+var thissize=30
+var textfont="arial"
+//设置颜色变化过度色
+var textcolor= new Array()
+textcolor[0]="lime"
+textcolor[1]="red"
+textcolor[2]="aqua"
+textcolor[3]="yellow"
+textcolor[4]="#FF8040"
+textcolor[5]="#FFD1BB"
+textcolor[6]="#CCCCFF"
+textcolor[7]="#CCCC33"
+textcolor[8]="#ff8040"
+textcolor[9]="yellow"
+textcolor[10]="lime"
+textcolor[11]="red"
+
+var message = new Array()
+message[0]="欢迎您来到傻猫网！"
+message[1]="这里是网页特效的家"
+message[2]="<网页助手>帮您制作主页特效"
+message[3]="非常感谢您的支持！"
+
+var i_blurstrength=15
+var i_message=0
+var i_textcolor=0
+
+function blurtext() {		
+	if(document.all) {
+		if (i_blurstrength >=-2) {
+			if (i_textcolor >=textcolor.length-1) {i_textcolor=textcolor.length-1}
+			blurthis.innerHTML="<span id='blurpit1' style='position:absolute;visibility:visible;width:600px; top:100px;left:5px;filter:blur(add=0,strength="+i_blurstrength+",direction=90);font-family:"+textfont+";font-size:"+thissize+"pt;color:"+textcolor[i_textcolor]+"'>"+message[i_message]+"</span>";
+		document.close()
+		i_blurstrength=i_blurstrength-2
+		i_textcolor++
+		var timer=setTimeout("blurtext()",50)
+		}
+		
+		else {
+			if (i_textcolor >=textcolor.length-1) {i_textcolor=textcolor.length-1}
+			blurthis.innerHTML="<span id='blurit1' style='position:absolute;visibility:visible;width:600px; top:100px;left:5px;filter:blendTrans(duration=4.2);font-family:"+textfont+";font-size:"+thissize+"pt;color:FF0000'>"+message[i_message]+"</span>";
+			i_message++
+			if (i_message>=message.length){i_message=0}
+			
+			i_blurstrength=20
+			i_textcolor=0
+			clearTimeout(timer)
+			var timer=setTimeout("blurtext()",2000)
+		}
+	}	
+}
+
+//-->
+</script>
+
+
+
+<!--第二步：将下列代码复制到<body></body>之间：-->
+<body onLoad="blurtext()">
+<div id="mainbod" style="position: absolute; visibility: visible; top: 223; left: -3; width: 734; height: 19"
+align="center"></div><div id="blurthis" style="position: absolute; visibility: visible; left: 12; top: 0; width: 445; height: 19"
+align="center"></div>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,129 @@
+<!--要完成此效果把如下代码加入到<body>区域中-->
+
+<style type="text/css">
+#divCircle   {position:absolute; width:10px; height:100px; z-index:1; top:-50px;} 
+.clButtons   {position:absolute; width:50px; height:10px; top:20px;left:100px; visibility:hidden; z-index:10; font-family:宋体; font-size:10pt;}
+.clButtons a   {	COLOR:#000080;	}
+</style>
+<script language="JavaScript" type="text/javascript">
+function lib_bwcheck(){ //Browsercheck (needed)
+	this.ver=navigator.appVersion
+	this.agent=navigator.userAgent
+	this.dom=document.getElementById?1:0
+	this.opera5=this.agent.indexOf("Opera 5")>-1
+	this.ie5=(this.ver.indexOf("MSIE 5")>-1 && this.dom && !this.opera5)?1:0; 
+	this.ie6=(this.ver.indexOf("MSIE 6")>-1 && this.dom && !this.opera5)?1:0;
+	this.ie4=(document.all && !this.dom && !this.opera5)?1:0;
+	this.ie=this.ie4||this.ie5||this.ie6
+	this.mac=this.agent.indexOf("Mac")>-1
+	this.ns6=(this.dom && parseInt(this.ver) >= 5) ?1:0; 
+	this.ns4=(document.layers && !this.dom)?1:0;
+	this.bw=(this.ie6 || this.ie5 || this.ie4 || this.ns4 || this.ns6 || this.opera5)
+	return this
+}
+var bw=new lib_bwcheck()
+numItems = 4
+circleXstart = 10 
+circleYstart = -25 
+circleXoffset = 5 
+circleYoffset = -3
+circlePXspeed = 5 
+circleTspeed = 10 
+circleStay = 1 
+function makeObj(obj,nest,x,y){
+	nest = (!nest)?"":'document.'+nest+'.'		
+	this.css = bw.dom?document.getElementById(obj).style:bw.ie4?document.all[obj].style:bw.ns4?eval(nest+'document.'+obj):0
+	this.evnt = bw.dom?document.getElementById(obj):bw.ie4?document.all[obj]:bw.ns4?this.css:0
+	this.showIt = b_showIt
+	this.moveIt = b_moveIt
+	this.slide = b_slide
+	this.slideIt = b_slideIt
+	this.obj = obj+"Object"
+	eval(this.obj+"=this")
+	return this
+}
+var px = bw.ns4||window.opera?"":"px";
+
+function b_moveIt(x,y){this.x=x; this.y=y; this.css.left=this.x+px; this.css.top=this.y+px;}
+function b_showIt(){this.css.visibility="visible"}
+function b_slideIt(endx,endy,inc,speed,fn,wh) {
+	if (!this.slideactive) {
+		var distx = endx - this.x
+		var disty = endy - this.y
+		var num = Math.sqrt(Math.pow(distx,2) + Math.pow(disty,2))/inc
+		var dx = distx/num
+		var dy = disty/num
+		this.slideactive = 1
+		this.slide(dx,dy,endx,endy,speed,fn,wh)
+	}
+}
+
+function b_slide(dx,dy,endx,endy,speed,fn,wh) {
+	if (!fn) fn = null
+	if (!wh) wh = null
+	if (this.slideactive && (Math.floor(Math.abs(dx))<Math.floor(Math.abs(endx-this.x)) || 	Math.floor(Math.abs(dy))<Math.floor(Math.abs(endy-this.y)))) {
+		this.moveIt(this.x+dx,this.y+dy)
+		eval(wh)
+		slidTim = setTimeout(this.obj+".slide("+dx+","+dy+","+endx+","+endy+","+speed+",'"+fn+"','"+wh+"')",speed)
+	}
+	else{
+		this.slideactive = 0
+		this.moveIt(endx,endy)
+		eval(fn)
+	}
+}
+function slideballInit(){
+	oBut = new Array()
+	for (var i=0; i<=numItems; i++){
+		oBut[i] = new makeObj('divButton'+i)
+	}
+	oCircle = new makeObj('divCircle')
+	oBut[0].moveIt(250,100) 
+	oBut[1].moveIt(310,100)
+	oBut[2].moveIt(370,100)
+	oBut[3].moveIt(420,100)
+	oBut[4].moveIt(480,100)
+	oCircle.moveIt(circleXstart,circleYstart)
+	//Showing the buttons
+	for(var i=0; i<=numItems; i++){
+		oBut[i].showIt()
+	}
+}
+var slidTim = 100;
+var active = -1
+function sbmover(num){
+	clearTimeout(slidTim)
+	oCircle.slideactive = false
+	oCircle.slideIt(oBut[num].x+circleXoffset,oBut[num].y+circleYoffset,circlePXspeed,circleTspeed)
+}
+function sbmout(num){
+	clearTimeout(slidTim)
+	oCircle.slideactive = false
+	if (active>-1 && circleStay) oCircle.slideIt(oBut[active].x+circleXoffset,oBut[active].y+circleYoffset,circlePXspeed,circleTspeed)
+	else oCircle.slideIt(circleXstart,circleYstart,circlePXspeed,circleTspeed)
+}
+function changeListing(num){
+	active = num
+}
+if(bw.bw) onload = slideballInit;
+</script>
+<div id="divButton0" class="clButtons">
+  <a href="http://samool.533.net" onmouseover="sbmover(0)" onmouseout="sbmout(0)" onclick="changeListing(0); return false">傻猫</a> 
+</div> 
+<div id="divButton1" class="clButtons"> 
+  <a href="http://www.sohu.com" onmouseover="sbmover(1)" onmouseout="sbmout(1)" onclick="changeListing(1); return false">搜狐</a> 
+</div> 
+<div id="divButton2" class="clButtons"> 
+  <a href="#" onmouseover="sbmover(2)" onmouseout="sbmout(2)" onclick="changeListing(2); return false">链接3</a> 
+</div> 
+<div id="divButton3" class="clButtons"> 
+  <a href="#" onmouseover="sbmover(3)" onmouseout="sbmout(3)" onclick="changeListing(3); return false">链接4</a> 
+</div> 
+<div id="divButton4" class="clButtons"> 
+  <a href="#" onmouseover="sbmover(4)" onmouseout="sbmout(4)" onclick="changeListing(4); return false">链接5</a> 
+</div> 
+<div id="divCircle"> 
+  <img src="zoom.gif" width="22" height="21" border="0"> 
+</div> 
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

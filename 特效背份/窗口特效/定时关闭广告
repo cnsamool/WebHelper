@@ -1,0 +1,72 @@
+<head>
+<style type="text/css">
+<!--
+#sponsorAdDiv {position:absolute; height:1; width:1; top:0; left:0;}
+td {  font-size: 9pt; font-family: "宋体"}
+.aodu {FONT-SIZE: 9pt; LINE-HEIGHT: 13pt}
+-->
+</style>
+
+<body>
+<script LANGUAGE="JavaScript1.2">
+adTime=8;
+chanceAd=1;
+var ns=(document.layers);
+var ie=(document.all);
+var w3=(document.getElementById && !ie);
+adCount=0;
+function initAd(){
+        if(!ns && !ie && !w3) return;
+        if(ie)                adDiv=eval('document.all.sponsorAdDiv.style');
+        else if(ns)        adDiv=eval('document.layers["sponsorAdDiv"]');
+        else if(w3)        adDiv=eval('document.getElementById("sponsorAdDiv").style');
+        randAd=Math.ceil(Math.random()*chanceAd);
+        if (ie||w3)
+        adDiv.visibility="visible";
+        else
+        adDiv.visibility ="show";
+        if(randAd==1) showAd();
+}
+function showAd(){
+if(adCount<adTime*10){adCount+=1;
+        if (ie){documentWidth  =document.body.offsetWidth/2+document.body.scrollLeft-20;
+        documentHeight =document.body.offsetHeight/2+document.body.scrollTop-20;}
+        else if (ns){documentWidth=window.innerWidth/2+window.pageXOffset-20;
+        documentHeight=window.innerHeight/2+window.pageYOffset-20;}
+        else if (w3){documentWidth=self.innerWidth/2+window.pageXOffset-20;
+        documentHeight=self.innerHeight/2+window.pageYOffset-20;}
+        adDiv.left=documentWidth-200;adDiv.top =documentHeight-200;
+        setTimeout("showAd()",100);}else closeAd();
+}
+
+function closeAd(){
+if (ie||w3)
+adDiv.display="none";
+else
+adDiv.visibility ="hide";
+}
+onload=initAd;
+</script>
+<div id="sponsorAdDiv" style="visibility:hidden">
+<table width="450" bordercolor="#804040" border="1" cellspacing="0" cellpadding="0"
+height="200" bgcolor="#804040">
+  <tr>
+    <td width="358"><font color="#FFFFFF">::为了本站的发展，请你先看几秒广告::</font></td>
+    <td width="88" align="right"><img src="close.gif" width="15" height="15"></td>
+  </tr>
+  <tr>
+    <td width="448" height="100%" bgcolor="#FFFFFF" colspan="2"><table border="0" width="100%">
+      <tr>
+        <td width="29%" align="center"><img src="dancinggirl.gif" width="100" height="118"></td>
+        <td width="71%" class="aodu"><font color="#000000">这是一个广告窗口，它会自动关闭的，但在它关闭之前，你没有办法，只有看了
+！<br><br>如果你认为本站还可以的话，请你点击我们的广告，多谢你的支持！
+</font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+</div>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

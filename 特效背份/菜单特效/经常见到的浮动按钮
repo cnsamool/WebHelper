@@ -1,0 +1,24 @@
+<script language="JavaScript" src="coolbuttons.js">
+</script>
+<table width="361">
+<td width="353">
+<table class="coolBar" width="351">
+<tr>
+
+<td class="coolButton" width="105" align="center">
+<b><font size="2">网页助手帮助 </font></b>
+</td>
+
+
+<td class="coolButton" width="121" align="center">
+<b><font size="2">软件界面源码</font></b>
+</td>
+
+<td class="coolButton" width="109" align="center">
+<b><font size="2">傻猫软件留言本</font></b>
+</td>
+
+</tr>
+</table>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

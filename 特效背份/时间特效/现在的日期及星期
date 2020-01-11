@@ -1,0 +1,24 @@
+<script language=JavaScript>
+today=new Date();
+function initArray(){
+this.length=initArray.arguments.length
+for(var i=0;i<this.length;i++)
+this[i+1]=initArray.arguments[i]  }
+var d=new initArray(
+"星期日",
+"星期一",
+"星期二",
+"星期三",
+"星期四",
+"星期五",
+"星期六");
+document.write(
+"<font color=##000000 style='font-size:9pt;font-family: 宋体'> ",
+today.getYear(),"年",
+today.getMonth()+1,"月",
+today.getDate(),"日",
+d[today.getDay()+1],
+"</font>" ); 
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

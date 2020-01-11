@@ -1,0 +1,79 @@
+    运行环境是:RedHat 5.1 Linux下的Apache1.3.6 Web服务器+PHP3语言。 在编写程序之前，我们首先要设置好我们的服务器。首先要让Apache服务器支持php3。到ftp.redhat.com下载mod_php-2.0.1-9.i386.rpm，安装后，修改/etc/httpd/conf/http.conf文件，去掉#LoadModule php3_module一句前面的#注释号，同样在/etc/httpd/conf/srm.conf文件里去掉#AddType application/x-httpd-php3 .php3前面的注释号，同时在DirectoryIndex一项后添加index.php3。重新启动Apache Server，此时服务器就支持标准的php3语言脚本文件了并能将index.php3作为默认的首页。   
+　　设置DNS服务器，使其能对泛域名解析。一般的Unix和Linux系统的DNS解析都是由Bind守护程序完成的，Bind4和Bind8的配置文件分别/etc/named.boot和name.conf，配置时根据你的系统修改。设置Bind的配置文件/etc/named.boot，在其中加入“primary domain.com db.domain”一句，添加一个新的域记录。在/etc/name.conf中加入：   
+
+　　zone "domain.com" {   
+　　type master;   
+　　file "db.domain”;   
+　　};   
+　　在/var/name/中新建主域记录文件db.domain，其格式为：   
+　　N SOA dns.domain.com root.domain.com (   
+　　199811291 ;Serial   
+　　28800 ;refresh   
+　　7200 ;retry   
+　　604800 ;expire   
+　　86400) ;minimum   
+　　dns   
+　　MX 10 dns.domain.com.   
+　　dns A 202.115.135.50   
+　　www A 202.115.135.50   
+　　* A 202.115.135.50   
+　　关键是最后一句，即将整个域可能出现未做标记的所有Hostname全部指向同一IP。 执行/usr/sbin/ndc reload，重新加载域名数据库。测试一下，此时应该随便ping一个domain域内的主机（除已经标记的），都指向了指定的IP，那么DNS服务器设置完成。   
+
+
+　　最后一步是编制PHP3脚本。我们刚才已经在图中详细的说明了整个的原理，所以写一个重新定向的程序就不是很难了。   
+
+
+　　让我们来看一个由IE5.0送出的完整HTTP头信息：   
+
+
+　　Accept: application/vnd.ms-excel, application/msword, application/vnd.ms-powerpoint, 　　　　　image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, */*   
+　　Accept-Encoding: gzip, deflate   
+　　Accept-Language: zh-cn   
+　　Connection: Keep-Alive   
+　　Host:ww.yahoo.com   
+　　User-Agent: Mozilla/4.0 (compatible; MSIE 5.0b1; Windows 98)   
+　　我们需要在整个HTTP头信息中取出Host信息，然后将http://www.***.jx.cn/www.***.***/default.htm形式的第一部分“www”，即HostName（也即是用户注册的name）单独取出，作为重定向检索的关键字。   
+
+
+　　检索到用户注册的URL信息后，我们给用户浏览器送一个重定向命令“Localtion: http://www.***.jx.cn/somewhere/sample.html”，将用户重定向到指定页面。   
+
+
+　　在PHP3中，有函数GetAllHeader（），取得浏览器送出的HTTP头信息。我们主要需要使用此函数来完成整个程序。   
+
+
+　　后面附有源程序，由于只是实验性质的，所以在查询用户信息时，没有使用数据库，如果整个系统要实际应用的话，一定要和数据库挂接起来，不然查询用户信息的过程将是十分漫长，大大影响效率，而且用户数据的管理也不方便。（由于篇幅限制，没有给出注册和管理所需的写记录程序，请自行添加）   
+
+
+　　在源程序中，所有用户信息记录在data子目录下user.dat文件中。其格式为：   
+
+
+　　username:   
+
+
+　　http://www.***.edu.cn/   
+
+
+　　附PHP3源程序：   
+
+
+　<?   
+　　//Get HTTP’s Header and parse it//   
+ 　$headers = getallheaders();   
+　　while (list($header, $value) = each($headers)) {   
+　　if($header=="Host"){$username= strtok($value,".");}}   
+　　//Jump out the Banner's Window//   
+　　echo '<script language="JavaScript">',   
+　　'msg=window.open("banner.htm","sample",   
+　　 "toolbar=no","directories=no",directories=no","menubar=no");’,   
+  　'</script>';   
+　　// seek the user information from the recorded file//   
+　　if(!$usrinfo=file("data/user.dat")){echo "Open Data File Error!!";}   
+　　$url="http://";   
+　　for($i=0;$i<count($usrinfo);$i++)   
+　　if(strtok($usrinfo[$i],":")==$username){   
+　　$url=$usrinfo[$i+1];   
+　　}   
+　　if($url=="http://"){echo "not found the uesrname of Data!";}   
+　　else{   
+　　echo '<meta http-equiv="refresh" content="0;','url=',$url,'">';}   
+　　?>   

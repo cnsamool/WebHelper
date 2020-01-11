@@ -1,0 +1,87 @@
+conn.jsp  
+
+
+<%  
+String sDBDriver = \"COM.ibm.db2.jdbc.app.DB2Driver\";  
+String sConnStr = \"jdbc 
+:db2:faq\";  
+Connection conn = null;  
+Statement stmt = null;  
+ResultSet rs=null;  
+try {  
+Class.forName(sDBDriver);  
+}  
+catch(java.lang.ClassNotFoundException e) {  
+out.print(\"faq(): \" + e.getMessage());  
+}  
+
+try{  
+conn = DriverManager.getConnection(sConnStr,\"wsdemo\",\"wsdemo1\");  
+stmt = conn.createStatement();  
+}catch(SQLException e){  
+out.print(e.toString());  
+}  
+%>  
+
+query.jsp  
+
+<%@ page language=\"java\" import=\"java.sql.*\" %>  
+<%@ page contentType=\"text/html; charset=gb2312\" %>  
+<%@ include file=\"conn.jsp\" %>  
+<%  
+......  
+int pages=0;  
+int pagesize=10;  
+ResultSet result = null;  
+ResultSet rcount = null;  
+
+pages = new Integer(request.getParameter(\"pages\")).intValue();  
+
+if (pages>0)  
+{  
+
+String sql=\" state=\'我不傻\'\";  
+int count=0;  
+try {  
+rcount = stmt.executeQuery(\"SELECT count(id) as id from user where \"+sql);  
+catch(SQLException ex) {  
+out.print(\"aq.executeQuery: \" + ex.getMessage());  
+}  
+if(rcount.next())  
+count = rcount.getInt(\"id\");  
+rcount.close();  
+if (count>0)  
+{  
+sql=\"select * from user where \"+sql;  
+try {  
+result = stmt.executeQuery(sql);  
+}  
+catch(SQLException ex) {  
+out.print(\"aq.executeQuery: \" + ex.getMessage());  
+}  
+int i;  
+String name;  
+// result.first();  
+// result.absolute((pages-1)*pagesize);  
+// 此方法jdbc2.0支持。编译通过，但执行不过，不知是不是跟驱动有关，只好用下面的笨办法。  
+for(i=1;i<=(pages-1)*pagesize;i++)  
+result.next();  
+for(i=1;i<=pagesize;i++) {  
+if (result.next()) {  
+name=result.getString(\"name\");  
+out.print(name);  
+}  
+result.close();  
+int n= (int)(count/pagesize);  
+if (n*pagesize<count) n++;  
+if (n>1)  
+{for(i=1;i<=n;i++)  
+out.print(\"<a href=query.jsp?pages=\"+i+\">\"+i+\" </a>\");  
+
+}  
+
+}  
+
+}  
+
+%>  

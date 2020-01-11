@@ -1,0 +1,29 @@
+<!--本特效需要将apbuttonmenu.jar  out.au  pop.au文件支持 -->
+<!--必须将apbuttonmenu.jar  out.au  pop.au和网页放在同一目录下才能显示效果 -->
+<!--C:\webhelpview\webhelpview 有这些文件-->
+
+<applet Code=apButtonMenu Archive=apButtonMenu.jar Width=108 Height=72>
+<!-- 这里修改按钮总的高度和按钮宽度 -->
+<param name="Copyright" value="Apycom Software - www.apycom.com">
+<param name="buttonType" value="1">
+<param name="alignText" value="center">
+<param name="status" value="text">
+<param name="overSound" value="pop.au">
+<param name="clickSound" value="out.au">
+<param name="backColor" value="ffcc00">
+<param name="backHighColor" value="6699ff">
+<param name="fontColor" value="000000">
+<param name="fontHighColor" value="ffffff">
+<param name="font" value="宋体,13,0">
+
+<!-- 这里添加按钮 -->
+
+<param name="menuItems" value="
+
+       {网页助手,http://samool.533.net,_self}
+       {新浪网站,http://www.sina.com.cn,_self}
+       {网易社区,http://www.163.net,_self}
+
+
+">
+</APPLET>

@@ -1,0 +1,25 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--将以下代码加到<body>中//-->
+<script>
+function submitonce(theform){
+if (document.all||document.getElementById){
+for (i=0;i<theform.length;i++){
+var tempobj=theform.elements[i]
+if(tempobj.type.toLowerCase()=="submit"||tempobj.type.toLowerCase()=="reset")
+tempobj.disabled=true
+}
+}
+}
+</script>
+<!--注意在FORM属性中加入  onsubmit="submitonce(this);return false" -->
+<FORM name=form2 onsubmit="submitonce(this);return false" action="" method=post>
+<INPUT name=textfield> <INPUT type=submit value=提交 name=Submit> <INPUT type=reset value=重设 name=Submit2>
+</FORM>
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

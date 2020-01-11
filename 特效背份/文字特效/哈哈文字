@@ -1,0 +1,24 @@
+<SCRIPT LANGUAGE="JavaScript">
+timeID = 5;
+stcnt = 11;
+msg = "欢迎使用傻猫软件！";
+wmsg = new Array(33);
+wmsg[0] = msg;
+blnk = "                                                               ";
+for (i = 1; i < 32; i++) {
+b = blnk.substring(0, i);
+wmsg[i] = "";
+for (j = 0; j < msg.length; j++) wmsg[i] = wmsg[i] + msg.charAt(j) + b;
+}
+function wiper() {
+if (stcnt > -1) str = wmsg[stcnt];
+else str = wmsg[0];
+if (stcnt-- < -40) stcnt = 31;
+status = str;
+clearTimeout(timeID);
+timeID = setTimeout("wiper()", 150);
+}
+</script>
+<BODY OnLoad="wiper()">
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

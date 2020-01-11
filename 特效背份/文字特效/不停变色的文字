@@ -1,0 +1,46 @@
+<!--脚本说明：
+把如下代码加入<body>区域中:-->
+<SCRIPT language=JavaScript1.2>
+<!-- Begin
+function initArray() {
+this.length = initArray.arguments.length;
+for (var i = 0; i < this.length; i++) {
+this[i] = initArray.arguments[i];
+   }
+}
+var ctext = "你好!欢迎您的光临,留下你宝贵意见!!!";
+var speed = 2000;
+var x = 0;
+var color = new initArray(
+"#ffff00", 
+"#ff0000", 
+"#ff00ff",
+"#0000ff",
+"#ffffff", 
+"#000000", 
+"#00ff00",
+"#00ffff",
+"#ff0ff0"
+);
+if(navigator.appName == "Netscape") {
+document.write('<layer id="c"><center>'+ctext+'</center></layer><br>');
+}
+if (navigator.appVersion.indexOf("MSIE") != -1){
+document.write('<div id="c"><center><b>'+ctext+'</b></center></div>');
+}
+function chcolor(){ 
+if(navigator.appName == "Netscape") {
+document.c.document.write('<center><font color="'+color[x]);
+document.c.document.write('">'+ctext+'</font></center>');
+document.c.document.close();
+}
+else if (navigator.appVersion.indexOf("MSIE") != -1){
+document.all.c.style.color = color[x];
+}
+(x < color.length-1) ? x++ : x = 0;
+}
+setInterval("chcolor()",1000);
+// End -->
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

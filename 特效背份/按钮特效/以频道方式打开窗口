@@ -1,0 +1,16 @@
+<!--脚本说明：
+把如下代码加入<body>区域中:-->
+<script>
+<!--
+function channel(){
+window.open("help.htm","","channelmode,scrollbars")
+}
+//-->
+</script>
+
+<p>
+<form>
+<input type="button" onClick="channel()" value="打开帮助窗口" name="button">
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

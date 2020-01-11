@@ -1,0 +1,191 @@
+<SCRIPT language="JavaScript">
+<!--
+function MakeArray(n) {
+this.length = n;
+for (var i = 1; i <= n; i++) { 
+this[i] = 0 }
+return this
+}
+speedVar = new MakeArray(11);
+speedVar[1] = "1.1719"
+speedVar[2] = "1.7578"
+speedVar[3] = "3.5156"
+speedVar[4] = "4.1016"
+speedVar[5] = "6.8359"
+speedVar[6] = "7.8125"
+speedVar[7] = "16.6250"
+speedVar[8] = "187.9883"
+speedVar[9] = "1220.7031"
+speedVar[10] = "3295.8984"
+speedVar[11] = "5493.1641"
+speedVar[12] = "18920.8984"
+function compute(form, mult){
+for (i=1; i < 13; i++){
+if (form.size.value==null||form.size.value.length==0){
+form.size.value=0;}
+if (form[i+"hour"].value==null||form[i+"hour"].value.length==0){
+form[i+"hour"].value=0;}       
+if (form[i+"minute"].value==null||form[i+"minute"].value.length==0){
+form[i+"minute"].value=0;}
+if (form[i+"second"].value==null||form[i+"second"].value.length==0){
+form[i+"second"].value=0;}
+if (mult != 0 && form.size.value != 0){
+with (Math){
+var speed = speedVar[i];
+var TotalTime = ((form.size.value*mult)/speed);
+var TotalHours = floor((TotalTime/3600));
+var TotalHoursMod = (TotalTime%3600);
+var TotalMin = floor(TotalHoursMod/60);
+var TotalMinMod = (TotalHoursMod%60);
+var TotalSec = floor(TotalMinMod);
+form[i+"hour"].value=TotalHours;
+form[i+"minute"].value=TotalMin;
+form[i+"second"].value=TotalSec;
+      }
+   }
+}
+return;
+}
+//-->
+
+
+</SCRIPT>
+
+
+<!--第二步:把如下代码加入<body>区域中-->
+<form METHOD="POST" name="s">
+  
+  <input type="hidden" name="8hour" value>
+  <input type="hidden" name="8minute" value>
+  <input type="hidden" name="8second" value>
+  <input type="hidden" name="9hour" value>
+  <input type="hidden" name="9minute" value>
+  <input type="hidden" name="9second" value>
+  <input type="hidden" name="10hour" value>
+  <input type="hidden" name="10minute" value>
+  <input type="hidden" name="10second" value>
+  <input type="hidden" name="11hour" value>
+  <input type="hidden" name="11minute" value>
+  <input type="hidden" name="11second" value>
+  <input type="hidden" name="12hour" value>
+  <input type="hidden" name="12minute" value>
+  <input type="hidden" name="12second" value>
+  <div align="center"><center>
+      <table BORDER="4">
+        <tr> 
+          <td>文件大小
+<input TYPE="TEXT" NAME="size" SIZE="10">
+            <input TYPE="BUTTON"
+      OnClick="compute(this.form, 1)" VALUE="KB">
+            <input TYPE="BUTTON"
+      OnClick="compute(this.form, 1024)" VALUE="MB">
+          </td>
+          <script language="JavaScript">
+<!--
+document.s.size.focus();
+
+// -->
+</script>
+          <td colspan="3">
+            <div align="center">
+              <center>
+                需要下载时间(理想值) 
+              </center>
+            </div>
+          </td>
+        </tr>
+        <tr align="center"> 
+          <td>调制解调器速率...</td>
+          <td>小时</td>
+          <td>分钟</td>
+          <td>秒</td>
+        </tr>
+        <tr align="center"> 
+          <td BGCOLOR="#FFFFFF">9.6 Kb</td>
+          <td>
+            <input TYPE="TEXT" NAME="1hour" SIZE="6">
+          </td>
+          <td>
+            <input TYPE="TEXT" NAME="1minute" SIZE="6">
+          </td>
+          <td>
+            <input TYPE="TEXT" NAME="1second" SIZE="6">
+          </td>
+        </tr>
+        <tr align="center"> 
+          <td BGCOLOR="#FFFFFF">14.4 Kb</td>
+          <td>
+            <input TYPE="TEXT" NAME="2hour" SIZE="6">
+          </td>
+          <td>
+            <input TYPE="TEXT" NAME="2minute" SIZE="6">
+          </td>
+          <td>
+            <input TYPE="TEXT" NAME="2second" SIZE="6">
+          </td>
+        </tr>
+        <tr align="center"> 
+          <td BGCOLOR="#FFFFFF">28.8 Kb</td>
+          <td>
+            <input TYPE="TEXT" NAME="3hour" SIZE="6">
+          </td>
+          <td>
+            <input TYPE="TEXT" NAME="3minute" SIZE="6">
+          </td>
+          <td>
+            <input TYPE="TEXT" NAME="3second" SIZE="6">
+          </td>
+        </tr>
+        <tr align="center">
+          <td BGCOLOR="#FFffff">33.6K</td>
+          <td>
+            <input type="TEXT" name="4hour" size="6">
+          </td>
+          <td>
+            <input type="TEXT" name="4minute" size="6">
+          </td>
+          <td>
+            <input type="TEXT" name="4second" size="6">
+          </td>
+        </tr>
+        <tr align="center"> 
+          <td BGCOLOR="#FFCCCC">56 Kb</td>
+          <td>
+            <input TYPE="TEXT" NAME="5hour" SIZE="6">
+          </td>
+          <td>
+            <input TYPE="TEXT" NAME="5minute" SIZE="6">
+          </td>
+          <td>
+            <input TYPE="TEXT" NAME="5second" SIZE="6">
+          </td>
+        </tr>
+        <tr align="center"> 
+          <td BGCOLOR="#FFFFFF">ISDN (64 Kb)</td>
+          <td>
+            <input TYPE="TEXT" NAME="6hour" SIZE="6">
+          </td>
+          <td>
+            <input TYPE="TEXT" NAME="6minute" SIZE="6">
+          </td>
+          <td>
+            <input TYPE="TEXT" NAME="6second" SIZE="6">
+          </td>
+        </tr>
+        <tr align="center"> 
+          <td BGCOLOR="#FFFFFF">ISDN (128 Kb)</td>
+          <td>
+            <input TYPE="TEXT" NAME="7hour" SIZE="6">
+          </td>
+          <td>
+            <input TYPE="TEXT" NAME="7minute" SIZE="6">
+          </td>
+          <td>
+            <input TYPE="TEXT" NAME="7second" SIZE="6">
+          </td>
+        </tr>
+      </table>
+  </center></div>
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

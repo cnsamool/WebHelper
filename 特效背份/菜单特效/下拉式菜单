@@ -1,0 +1,23 @@
+<!--拷贝下面的代码到你的html文件的<head>和</head>之间-->
+<script Language="JavaScript">
+<!-- Hide the script from old browsers --
+function surfto(form) {
+var myindex=form.dest.selectedIndex
+location=form.dest.options[myindex].value;
+}
+//-->
+
+</script>
+<!--拷贝下面的代码到你的html文件的<body>和</body>之间-->
+<form NAME="myform1">
+<div align="center"><center><p><select NAME="dest" SIZE="1">
+<option selected value="#">下拉菜单演示</option>
+<option value="http://samool.533.net">傻猫</option>
+<option value="http://www.sohu.com">搜狐</option>
+<option value="http://www.163.com">网易</option>
+<option value="http://www.sina.com.cn">新浪</option>
+</select> <input TYPE="button" VALUE="Go" onClick="surfto(this.form)"></p>
+</center></div>
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,182 @@
+<!--要完成此效果需要两个步骤
+
+第一步：把如下代码加入到<head>区域中-->
+
+<style>
+BODY {
+	FONT-SIZE: 12px; FONT-FAMILY: 宋体; font-color: #000000
+}
+TD {
+	FONT-SIZE: 12px; FONT-FAMILY: 宋体; font-color: #000000
+}
+P {
+	FONT-SIZE: 12px; FONT-FAMILY: 宋体; font-color: #000000
+}
+A:link {
+	FONT-SIZE: 12px; COLOR: #737054; TEXT-DECORATION: none
+}
+A:visited {
+	FONT-SIZE: 12px; COLOR: #737054; TEXT-DECORATION: none
+}
+A:active {
+	FONT-SIZE: 12px; COLOR: #737054; TEXT-DECORATION: none
+}
+A:hover {
+	FONT-SIZE: 12px; COLOR: #333333; TEXT-DECORATION: underline
+}
+.line {
+	FONT-SIZE: 12px; COLOR: #003399; FONT-FAMILY: 宋体
+}
+.line2 {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; FONT-SIZE: 12px; BORDER-LEFT-COLOR: #000000; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #000000; COLOR: #003399; BORDER-TOP-COLOR: #000000; FONT-FAMILY: 宋体; BACKGROUND-COLOR: #efe7de; BORDER-RIGHT-WIDTH: 0px; BORDER-RIGHT-COLOR: #000000
+}
+.line3 {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: 宋体
+}
+.fontbig {
+	FONT-SIZE: 10.5pt
+}
+.l15 {
+	LINE-HEIGHT: 150%
+}
+.l12 {
+	LINE-HEIGHT: 120%
+}
+.sd {
+	FILTER: dropShadow(color=#808080, OffX=1, OffY=1, Positive=2)
+}
+A.a02:link {
+	FONT-SIZE: 12px; COLOR: #737054; TEXT-DECORATION: none
+}
+A.a02:active {
+	FONT-SIZE: 12px; COLOR: #737054; TEXT-DECORATION: none
+}
+A.a02:visited {
+	FONT-SIZE: 12px; COLOR: #737054; TEXT-DECORATION: none
+}
+A.a02:hover {
+	FONT-SIZE: 12px; COLOR: #000000; TEXT-DECORATION: none
+}
+A.a01:link {
+	FONT-SIZE: 12px; COLOR: #003399; TEXT-DECORATION: none
+}
+A.a01:active {
+	FONT-SIZE: 12px; COLOR: #003399; TEXT-DECORATION: none
+}
+A.a01:visited {
+	FONT-SIZE: 12px; COLOR: #003399; TEXT-DECORATION: none
+}
+A.a01:hover {
+	FONT-SIZE: 12px; COLOR: #000000; TEXT-DECORATION: none
+}
+A.2:link {
+	COLOR: #0066cc; TEXT-DECORATION: none
+}
+A.2:active {
+	COLOR: #0066cc; TEXT-DECORATION: none
+}
+A.2:visited {
+	COLOR: #0066cc; TEXT-DECORATION: none
+}
+A.2:hover {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A.1:link {
+	COLOR: #000000; TEXT-DECORATION: underline
+}
+A.1:active {
+	COLOR: #000000; TEXT-DECORATION: underline
+}
+A.1:visited {
+	COLOR: #000000; TEXT-DECORATION: underline
+}
+A.1:hover {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.skin0 {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; VISIBILITY: hidden; BORDER-LEFT: black 1px solid; WIDTH: 100px; CURSOR: default; LINE-HEIGHT: 20px; BORDER-BOTTOM: black 1px solid; FONT-FAMILY: Verdana; POSITION: absolute; BACKGROUND-COLOR: menu
+}
+.skin1 {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; VISIBILITY: hidden; BORDER-LEFT: black 1px solid; WIDTH: 90px; CURSOR: default; LINE-HEIGHT: 20px; BORDER-BOTTOM: black 1px solid; POSITION: absolute; BACKGROUND-COLOR: #ece7dc
+}
+.menuitems {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px
+}
+A {
+	TEXT-DECORATION: none
+}
+</style>
+<script>
+var menuskin=1
+var display_url=0
+function showmenuie5(){
+var rightedge=document.body.clientWidth-event.clientX
+var bottomedge=document.body.clientHeight-event.clientY
+if (rightedge<ie5menu.offsetWidth)
+ie5menu.style.left=document.body.scrollLeft+event.clientX-ie5menu.offsetWidth
+else
+ie5menu.style.left=document.body.scrollLeft+event.clientX
+if (bottomedge<ie5menu.offsetHeight)
+ie5menu.style.top=document.body.scrollTop+event.clientY-ie5menu.offsetHeight
+else
+ie5menu.style.top=document.body.scrollTop+event.clientY
+
+ie5menu.style.visibility="visible"
+return false
+}
+
+function hidemenuie5(){
+ie5menu.style.visibility="hidden"
+}
+
+function highlightie5(){
+if (event.srcElement.className=="menuitems"){
+event.srcElement.style.backgroundColor="#EFE7DE" //鼠标移动条
+event.srcElement.style.color="#737054" //鼠标移动字体
+if (display_url==1)
+window.status=event.srcElement.url
+}
+}
+
+function lowlightie5(){
+if (event.srcElement.className=="menuitems"){
+event.srcElement.style.backgroundColor=""
+event.srcElement.style.color="black"
+window.status=''
+}
+}
+
+function jumptoie5(){
+if (event.srcElement.className=="menuitems"){
+if (event.srcElement.getAttribute("target")!=null)
+window.open(event.srcElement.url,event.srcElement.getAttribute("target"))
+else
+window.location=event.srcElement.url
+}
+}
+</script>
+
+
+<!--第二步：把如下代码加入到<body>区域中-->
+右键弹出导航菜单
+<DIV class=skin1 id=ie5menu onclick=jumptoie5() onmouseout=lowlightie5()
+onmouseover=highlightie5()>
+<DIV class=menuitems url="http://www.sohu.com">搜狐</DIV>
+<DIV class=menuitems url="http://www.163.com">网易</DIV>
+<DIV class=menuitems url="http://samool.533.net">傻猫</DIV>
+<DIV class=menuitems url="http://www.sina.com.cn">新浪</DIV>
+<DIV class=menuitems url="http://flash.ting365.com">闪客帝国</DIV>
+<DIV class=menuitems url="http://www.263.com">263</DIV>
+<DIV class=menuitems url="http://www.3721.com">3721</DIV></DIV>
+<script language=Javascript1.2>
+if (document.all&&window.print){
+if (menuskin==0)
+ie5menu.className="skin0"
+else
+ie5menu.className="skin1"
+document.oncontextmenu=showmenuie5
+document.body.onclick=hidemenuie5
+}
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

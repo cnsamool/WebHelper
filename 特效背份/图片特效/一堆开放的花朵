@@ -1,0 +1,152 @@
+<body>
+<script>
+var numberofblossoms=10 //数量
+var openblossomspeed=200 //速度
+var showblossomstime=2  //停留时间
+
+var frame=new Array()
+frame[0]=new Image()
+frame[0].src="flower01.gif"
+frame[1]=new Image()
+frame[1].src="flower02.gif"
+frame[2]=new Image()
+frame[2].src="flower03.gif"
+frame[3]=new Image()
+frame[3].src="flower04.gif"
+frame[4]=new Image()
+frame[4].src="flower05.gif"
+frame[5]=new Image()
+frame[5].src="flower06.gif"
+
+var i_nownumberofframes=0
+var i_maxnumberofframes=5
+var i_numberofblossoms=0
+
+var marginleft=0
+var margintop=0
+var marginbottom
+var marginright
+
+var timer
+var thisblossom
+
+showblossomstime=showblossomstime*1000
+
+function positionblossoms() {
+	if (document.all) {   
+		marginbottom=document.body.clientHeight-40
+    	marginright=document.body.clientWidth-40    
+		for (i=0;i<=numberofblossoms;i++) {     
+			var randx=Math.floor(marginright*Math.random())
+			var randy=Math.floor(marginbottom*Math.random())
+			thisblossom=eval("document.all.blossom"+i+".style")
+			thisblossom.posLeft=randx
+			thisblossom.posTop=randy
+			thisblossom.visibility="visible"
+		}
+		thisblossom=eval("blossom0")
+		openblossoms()
+	}
+	if (document.layers) {   
+		marginbottom=window.innerHeight-40
+    	marginright=window.innerWidth-40       
+		for (i=0;i<=numberofblossoms;i++) {     
+			var randx=Math.floor(marginright*Math.random())
+			var randy=Math.floor(marginbottom*Math.random())
+			thisblossom=eval("document.blossom"+i)
+			thisblossom.left=randx
+			thisblossom.top=randy
+			thisblossom.visibility="visible"
+		}
+		thisblossom=eval("document.blossom0.document")
+		openblossoms()
+	}
+}
+
+function openblossoms() {
+	if (document.all) {
+		clearTimeout(timer)
+		if (i_nownumberofframes<=i_maxnumberofframes) {
+			thisblossom.innerHTML="<img src='"+frame[i_nownumberofframes].src+"'>"
+			i_nownumberofframes++
+			timer=setTimeout("openblossoms()",openblossomspeed)
+		}
+		else  {
+			clearTimeout(timer)
+			i_nownumberofframes=0
+			switchtonextblossom()
+		}
+	}
+	if (document.layers) {   
+		if (i_nownumberofframes<=i_maxnumberofframes) {
+			thisblossom.write("<img src='"+frame[i_nownumberofframes].src+"'>")
+			thisblossom.close()
+			i_nownumberofframes++
+			timer=setTimeout("openblossoms()",openblossomspeed)
+		}
+		else  {
+			clearTimeout(timer)
+			i_nownumberofframes=0
+			switchtonextblossom()
+		}
+	}
+}
+
+function switchtonextblossom() {
+	if (document.all) {
+		i_numberofblossoms++
+		if (i_numberofblossoms<=numberofblossoms) {
+			thisblossom=eval("blossom"+i_numberofblossoms)
+			openblossoms()
+		}
+		else {
+			setTimeout("hideblossoms()",showblossomstime)
+		}
+	}
+	if (document.layers) {
+		i_numberofblossoms++
+		if (i_numberofblossoms<=numberofblossoms) {
+			thisblossom=eval("document.blossom"+i_numberofblossoms+".document")
+			openblossoms()
+		}
+		else {
+			setTimeout("hideblossoms()",showblossomstime)
+		}
+	}
+}
+
+function hideblossoms() {
+	if (document.all) {
+		for (i=0;i<=numberofblossoms;i++) {     
+			thisblossom=eval("document.all.blossom"+i+".style")
+			thisblossom.visibility="hidden"
+		}
+	}
+	if (document.layers) {
+		for (i=0;i<=numberofblossoms;i++) {     
+			thisblossom=eval("document.blossom"+i)
+			thisblossom.visibility="hidden"
+		}
+	}
+}
+
+if (document.all) {
+	for (i=0;i<=numberofblossoms;i++) {
+		document.write("<div id='blossom"+i+"' style='position:absolute;top:0px;left:0px;visibility:hidden;'><img name='blossomimg"+i+"' src='flower01.gif'></div>")
+		document.clear()
+	}
+}
+
+if (document.layers) {
+	for (i=0;i<=numberofblossoms;i++) {
+		document.write("<layer name='blossom"+i+"' visibility=hide><img name='blossomimg"+i+"' src='flower01.gif'></layer>")
+	}
+}
+
+window.onresize=positionblossoms
+window.onload=positionblossoms
+
+</script>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

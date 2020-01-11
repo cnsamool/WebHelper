@@ -1,0 +1,20 @@
+
+<!--第一步：先将下列代码复制到<head></head>之间：-->
+<script>
+<!--
+
+x = new Date()  
+function cal() {
+	y = new Date()   
+	diff = y.getTime() - x.getTime()
+	alert("载入本页共用了 " + diff/1000 + " 秒")
+}
+
+//--></script>
+
+
+<!--第二步：再将下列代码复制到<body></body>之间：-->
+<body onload=cal()>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

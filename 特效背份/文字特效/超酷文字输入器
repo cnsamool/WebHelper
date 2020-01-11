@@ -1,0 +1,51 @@
+<html>
+<head>
+<script language="javaScript">
+<!-- Beginning of JavaScript -
+var message = ""
+function showresult() {		
+    if(document.all) {
+        message=document.forms[0].elements[0].value
+        firstfont.innerHTML=message
+        secondfont.innerHTML=message
+	}
+	var timer=setTimeout("showresult()",300) 
+}
+// - End of JavaScript - -->
+</script>
+<script language="javaScript">
+<!-- Beginning of JavaScript -
+var message = ""
+function showresult() {		
+    if(document.all) {
+        message=document.forms[0].elements[0].value
+        firstfont.innerHTML=message
+        secondfont.innerHTML=message
+	}
+	var timer=setTimeout("showresult()",300) 
+}
+// - End of JavaScript - -->
+
+
+<!-- 使用说明：使用时将文字换成你需要的文字即可！-->
+</script>
+</head>
+<body onLoad="showresult()">
+<form name="formname">
+  <div align="center"><center><table cellpadding="2" border="2" width="326">
+    <tr>
+      <td bgcolor="#804040"><font color="FFFFFF">写点东西看看效果：<br>
+      <input name="inputname" type="text" size="30"><input type="submit" name="Submit"
+      value="再写"></font></td>
+    </tr>
+  </table>
+  </center></div>
+</form>
+<div id="secondfont"
+style="position:absolute;visibility:visible;top:150px;left:100px;font-size:25pt;color:FFCCCC;filter:glow(color:FFFFCC,strength:2) blur() flipV()"></div><div
+id="firstfont"
+style="position:absolute;visibility:visible;top:100px;left:100px;font-size:25pt;color:FF0000; filter:glow(color:FFFF00,strength:3) blur()"></div>
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,80 @@
+<html>
+<script language="javaScript">
+<!-- //
+var thissize=20
+var textfont="宋体"
+var textcolor= new Array()
+textcolor[0]="000000"
+textcolor[1]="000000"
+textcolor[2]="000000"
+textcolor[3]="111111"
+textcolor[4]="222222"
+textcolor[5]="333333"
+textcolor[6]="444444"
+textcolor[7]="555555"
+textcolor[8]="666666"
+textcolor[9]="777777"
+textcolor[10]="888888"
+textcolor[11]="999999"
+textcolor[12]="aaaaaa"
+textcolor[13]="bbbbbb"
+textcolor[14]="cccccc"
+textcolor[15]="dddddd"
+textcolor[16]="eeeeee"
+textcolor[17]="ffffff"
+textcolor[18]="ffffff"
+var message = new Array()
+message[0]="感觉好用的话，请向你的朋友推荐！"
+message[1]="傻猫软件 精品软件"
+message[2]="谢谢您使用<网页助手>！"
+message[3]="http://samool.533.net"
+i_message=0
+var i_strength=0
+var i_message=0
+var timer
+function glowtext() { 
+if(document.all) {
+if (i_strength <=17) {
+glowdiv.innerText=message[i_message]
+document.all.glowdiv.style.filter="glow(color="+textcolor[i_strength]+", strength=4)"
+i_strength++
+timer=setTimeout("glowtext()",100)
+}
+else {
+clearTimeout(timer)
+setTimeout("deglowtext()",1500)
+}
+}
+}function deglowtext() { 
+if(document.all) {
+if (i_strength >=0) {
+glowdiv.innerText=message[i_message]
+document.all.glowdiv.style.filter="glow(color="+textcolor[i_strength]+", strength=4)"
+i_strength--
+timer=setTimeout("deglowtext()",100)
+}
+else {
+clearTimeout(timer)
+i_message++
+if (i_message>=message.length) {i_message=0}
+i_strength=0
+intermezzo()
+}
+}
+}
+function intermezzo() { 
+glowdiv.innerText=""
+setTimeout("glowtext()",1500) 
+}
+//-->
+<!-- 此特效使用《心梦网页特效精灵》编辑制作-->
+<!-- 心梦家园：http://xmhome.in70s.com-->
+</script>
+<body bgcolor="#000000" onLoad="glowtext()">
+<div id="glowdiv"
+style="position:absolute;visibility:visible;width:600px;text-align:center; 
+top:150px;left:50px;font-family:隶书;font-size:20pt;color:FF0000"></div>
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

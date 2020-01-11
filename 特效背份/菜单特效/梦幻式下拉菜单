@@ -1,0 +1,65 @@
+<STYLE type=TEXT/CSS>
+A {
+	TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff9900; TEXT-DECORATION: underline
+}
+TD {
+	FONT-SIZE: 9pt; LINE-HEIGHT: 13pt
+}
+TH {
+	FONT-SIZE: 9pt; LINE-HEIGHT: 13pt
+}
+BODY {
+	FONT-SIZE: 9pt; LINE-HEIGHT: 13pt
+}
+#mnu {
+	FILTER: revealTrans(Duration=1.5,Transition=12) visibility:hide
+}
+</STYLE>
+
+<SCRIPT>
+function set_mnu()
+{
+if (mnu.style.visibility=="hidden")
+	{
+//产生效果和把图层显示
+	mnu.filters.revealTrans.apply();
+	mnu.style.visibility="visible";
+	mnu.filters.revealTrans.play();
+	}
+else{
+//隐藏图层和停止效果播放
+	mnu.filters.revealTrans.stop();
+	mnu.style.visibility="hidden" ;
+	}
+}   
+</SCRIPT>
+</head>
+
+　
+<table border="1" width="13%" bordercolorlight="#000000" bordercolordark="#FFFFFF" bordercolor="#EFEFEF" cellspacing="0">
+  <tr>
+    <td width="100%">
+      <p align="center"><A href="javascript:set_mnu(mnu);">显示菜单</A>
+    </td>
+  </tr>
+</table>
+<DIV id=mnu 
+   style="HEIGHT: 10px; LEFT: 1px; POSITION: relative; TOP: 1px; VISIBILITY: hidden; WIDTH: 93px; Z-INDEX: 1">
+       <TABLE border=0 cellPadding=2 cellSpacing=4 width="100%">
+        <TBODY>
+         <TR >
+           <TD align="center" style="border: 1 solid #000000">测试一</TD></TR>
+             <TR >
+               <TD align="center" style="border: 1 solid #000000"><a href="#">测试一</a></TD></TR>
+                <TR >
+               <TD align="center" style="border: 1 solid #000000"><a href="#">测试一</a></TD></TR>
+            <TR >
+         <TD height=13 align="center" style="border: 1 solid #000000"><A  href="javascript:window.location='view-source:'+window.location.href"  onclick="window.location='view-source:'+window.location.href">查看源文件</A></TD></TR>
+      </TBODY>
+   </TABLE>
+ </DIV>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,32 @@
+<!--要完成此效果需要三个步骤
+
+第一步：把如下代码加入到<head>区域中-->
+
+<style>
+body {cursor: default;border:0}
+.button1 {BORDER-RIGHT: threedshadow 1pt solid; BORDER-TOP: threedhighlight 1pt solid; BORDER-LEFT: threedhighlight 1pt solid; BORDER-BOTTOM: threedshadow 1pt solid;font: menu;color:menutext}
+.button2 {BORDER: threedface 1pt solid;font:menu;color:menutext}
+.button3 {BORDER-RIGHT: threedhighlight 1pt solid; BORDER-TOP: threedshadow 1pt solid; BORDER-LEFT: threedshadow 1pt solid; BORDER-BOTTOM: threedhighlight 1pt solid;font: menu;color:menutext}
+</style>
+
+
+<!--第二步：把如下代码加入到<body>区域中-->
+
+<table border="0" cellspacing="0" cellpadding="0" bgcolor="#c0c0c0" width="100%">
+  <tr>
+    <td class=button2 onMouseOut="this.className='button2'" onMouseOver="this.className='button1'" onMouseDown="this.className='button3'" onMouseUp="this.className='button1'" align="center" valign="middle">主　页(H)</td>
+    <td class=button2 onmouseout="this.className='button2'" onmouseover="this.className='button1'" onmousedown="this.className='button3'" onmouseup="this.className='button1'" align="center" valign="middle">脚本区(j)</td>
+    <td class=button2 onmouseout="this.className='button2'" onmouseover="this.className='button1'" onmousedown="this.className='button3'" onmouseup="this.className='button1'" align="center" valign="middle">聊天室(C)</td>
+    <td class=button2 onmouseout="this.className='button2'" onmouseover="this.className='button1'" onmousedown="this.className='button3'" onmouseup="this.className='button1'" align="center" valign="middle">选择主题(V)</td>
+    <td class=button2 onmouseout="this.className='button2'" onmouseover="this.className='button1'" onmousedown="this.className='button3'" onmouseup="this.className='button1'" align="center" valign="middle">进入论坛(B)</td>
+    <td class=button2 onmouseout="this.className='button2'" onmouseover="this.className='button1'" onmousedown="this.className='button3'" onmouseup="this.className='button1'" align="center" valign="middle">发送邮件(E)</td>
+    <td class=button2 onmouseout="this.className='button2'" onmouseover="this.className='button1'" onmousedown="this.className='button3'" onmouseup="this.className='button1'" align="center" valign="middle">回复地址(R)</td>
+  </tr>
+</table>
+
+
+<!--第三步：把“leftmargin="0" topmargin="0"”加在<body>标记里
+例如：-->
+<body leftmargin="0" topmargin="0">
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

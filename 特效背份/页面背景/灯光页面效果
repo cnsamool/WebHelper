@@ -1,0 +1,118 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<style type="text/css">
+#divExCont{position:absolute; left:-1; top:-1; clip:rect(0,0,0,0); layer-background-color:white; background-color:white}
+#divCircle{position:absolute; z-index:500; visibility:hidden; width:200}
+BODY{background-color:black}
+</style>
+<script type="text/javascript" language="JavaScript">
+function checkBrowser(){
+        this.ver=navigator.appVersion
+        this.dom=document.getElementById?1:0
+        this.ie5=(this.ver.indexOf("MSIE 5")>-1 && this.dom)?1:0;
+        this.ie4=(document.all && !this.dom)?1:0;
+        this.ns5=(this.dom && parseInt(this.ver) >= 5) ?1:0;
+        this.ns4=(document.layers && !this.dom)?1:0;
+        this.bw=(this.ie5 || this.ie4 || this.ns4 || this.ns5)
+        return this
+}
+bw=new checkBrowser()
+sCircleWidth=200
+sCircleHeight=200
+sStarty=200
+sStartx=200
+
+/******************************************************************************
+Making the clipobject part
+******************************************************************************/
+function makeObj(obj,nest,x,y){
+        nest=(!nest) ? '':'document.'+nest+'.'
+           this.css=bw.dom? document.getElementById(obj).style:bw.ie4?document.all[obj].style:bw.ns4?eval(nest+"document.layers." +obj):0;
+        this.evnt=bw.dom? document.getElementById(obj):bw.ie4?document.all[obj]:bw.ns4?eval(nest+"document.layers." +obj):0;
+        this.clipIt=b_clipIt; this.clip=b_clip;
+        this.clipTo=b_clipTo;
+        this.obj = obj + "Object";         eval(this.obj + "=this")
+        return this
+}
+function b_clipTo(t,r,b,l){
+        if(bw.ns4){this.css.clip.top=t;this.css.clip.right=r;this.css.clip.bottom=b;this.css.clip.left=l
+        }else{
+                this.css.clip="rect("+t+"px "+r+"px "+b+"px "+l+"px)";
+        }
+}
+function b_clipIt(tstop,rstop,bstop,lstop,step,fn){
+        if(!fn) fn=null
+        var clipval=new Array()
+        if(bw.dom || bw.ie4) {
+                clipval=this.css.clip
+                clipval=clipval.slice(5,clipval.length-1);
+                clipval=clipval.split(' ')
+                for(var i=0;i<4;i++){clipval[i]=parseInt(clipval[i])}
+        }else{
+                clipval[0]=this.css.clip.top
+            clipval[1]=this.css.clip.right
+            clipval[2]=this.css.clip.bottom
+            clipval[3]=this.css.clip.left
+        }
+        totantstep=Math.max(Math.max(Math.abs((tstop-clipval[0])/step),Math.abs((rstop-clipval[1])/step)),
+                Math.max(Math.abs((bstop-clipval[2])/step),Math.abs((lstop-clipval[3])/step)))
+        if(!this.clipactive)
+                this.clip(clipval[0],clipval[1],clipval[2],clipval[3],(tstop-clipval[0])/totantstep,
+                        (rstop-clipval[1])/totantstep,(bstop-clipval[2])/totantstep,
+                                (lstop-clipval[3])/totantstep,totantstep,0, fn)
+}
+function b_clip(tcurr,rcurr,bcurr,lcurr,tperstep,rperstep,bperstep,lperstep,totantstep,antstep, fn){
+        tcurr=tcurr+tperstep; rcurr=rcurr+rperstep
+        bcurr=bcurr+bperstep; lcurr=lcurr+lperstep
+        this.clipTo(tcurr,rcurr,bcurr,lcurr)
+        if(antstep<totantstep){
+                this.clipactive=true
+                antstep++
+                setTimeout(this.obj+".clip("+tcurr+","+rcurr+","+bcurr+","+lcurr+","+tperstep+","
+                        +rperstep+","+bperstep+","+lperstep+","+totantstep+","+antstep+",'"+fn+"')",50)
+        }else{
+                this.clipactive=false
+                eval(fn)
+        }
+}
+/******************************************************************************
+Initiating the page and the clip objects.
+******************************************************************************/
+function spotInit(){
+        pageWidth=(bw.ns4 || bw.ns5)?innerWidth:document.body.offsetWidth;
+        pageHeight=(bw.ns4 || bw.ns5)?innerHeight:document.body.offsetHeight;
+        oExCont=new makeObj('divExCont')
+        if(bw.dom || bw.ie4){oExCont.css.width=pageWidth+10;oExCont.css.height=pageHeight+10}
+        oCircle=new makeObj('divCircle','divExCont')
+        oExCont.clipTo(sStarty,sStartx+sCircleWidth,sStarty+sCircleHeight,sStartx)
+        oCircle.css.left=sStartx; oCircle.css.top=sStarty;
+        oCircle.css.visibility="visible"
+        if(bw.ns4)document.captureEvents(Event.MOUSEMOVE)
+        document.onmousemove=moveCircle;
+}
+function moveCircle(e){
+        x=(bw.ns4 || bw.ns5)?e.pageX:event.x;y=(bw.ns4 || bw.ns5)?e.pageY:event.y
+        oExCont.clipTo(y-sCircleHeight/2,x+sCircleWidth/2,y+sCircleHeight/2,x-sCircleWidth/2)
+        oCircle.css.left=x-sCircleWidth/2;oCircle.css.top=y-sCircleHeight/2
+}
+function showCont(){
+        document.onmousemove=null
+        oCircle.css.visibility="hidden"
+        oExCont.clipIt(-20,pageWidth+20,pageHeight+20,-20,20)
+}
+
+onload=spotInit;
+</script>
+<div id="divExCont">
+        <div id="divCircle">
+                <a href="#" onclick="showCont(); if(bw.dom || bw.ie4) this.blur(); return false"><img src="black_circle.gif" width=234 height=241 border="0"></a>
+        </div>
+<br><br><br><br><br><br><br><br></div>
+</body>
+
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

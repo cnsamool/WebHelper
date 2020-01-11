@@ -1,0 +1,31 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中://-->
+
+<SCRIPT LANGUAGE="JavaScript">
+
+<!--
+function PlaySong(SongURL)
+{
+
+PopUp = window.open (SongURL, "Crescendo", "toolbar=no,location=no,directories=no,status=no,scrollbars=no,resizeable=no,copyhistory=no,width=200,height=30")
+
+}
+//-->
+
+</SCRIPT>
+<FORM NAME="midiform"><SELECT NAME="list"><OPTION VALUE="song1.mid" [SELECTED]>MID音乐1
+<OPTION VALUE="song2.mid">MID音乐2
+<OPTION VALUe="song3.mid">MID音乐3
+</SELECT>
+<P><INPUT TYPE=BUTTON VALUE="播放音乐" onClick="PlaySong(midiform.list.options[midiform.list.selectedIndex].value)">
+</FORM>
+
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

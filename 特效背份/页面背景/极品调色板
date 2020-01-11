@@ -1,0 +1,262 @@
+<STYLE type=text/css>
+#subtext {FONT-SIZE: 8pt; FONT-FAMILY: helvetica,arial; BACKGROUND-COLOR: #cccccc; layer-background-color: #CCCCCC}
+#title {FONT-WEIGHT: bold; FONT-SIZE: 13pt; FONT-FAMILY: helvetica,arial}
+#red {Z-INDEX: 1; LEFT: 54px; BACKGROUND-IMAGE: url(redback.gif); VISIBILITY: visible; WIDTH: 256px; CLIP: rect(0px 256px 10px 0px); POSITION: absolute; TOP: 100px; HEIGHT: 10px; layer-background-image: url(redback.gif)}
+#green {Z-INDEX: 1; LEFT: 54px; BACKGROUND-IMAGE: url(greenback.gif); VISIBILITY: visible; WIDTH: 256px; CLIP: rect(0px 256px 10px 0px); POSITION: absolute; TOP: 120px; HEIGHT: 10px; layer-background-image: url(greenback.gif)}
+#blue {Z-INDEX: 1; LEFT: 54px; BACKGROUND-IMAGE: url(blueback.gif); VISIBILITY: visible; WIDTH: 256px; CLIP: rect(0px 256px 10px 0px); POSITION: absolute; TOP: 140px; HEIGHT: 10px; layer-background-image: url(blueback.gif)}
+#redSlider {Z-INDEX: 2; LEFT: 50px; BACKGROUND-IMAGE: url(scroll-boxh.gif); VISIBILITY: visible; WIDTH: 8px; CLIP: rect(0px 8px 14px 0px); POSITION: absolute; TOP: 98px; HEIGHT: 14px; layer-background-image: url(scroll-boxh.gif)}
+#greenSlider {Z-INDEX: 2; LEFT: 50px; BACKGROUND-IMAGE: url(scroll-boxh.gif); VISIBILITY: visible; WIDTH: 8px; CLIP: rect(0px 8px 14px 0px); POSITION: absolute; TOP: 118px; HEIGHT: 14px; layer-background-image: url(scroll-boxh.gif)}
+#blueSlider {Z-INDEX: 2; LEFT: 50px; BACKGROUND-IMAGE: url(scroll-boxh.gif); VISIBILITY: visible; WIDTH: 8px; CLIP: rect(0px 8px 14px 0px); POSITION: absolute; TOP: 138px; HEIGHT: 14px; layer-background-image: url(scroll-boxh.gif)}
+#display {Z-INDEX: 1; LEFT: 320px; VISIBILITY: visible; WIDTH: 50px; POSITION: absolute; TOP: 100px; HEIGHT: 50px; BACKGROUND-COLOR: #000000; layer-background-color: #000000}
+#hexValue {Z-INDEX: 1; LEFT: 54px; VISIBILITY: visible; WIDTH: 320px; POSITION: absolute; TOP: 160px; HEIGHT: 20px}
+#titleBar {Z-INDEX: 1; LEFT: 54px; WIDTH: 320px; POSITION: absolute; TOP: 70px; HEIGHT: 20px; BACKGROUND-COLOR: #dddddd; layer-background-color: #DDDDDD}
+#colorTable {Z-INDEX: 1; LEFT: 380px; VISIBILITY: visible; WIDTH: 320px; POSITION: absolute; TOP: 70px; HEIGHT: 200px}
+</STYLE>
+
+<SCRIPT language=JavaScript>
+<!-- Begin
+function init() {
+ns4 = (document.layers)?true:false;
+ie4 = (document.all)?true:false;
+sliderMin = 50;
+sliderMax = 306;
+rValue=0;
+gValue=0;
+bValue=0;
+r1 = '0';
+r2 = '0';
+g1 = '0';
+g2 = '0';
+b1 = '0';
+b2 = '0';
+Rgb = '0';
+rGb = '0';
+rgB = '0';
+rActive = false;
+gActive = false;
+bActive = false;
+document.onmousedown = mouseDown
+document.onmousemove = mouseMove
+document.onmouseup = mouseUp
+if (ns4) document.captureEvents(Event.MOUSEDOWN | Event.MOUSEMOVE | Event.MOUSEUP);
+if (ns4) {
+domRed = document.redSlider;
+domRed.xpos = parseInt(domRed.left);
+domRed.ypos = parseInt(domRed.top);
+domRed.w = domRed.clip.width;
+domRed.h = domRed.clip.height;
+domGreen = document.greenSlider;
+domGreen.xpos = parseInt(domGreen.left);
+domGreen.ypos = parseInt(domGreen.top);
+domGreen.w = domGreen.clip.width;
+domGreen.h = domGreen.clip.height;
+domBlue = document.blueSlider;
+domBlue.xpos = parseInt(domBlue.left);
+domBlue.ypos = parseInt(domBlue.top);
+domBlue.w = domBlue.clip.width;
+domBlue.h = domBlue.clip.height;
+domDisplay = document.display;
+domValue = document.hexValue.document.frmValue.valueDisp;
+domredValue = document.hexValue.document.frmValue.RgbDisp;
+domgreenValue = document.hexValue.document.frmValue.rGbDisp;
+domblueValue = document.hexValue.document.frmValue.rgBDisp;
+}
+else {
+domRed = redSlider.style;
+domRed.xpos = redSlider.offsetLeft;
+domRed.ypos = redSlider.offsetTop;
+domRed.w = redSlider.clientWidth;
+domRed.h = redSlider.clientHeight;
+domGreen = greenSlider.style;
+domGreen.xpos = greenSlider.offsetLeft;
+domGreen.ypos = greenSlider.offsetTop;
+domGreen.w = greenSlider.clientWidth;
+domGreen.h = greenSlider.clientHeight;
+
+domBlue = blueSlider.style;
+domBlue.xpos = blueSlider.offsetLeft;
+domBlue.ypos = blueSlider.offsetTop;
+domBlue.w = blueSlider.clientWidth;
+domBlue.h = blueSlider.clientHeight;
+domDisplay = display;
+domValue = frmValue.valueDisp;
+domredValue = frmValue.RgbDisp;
+domgreenValue = frmValue.rGbDisp;
+domblueValue = frmValue.rgBDisp;
+}
+hexArray = new Array('0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F');
+}
+function mouseDown(e) {
+if ((ns4 && e.which!=1) || (ie4 && event.button!=1)) return true;
+var x = (ns4)? e.pageX : event.x+document.body.scrollLeft;
+var y = (ns4)? e.pageY : event.y+document.body.scrollTop;
+if (x > domRed.xpos && x < domRed.xpos+domRed.w && y > domRed.ypos && y < domRed.ypos+domRed.h){ rActive = true; dragObject = domRed; }
+if (x > domGreen.xpos && x < domGreen.xpos+domGreen.w && y > domGreen.ypos && y < domGreen.ypos+domGreen.h){ gActive = true; dragObject = domGreen; }
+if (x > domBlue.xpos && x < domBlue.xpos+domBlue.w && y > domBlue.ypos && y < domBlue.ypos+domBlue.h){ bActive = true; dragObject = domBlue; }
+if (rActive==true || gActive==true || bActive==true){
+if (x>=dragObject.xpos && x<=dragObject.xpos+dragObject.w) {
+dragObject.dragOffsetX = x-dragObject.xpos
+}
+return false
+}
+else {
+return true
+   }
+}
+function mouseMove(e) {
+var x = (ns4)? e.pageX : event.x+document.body.scrollLeft;
+var y = (ns4)? e.pageY : event.y+document.body.scrollTop;
+if (rActive) {
+rMoveTo = x-dragObject.dragOffsetX;
+if (rMoveTo > sliderMax) rMoveTo = 306;
+if (rMoveTo < sliderMin) rMoveTo = 50;
+domRed.xpos = rMoveTo;
+domRed.left = domRed.xpos;
+rValue = (domRed.xpos+4)-50;
+calcValue(rMoveTo-50, 'red');
+}
+if (gActive) {
+gMoveTo = x-dragObject.dragOffsetX;
+if (gMoveTo > sliderMax) gMoveTo = sliderMax;
+if (gMoveTo < sliderMin) gMoveTo = sliderMin;
+domGreen.xpos = gMoveTo;
+domGreen.left = domGreen.xpos;
+gValue = (domGreen.xpos+4)-50;
+calcValue(gMoveTo-50, 'green');
+}
+if (bActive) {
+bMoveTo = x-dragObject.dragOffsetX;
+if (bMoveTo > sliderMax) bMoveTo = sliderMax;
+if (bMoveTo < sliderMin) bMoveTo = sliderMin;
+domBlue.xpos = bMoveTo;
+domBlue.left = domBlue.xpos;
+bValue = (domBlue.xpos+4)-50;
+calcValue(bMoveTo-50, 'blue');
+}
+return true
+}
+function mouseUp(e) {
+var x = (ns4)? e.pageX : event.x+document.body.scrollLeft
+var y = (ns4)? e.pageY : event.y+document.body.scrollTop
+rActive = false;
+gActive = false;
+bActive = false;
+return true
+}
+function calcValue(base, color) {
+base -= 1;
+if (base < 16) { first = 0; }
+else { first = parseInt(base/16); }
+if (base < 0 ) { second = 0; base = 0; }
+else { second = parseInt(base%16); }
+c1=hexArray[first];
+c2=hexArray[second]; 
+if (color == 'red') { r1 = c1; r2 = c2; Rgb=base; }
+else if (color == 'green') { g1 = c1; g2 = c2; rGb=base; }
+else { b1 = c1; b2 = c2; rgB=base; }
+domValue.value = eval('"'+r1+r2+g1+g2+b1+b2+'"');
+domredValue.value = eval('"'+Rgb+'"');
+domgreenValue.value = eval('"'+rGb+'"');
+domblueValue.value = eval('"'+rgB+'"');
+if (ns4) { domDisplay.bgColor = eval('"#'+r1+r2+g1+g2+b1+b2+'"'); }
+else { domDisplay.style.backgroundColor = eval('"#'+r1+r2+g1+g2+b1+b2+'"'); }
+return true;
+}
+function manualSet(value,color) {
+if (value < 0) value=0;
+if (value > 255) value=255;
+++value;
+calcValue(value,color);
+if (color == 'red'){ domRed.xpos = value+sliderMin-4; domRed.left = domRed.xpos; }
+else if (color == 'green'){ domGreen.xpos = value+sliderMin-4; domGreen.left = domGreen.xpos; }
+else { domBlue.xpos = value+sliderMin-4; domBlue.left = domBlue.xpos; }
+}
+function convertHex(hexString) {
+if(hexString == null) hexString = domValue.value;
+inputHexArray = new Array(6);
+for(i=0;i<=5;++i) {
+inputHexArray[i] = hexString.charAt(i);
+}
+for(i=0;i<=5;++i) {
+tempHexVal = inputHexArray[i];
+for(j=0;j<=15;++j) {
+if(tempHexVal == hexArray[j]) tempHexVal = j;
+}
+inputHexArray[i] = tempHexVal;
+}
+Rgb = (inputHexArray[0]*16)+inputHexArray[1]+1;
+calcValue(Rgb,'red');
+manualSet(Rgb,'red');
+rGb = (inputHexArray[2]*16)+inputHexArray[3]+1;
+calcValue(rGb,'green');
+manualSet(rGb,'green');
+rgB = (inputHexArray[4]*16)+inputHexArray[5]+1;
+calcValue(rgB,'blue');
+manualSet(rgB,'blue');
+}
+// End -->
+</SCRIPT>
+<BODY text=#999999 vLink=#33ff33 aLink=#33ff33 link=#33ff33 bgColor=#ffffff onload=init()>
+<DIV id=red></DIV>
+<DIV id=green></DIV>
+<DIV id=blue></DIV>
+<DIV id=redSlider></DIV>
+<DIV id=greenSlider></DIV>
+<DIV id=blueSlider></DIV>
+<DIV id=colorTable>
+<TABLE cellSpacing=1 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD id=subtext align=middle colSpan=18>216种标准颜色</TD></TR>
+<SCRIPT>
+<!--
+clr = new Array('00','33','66','99','CC','FF');
+for(k=0;k<6;++k){
+for(j=0;j<6;){
+document.write('<tr>\n');
+for(m=0;m<3;++m){
+for(i=0;i<6;++i){
+document.write('<td bgcolor=#'+clr[k]+clr[j+m]+clr[i]+'>');
+document.write('<a href="javascript:void(null)" ');
+document.write('onClick="convertHex(\''+clr[k]+clr[j+m]+clr[i]+'\')\;">');
+document.write('<img src=blank1.gif width=10 height=10 border=0></a></td>\n');
+}
+}
+j+=3;
+document.write('</tr>\n');
+}
+}
+//-->
+</SCRIPT>
+</TBODY></TABLE></DIV>
+<DIV id=display><IMG height=50 src="blank1.gif" width=50 border=0></DIV>
+<DIV id=titleBar>
+<TABLE cellSpacing=0 cellPadding=2 width=320 border=0>
+<TBODY>
+<TR>
+<TD id=title>《网页助手》极品调色板</TD></TR></TBODY></TABLE></DIV>
+<DIV id=hexValue>
+<FORM name=frmValue>
+<TABLE cellSpacing=0 cellPadding=2 width=320 bgColor=#eeeeee border=0>
+<TBODY>
+<TR>
+<TD align=middle>
+<TABLE cellSpacing=0 cellPadding=2 border=0>
+<TBODY>
+<TR>
+<TD id=subtext>Red</TD>
+<TD id=subtext>Green</TD>
+<TD id=subtext>Blue</TD></TR>
+<TR>
+<TD><INPUT onblur="manualSet(this.value,'红');" maxLength=3 size=3 value=0 name=RgbDisp></TD>
+<TD><INPUT onblur="manualSet(this.value,'绿');" maxLength=3 size=3 value=0 name=rGbDisp></TD>
+<TD><INPUT onblur="manualSet(this.value,'蓝');" maxLength=3 size=3 value=0 name=rgBDisp></TD></TR></TBODY></TABLE></TD>
+<TD align=middle>
+<TABLE cellSpacing=0 cellPadding=2 border=0>
+<TBODY>
+<TR>
+<TD id=subtext>十六进制颜色代码</TD></TR>
+<TR>
+<TD><INPUT onblur=convertHex(); maxLength=6 size=6 value=000000 name=valueDisp></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></FORM></DIV></BODY>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

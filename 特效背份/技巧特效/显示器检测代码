@@ -1,0 +1,10 @@
+<script language="JavaScript1.2">
+<!--
+var correctwidth=800
+var correctheight=600
+if (screen.width!=correctwidth||screen.height!=correctheight)
+document.write("本站最佳分辨率: "+correctwidth+"*"+correctheight+". 你当前的分辨率是:"+screen.width+"*"+screen.height+"。设置合适的分辨率才能取得最佳的显示效果！")
+//-->
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

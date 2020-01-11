@@ -1,0 +1,95 @@
+<head>
+<style>
+.skin {BORDER-RIGHT: buttonhighlight 0px outset; BORDER-TOP: buttonhighlight 0px outset; FONT-SIZE: 9pt; VISIBILITY: hidden; BORDER-LEFT: buttonhighlight 0px outset; WIDTH: 100px; CURSOR: default; BORDER-BOTTOM: buttonhighlight 0px outset; FONT-FAMILY: Arial, Helvetica, sans-serif; POSITION: absolute; BACKGROUND-COLOR: #000000; TEXT-ALIGN: center}
+.menuitems {PADDING-RIGHT: 10px; PADDING-LEFT: 10px}
+td { font-size: 9pt; font-family: "宋体"}
+</style>
+<title></title>
+</head>
+
+<body>
+<script language="JavaScript1.2">
+<!-- Begin
+var menuskin = "skin";
+var display_url = 0; // Show URLs in status bar?
+function showmenuie5() {
+var rightedge = document.body.clientWidth-event.clientX;
+var bottomedge = document.body.clientHeight-event.clientY;
+if (rightedge < ie5menu.offsetWidth)
+ie5menu.style.left = document.body.scrollLeft + event.clientX - ie5menu.offsetWidth;
+else
+ie5menu.style.left = document.body.scrollLeft + event.clientX;
+if (bottomedge < ie5menu.offsetHeight)
+ie5menu.style.top = document.body.scrollTop + event.clientY - ie5menu.offsetHeight;
+else
+ie5menu.style.top = document.body.scrollTop + event.clientY;
+ie5menu.style.visibility = "visible";
+return false;
+}
+function hidemenuie5() {
+ie5menu.style.visibility = "hidden";
+}
+function highlightie5() {
+if (event.srcElement.className == "menuitems") {
+event.srcElement.style.backgroundColor = "highlight";
+event.srcElement.style.color = "white";
+if (display_url)
+window.status = event.srcElement.url;
+   }
+}
+function lowlightie5() {
+if (event.srcElement.className == "menuitems") {
+event.srcElement.style.backgroundColor = "";
+event.srcElement.style.color = "black";
+window.status = "";
+   }
+}
+function jumptoie5() {
+if (event.srcElement.className == "menuitems") {
+if (event.srcElement.getAttribute("target") != null)
+window.open(event.srcElement.url, event.srcElement.getAttribute("target"));
+else
+window.location = event.srcElement.url;
+   }
+}
+//  End -->
+</script>
+<div class="skin" id="ie5menu"
+onmouseover="highlightie5()" style="LEFT: 280px; TOP: 28px" onclick="jumptoie5();"
+onmouseout="lowlightie5()"><div>
+
+<table height="100%" cellSpacing="1" cellPadding="0" width="100%" align="center"
+bgColor="#000000">
+<TBODY>
+<tr>
+<td onmouseover="this.style.backgroundColor='#999900';" onmouseout="this.style.backgroundColor='#99cc33';"
+bgColor="#99cc33" height="20"><p align="center"><a href="http://samool.533.net" target="_blank">傻猫在线</a></td>
+</tr>
+<tr>
+<td onmouseover="this.style.backgroundColor='#ff9900';" onmouseout="this.style.backgroundColor='#ffcc00';"
+bgColor="#ffcc00" height="20"><p align="center"><a href="http://samool.533.net" target="_blank">傻猫软件</a></td>
+</tr>
+<tr>
+<td onmouseover="this.style.backgroundColor='#8C8CFF';" onmouseout="this.style.backgroundColor='#CACAFF';"
+bgColor="#CACAFF" height="20"><p align="center"><a href="http://yangshiy.533.net" target="_blank">仕毅风采</a></td>
+</tr>
+<tr>
+<td onmouseover="this.style.backgroundColor='#D1A4FF';" onmouseout="this.style.backgroundColor='#00CCCC';"
+bgColor="#00CCCC" height="20"><p align="center"><a href="http://a3_.533.net" target="_blank">我爱A3</a></td>
+</tr>
+<tr>
+<td onmouseover="this.style.backgroundColor='#B36666';" onmouseout="this.style.backgroundColor='#D7AEAE';"
+bgColor="#D7AEAE" height="20"><p align="center"><a href="http://www.online.com" target="_blank">华军软件</a></td>
+</tr>
+</TBODY>
+</table>
+</div></div><script language="JavaScript1.2">
+if (document.all && window.print) {
+ie5menu.className = menuskin;
+document.oncontextmenu = showmenuie5;
+document.body.onclick = hidemenuie5;
+}
+</script>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

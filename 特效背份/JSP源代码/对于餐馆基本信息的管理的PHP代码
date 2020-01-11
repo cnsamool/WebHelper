@@ -1,0 +1,850 @@
+目录结构说明：
+/tomcat/webapps/canyin/                    -----主目录
+/tomcat/webapps/canyin/jsp/               -----JSP 文件目录
+/tomcat/webapps/canyin/jsp/admin/       -----实现后台管理的JSP 文件的存放目录
+/tomcat/webapps/canyin/WEB-INF/classes/canyin/               ------javabean 文件的存放目录
+/tomcat/webapps/canyin/data/   -----xml 文件存放目录
+/tomcat/webapps/ROOT/           -----tomcat 启动文件存放文件夹，只存放了index.html 文件
+
+文件简单说明：
+/tomcat/webapps/canyin/data/users.xml    -----记录用户信息
+/tomcat/webapps/canyin/data/restaurants.xml  -----记录餐馆的基础信息
+
+
+/tomcat/webapps/ROOT/index.html       -----首页，页面出现输入框，要求用户输入用户名，密码
+
+
+/tomcat/webapps/canyin/jsp/loginjudge.jsp       -----用户身份判断页面，根据用户名称和密码决定页面是转入后台管理端，还是前台客户端。本例子中，用户身份一旦确认为有管理权限，可以进入后台管理端，就直接跳到餐馆基本信息管理页面，简化说明的流程。
+/tomcat/webapps/canyin/jsp/admin/admin_rest.jsp    -----餐馆基本信息管理页面，管理餐馆的名称，电话，地址等信息
+
+/tomcat/webapps/canyin/WEB-INF/classes/canyin/checkSessionBean.class  ----- 后台管理端检测标志用户身份的session 的值，如果不是管理员的话，跳回登陆页面。              
+/tomcat/webapps/canyin/WEB-INF/classes/canyin/connXmlBean.class  -----连接xml 文件
+/tomcat/webapps/canyin/WEB-INF/classes/canyin/writeXmlBean.class  -----写入xml文件
+
+文件详细介绍及附带代码说明。
+
+/tomcat/webapps/canyin/data/users.xml    
+
+代码：
+  <?xml version="1.0" encoding="UTF-8" ?> 
+
+- <users>
+  <user name="joard" password="joard" roles="admin" /> 
+  <user name="joard01" password="joard01" roles="user" /> 
+  <user name="joard02" password="joard02" roles="user" /> 
+  </users>
+ 
+说明：字段含义是用户名，密码以及用户的身份
+ 
+/tomcat/webapps/canyin/data/restaurants.xml  
+
+代码：
+  <?xml version="1.0" encoding="UTF-8" ?> 
+- <restaurants num="10">
+- <restaurant id="1">
+  <name>上海亭快餐店</name> 
+  <phone>021-76546726</phone> 
+  <address>百老汇广场B座</address> 
+  </restaurant>
+- <restaurant id="8">
+  <name>香格里拉大饭店</name> 
+  <phone>021-2312134</phone> 
+  <address>南京路1023号</address> 
+  </restaurant>
+  </restaurants>
+说明：<num>属性是记录在restaurants.xml 文件中总共有过多少条记录，每新增一条，无论以后删除是否，该值都会增加1，就好象数据库中习惯使用的自动增加1的id 项。用来给新增的 <restaurant>的属性<id>赋一个唯一的值。其它的字段意思比较明显。
+/tomcat/webapps/ROOT/index.html       （单纯的HTML代码）
+
+代码：
+<html>
+<head>
+<title>oddWorld 餐饮系统</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<body onload="javascript:dataform.username.focus()">
+<div align="center">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="22">
+    <tr> 
+      <td width="1"><img src="images/top_r1.GIF" width="62" height="22"></td>
+      <td width=150 align="center"> 餐饮系统登录 </td>
+      <td><img src="images/top_r2.GIF" width="294" height="22"></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="300" border="0" cellspacing="1" cellpadding="0" >
+    <tr> 
+    <td height="200" valign="top" align="center"> 
+      <p align="center">
+        <table width="100%" border="0" cellspacing="1" cellpadding="5" bgcolor=#999999 class=a9px>
+          <tr> 
+            <td bgcolor="#efefef">餐饮系统登录</td>
+        </tr>
+        <tr> 
+            <td bgcolor="#FFFFFF" valign="top" align="center"> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <form name=dataform method=post action=''canyin/jsp/loginjudge.jsp''>
+                  <tr> 
+                    <td width="100"><b>登录名：</b></td>
+                    <td> 
+                      <input maxlength=16 
+              name="username" class=stedit value="joard">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="100"><b>密码：</b></td>
+                    <td>
+                      <input  class=stedit  maxlength=16 
+                  name="userpass" type=password value="oddworld">
+                    </td>
+                  </tr>
+                </form>
+              </table>
+            <br>
+              <table border=0 cellpadding=0 cellspacing=0>
+                <tbody> 
+                <tr> 
+                  <td> 
+                    <input  class=stbtm  name=update onClick="javascript:if (checkform()==false);" type=button value="登    录">
+                  </td>
+                  <td>&nbsp;</td>
+                  <td> 
+                    <input class=stbtm name=Submit onClick="javascript:window.location.href=''index.asp?myjoke=1'';" type=button value="修改密码">
+                  </td>
+                  <td>&nbsp;</td>
+                </tr>
+                </tbody> 
+              </table>
+              <br>
+            </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</div>
+</body>
+</html>
+     <SCRIPT language=javascript>
+<!--
+function checkform()
+{ 
+ var Checkblank = /^(\s*|(\　)|(\.))*$/;
+ if (Checkblank.test(dataform.username.value))    
+{
+          alert("登录名不能为空!");
+   return false; 
+         } 
+         
+         if (Checkblank.test(dataform.userpass.value))    
+{
+          alert("密码不能为空!");
+   return false; 
+         } 
+
+
+      window.dataform.submit();
+
+   }
+-->
+
+</SCRIPT>
+
+说明：把用户名称和用户密码提交到/tomcat/webapps/canyin/jsp/loginjudge.jsp       
+
+/tomcat/webapps/canyin/WEB-INF/classes/canyin/checkSessionBean.class  （代码是相应的java 文件）
+
+package canyin;
+
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+
+public class checkSessionBean {
+ 
+ private boolean bolCheckPass=false;
+ private HttpServletRequest request = null;
+ 
+ public boolean checkSessionBean(HttpServletRequest request,String strSessionName,String strCheckValue){
+   public boolean checkSessionBean(HttpServletRequest request){
+  HttpSession session = request.getSession(false);
+  return(bolCheckPass);
+  
+  if (strSessionName==null || strCheckValue==null){
+   return(bolCheckPass);
+  }else{
+   if (session!=null && session.getValue(strSessionName)!=null){
+    bolCheckPass=session.getValue(strSessionName).equals(strCheckValue);
+   }
+   
+     return(bolCheckPass);
+  }
+ }
+}
+
+说明：检验参数传入的session 名称的数值和参数传入的字段的数值是否相等。
+
+/tomcat/webapps/canyin/WEB-INF/classes/canyin/connXmlBean.class  
+
+代码：
+package canyin;
+
+import javax.xml.parsers.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.*;
+
+public class connXmlBean {
+ 
+ private DocumentBuilderFactory factory=null;
+ private DocumentBuilder builder=null;
+ private Document doc=null;
+ 
+ public connXmlBean(){}
+  
+ public String connXml(String xmlFileName){
+  
+  String strExc="";
+  
+  try{
+   factory = DocumentBuilderFactory.newInstance();
+       builder=factory.newDocumentBuilder();
+       doc=builder.parse(xmlFileName);
+       doc.normalize(); 
+      }catch(Exception e){
+       strExc=e.toString();
+    }
+    
+    return(strExc);
+ }
+ 
+ public Document getXmlDoc(){
+    return(doc);
+ }
+}
+
+说明：打开一个指定xml 文件
+
+/tomcat/webapps/canyin/WEB-INF/classes/canyin/writeXmlBean.class  
+
+代码：
+package canyin;
+
+import javax.xml.parsers.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.File;
+import org.w3c.dom.*;
+
+public class writeXmlBean {
+ 
+ public writeXmlBean(){}
+  
+ public String writeXml(Document doc,String xmlFileName){
+  
+  String strExc="";
+  
+  try{
+   TransformerFactory tfactory = TransformerFactory.newInstance(); 
+   Transformer transformer = tfactory.newTransformer(); 
+
+   DOMSource source = new DOMSource(doc); 
+
+   StreamResult result = new StreamResult(new File(xmlFileName)); 
+
+   transformer.transform(source,result);  
+      }catch(Exception e){
+       strExc=e.toString();
+    }
+    
+    return(strExc);
+ }
+ 
+}
+
+说明：写入dom 的内容到一个指定的xml 文件。
+
+/tomcat/webapps/canyin/jsp/loginjudge.jsp       
+
+代码：
+<%--  oddWorld 餐饮管理系统(简体中文版) 2002年12月1日
+ copy right by joard ast  
+ 
+ loginjudge.jsp 功能：用户身份校验，根据 /data/user.xml 文件内标示的用户不同的身份
+ 决定转入后台管理页面，还是客户点菜页面。
+ --%>
+
+<%@ page contentType="text/html;charset=gb2312" %>
+<%@ page language="java" import="javax.xml.parsers.*" %>
+<%@ page import="org.w3c.dom.*" %>
+<%@ page import="canyin.*" %> 
+
+<jsp:useBean id="xmlBean" class="canyin.connXmlBean" scope="page" />
+
+<%
+session.setMaxInactiveInterval(1800);
+
+
+Document doc;
+NodeList users;
+String strExc="";
+String strUsername,strPassword;
+
+strUsername=(String)request.getParameter("username");
+strPassword=(String)request.getParameter("userpass");
+
+//校验数据是否为空
+if (strUsername=="" || strPassword=="" ){
+ out.println("<script language=''javascript''>");
+ out.println("alert(''用户名或密码有空值!'');");
+ out.println("window.location.href=''/index.html'';");
+ out.println("</script>");
+ return;
+}
+
+xmlBean.connXml("webapps/canyin/data/users.xml");
+doc=xmlBean.getXmlDoc();
+
+try{
+ users =doc.getElementsByTagName("user");
+       
+     for (int i=0;i<users.getLength();i++){
+        Element user=(Element) users.item(i);
+         
+  String strAtrNameValue=user.getAttributeNode("name").getNodeValue();       
+ String strAtrPassWordValue=user.getAttributeNode("password").getNodeValue();
+        String strAtrRoleValue=user.getAttributeNode("roles").getNodeValue(); 
+        
+       
+         
+        if (strAtrNameValue.equals(strUsername) && strAtrPassWordValue.equals(strPassword)){
+         
+         if (strAtrRoleValue.equals("admin")){
+          out.println("<script language=''javascript''>");
+    out.println("alert(''欢迎管理员登陆系统!'');");
+    out.println("</script>");
+    
+    //设置标示用户身份的 session（sesUserRole） ，管理员身份为 admin
+    session.setAttribute("sesUserRole","admin");
+    
+    //跳转到管理页面
+    response.sendRedirect("admin/admin_rest.jsp");
+    return;
+    
+         }else{
+          //设置标示用户身份的 session（sesUserRole） ，管理员身份为 user
+          session.setAttribute("sesUserRole","user");
+          
+          //跳转到普通用户页面
+          response.sendRedirect("index.jsp");       
+          return;
+         }
+
+        }else{
+         out.println("<script language=''javascript''>");
+   out.println("alert(''用户名或密码错误!'');");
+   out.println("history.go(-1);");
+   out.println("</script>");
+   return;
+        }
+
+ }
+}catch(Exception e){
+     strExc=e.toString();
+}
+%>
+说明：.......
+
+/tomcat/webapps/canyin/jsp/admin/admin_rest.jsp    
+
+代码：
+<%--  oddWorld 餐饮管理系统(简体中文版) 2002年12月1日
+ copy right by joard ast  
+ 
+ admin_rest.jsp 功能：后台管理页面，餐馆管理页面。
+ --%>
+
+<%@ page contentType="text/html;charset=gb2312" %>
+<%@ page language="java" import="javax.xml.parsers.*" %>
+<%@ page import="javax.xml.transform.*" %>
+<%@ page import="org.w3c.dom.*" %>
+<%@ page import="canyin.*" %> 
+
+<%@ include file="../../include/sys_dialog.jsp" %>
+
+<jsp:useBean id="checkSessionBean" class="canyin.checkSessionBean" scope="page" />
+<jsp:useBean id="xmlBean" class="canyin.connXmlBean" scope="page" />
+<jsp:useBean id="writeXmlBean" class="canyin.writeXmlBean" scope="page" />
+
+<%//校验可户身份，判断是不是管理员
+if(!checkSessionBean.checkSessionBean(request,"sesUserRole","admin")){
+ out.print(showDialog("您没有管理的权限!","/index.html"));
+ return;
+}
+
+//从餐馆资料文件 rest.xml 中得到相关数据
+Document doc;
+NodeList restaurants;
+
+String strAct;
+int intId=0;
+String strOperation="show";
+
+//接受外部传入的参数
+strAct=(String)request.getParameter("act");
+
+xmlBean.connXml("webapps/canyin/data/restaurants.xml");
+doc=xmlBean.getXmlDoc();
+restaurants =doc.getElementsByTagName("restaurant");
+
+//根据外部传入的参数来决定对 restaurant.xml 文件的操作
+if (strAct!=null){
+ if(strAct.equals("addnewDo")){
+  
+  String strName;
+  String strPhone;
+  String strAddress;
+  Text textseg;
+  
+  strName=(String)request.getParameter("name").trim();
+  strPhone=(String)request.getParameter("phone").trim();
+  strAddress=(String)request.getParameter("address").trim();
+  
+  //数据校验
+  if(strName==null){
+   out.print(showDialog("餐馆名称不能为空!"));
+   return;
+  }
+  if(strPhone==null){
+   out.print(showDialog("餐馆电话不能为空!"));
+   return;
+  }
+  /*if(strAddress==null){
+   out.print(showDialog("餐馆地址不能为空!"));
+   return;
+  }*/
+  
+  //校验数据的唯一性
+  for(int i=0;i<restaurants.getLength();i++){
+   Element restaurant=(Element) restaurants.item(i);
+   if(((String)restaurant.getElementsByTagName("name").item(0).getFirstChild().getNodeValue()).equals(strName)){
+    out.print(showDialog("餐馆名称重复!"));
+    return; 
+   }else{
+    if(((String)restaurant.getElementsByTagName("name").item(0).getFirstChild().getNodeValue()).equals(strPhone)){
+     out.print(showDialog("餐馆电话重复!"));
+     return;
+    }
+   }
+   
+  }
+  
+  
+    
+  //得到已有的记录数，给新增的餐馆记录设定唯一的递增的id 属性
+  int intNum=0;
+  Element restNum=(Element)doc.getElementsByTagName("restaurants").item(0);
+  intNum=Integer.parseInt(restNum.getAttributeNode("num").getNodeValue()); 
+
+  intNum+=1;
+  
+  //为restaurants的属性num 的数值加1
+  restNum.getAttributeNode("num").setNodeValue(String.valueOf(intNum));
+
+  //新增节点    
+  Element newRestaurant=doc.createElement("restaurant");
+  
+  Attr newArrId=doc.createAttribute("id");
+  //Attribute newArrId = new Attribute("id",String.valueOf(intNum));  
+  textseg=doc.createTextNode(String.valueOf(intNum));
+  newArrId.setValue(String.valueOf(intNum));
+  newRestaurant.setAttributeNode(newArrId);
+  
+  Element newName=doc.createElement("name");
+  textseg=doc.createTextNode(strName);
+  newName.appendChild(textseg);
+  newRestaurant.appendChild(newName);
+  
+  Element newPhone=doc.createElement("phone");
+  textseg=doc.createTextNode(strPhone);
+  newPhone.appendChild(textseg);
+  newRestaurant.appendChild(newPhone);
+  
+  Element newAddress=doc.createElement("address");
+  textseg=doc.createTextNode(strAddress);
+  newAddress.appendChild(textseg);
+  newRestaurant.appendChild(newAddress);
+  
+  doc.getDocumentElement().appendChild(newRestaurant);
+
+  //调用bean 写入相应的xml文件
+  writeXmlBean.writeXml(doc,"webapps/canyin/data/restaurants.xml");
+
+  response.sendRedirect(request.getRequestURI());  
+  return;
+ }
+ if(strAct.equals("modiDo")){
+  String strName;
+  String strPhone;
+  String strAddress;
+  Text textseg;
+  int modiId;
+  //记录要修改的记录是item(i)的哪一项
+  int intI=0;
+  
+  strName=(String)request.getParameter("name").trim();
+  strPhone=(String)request.getParameter("phone").trim();
+  strAddress=(String)request.getParameter("address").trim();
+  modiId=Integer.parseInt(request.getParameter("recordId").trim());
+  
+  //数据校验
+  if(strName==null){
+   out.print(showDialog("餐馆名称不能为空!"));
+   return;
+  }
+  if(strPhone==null){
+   out.print(showDialog("餐馆电话不能为空!"));
+   return;
+  }
+  if(modiId==0){
+   out.print(showDialog("你要修改餐馆的记录不存在!"));
+   return;
+  }
+  /*if(strAddress==null){
+   out.print(showDialog("餐馆地址不能为空!"));
+   return;
+  }*/
+  
+  //标志显示记录存在
+  boolean recordExist=false;
+  
+  //校验数据的唯一性
+  for(int i=0;i<restaurants.getLength();i++){
+   Element restaurant=(Element) restaurants.item(i);
+   
+   if(Integer.parseInt(restaurant.getAttributeNode("id").getNodeValue())==modiId){
+    recordExist=true;
+    intI=i;
+
+   }
+   
+   if(((String)restaurant.getElementsByTagName("name").item(0).getFirstChild().getNodeValue()).equals(strName) && Integer.parseInt(restaurant.getAttributeNode("id").getNodeValue())!=modiId ){
+    out.print(showDialog("餐馆名称重复!"));
+    return; 
+   }else{
+    if(((String)restaurant.getElementsByTagName("name").item(0).getFirstChild().getNodeValue()).equals(strPhone) && Integer.parseInt(restaurant.getAttributeNode("id").getNodeValue())!=modiId ){
+     out.print(showDialog("餐馆电话重复!"));
+     return;
+    }
+   }
+   
+  }
+  
+
+  
+  if(!recordExist){
+   out.print(showDialog("你要修改餐馆的记录不存在!"));
+   return;
+  }else{
+   //进行记录更改的操作
+   try{
+    Element modiRestaurant=(Element) restaurants.item(intI);
+    modiRestaurant.getElementsByTagName("name").item(0).getFirstChild().setNodeValue(strName);
+    modiRestaurant.getElementsByTagName("phone").item(0).getFirstChild().setNodeValue(strPhone);
+    modiRestaurant.getElementsByTagName("address").item(0).getFirstChild().setNodeValue(strAddress);
+    
+    //调用bean 写入相应的xml文件
+    writeXmlBean.writeXml(doc,"webapps/canyin/data/restaurants.xml");
+  
+    response.sendRedirect(request.getRequestURI());  
+    return; 
+    
+   }catch(Exception e){}
+  }
+ }
+ //进行删除操作
+ if(strAct.equals("del")){
+  int delId;
+  //记录要修改的记录是item(i)的哪一项
+  int intI=0;
+
+  delId=Integer.parseInt(request.getParameter("recordId").trim());
+
+  if(delId==0){
+   out.print(showDialog("你要修改餐馆的记录不存在!"));
+   return;
+  }
+  
+  file://标志显示记录存在
+  boolean recordExist=false;
+
+  //校验数据的唯一性
+  for(int i=0;i<restaurants.getLength();i++){
+   Element restaurant=(Element) restaurants.item(i);
+   
+   if(Integer.parseInt(restaurant.getAttributeNode("id").getNodeValue())==delId){
+    recordExist=true;
+    intI=i;
+
+   }
+  }
+  
+  if(!recordExist){
+   out.print(showDialog("你要删除餐馆的记录不存在!"));
+   return;
+  }else{
+   //进行记录删除的操作
+   try{
+    Node delNode=(Node)restaurants.item(intI);
+    
+    doc.getElementsByTagName("restaurants").item(0).removeChild(delNode);
+
+    //调用bean 写入相应的xml文件
+    writeXmlBean.writeXml(doc,"webapps/canyin/data/restaurants.xml");
+
+    response.sendRedirect(request.getRequestURI());  
+    return; 
+    
+   }catch(Exception e){}
+  }
+
+ }
+}
+
+//由外部传入参数决定页面相应的处理状态
+if (strAct==null){
+ strOperation="show";
+}else{
+ if (strAct.equals("modi")){
+  strOperation="modi";
+  intId=Integer.parseInt(request.getParameter("recordId"));
+ }else{
+  if(strAct.equals("addnew")){
+   strOperation="addnew";
+  }else{
+   strOperation="show";
+  }
+ }
+}
+
+
+//如果为空记录，则变更页面状态为“新增”
+if (restaurants.getLength()==0){
+ strOperation="addnew";
+}
+%>
+
+<html>
+<head>
+<title>oddWorld 餐饮系统</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta http-equiv="expires" content="0">
+<link rel="stylesheet" href="../../include/itsp.css" type="text/css">
+</head>
+
+<body >
+<div align="center">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="22">
+    <tr> 
+      <td width="1"><img src="../../images/top_r1.GIF" width="62" height="22"></td>
+      <td width=150 align="center"> 餐饮系统管理--餐馆管理</td>
+      <td><img src="../../images/top_r2.GIF" width="294" height="22"></td>
+   <td width=100 align="center"><a href="/index.html">[ 退出系统 ]</a></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table bgcolor="#999999" align=center border=0 cellpadding=1 cellspacing=1 
+width="90%">
+    <tbody> 
+    <tr bgcolor="#efefef" align="center" valign="middle"> 
+      <td class=ttTable height=30 width="20">&nbsp;</td>
+      <td class=ttTable height=30 width="0">餐馆名称</td>
+      <td class=ttTable height=30 width="0">餐馆电话</td>
+      <td class=ttTable height=30 width="0"> 
+        <div align="center">餐馆地址</div>
+      </td>
+      <td class=ttTable height=30 width="30"> 
+        <div align="center">修改</div>
+      </td>
+      <td class=ttTable height=30 width="30"> 
+        <div align="center">删除</div>
+      </td>
+    </tr>
+<%
+ for(int i=0;i<restaurants.getLength();i++)
+ {
+  Element restaurant=(Element) restaurants.item(i);
+  
+  if (strOperation=="modi" && Integer.parseInt(restaurant.getAttributeNode("id").getNodeValue())==intId){
+%>
+    <%//显示修改的格式%>
+    <tr align="center" bgcolor="#ffffff" valign="middle"> 
+      <form name=dataform action="<%=request.getRequestURI()%>?act=modiDo" method="post"  onSubmit=''return checkform(this);'' >
+        <td class=tdsmall height=25 width="20"> 
+          <input type="hidden" name="recordId" value="<%=restaurant.getAttributeNode("id").getNodeValue()%>">
+          <%=(i+1)%></td>
+        <td class=tdsmall height=25> 
+          <input name="name" class=stedit
+                  style="HEIGHT: 22px; WIDTH: 150px" value="<%if(restaurant.getElementsByTagName("name").item(0).hasChildNodes()){
+         out.print(restaurant.getElementsByTagName("name").item(0).getFirstChild().getNodeValue());
+         
+        }%>
+" maxlength="40" >
+        </td>
+        <td class=tdsmall height=25> 
+          <input name="phone" class=stedit
+                  style="HEIGHT: 22px; WIDTH: 100px" value="<%if(restaurant.getElementsByTagName("phone").item(0).hasChildNodes()){
+         out.print(restaurant.getElementsByTagName("phone").item(0).getFirstChild().getNodeValue());
+         
+        }%>" maxlength="20" >
+        </td>
+        <td class=tdsmall height=25> 
+          <input name="address" class=stedit
+                  style="HEIGHT: 22px; WIDTH: 200px" value="<%
+                  
+                  if(restaurant.getElementsByTagName("address").item(0).hasChildNodes()){
+         out.print(restaurant.getElementsByTagName("address").item(0).getFirstChild().getNodeValue());
+         
+        }%>" maxlength="100" >
+        </td>
+        <td class=tdsmall height=25 width="25"><a href="javascript:if (checkform()==false);"><img border=0 
+      height=15 src="../../images/editok.gif" width=15></a></td>
+        <td class=tdsmall height=25 width="25">&nbsp;</td>
+      </form>
+    </tr>
+    <% }else{ 
+    //显示正常的格式 %>
+    <tr align="center" bgcolor="#ffffff" valign="middle"> 
+      <td class=tdsmall height=25 width="20"><%=(i+1)%></td>
+      <td class=tdsmall height=25 width="0"><%if(restaurant.getElementsByTagName("name").item(0).hasChildNodes()){
+         out.print(restaurant.getElementsByTagName("name").item(0).getFirstChild().getNodeValue());
+         
+        }%>
+</td>
+      <td class=tdsmall height=25 width="0"><%if(restaurant.getElementsByTagName("phone").item(0).hasChildNodes()){
+         out.print(restaurant.getElementsByTagName("phone").item(0).getFirstChild().getNodeValue());
+         
+        }%></td>
+      <td class=tdsmall height=25 width="0"> 
+        <%
+        if(restaurant.getElementsByTagName("address").item(0).hasChildNodes()){
+        out.print(restaurant.getElementsByTagName("address").item(0).getFirstChild().getNodeValue());
+         
+        }%>
+      </td>
+      <td class=tdsmall height=25 width="30"><a href="<%=request.getRequestURI()%>?act=modi&recordId=<%=restaurant.getAttributeNode("id").getNodeValue()%>"><img border=0 
+        height=15 src="../../images/edit.gif" width=15></a></td>
+      <td class=tdsmall height=25 width="30"><img border=0 
+        height=15 
+        onClick="javascript:if(confirm(''您是否确定删除本记录，删除后将导至记录无法使用？'')){window.location.href=''<%=request.getRequestURI()%>?act=del&recordId=<%=restaurant.getAttributeNode("id").getNodeValue()%>'';}" 
+        src="../../images/delete.gif" style="CURSOR: hand" width=15> </td>
+    </tr>
+    <% } 
+}%>
+    <% if (strOperation=="addnew"){
+    //显示新增的格式%>
+    <tr align="center" bgcolor="#ffffff" valign="middle"> 
+      <form name=dataform2 action="<%=request.getRequestURI()%>?act=addnewDo" method="post"  onSubmit=''return checkform2(this);'' >
+        <td class=tdsmall height=25 width="20"></td>
+        <td class=tdsmall height=25> 
+          <input name="name" class=stedit
+                  style="HEIGHT: 22px; WIDTH: 150px" value="" maxlength="40" >
+        </td>
+        <td class=tdsmall height=25> 
+          <input name="phone" class=stedit
+                  style="HEIGHT: 22px; WIDTH: 100px" value="" maxlength="20" >
+        </td>
+        <td class=tdsmall height=25> 
+          <input name="address" class=stedit
+                  style="HEIGHT: 22px; WIDTH: 200px" value="" maxlength="100" >
+        </td>
+        <td class=tdsmall height=25 width="25"><a href="javascript:if (checkform2()==false);"><img border=0 
+      height=15 src="../../images/editok.gif" width=15></a></td>
+        <td class=tdsmall height=25 width="25">&nbsp;</td>
+      </form>
+    </tr>
+    <% } %>
+    </tbody> 
+  </table>
+  <br>
+  <table align=center border=0 cellpadding=0 cellspacing=2 width="95%">
+    <tbody> 
+    <tr valign=center> 
+      <td align=middle> <br>
+        <table border=0 cellpadding=0 cellspacing=0>
+          <tr>
+            <td> 
+              <% if (strOperation=="addnew"){
+              %>
+              <input class=stbtm name=update onClick="javascript:if (checkform2()==false);" type=button value="更新记录">
+              <% }else{
+                if(strOperation=="modi"){
+              %>
+              <input class=stbtm name=update onClick="javascript:if (checkform()==false);" type=button value="更新记录">
+              <% 
+                }else{
+                 %>
+              <input class=stbtm type="button" name="Button" value="新 增" onClick="javascript:window.location.href=''<%=request.getRequestURI()%>?act=addnew'';"><% 
+                } 
+               } %>
+              &nbsp;</td>
+            <td>
+              <input class=stbtm type="button" name="Button" value="返 回" onClick="javascript:window.location.href=''index.jsp'';">
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+</div>
+</body>
+</html>
+<SCRIPT LANGUAGE=javascript>
+<!--
+function checkform2()
+{
+ var Checkblank = /^(\s*|(\　)|(\.))*$/;
+  
+  if (Checkblank.test(dataform2.name.value))
+ {
+          alert("餐馆名称不能为空！");
+          dataform2.name.focus();
+   return false; 
+         } 
+ 
+  if (Checkblank.test(dataform2.phone.value))    
+ {
+          alert("餐馆电话不能为空！");
+          dataform2.phone.focus();
+   return false; 
+         }
+         window.dataform2.submit();
+  }
+  
+  function checkform()
+{  
+ var Checkblank = /^(\s*|(\　)|(\.))*$/;
+ if (Checkblank.test(dataform.name.value))
+ {
+          alert("餐馆名称不能为空！");
+          dataform.name.focus();
+   return false; 
+         }
+         
+         if (Checkblank.test(dataform.phone.value))
+ {
+          alert("餐馆电话不能为空！");
+          dataform.phone.focus();
+   return false; 
+         }
+        
+
+         window.dataform.submit();
+  }
+-->
+</SCRIPT>
+

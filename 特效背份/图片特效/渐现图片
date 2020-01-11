@@ -1,0 +1,15 @@
+<script FOR="window" EVENT="onLoad" LANGUAGE="vbscript">
+        image1.filters.item(0).apply()
+        image1.filters.item(0).transition = 12
+        image1.Style.visibility = ""
+        image1.filters(0).play(2.0)
+
+</script>
+<html>
+<body>
+<p><img src="logo.gif" border="0" id="image1"
+style="visibility:hidden; FILTER:revealTrans(Duration=4.0, Trnsition=23);"></p>
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

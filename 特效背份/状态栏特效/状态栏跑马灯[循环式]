@@ -1,0 +1,16 @@
+<SCRIPT LANGUAGE=JAVASCRIPT>
+<!-- 
+var msg = "ÉµÃ¨Èí¼þ http://samool.533.net";
+var speed = 300; 
+var msgud = " " + msg; 
+function statusScroll() { 
+if (msgud.length <msg.length) msgud += " - " + msg; 
+msgud = msgud.substring(1, msgud.length); 
+window.status = msgud.substring(0, msg.length);
+window.setTimeout("statusScroll()", speed); 
+} 
+-->
+</SCRIPT>
+<BODY onload="window.setTimeout('statusScroll()', 500)">
+<!--±¾ÍøÒ³ÓÉ¡¶ÍøÒ³ÖúÊÖV1.1¡·ÖÆ×÷    °æÈ¨ËùÓÐ£ºÉµÃ¨Èí¼þ -->
+<!--Çë·ÃÎÊÉµÃ¨Èí¼þ¹Ù·½ÍøÕ¾   http://samool.533.net  -->

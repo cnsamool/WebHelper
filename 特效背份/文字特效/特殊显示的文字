@@ -1,0 +1,109 @@
+<!--脚本说明：
+把如代码加入<body>区域中:-->
+<script language="JavaScript">
+<!--
+
+
+IE4 = navigator.appName == "Microsoft Internet Explorer" && parseInt(navigator.appVersion) >= 4;	
+NS4 = navigator.appName.substring(0,8) == "Netscape" && parseInt(navigator.appVersion) >= 4;
+	
+// checkBrowser() -- Checks whether the browser is new enough for some DynamicMovement ...
+
+function checkBrowser(){
+	if(IE4 || NS4){
+		return true;
+	}
+	return false;
+}
+
+// movableObj() -- Creates a new movable object
+
+function movableObj(startX, startY, endX, endY, delay, speed, refId){
+	this.sX = startX; this.sY = startY;	this.eX = endX;
+	this.eY = endY;	this.de = delay; this.sp = speed;
+	this.ref = refId;
+	xL = endX - startX;
+	yL = endY - startY;
+	with (Math){
+		if(abs(xL) > abs(yL)){
+			this.xS = (xL > 0)?1:-1;
+			this.yS = (yL > 0)?abs(yL / xL):-abs(yL / xL);
+			this.howManySteps = abs(xL / speed);
+		} else if(abs(yL) > abs(xL)){
+			this.yS = (yL > 0)?1:-1;
+			this.xS = (xL > 0)?abs(xL / yL):-abs(xL / yL);
+			this.howManySteps = abs(yL / speed);
+		} else {
+			this.yS = (yL > 0)?1:-1;
+			this.xS = (xL > 0)?1:-1;
+			this.howManySteps = abs(xL / speed);
+		}
+	}
+	this.startMovement = startMovement;
+}
+
+// startMovement() -- starts the movement
+
+function startMovement(){
+	if(checkBrowser()){
+		if(IE4){
+			ref = document.all(this.ref).style;
+		} else {
+			ref = document[this.ref];
+		}
+		doDynamicMovement(this.sX, this.sY, this.eX, this.eY, this.de, this.xS, this.yS, ref, this.sp, this.howManySteps);
+	}
+}
+
+// doDynamicMovement() -- does the Dynamic Movement
+
+function doDynamicMovement(curX, curY, eX, eY, sp, xS, yS, ref, speed, hS){
+	if(Math.floor(hS - 1) != 0){
+		hS--;
+		curX += xS * speed;
+		curY += yS * speed;
+		ref.left = Math.round(curX);
+		ref.top = Math.round(curY);
+		setTimeout("doDynamicMovement(" + curX + ", " + curY + ", " + eX + ", " + eY + ", " + sp + ", " + xS + ", " + yS + ", ref, " + speed + ", " + hS + ")", sp);
+	} else {
+		setPos(eX, eY, ref);	
+	}
+}
+
+// setPos() -- sets the end position accurately when doDynamicMovement has done its job
+
+function setPos(x, y, ref){
+	ref.left = x;
+	ref.top = y;
+}
+
+// -->
+</script>
+
+
+<table width="600">
+  <tr>
+    <td><font face="Verdana, Arial"><h3>  </h3>
+    <font size="2"><form>
+      <div align="center"><center><p><input type="button" onClick="dynaText.startMovement()"
+      value="按下去看看"> </p>
+      </center></div>
+    </form>
+    <p>  </font></p>
+    <div id="wow"
+    style="position: absolute; left: -100; top: -100; width: 300;
+		font-family: Verdana, Arial; font-size: 20pt"><p>傻猫软件 http://samool.533.net
+    </font></p>
+    </div></td>
+  </tr>
+</table>
+<script language="JavaScript">
+<!--
+
+// Here we define the movable object
+dynaText = new movableObj(-100,-100,80,180,10,10,"wow");
+
+// -->
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,46 @@
+<html>
+<head>
+<title></title>
+<!--第一步:把如下代码加入<head>区域中//-->
+
+<SCRIPT language="JavaScript">
+
+<!--
+
+function openclk() {
+
+another=open('*打开新窗口地址*','NewWindow');
+
+}
+
+function closeclk() {
+
+another.close();
+
+}
+
+//-->
+
+</SCRIPT>
+
+</head>
+<body>
+<!--第二步:把如下代码加入<body>区域中//-->
+
+
+
+<FORM>
+
+<INPUT TYPE="BUTTON" NAME="open" value="打开一个窗口" onClick="openclk()">
+
+<BR>
+
+<INPUT TYPE="BUTTON" NAME="close" value="关闭这个窗口" onClick="closeclk()">
+
+</FORM>
+
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

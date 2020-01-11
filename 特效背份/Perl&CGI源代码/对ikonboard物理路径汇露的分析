@@ -1,0 +1,64 @@
+ikonboard是当前比较流行的论坛，目前提供下载的最新版本是ikonboard v3.01，
+旧版本的ikonboard 存在一个泄露系统文件的漏洞，主要是没有过滤掉“..”和“/”，再结合“poison null-byte”，我们可以通过类似下面的形式访 
+相关程序代码如下： 
+
+#过滤“..”和“/” 
+$inhelpon =~ s/\///g; 
+$inhelpon =~ s/\.\.//g; 
+
+#读取指定的文件 
+$filetoopen = "$ikondir" . "help/$inhelpon.dat"; 
+$filetoopen = &stripMETA($filetoopen); 
+open (FILE, "$filetoopen") or die "Cannot locate the required files"; 
+@helpdata = <FILE>; 
+close (FILE); 
+
+乍一看，似乎没有什么问题。如果文件存在；一切OK。如果文件不存在，就会显示错误信息“Cannot locate the required files”。 
+我们看看实际情况： 
+输入地址：http://www.***.org/
+返回信息： 
+     
+Content-type: text/html 
+Software error: 
+Cannot locate the required files at c:\apache\htdocs\ib219\cgi-bin\help.cgi line 100. 
+For help, please send mail to the webmaster (webmaster@notfound.org), giving this error message and the time and date of the error.  
+
+好象结果和我们想象的不一样哦，现实与梦想总是有距离的！：（ 
+通过分析，我们知道问题出在第99行，即： 
+open (FILE, "$filetoopen") or die "Cannot locate the required files"; 
+open函数应该没有什么问题，看来是die函数的问题了。用过perl的人应该知道，die函数的作用是显示错误信息，然后退出。但是，die函数还有一个作用，它还会在错误信息的后面附加一些调试信息，这主要是为了调试的方便。 
+那么，是不是有什么参数可以去掉这些调试信息呢？毕竟很多时候这些调试信息会给我们带来麻烦。我在http://www.***.com/没有找到答案，但是我却在那里找到了一个抑制错误信息的方法。 
+我们来看： 
+test1.pl 
+#!/usr/bin/perl 
+open(“c:/123”) || die “file open error!”; 
+     
+C:\>perl test1.pl 
+file open error! at C:\test1.pl line 3. 
+     
+C:\> 
+我们再看： 
+test2.pl 
+#!/usr/bin/perl 
+open(“c:/123”) || die “file open error!\n”; 
+     
+C:\>perl test2.pl 
+file open error! 
+     
+C:\> 
+Good！显然满足了我们的要求，我们再来看看修改了help.cgi的结果： 
+输入地址：http://www.***.org/ib219/cgi-bin/help.cgi?helpon=12345678 
+返回信息： 
+     
+Content-type: text/html 
+Software error: 
+Cannot locate the required files. 
+For help, please send mail to the webmaster (webmaster@notfound.org), giving this error message and the time and date of the error.  
+
+Perfect，We Got it！ 
+
+发现了问题，解决了问题，我们再来看看是不是还有其它的地方也是同样的问题。经过查找，研究，排除，确认，又发现了以下具有相同问题的CGI程序： 
+
+/ib219/cgi-bin/checklog.cgi 
+/ib219/cgi-bin/forums.cgi 
+/ib219/cgi-bin/topic.cgi 

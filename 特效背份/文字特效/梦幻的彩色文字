@@ -1,0 +1,41 @@
+<body onload="dotransition()">
+
+<script>
+messages = new Array()
+messages[0] = "傻猫软件制作"
+messages[1] = "更新更全更方便"
+messages[2] = "想交流请到网站"
+messages[3] = "http://samool.533.net"
+mescolor = new Array()
+mescolor[0] = "000000"
+mescolor[1] = "FF0000"
+mescolor[2] = "008800"
+mescolor[3] = "0000FF"
+messize = new Array()
+messize[0] = "12pt"
+messize[1] = "12pt"
+messize[2] = "12pt"
+messize[3] = "12pt"
+var i_messages = 0
+var timer
+function dotransition() {
+if (document.all) {
+content.filters[0].apply()
+content.innerHTML = "<span style='color:"+mescolor[i_messages]+";font-size:"+messize[i_messages]+";filter: revealTrans(Transition=12, Duration=3)'>"+messages[i_messages]+"</span>"
+content.filters[0].play()
+if (i_messages >= messages.length-1) {i_messages = 0}
+else {i_messages++}}
+if (document.layers) {document.content.document.write("<span style='color:"+mescolor[i_messages]+"'>"+messages[i_messages]+"</span>")
+if (i_messages >= messages.length-1) {i_messages = 0}
+else {i_messages++}}
+timer = setTimeout("dotransition()",5000) }
+</script>
+
+<div id="content" style="filter: revealTrans(Transition=12, Duration=2); height: 30; left: 131; position: absolute; text-align: center; top: 155; width: 500"></div>
+
+<div id="source"
+style="COLOR: #aaaaaa; LEFT: 170px; POSITION: absolute; TEXT-ALIGN: center; TOP: 243px; WIDTH: 500px"><font color="#000000">
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

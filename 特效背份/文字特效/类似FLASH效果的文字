@@ -1,0 +1,61 @@
+
+<script language="JavaScript">
+function assignArray(text,delay) {
+this.text=text
+this.delay=delay
+}
+function createArray() {
+//修改下面的渐变颜色代码
+fadecolor=new Array("#000000","#333333","#666666","#999999","#CCCCCC","#FFFFFF")//显示的颜色
+msg=new Array()
+msg[0]=new assignArray("感谢使用特效手册",1000)//修改显示的文字
+msg[1]=new assignArray("特效多多任君选择",1000)//修改显示的文字
+msg[2]=new assignArray("欢迎光临 http://samool.533.net",1000)//修改显示的文字
+msg[3]=new assignArray("播放结束",1000)//修改显示的文字
+setTimeout("typeIt()", 1000)
+}
+var msgNo=0
+var character=1
+var colorNo=0
+var fixColor=1
+var colorCheck=0
+function typeIt() {
+var insertHTML=""
+if(msgNo <= msg.length-1) {
+if(character <= msg[msgNo].text.length || colorCheck < msg[msgNo].text.length) {
+colorCheck=0
+for(var charCheck=0; charCheck<character; charCheck++,colorNo--,fixColor--){
+if(fixColor>5)colorNo=5
+if(colorNo==5)colorCheck+=1
+insertHTML += '<SPAN style="font-family:Arial Black; font-size:50pt; color:'+fadecolor[colorNo]+'">' + msg
+[msgNo].text.substring(charCheck, charCheck+1) + '</SPAN>'
+}
+if(document.layers) {
+document.typeWriter.document.write(insertHTML)
+document.typeWriter.document.close()
+} else if (document.all) {
+document.all.typeWriter.innerHTML = insertHTML
+}
+setTimeout("typeIt()", 50)
+character++
+colorNo=character-1
+fixColor=character
+}
+else {
+character=1
+colorNo=character-1
+fixColor=character
+setTimeout("typeIt()", msg[msgNo].delay)
+msgNo++
+}
+}
+}
+</script>
+
+
+
+<body bgcolor="#000000" onLoad="createArray()" text="#ffffff">
+<div ID="typeWriter" style="position:absolute; left:200; top:10; width:700">
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,29 @@
+<script language="JavaScript">
+<!-- Begin
+function initArray() {
+for (var i = 0; i < initArray.arguments.length; i++) {
+this[i] = initArray.arguments[i];
+}
+this.length = initArray.arguments.length;
+}
+//以下为变幻时的颜色，你可以将其改变
+var colors = new initArray(
+"#000000","#0000FF","#80FFFF","#80FF80","#FFFF00","#FF8000","#FF00FF","#FF0000"
+);
+delay = 100
+link = 0;
+vlink = 0;
+function linkDance() {
+link = (link+1)%colors.length;
+vlink = (vlink+1)%colors.length;
+document.linkColor = colors[link];
+document.vlinkColor = colors[vlink];
+setTimeout("linkDance()",delay);
+}
+linkDance();
+// End -->
+
+</script>
+<p align="center"><a href="http://samool.533.net" target="_blank">傻猫软件</a></p>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

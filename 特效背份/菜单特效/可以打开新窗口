@@ -1,0 +1,30 @@
+<!--要完成此效果把如下代码加入到<body>区域中-->
+
+<script language="javascript">
+<!--
+function gothere(){
+var thebox=document.mycombowopt
+if (thebox.windowoption.checked){
+if (!window.newwindow)
+newwindow=window.open("")
+newwindow.location=
+thebox.example.options[thebox.example.selectedIndex].value
+}
+else
+location=
+thebox.example.options[thebox.example.selectedIndex].value
+}
+//-->
+</script> 
+<form name="mycombowopt">
+<select name="example" size=1>
+<option value="http://www.163.com">网易</option>
+<option value="http://www.sohu.com">搜狐</option>
+<option value="http://www.sina.com.cn">新浪</option>
+<option value="http://samool.533.net">傻猫</option>
+<option value="http://www.emu-zone.net">Emu-Zone</option>
+</select> <input type="button" value="Go!" onClick="gothere()"> <br>
+<input type="checkbox" name="windowoption" value="ON">新窗访问</p>
+</form> 
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

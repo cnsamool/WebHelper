@@ -1,0 +1,34 @@
+
+<body bgcolor="#FFFFFF" onload="doWave(0)">
+<script language="JavaScript">
+var theText = "欢迎使用网页助手";
+function nextSize(i,incMethod,textLength)
+{
+if (incMethod == 1) return (42*Math.abs( Math.sin(i/(textLength/3.14))) );
+if (incMethod == 2) return (255*Math.abs( Math.cos(i/(textLength/3.14))));
+}
+
+function sizeCycle(text,method,dis)
+{
+	output = "";
+	for (i = 0; i < text.length; i++)
+	{
+		size = parseInt(nextSize(i +dis,method,text.length));
+		output += "<font style='font-size: "+ size +"pt'>" +text.substring(i,i+1)+ "</font>";
+	}
+	theDiv.innerHTML = output;
+}
+
+function doWave(n) 
+{   
+	sizeCycle(theText,1,n);
+	if (n > theText.length) {n=0}
+	setTimeout("doWave(" + (n+1) + ")", 50);
+}
+</script>
+<div ID="theDiv" align="center" style="width: 700; height: 10">
+</div>
+
+<!-- 使用说明：使用时将文字换成你需要的文字即可！-->
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

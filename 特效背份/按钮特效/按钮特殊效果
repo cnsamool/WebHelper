@@ -1,0 +1,27 @@
+<html>
+<head>
+<title></title>
+<!--第一步:把如下代码加入<head>区域中//-->
+<style type="text/css">
+<!--
+.over {color:yellow; background: navy}
+.down {color:yellow; background: navy; font-style: italic}
+-->
+</style>
+
+</head>
+<body>
+<!--第二步:在<body>区中加入如下代码//-->
+<input 
+type="Button"
+onMouseOver="this.className='over';" 
+onMouseOut="this.className='';" 
+onMouseDown="this.className='down';" 
+onMouseUp="this.className='over';" 
+value="按钮也疯狂" 
+onClick="this.value='我真的好喜欢你！'" name="Button"> 
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,110 @@
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var bV=parseInt(navigator.appVersion);
+var NS4=(document.layers) ? true : false;
+var IE4=((document.all)&&(bV>=4))?true:false;
+var ver4 = (NS4 || IE4) ? true : false;
+
+function expandIt(){return}
+function expandAll(){return}
+function nomsg(){self.status="";}
+
+if(ver4){
+  document.write("<SCR"+"IPT LANGUAGE=\"JavaScript\" SRC=\"rsmenu1.js\"></SCR"+"IPT>");
+}
+//-->
+</SCRIPT>
+
+<!---------- begin OUTLINE -----------> <A HREF="#" onClick="expandAll(false); return false"><IMG NAME="imEx" SRC="bullet-plus.gif" WIDTH=9 HEIGHT=9 BORDER=0 ALT="展开/关闭全部"> 
+<FONT COLOR="#008000">全部菜单</FONT></A> <!-- <span style="background: #00FFFF; color: black">展开/关闭全部</span> --> 
+<!-- <BLOCKQUOTE> --> <!-- 第一级父菜单 --> 
+<DIV ID="elOneParent" CLASS=parent style="margin-left: 0.5em">
+<A HREF="#" style="color:#C000FF; text-decoration:none;" onClick="expandIt('elOne'); return false"><IMG NAME="imEx" SRC="bullet-plus.gif" WIDTH=9 HEIGHT=9 BORDER=0>主菜单一</A>
+</DIV>
+
+<!-- 第一级子菜单 -->
+<DIV ID="elOneChild" CLASS=child style="margin-left: 1em">
+  <A HREF="1.htm" target="data">子页面一</A><BR>
+  <A HREF="2.htm" target="data">子页面二</A><BR>
+  <A HREF="3.htm" target="data">子页面三</A><BR>
+  <A HREF="4.htm" target="data">子页面四</A>
+</DIV>
+
+<!-- 第二级父菜单 -->
+<DIV ID="elTwoParent" CLASS=parent style="margin-left: 0.5em">
+<A HREF="#" style="color:#C000FF; text-decoration:none;" onClick="expandIt('elTwo'); return false"><IMG NAME="imEx" SRC="bullet-plus.gif" WIDTH=9 HEIGHT=9 BORDER=0>主菜单二</A>
+</DIV>
+
+<!-- 第二级子菜单 -->
+<DIV ID="elTwoChild" CLASS=child style="margin-left: 1em">
+  <A HREF="1.htm" target="data">子页面一</A><BR>
+  <A HREF="2.htm" target="data">子页面二</A><BR>
+  <A HREF="3.htm" target="data">子页面三</A><BR>
+  <A HREF="4.htm" target="data">子页面四</A>
+</DIV>
+
+
+<!-- 第三级父菜单 -->
+<DIV ID="elThreeParent" CLASS=parent style="margin-left: 0.5em">
+<A HREF="#" style="color:#C000FF; text-decoration:none;" onClick="expandIt('elThree'); return false"><IMG NAME="imEx" SRC="bullet-plus.gif" WIDTH=9 HEIGHT=9 BORDER=0>主菜单三</A>
+</DIV>
+
+<!-- 第三级子菜单 -->
+<DIV ID="elThreeChild" CLASS=child style="margin-left: 1em">
+  <A HREF="1.htm" target="data">子页面一</A><BR>
+  <A HREF="2.htm" target="data">子页面二</A><BR>
+  <A HREF="3.htm" target="data">子页面三</A><BR>
+  <A HREF="4.htm" target="data">子页面四</A>
+</DIV>
+
+
+<!-- 第四级父菜单 -->
+<DIV ID="elFourParent" CLASS=parent style="margin-left: 0.5em">
+<A HREF="#" style="color:#C000FF; text-decoration:none;" onClick="expandIt('elFour'); return false"><IMG NAME="imEx" SRC="bullet-plus.gif" WIDTH=9 HEIGHT=9 BORDER=0>主菜单四</A>
+</DIV>
+
+<!-- 第四级子菜单 -->
+<DIV ID="elFourChild" CLASS=child style="margin-left: 1em">
+  <A HREF="1.htm" target="data">子页面一</A><BR>
+  <A HREF="2.htm" target="data">子页面二</A><BR>
+  <A HREF="3.htm" target="data">子页面三</A><BR>
+  <A HREF="4.htm" target="data">子页面四</A>
+</DIV>
+
+
+
+<!-- 第五级父菜单 -->
+<DIV ID="elFiveParent" CLASS=parent style="margin-left: 0.5em">
+<A HREF="#" style="color:#C000FF; text-decoration:none;" onClick="expandIt('elFive'); return false"><IMG NAME="imEx" SRC="bullet-plus.gif" WIDTH=9 HEIGHT=9 BORDER=0>主菜单五</A>
+</DIV>
+
+<!-- 第五级子菜单 -->
+<DIV ID="elFiveChild" CLASS=child style="margin-left: 1em">
+  <A HREF="1.htm" target="data">子页面一</A><BR>
+  <A HREF="2.htm" target="data">子页面二</A><BR>
+  <A HREF="3.htm" target="data">子页面三</A><BR>
+  <A HREF="4.htm" target="data">子页面四</A>
+</DIV>
+
+
+<!-- </BLOCKQUOTE> -->
+
+<DIV ID="elExpParent" CLASS=regular> <A HREF="#" onClick="expandAll(true); return false"><IMG NAME="imEx" SRC="bullet-plus.gif" WIDTH=9 HEIGHT=9 BORDER=0 ALT="展开/关闭全部"> 
+  <FONT COLOR="#008000">全部菜单</FONT></A> </DIV>
+
+<!---------- end OUTLINE ----------->
+
+<SCRIPT LANGUAGE="JavaScript1.2">
+<!--
+if(NS4){
+  firstEl = "elOneParent";
+  firstInd = getIndex(firstEl);
+  showAll();
+  arrange();
+}
+//-->
+</SCRIPT>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

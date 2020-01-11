@@ -1,0 +1,58 @@
+<span id="theText" style="width:100%">
+<h1>《傻猫软件》荧光效果例子</h1>
+</span>
+
+<script>
+<!--
+var from = 1;
+var to = 4;
+var delay = 55; //闪的速度
+var glowColor = "lime";//颜色
+var i = to;
+var j = 0;
+textPulseDown();
+
+function textPulseUp()
+{
+if (!document.all)
+return
+if (i < to)
+{
+theText.style.filter = "Glow(Color=" + glowColor + ", Strength=" + i + ")";
+i++;
+theTimeout = setTimeout('textPulseUp()',delay);
+return 0;
+}
+
+if (i = to)
+{
+theTimeout = setTimeout('textPulseDown()',delay);
+return 0;
+}
+
+
+}
+
+function textPulseDown()
+{
+if (!document.all)
+return
+if (i > from)
+{
+theText.style.filter = "Glow(Color=" + glowColor + ", Strength=" + i + ")";
+i--;
+theTimeout = setTimeout('textPulseDown()',delay);
+return 0;
+}
+
+if (i = from)
+{
+theTimeout = setTimeout('textPulseUp()',delay);
+return 0;
+}
+}
+
+//-->
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

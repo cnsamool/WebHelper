@@ -1,0 +1,20 @@
+<SCRIPT LANGUAGE="JavaScript1.2">
+var how_many_ads = 3;
+var now = new Date();
+var sec = now.getSeconds();
+var ad = sec % how_many_ads;
+ad +=1;
+if (ad==1) {
+var msg4="<a href=http://samool.533.net target=_blank><img src=bar1.gif border=0 width=468 height=60 alt=¿ìÀ´½»ÅóÓÑ°É£¡></a>"
+document.write(msg4) }
+if (ad==2) {
+var msg4="<a href=http://samool.533.net target=_blank><img src=bar2.jpg border=0 width=468 height=60 alt=ÉµÃ¨Èí¼þ></a>"
+document.write(msg4) }
+if (ad==3) {
+var msg4="<a href=http://samool.533.net target=_blank><img src=bar3.jpg border=0 width=468 height=60 alt=ÍøÒ³ÖúÊÖ></a>"
+document.write(msg4) }
+
+
+</script>
+<!--±¾ÍøÒ³ÓÉ¡¶ÍøÒ³ÖúÊÖV1.1¡·ÖÆ×÷    °æÈ¨ËùÓÐ£ºÉµÃ¨Èí¼þ -->
+<!--Çë·ÃÎÊÉµÃ¨Èí¼þ¹Ù·½ÍøÕ¾   http://samool.533.net  -->

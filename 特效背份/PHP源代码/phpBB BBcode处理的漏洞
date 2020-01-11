@@ -1,0 +1,112 @@
+漏洞类别：PHP，远程WEB接口，拒绝服务 
+
+bugtraq ID 4432、4434 
+
+存在问题的版本： 
+
+    phpBB 1.44，更低的版本及 phpBB 2.0 未测试。 
+
+
+描述： 
+
+    phpBB是一个被广泛应用的基于PHP的论坛。发现其BBcode中对于“源代码”类的引用处 
+理存在漏洞，通过发送特殊格式的转义字符串可导致数据库的损坏以及服务器的 CPU、内存 
+资源大量消耗。 
+
+
+详细： 
+
+    phpBB在对“源代码”类的引用处理不当，主要是为了要支持镶套的标记 
+而造成的。有问题的代码是functions.php中的bbencode_code函数。 
+
+    当我们提交一个这样的贴子： 
+
+
+
+
+
+实际向数据库中存储的数据是这样： 
+
+[1code] 
+\0\0\0\0\0\0\0 
+[/code1][1code] 
+\0\0\0\0\0\0\0 
+[/code1][1code] 
+\0\0\0\0\0\0\0 
+[/code1][1code] 
+\0\0\0\0\0\0\0 
+[/code1][1code] 
+\0\0\0\0\0\0\0 
+[/code1][1code] 
+\0\0\0\0\0\0\0 
+[/code1][1code] 
+\0\0\0\0\0\0\0 
+[/code1] 
+
+即实际系统要负担的数据量是输入的“\0”的数量的平方，如果发送 1 MByte的数据，系统 
+实际处理的数据将接近 1 TByte。 
+
+这是我们在实验机器上发送一个包含''''*800的帖子时的资源占用情况： 
+
+PID  USER      PRI  NI  SIZE  RSS SHARE STAT %CPU %MEM   TIME COMMAND 
+8643 nobody    13   0   212M  81M 13604 D     8.0 65.7   0:07 httpd 
+
+提交贴子后会提示出错： 
+
+Could not enter post text! 
+
+但实际上贴子的标题和提交者这两个数据已存到数据库中，但内容和其他一些数据没有，所 
+以打开的时候会出现错误页面。而且这样的帖子无法用正常的方法删掉，只能用直接连接到 
+数据库来删除。以下是提交不同数据量的结果： 
+
+''''* =<583  正常贴上，可以删除 
+''''* 584    正常贴上，可以编辑，但不能删除 
+''''* 585    提示 Could not enter post text! 但贴子也没有 
+''''* 586    正常贴上，可以删除 
+''''* 587    提示 Could not enter post text! 但贴子也没有 
+''''* 588    正常贴上，可以删除 
+''''* 589    提示 Could not enter post text! 但贴子也没有 
+''''* >=590  提示 Could not enter post text! 出现删不掉的帖子 
+
+如果发送镶套的标记则占用资源更多，我们在实验机器上发送这样的帖子： 
+
+[code][code]\0[/code]\0[/code] 
+
+虽然只有49Byte的数据，但资源占用非常可观： 
+  PID USER     PRI  NI  SIZE  RSS SHARE STAT %CPU %MEM   TIME COMMAND 
+25741 nobody    14   0 11828 9996   416 R    99.9  7.8   2:38 httpd 
+
+几秒钟后产生了大量的数据，内存大量消耗： 
+  PID USER     PRI  NI  SIZE  RSS SHARE STAT %CPU %MEM   TIME COMMAND 
+    3 root      10   0     0    0     0 SW    2.5  0.0   4:13 kswapd 
+25742 nobody    17   0  265M  90M 52104 R    25.1 73.0   1:45 httpd 
+
+这样的镶套帖子是不会存储到数据库中的，但随着镶套的增加资源的占用会按照几何级数递 
+增。如果一次发送更多数据，或者不断的发送，可以导致系统资源大量占用，最终拒绝服务。 
+
+实验环境：linux 2.4.10   Apache/1.3.23   PHP 4.12 
+
+
+解决方案： 
+
+1、暂时禁用BBcode。 
+2、alert7给出了functions.php的如下修改方法，暂时停用对镶套标记的支持： 
+
+把773行开始的bbencode_code函数改为： 
+
+function bbencode_code($message, $is_html_disabled) 
+{ 
+$message = preg_replace("/\[code\](.*?)\[\/code\]/si", "<!-- BBCode Start --><TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><font size=-1>Code:</font><HR></TD></TR><TR><TD><FONT SIZE=-1><PRE>\\1</PRE></FONT></TD></TR><TR><TD><HR></TD></TR></TABLE><!-- BBCode End -->", $message); 
+return $message; 
+
+} // bbencode_code() 
+
+    对于无法正常删除的帖子，需要手工连接数据库删除。假设有这样一个帖子： 
+http://host/forums/viewtopic.php?topic=1162&forum=1&0 
+可以这样： 
+$ mysql -uuser -ppasswd 
+mysql> use databasename; 
+mysql> select *  from topics where topic_id = 1162; //得到post_id 
+mysql> delete from posts where post_id = 6280; 
+mysql> delete from posts_text where post_id = 6280; 
+mysql> delete  from topics where topic_id = 1162; 

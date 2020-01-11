@@ -1,0 +1,31 @@
+<table border="0" width="193" id="myexample" style="border: 5px solid green">
+<tr>
+<td width="175">
+  <p align="center">傻猫软件</p>
+</td>
+</tr>
+</table>
+<script language="JavaScript1.2">
+<!--
+
+/*
+Flashing Table Border Script- 
+?Dynamic Drive (samool.533.net)
+For full source code, installation instructions,
+100's more DHTML scripts, and Terms Of
+Use, visit dynamicdrive.com
+*/
+
+function flashit(){
+if (!document.all)
+return
+if (myexample.style.borderColor=="green")
+myexample.style.borderColor="red"
+else
+myexample.style.borderColor="green"
+}
+setInterval("flashit()", 500)
+//-->
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

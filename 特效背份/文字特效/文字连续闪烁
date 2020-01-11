@@ -1,0 +1,38 @@
+<!--脚本说明:
+第一步:把如下代码加入<body>区域中-->
+<script language="JAVASCRIPT">
+     colors2 = new Array(6); 
+     colors2[0]="#000000";
+     colors2[1]="#333300";
+     colors2[2]="#665500";
+     colors2[3]="#997700";
+     colors2[4]="#CC9900";
+     colors2[5]="#FFCC00";
+
+     var i=0;
+     function fLi2() {
+             line2.style.visibility = "visible";
+             if (i<6) {
+                     line2.style.color = colors2[i];
+                     i++;
+                     timerID2 = setTimeout( "fLi2()", 16);
+             }
+             else {
+             i=0;
+             line2.style.visibility="hidden";
+             TimerID2=setTimeout("fLi2()",50);   //这里设置时间      越大越慢
+             }
+       }
+     </script>
+
+     <div id=line2 style="container:positioned; position=relative; width=50%; height=20%; left=10%;
+      font-family=Arial; font-size=20px; line-height=28px; color=black; visibility=hidden;">
+     傻猫软件    欢迎您
+     </div>
+
+
+
+<!--第二步:把如下代码加入<body>区域中-->
+<body  onload="TimerID2=setTimeout('fLi2()',500)" onunload="clearTimeout(TimerID2)" bgcolor=#000000>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

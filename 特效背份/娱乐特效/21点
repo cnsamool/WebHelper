@@ -1,0 +1,122 @@
+<SCRIPT LANGUAGE="JavaScript">
+function random(maxValue)
+{
+ day = new Date();
+ hour = day.getHours();
+ min = day.getMinutes();
+ sec = day.getSeconds();
+ return (((hour + 1) * (min + 1) * sec) % maxValue) + 1;
+}
+
+function pickSuit()
+
+{
+ suit = random(4);
+ if(suit == 1)
+  return "Spades";
+ if(suit == 2)
+  return "Clubs";
+ if(suit == 3)
+  return "Diamonds";
+ return "Hearts";
+}
+
+function cardName(card)
+{
+if(card == 1)
+  return "Ace";
+if(card == 11)
+  return "Jack";
+if(card == 12)
+  return "Queen";
+if(card == 13)
+  return "King";
+return "" + card;
+}
+
+function cardValue(card)
+{
+if(card == 1)
+ return 11;
+if(card > 10)
+ return 10;
+return card;
+}
+
+function PickACard(strWho)
+{
+card = random(13);
+suit = pickSuit();
+//alert(strWho + " picked the " + cardName(card) + " of " + suit);
+return cardValue(card);
+}
+
+function NewHand(form)
+{
+  form.dealer.value = 0;
+  form.you.value = 0;
+  form.dealer.value = eval(form.dealer.value) + PickACard("Dealer");
+  form.you.value = eval(form.you.value) + PickACard("You");
+}
+function Dealer(form)
+{
+while(form.dealer.value < 17)
+  {
+   form.dealer.value = eval(form.dealer.value) + PickACard("Dealer");
+  }
+}
+
+function User(form)
+{
+form.you.value = eval(form.you.value) + PickACard("You");
+if(form.you.value > 21)
+{
+alert("不好意思，你爆了!");
+}
+}
+
+function LookAtHands(form)
+{
+if(form.dealer.value > 21)
+{
+alert("庄家爆了，你赢!");
+}
+else   if(form.you.value > form.dealer.value)
+{
+alert("你赢了!");
+}
+else
+if(form.dealer.value == form.you.value)
+{
+alert("平!");
+}
+else
+{
+alert("庄家赢了!");
+}
+}
+//-->
+</SCRIPT>
+<CENTER><H2>21点</H2></CENTER>
+<CENTER>规则就不需我多嘴了吧，单击“重新发牌”开始</CENTER>
+<HR>
+<CENTER>
+<FORM>
+<TABLE BORDER=3>
+<TR>
+<TD>庄家有</TD>
+<TD><INPUT TYPE=TEXT NAME=dealer>点</TD>
+</TR>
+<TR>
+<TD>你有</TD>
+<TD><INPUT TYPE=TEXT NAME=you>点</TD>
+</TR>
+</TABLE>
+<P>
+<CENTER>
+<INPUT TYPE=BUTTON VALUE="再要一张" onClick=User(this.form)>
+<INPUT TYPE=BUTTON VALUE="亮牌" onClick="Dealer(this.form);LookAtHands(this.form);">
+<INPUT TYPE=BUTTON VALUE="重新发牌" onClick=NewHand(this.form)>
+</CENTER>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

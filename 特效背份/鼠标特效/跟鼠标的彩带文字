@@ -1,0 +1,87 @@
+<head>
+<style>.spanstyle {
+	COLOR: #0066ff; FONT-FAMILY: 隶书; FONT-SIZE: 14pt; FONT-WEIGHT: normal; POSITION: absolute; TOP: -50px; VISIBILITY: visible
+}
+</style>
+</head>
+
+<body onload="javascript:pageonload()">
+<script language="javascript">
+	var message="感 谢 您 使 用 《  网  页  助  手  V 1 . 0 》 ！";
+	var x,y;
+	var step=12;
+	var flag=0;
+
+	message=message.split("");
+	var xpos=new Array();
+	for (i=0;i<=message.length-1;i++) {
+		xpos[i]=-50;
+	}
+
+	var ypos=new Array();
+	for (i=0;i<=message.length-1;i++) {
+		ypos[i]=-50;
+	}
+
+	function handlerMM(e) {
+		x = (document.layers) ? e.pageX : document.body.scrollLeft+event.clientX+10;
+		y = (document.layers) ? e.pageY : document.body.scrollTop+event.clientY;
+		flag=1;
+	}
+
+	function makesnake() {
+		if (flag==1 && document.all) {
+    			for (i=message.length-1; i>=1; i--) {
+   				xpos[i]=xpos[i-1]+step;
+				ypos[i]=ypos[i-1];
+    			}
+			xpos[0]=x+step;
+			ypos[0]=y;
+
+			for (i=0; i<=message.length-1; i++) {
+    				var thisspan = eval("span"+(i)+".style");
+    				thisspan.posLeft=xpos[i];
+				thisspan.posTop=ypos[i];
+				thisspan.color=Math.random() * 255 * 255 * 255 + Math.random() * 255 * 255 + Math.random() * 255;
+    			}
+		}
+		else if (flag==1 && document.layers) {
+    			for (i=message.length-1; i>=1; i--) {
+   				xpos[i]=xpos[i-1]+step;
+				ypos[i]=ypos[i-1];
+    			}
+			xpos[0]=x+step;
+			ypos[0]=y;
+
+			for (i=0; i<message.length-1; i++) {
+    				var thisspan = eval("document.span"+i);
+    				thisspan.left=xpos[i];
+				thisspan.top=ypos[i];
+				thisspan.color=Math.random() * 255 * 255 * 255 + Math.random() * 255 * 255 + Math.random() * 255;
+			}
+		}
+	}
+</script>
+<script language="javascript">
+	for (i=0;i<=message.length-1;i++) {
+    		document.write("<span id='span"+i+"' class='spanstyle'>");
+		document.write(message[i]);
+    		document.write("</span>");
+	}
+
+	if (document.layers) {
+		document.captureEvents(Event.MOUSEMOVE);
+	}
+	document.onmousemove = handlerMM;
+</script>
+<script
+language="javascript">
+	function pageonload() {
+		makesnake();
+		window.setTimeout("pageonload();", 2);
+	}
+
+</script>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

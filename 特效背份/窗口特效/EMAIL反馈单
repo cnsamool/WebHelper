@@ -1,0 +1,82 @@
+<script language="JavaScript">
+<!--
+function validate_form() {
+  validity = true;
+  if (!check_empty(document.form.NAME.value))
+        { validity = false; alert('对不起!请你填入你的姓名。'); }
+  if (!check_email(document.form.EMAIL.value))
+        { validity = false; alert('对不起!请重新正确填入Email地址。'); }
+  if (!check_empty(document.form.DESCRIPTION.value))
+        { validity = false; alert('对不起!请你在"简要描述"留言填入留言。'); }
+  if (validity)
+        alert ("                      谢谢你的来信.                                  "
+                + "              你所填的信息将以Email形式发送给我，                      "
+                + "              假如你认为本站内容不错的话，请将本                       "
+                + "              介绍给你的朋友，希望大家经常光顾本站。");
+  return validity; 
+}
+
+function check_empty(text) {
+  return (text.length > 0); 
+}
+
+function check_email(address) {
+  if ((address == "")
+    || (address.indexOf ('@') == -1)
+    || (address.indexOf ('.') == -1))
+      return false;
+  return true;
+}
+
+// -->
+</script>
+<form name="form" method="post" action="mailto:laofz@21cn.com" 
+enctype="text/plain" onSubmit="return validate_form()">
+              <table width="90%" border="0" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td width="77%"> 
+                    <div align="left">
+                      <table border="1" width="69%" bordercolorlight="#008000" cellspacing="0" cellpadding="5" bordercolordark="#FFFFFF">
+                        <tr>
+                          <td width="21%" align="right"><font size="3">姓&nbsp;   
+                            名:</font> 
+                          </td>
+                          <td width="79%"> 
+                      <input type="text" size=25 name="NAME">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td width="21%" align="right"><font size="3">E-mail:&nbsp; </font></td>
+                          <td width="79%"> 
+                      <input type="text" size=33 name="EMAIL">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td width="21%" align="right"><font size="3">主&nbsp;   
+                            页</font><font size="3">: </font></td>
+                          <td width="79%"> 
+                      <input type="text" size=46 name="URL" value="http://">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td width="21%" align="right"><font size="3">留&nbsp;   
+                            言:</font></td>
+                          <td width="79%">
+                      <textarea name="DESCRIPTION" rows=8 cols=45 wrap=virtual></textarea>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td width="21%" align="right">　</td>
+                          <td width="79%">
+                      <input type="submit" name="submit" value="发送"><input type="reset" value="清除" name="reset">
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+              </form>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

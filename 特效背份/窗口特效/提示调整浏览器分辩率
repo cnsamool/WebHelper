@@ -1,0 +1,13 @@
+<BODY onload="alert()">
+<SCRIPT LANGUAGE=JAVASCRIPT>
+<!-- 
+function alert() {
+if ((screen.width == 800) && (screen.height == 600))
+alert("请调整至800*600的分辨率浏览本站");
+}
+</SCRIPT>
+</body>
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,123 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中://-->
+<script>
+
+function go(){
+document.forms[1].scriptfield.value="<script>\n//BrowserCheck浏览器检测脚本生成器\n//luxiaoqing  http://www.njcatv.net/javascript/dai3.htm\n"
+document.forms[1].scriptfield.value=document.forms[1].scriptfield.value+"if ("+document.forms[0].version.value+"<=parseFloat(navigator.appVersion)){if (navigator.appName.indexOf('"+document.forms[0].browser.options[document.forms[0].browser.selectedIndex].value+"')!=-1){if (4<=parseFloat(navigator.appVersion)){if ("+document.forms[0].width.value+"<=screen.width){if ("+document.forms[0].height.value+"<=screen.height){if ("+document.forms[0].depth.value+"<=screen.colorDepth){}else{error()}}else{error()}}else{error()}}}else{error()}}else{error()}"
+if (document.forms[0].em.options[document.forms[0].em.selectedIndex].value=="popup"){
+// document.forms[1].scriptfield.value=document.forms[1].scriptfield.value+'window.alert("本站推荐使用 '+document.forms[0].browser.options[document.forms[0].browser.selectedIndex].value+"版本"+document.forms[0].version.value+'以上。最佳分辨率 '+document.forms[0].width.value+'x'+document.forms[0].height.value+' pix. '+document.forms[0].depth.value+' 位色。您现在使用 "+navigator.appName+" "+navigator.appVersion+",您的显示器属性和颜色数无法检测。")}'
+document.forms[1].scriptfield.value=document.forms[1].scriptfield.value+'function error(){if(parseFloat(navigator.appVersion)<4.00){window.alert("本站推荐使用 '+document.forms[0].browser.options[document.forms[0].browser.selectedIndex].value+" "+document.forms[0].version.value+'以上。最佳分辨率 '+document.forms[0].width.value+'x'+document.forms[0].height.value+' pix.'+document.forms[0].depth.value+'位色。您现在使用 "+navigator.appName+" "+navigator.appVersion+",您的显示器属性和颜色数无法检测。")}else{window.alert("本站推荐使用 '+document.forms[0].browser.options[document.forms[0].browser.selectedIndex].value+" "+document.forms[0].version.value+'以上。最佳分辨率 '+document.forms[0].width.value+'x'+document.forms[0].height.value+' pix. '+document.forms[0].depth.value+' 位色。您现在使用 "+navigator.appName+" "+navigator.appVersion+", 分辨率"+screen.width+"x"+screen.height+" and "+screen.colorDepth+" 位色")}}\n</sc'+'ript>'}
+else{
+// document.forms[1].scriptfield.value=document.forms[1].scriptfield.value+'document.write("本站推荐使用 '+document.forms[0].browser.options[document.forms[0].browser.selectedIndex].value+" "+document.forms[0].version.value+'以上。最佳分辨率'+document.forms[0].width.value+'x'+document.forms[0].height.value+' pix.'+document.forms[0].depth.value+' 位色。您现在使用 "+navigator.appName+" "+navigator.appVersion+",您的显示器属性和颜色数无法检测。")}else{error()}}'
+// document.forms[1].scriptfield.value=document.forms[1].scriptfield.value+'function error(){document.write("本站推荐使用 '+document.forms[0].browser.options[document.forms[0].browser.selectedIndex].value+" "+document.forms[0].version.value+'以上。最佳分辨率'+document.forms[0].width.value+'x'+document.forms[0].height.value+' pix. '+document.forms[0].depth.value+' 位色。您现在使用 "+navigator.appName+" "+navigator.appVersion+", 分辨率"+screen.width+"x"+screen.height+" and "+screen.colorDepth+" 位色")}\n</sc'+'ript>'}
+document.forms[1].scriptfield.value=document.forms[1].scriptfield.value+'function error(){if(parseFloat(navigator.appVersion)<4.00){document.write("本站推荐使用 '+document.forms[0].browser.options[document.forms[0].browser.selectedIndex].value+" "+document.forms[0].version.value+' 以上。最佳分辨率'+document.forms[0].width.value+'x'+document.forms[0].height.value+' pix. '+document.forms[0].depth.value+' 位色。您现在使用 "+navigator.appName+" "+navigator.appVersion+",您的显示器属性和颜色数无法检测。")}else{document.write("本站推荐使用 '+document.forms[0].browser.options[document.forms[0].browser.selectedIndex].value+" "+document.forms[0].version.value+' or higher, 分辨率'+document.forms[0].width.value+'x'+document.forms[0].height.value+' pix. '+document.forms[0].depth.value+' 位色。您现在使用 "+navigator.appName+" "+navigator.appVersion+", 分辨率"+screen.width+"x"+screen.height+" and "+screen.colorDepth+" 位色")}}\n</sc'+'ript>'}
+}
+// )}
+</script>
+ <table border="0" width="100"
+bgcolor="#9BADB8">
+        <tr> 
+          <td
+style="border-left: 5px groove; border-right: 5 groove; border-top:
+5 groove; border-bottom: 5 groove"
+align="center" height="646"> 
+            <form method="POST">
+              <table border="0" width="443">
+                <tr> 
+                  <td width="123" align="right"><font color="#000000"
+face="Arial"><strong><br>
+                    Browser</strong></font></td>
+                  <td width="310" align="left" valign="bottom"><font color="#000000" face="Arial"><br>
+                    <select name="browser" size="1" style="font-family: MS Sans
+Serif, Arial">
+                      <option value="Microsoft Internet Explorer" selected>Microsoft 
+                      Internet Explorer</option>
+                      <option value="Netscape">Netscape Navigator</option>
+                    </select>
+                    </font></td>
+                </tr>
+                <tr> 
+                  <td width="123" align="right"><font color="#000000"
+face="Arial"><strong>Browser version</strong></font></td>
+                  <td width="310" align="left"><font face="Arial"> 
+                    <input
+type="text" name="version" size="5"
+value="4.0">
+                    </font></td>
+                </tr>
+                <tr> 
+                  <td width="123" align="right"><font color="#000000"
+face="Arial"><strong>Screen width</strong></font></td>
+                  <td width="310" align="left"><font color="#000000"
+face="Arial"> 
+                    <input type="text"
+name="width" size="5" value="800">
+                    pixels</font></td>
+                </tr>
+                <tr> 
+                  <td width="123" align="right"><font color="#000000"
+face="Arial"><strong>Screen height</strong></font></td>
+                  <td width="310" align="left"><font color="#000000"
+face="Arial"> 
+                    <input type="text"
+name="height" size="5" value="600">
+                    pixels</font></td>
+                </tr>
+                <tr> 
+                  <td width="123" align="right" valign="top"><font
+color="#000000" face="Arial"><strong>Screen depth</strong></font></td>
+                  <td width="310" align="left"><font color="#000000"
+face="Arial"> 
+                    <input type="text"
+name="depth" size="5" value="32">
+                    bit <br>
+                    <small><small>(32 bit colors 32 bit, for 16 bit colors 16 
+                    bit, for 256 colors 8 bit and for 16 colors 4 bit)</small></small></font></td>
+                </tr>
+                <tr> 
+                  <td width="123" align="right"><font color="#000000"
+face="Arial">代码生成方式</font></td>
+                  <td width="310" align="left"> <font color="#000000" face="Arial"> 
+                    <select name="em" size="1" class="pt9">
+                      <option value="popup">Alert pop-up message</option>
+                      <option value="doc">Display error line in document</option>
+                    </select>
+                    </font></td>
+                </tr>
+                <tr> 
+                  <td width="123" align="right"><font face="Arial"></font></td>
+                  <td width="310" align="left"><font color="#000000"
+face="Arial"> 
+                    <input type="button"
+value="生成代码" name="make"
+onClick="go()" class="pt9">
+                    </font></td>
+                </tr>
+              </table>
+            </form>
+            <form method="POST">
+              <table border="0" width="431">
+                <tr valign="top"> 
+                  <td width="425" height="363"> 将如下代码加入HTML的<HEAD> 区： 
+                    <div
+align="center"> 
+                      <center>
+                        <p><font
+color="#000000"> 
+                          <input type="button" value="选择代码"
+name="selectbutton"
+
+onClick="document.forms[1].scriptfield.focus();document.forms[1].scriptfield
+.select()" class="pt9">
+                          <br>
+                          <textarea rows="15" name="scriptfield" cols="60"
+class="pt9" wrap="VIRTUAL">
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

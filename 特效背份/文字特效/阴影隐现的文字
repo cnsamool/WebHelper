@@ -1,0 +1,22 @@
+
+<body onLoad="glowtext()">
+<script language=javaScript>; <!-- //; var thissize=2; var textfont="szren.com";
+var textcolor= new Array() ;textcolor[0]="000000"; textcolor[1]="000000";textcolor[2]="000000"
+textcolor[3]="111111"; textcolor[4]="222222"; textcolor[5]="333333"; textcolor[6]="444444"; textcolor[7]="555555"
+textcolor[8]="666666"; textcolor[9]="777777"; textcolor[10]="888888"; textcolor[11]="999999"; textcolor[12]="aaaaaa"
+textcolor[13]="bbbbbb"; textcolor[14]="cccccc"; textcolor[15]="dddddd"; textcolor[16]="eeeeee"; textcolor[17]="ffffff"
+textcolor[18]="ffffff"; var message = new Array()
+message[0]="http://www.coolboo.net";
+message[0]="欢迎使用《网页助手》"; i_message=0
+var i_strength=0; var i_message=0; var timer
+function glowtext() { ;if(document.all) {; if (i_strength <=17) {; glowdiv.innerText=message[i_message]; document.all.glowdiv.style.filter="glow(color="+textcolor[i_strength]+", strength=4)"
+i_strength++; timer=setTimeout("glowtext()",100); }; else {; clearTimeout(timer); setTimeout("deglowtext()",1500)
+}; }; }function deglowtext() { ; if(document.all) {; if (i_strength >=0) {; glowdiv.innerText=message[i_message]; document.all.glowdiv.style.filter="glow(color="+textcolor[i_strength]+", strength=4)"
+i_strength--; timer=setTimeout("deglowtext()",100); }; else {; clearTimeout(timer); i_message++; if (i_message>=message.length) {i_message=0}
+i_strength=0; intermezzo(); }; }; }; function intermezzo() { ; glowdiv.innerText=""; setTimeout("glowtext()",1500)
+}; //-->;
+</script>
+<div id="glowdiv" style="position:absolute;visibility:visible;width:588px;text-align:center;
+top:188px;left:88px;font-family:宋体;font-size:12pt;color:8080FF"></div>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

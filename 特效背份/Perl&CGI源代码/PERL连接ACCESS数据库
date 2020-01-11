@@ -1,0 +1,111 @@
+前题是必须安装好activeperl，以及MS Access 
+
+一. 安装Win32-ODBC模块
+
+步骤1： 
+
+从TOOLS栏目中下载Win32-ODBC.zip,下载完后用winzip解开到一个temp目录,共有三个文件： 
+Readme 
+Win32-ODBC.ppd 
+Win32-ODBC.tar.gz 
+
+步骤2： 
+
+在DOS窗口下，temp目录中运行下面的DOS命令： 
+ppm install Win32-ODBC.ppd 
+
+二. 准备测试用数据库（ACCESS） 
+
+步骤1： 
+
+启动MS ACCESS,建立一个新空数据库，命名为odbctest.mdb,保存在某一目录中（记住路径）。 
+
+步骤2： 
+
+然后新建一个表，建立三个字段： 
+字段名称 数据类型 
+Name 字符，长度50 
+Email 字符，长度50 
+Age 数字，长整型 
+
+将这个表保存为address（注意这个例子中，没有用自动增加的ID）.输入若干记录： 
+Nighthawk nighthawk@163.net 20 1234567 
+John jt@163.net 24 0284393293 
+kit kit@21cn.com 18 3948932 
+
+保存后，关闭数据库文件。 
+
+步骤3： 
+
+打开控制面板中的 ODBC数据源（32位），在用户DSN栏中，找到用户数据源列表,选中名称为“MS Access 97 Database”的一行，然后按“配置”键。 
+在Database框中按"Select.."，选择步骤1.2中建立的数据库文件odbctest.mdb,按OK即可。ODBC设置中的其它项目全部采用缺省设置，然后就是OK,确定，关闭对话窗口。 
+三. 这时候，数据库已经可以用了，我们来测试一下： 
+
+#!/usr/bin/perl 
+
+use Win32::ODBC; 
+
+$DSN = "MS Access 97 Database"; 
+$DBase = "access.mdb"; 
+
+#连接数据库 
+
+if (!($db = new Win32::ODBC($DSN))){ 
+print "连接数据库失败.n"; 
+exit(); 
+} 
+else{ 
+print "连接数据库成功 (连接号：", $db->Connection(), ")nn"; 
+} 
+
+#数据库中的表 
+print "数据库中的表："; 
+@tables = $db->TableList; 
+print @tables; 
+print "n"; 
+
+#选择数据表 
+if (! $db->Sql("SELECT * FROM [address] WHERE age>=20") ){ 
+
+@FieldNames = $db->FieldNames(); 
+
+$Cols = $#FieldNames + 1; 
+
+#表中字段数 
+print "表address字段数:$Colsn"; 
+
+#字段列表 
+for ($i = 0; $i < $Cols; $i++){ 
+print "$FieldNames[$i]t"; 
+} 
+print "n"; 
+
+#列出年龄大于20的记录 
+while($db->FetchRow()) { 
+@values = $db->Data(); 
+print @values; 
+print "n"; 
+} 
+
+} 
+
+##### sql ######### 
+#添加记录 
+$sqlinsert = "INSERT INTO address VALUES ('Euler', 'euler@21cn.com', 28, '021-345689')"; 
+#更新记录 
+$sqlupdate = "UPDATE address SET age = age+10 "; 
+#删除记录 
+$sqldelete = "DELETE FROM address WHERE name='jimtyan'"; 
+
+$rc = $db->Sql($sqlinsert); 
+die qq(SQL 失败 "$sqlinsert": ), $db->Error(), qq(n) if $rc; 
+
+$rc = $db->Sql($sqlupdate); 
+die qq(SQL 失败 "$sqlupdate": ), $db->Error(), qq(n) if $rc; 
+
+$rc = $db->Sql($sqldelete); 
+die qq(SQL 失败 "$sqldelete": ), $db->Error(), qq(n) if $rc; 
+
+#关闭链接 
+$db->Close(); 
+

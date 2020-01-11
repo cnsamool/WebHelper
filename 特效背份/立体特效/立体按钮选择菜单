@@ -1,0 +1,19 @@
+<APPLET code="apButtonMenu" Archive="apButtonMenu.jar" height=114 width=115 mayscript>
+<param name="Copyright" value="Apycom Software ">
+<param name="solidArrows" value="true">
+<param name="backColor" value="FFCCFF">
+<param name="backHighColor" value="ddaadd">
+<param name="fontColor" value="880000">
+<param name="fontHighColor" value="ffffff">
+<param name="buttonType" value="1">
+<param name="alignText" value="center">
+<param name="font" value="宋体,13,0">
+<param name="javascript:1" value="changeAll()">
+<param name="menuItems" value="
+
+       {网页助手,http://samool.533.net,_self}
+       {新浪网站,http://www.sina.com.cn,_self}
+       {网易社区,http://www.163.net,_self}
+
+">
+</APPLET>

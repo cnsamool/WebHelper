@@ -1,0 +1,29 @@
+
+<div id="KBStatic" style="position:absolute; left:0px; top:0px; width:200px; height:100px; z-index:25"> 
+感觉好用的话，请向你的朋友推荐，傻猫不胜感激你</div>
+<script language=JavaScript>
+function KB_keepItInIE(theName,theWantTop,theWantLeft) {
+theRealTop=parseInt(document.body.scrollTop)
+theTrueTop=theWantTop+theRealTop
+document.all[theName].style.top=theTrueTop
+theRealLeft=parseInt(document.body.scrollLeft)
+theTrueLeft=theWantLeft+theRealLeft
+document.all[theName].style.left=theTrueLeft
+}
+function KB_keepItInNN(theName,theWantX,theWantY) {
+theRealLay=document.layers[theName]
+theBadX=self.pageYOffset
+theBadY=self.pageXOffset
+theRealX=theBadX+theWantX
+theRealY=theBadY+theWantY
+theRealLay.moveTo(theRealY,theRealX)
+}
+IE4=(document.all)?1:0
+NN4=(document.layers)?1:0
+if (IE4)
+setInterval('KB_keepItInIE("KBStatic",0,0)',1)
+if (NN4)
+setInterval('KB_keepItInNN("KBStatic",0,0)',1)
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

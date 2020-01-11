@@ -1,0 +1,9 @@
+<!--本特效需要rain.class支持, bbs.gif可以换成你的图片-->
+<!--必需将这两个文件与网页放在同一目录下才能正常显示-->
+<!--C:\webhelpview\webhelpview 有这个文件-->
+
+<APPLET NAME="Confetti" CODE="Rain.class" WIDTH="755" HEIGHT="100">
+<PARAM NAME="back" VALUE="bbs.gif">
+<PARAM NAME="gray" VALUE="500">
+<PARAM NAME='angle' VALUE='1'>
+</APPLET>

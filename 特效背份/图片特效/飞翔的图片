@@ -1,0 +1,39 @@
+<STYLE>
+v\:* {
+ BEHAVIOR: url(#default#VML)
+}
+</STYLE>
+ <SCRIPT language="JavaScript1.2">
+var stringcolor="white"
+var ballsrc="bird.gif" //改为自己的图片路径及名称 
+if (document.all&&window.print){
+document.write('<IMG id=Om style="LEFT: -10px; POSITION: absolute" src="'+ballsrc+'">')
+ddx=0;ddy=0;PX=0;PY=0;xm=0;ym=0
+OmW=Om.width/2;OmH=Om.height/2
+}
+function Ouille(){
+ x=Math.round(PX+=(ddx+=((xm-PX-ddx)*3)/100))
+ y=Math.round(PY+=(ddy+=((ym-PY-ddy)*3-300)/100))
+ Om.style.left=x-OmW
+ Om.style.top=y-OmH
+ elastoc.to=x+","+y
+elastoc.strokecolor=stringcolor
+ setTimeout("Ouille()",1)   
+}
+
+function momouse(){
+ xm=window.event.x+5
+ ym=window.event.y+document.body.scrollTop+15
+ elastoc.from=xm+","+ym
+}
+if(document.all&&window.print){
+code="<v:line id=elastoc style='LEFT:0;POSITION:absolute;TOP:0' strokeweight='1.5pt'></v:line>"} else {
+code="<v:group style='LEFT:-10;WIDTH:100pt;POSITION:absolute;TOP:0;HEIGHT:100pt' coordsize='21600,21600'><v:line id=elastoc style='LEFT:0;WIDTH:100pt;POSITION:absolute;TOP:0;HEIGHT:100pt' strokeweight='1.5pt'></v:line></v:group>"}
+if(document.all&&window.print){
+document.body.insertAdjacentHTML("afterBegin",code)
+document.onmousemove=momouse
+Ouille()
+}
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

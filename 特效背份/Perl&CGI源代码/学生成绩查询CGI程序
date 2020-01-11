@@ -1,0 +1,96 @@
+    学生成绩查询CGI程序 
+    该CGI程序分解、接收HTML FORM中提供的查询条件，然后查询出该学生的成绩并返回。学生成绩有两个数据文件，一个是***SUB DAT，其中含有学生的各个科目，*** 表示系别，如计算机系的科目文件是COMPSUB DAT，英语系的科目文件是ENGSUB.DAT，无线电系科目文件是ELECSUB.DAT；另一个数据文件是***SCOER.DAT， 该文件中包含有每个学生的学号、密码与成绩，***表示系别，如计算机系的学生成绩文件是COMPSCORE.DAT，同理，其他系的学生成绩文件按此原则以此类推。当学生输入的学号及密码符合数据文件的内容时，就会显示该学生的成绩。 
+main(int argc,char*argv[]) 
+{ 
+register int i,m=0; 
+int len; 
+FILE*fp,*fpl,*fopen(); 
+char filename1[100],filename2[100],title[100];/*设定资料变量*/ 
+char subject[10][10]; 
+char id[100][10],password[100][10]; 
+int score[100][20],sum[100],allsum; 
+float avg[100],alltotalavg; 
+int rank,number,index,find,j,kind; 
+printf("content-type:text/html%c%c",10,10); 
+len=atoi(getenv("CONTENT_LENGITH")); 
+for(i=0;len && (!feof(stdin));i++){ 
+m=i 
+inputs[i].val=readdstdin(stdin,&,&len);/*读STDiN信息*/ 
+AddToSpace(inputs[i].val); 
+Convert(inputs[i].val); 
+inputs[i].name=ReadData(inputs[i].val,=); 
+} 
+strcpy(filename1,"/score/setup/"); 
+stucpy(filename2,"/xcore/data/"); 
+if(strcmp(inputs[o].val,"计算机系/)==0 
+strcat(filename1,"compusb.dat"); 
+strcat(filename2,"compscore.dat"); 
+} 
+if(strcmp(inputs[o].val,"英语系")==0 
+strcat(filenamel,"engsub.dat"); 
+strcat(filename2,"engscore.dat"); 
+} 
+if(strcmp(inputs[o].val,"无线电系")==0 
+} 
+strcat(filename1,"elecsub.dat"); 
+strcat(filename2,"elecscore.dat"); 
+} 
+fp=fopen(filename1,"r");/*打开文件*/ 
+kind=0; 
+while(fscanf(fp,"%s",subject[kind]!=EOF 
+kind=kind+1; 
+fclose(fp); 
+
+fp1=fopen(filename2,"r");/*打开文件*/ 
+allsum=0; 
+for(i=0;i<100;i++) 
+{ 
+numbde=i; 
+if(fscanf(fp1,"%s%s",id[i], 
+password[i]!=EOF){ 
+sum[i]=0; 
+for{j=0;j<kind;j++){ 
+fscanf(fp1,"%d",&score[i][j]); 
+sum[i]+=score[i][j]; 
+} 
+avg[i]=sum[i]/kind; 
+allsum+=sum[i]; 
+} 
+else 
+break; 
+} 
+fclose(fp1); 
+find=0; 
+if(strcmp(inputs[2].val,id[i])==0&& 
+strcmp(inputs[3].val,password[i]==0){ 
+index=i; 
+find=i; 
+} 
+} 
+if(find==0) 
+{ 
+printf{"<H>输入有误，请再输一次!</h1>\n"); 
+} 
+else 
+{ 
+rank=1 
+for(i=o;i<number;i++) 
+if(sum[index]<sum[i]) 
+rank=rank+1; 
+slltotalavg=allsum/number; 
+printf("<center><H1>学生成绩查询系统</H1></center>"); 
+pritf("\n<center>查询学生学号：%s</center>
+", 
+inputs[2].val); 
+printf("\n<center>成绩如下:</certer><hr>"); 
+
+for(i=0;i<kind;i++) 
+printf{"%s\t",subject[kind]); 
+printf("总分
+\n"); 
+for(i=0;i<kind;i++) 
+printf("%d\t",score[index][i]); 
+printf["%d
+\n",sum[index]); 
+} 
+} 

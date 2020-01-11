@@ -1,0 +1,32 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<table border=5 bordercolor=blue borderlight=green>
+<tr>
+      <td align=center width=450 height=194> 
+        <p align="left"><b><font color="#3333FF">代码如下：<br>
+          </font></b>&lt;head&gt;<br>
+          &lt;script language=javascript&gt; <br>
+          &lt;!--<br>
+          if ((navigator.appName == &quot;Microsoft Internet Explorer&quot;) &amp;&amp; 
+          (parseInt(navigator.appVersion) &gt;= 4))<br>
+          {<br>
+          document.write('&lt;link rel=stylesheet type=&quot;text/css&quot; href=&quot;<font color="#FF0033">ie.css</font>&quot;&gt;')<br>
+          }<br>
+          else {document.write('&lt;link rel=stylesheet type=&quot;text/css&quot; 
+          href=&quot;<font color="#FF3333">ns.css</font>&quot;&gt;')}<br>
+          //--&gt;<br>
+          &lt;/script&gt;<br>
+          &lt;/head&gt; </p>
+        <p></p>
+        <br>  
+
+ </td>
+    </tr>
+</table>
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

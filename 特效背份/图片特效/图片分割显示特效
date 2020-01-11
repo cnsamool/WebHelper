@@ -1,0 +1,75 @@
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Hide
+function killErrors() {
+  return true;
+}
+   window.onerror = killErrors;
+// -->
+</SCRIPT>
+<SCRIPT>
+<!-- Beginning of JavaScript -
+var imgwidth=300
+var imgheight=401
+var imgurl="sample.jpg"
+var marginright
+var imgslices=20
+var width_slice=Math.floor(imgwidth/imgslices)
+var cliptop=0
+var clipbottom=imgheight
+var clipleft=0
+var clipright=width_slice
+var step=50
+var pause=20
+var spannummer=0
+var spannrbefore=0
+var x_finalpos=5
+var y_finalpos=5
+
+function initiate() {
+    if (document.all) {
+        moveslices_IE()
+    }
+}
+
+function moveslices_IE() {
+    var thisspan=eval("document.all.span"+spannummer+".style")
+    if (thisspan.posLeft>x_finalpos-width_slice) {
+        thisspan.posLeft-=step
+        var timer=setTimeout("moveslices_IE()",pause)
+    }
+    else if (spannummer<imgslices-1) {
+        clearTimeout(timer)
+        thisspan.posLeft=x_finalpos
+        spannummer++
+        var timer=setTimeout("moveslices_IE()",pause)
+    }
+    else {
+        thisspan.posLeft=x_finalpos
+        clearTimeout(timer)
+        var timer=setTimeout("showredir()",1000)
+    }
+}
+
+function showredir() {
+    document.all.redir.style.visibility="VISIBLE"
+}
+
+// - End of JavaScript - -->
+</SCRIPT>
+</HEAD>
+<BODY  onload=initiate()>
+<SCRIPT>
+<!-- Beginning of JavaScript -
+for (i=0;i<=imgslices-1;i++) {
+    marginright=screen.width+50
+    document.write("<span id='span"+i+"' style='position:absolute;visibility:visible; left:"+marginright+"px;top:"+y_finalpos+"px;clip:rect("+cliptop+"px "+clipright+"px "+clipbottom+"px "+clipleft+"px)'>")
+    document.write("<img src='"+imgurl+"'>")
+    document.write("</span>")
+    clipleft+=width_slice
+    clipright+=width_slice
+}
+// - End of JavaScript - -->
+</SCRIPT>
+</BODY>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

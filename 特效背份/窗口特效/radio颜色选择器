@@ -1,0 +1,10 @@
+<FORM METHOD="POST" NAME="bgcolor">
+<font color="silver">click here</font><input type="radio" name="bgcolor"  ONCLICK="document.bgColor='silver'"><BR>
+<font color="lightslategray">click here</font><input type="radio" name="bgcolor"  ONCLICK="document.bgColor='lightslategray'"><BR>
+<font color="azure">click here</font><input type="radio" name="bgcolor"  ONCLICK="document.bgColor='azure'"><BR>
+<font color="lightgreen">click here</font><input type="radio" name="bgcolor"  ONCLICK="document.bgColor='lightgreen'"><BR>
+<font color="lightblue">click here</font><input type="radio" name="bgcolor"  ONCLICK="document.bgColor='lightblue'"><BR>
+<font color="white">click here</font><input type="radio" name="bgcolor"  ONCLICK="document.bgColor='white'"><BR>
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

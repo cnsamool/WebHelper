@@ -1,0 +1,195 @@
+<style type="text/css">
+<!--
+body {  font-family: "宋体"; font-size: 9pt; margin-top: 0px; margin-left: 0px; margin-right: 0px}
+A { COLOR: black; FONT-SIZE: 13px; FONT-WEIGHT: 400; TEXT-DECORATION: none }
+ A:hover { COLOR: red; FONT-SIZE: 13px; FONT-WEIGHT: 400; TEXT-DECORATION: underline }
+a:active     { font: 9pt "宋体"; cursor: hand; color: #FF0033 }
+
+-->
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+<BODY OnLoad="tick()">
+<br>
+<br>
+<br>
+<center>
+
+<br>
+<br>
+<center>
+<table border=1 borderlight=green width="252" cellspacing="5" bordercolorlight="#000000" bordercolordark="#C0C0C0">
+<tr><td align=center width="234" bgcolor="#EFEFEF"><font face="宋体" size="3">模拟跳舞游戏好好看看吧!</font></td></tr><tr><td align=center width="234" bgcolor="#EFEFEF">
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+var agt=navigator.userAgent.toLowerCase();
+if (agt.indexOf("mac") != -1)
+var a="\r"; 
+else
+var a="\n";
+var max=0;
+function tlist() {
+max=tlist.arguments.length;
+for (i=0; i<max; i++)
+this[i]=tlist.arguments[i];
+}
+tl = new tlist(
+"   o"+a+
+"  /|\\"+a+
+" */ \\*        跳舞"+a,
+
+"   o_"+a+
+"  \<| *"+a+
+"  *\>\\         跳舞"+a,
+
+"  _o/*"+a+
+" * |"+a+
+"  / \\         跳舞"+a,
+
+" *\o_"+a+
+"  /  *"+a+
+" \<\\           跳舞"+a,
+
+"  _o/*"+a+
+" * |"+a+
+"  / \\         跳舞"+a,
+
+" *\\c/*"+a+
+"   )"+a+
+"  / \>         跳舞"+a,
+
+"     *"+a+
+"  \\__/c"+a+
+"   \> \\*       跳舞"+a,
+
+"   __/"+a+
+"    (o_*"+a+
+"     \\*       跳舞"+a,
+
+"      \\ /"+a+
+"       |"+a+
+"     */o\\*    跳舞"+a,
+
+"       \\_"+a+
+"       ("+a+
+"     */o\\*    跳舞"+a,
+
+"        \<_"+a+
+"      __("+a+
+"     * o|*    跳舞"+a,
+
+"         /_"+a+
+"      __("+a+
+"     * o|*   跳舞"+a,
+
+"         ___"+a+
+"      *\/ \>"+a+
+"       o|*    跳舞"+a,
+
+"        *"+a+
+"       o|_/"+a+
+"      */  \\   跳舞"+a,
+
+"        *"+a+
+"      _o|_"+a+
+"     *   \>\\   跳舞"+a,
+
+"       _o/*"+a+
+"      * |"+a+
+"       / \\    跳舞"+a,
+
+"      *\\o/*"+a+
+"        |"+a+
+"       / \\    跳舞"+a,
+
+"      c/*"+a+
+"      \<\\"+a+
+"      */\\     跳舞"+a,
+
+"      c__"+a+
+"      \<\ *"+a+
+"      */\\     跳舞"+a,
+
+"      c__"+a+
+"      /\ *"+a+
+"     * /\>     跳舞"+a,
+
+"      c/*"+a+
+"     /(__"+a+
+"    * /       跳舞"+a,
+
+"    __o/*"+a+
+"    * (__"+a+
+"      \<       跳舞"+a,
+
+"      __o_"+a+
+"     * /  *"+a+
+"      \<\\      跳舞"+a,
+
+"     *_o_"+a+
+"       | *"+a+
+"      \< \\     跳舞"+a,
+
+"     *_c_*"+a+
+"       |"+a+
+"       \>\\     跳舞"+a,
+
+"     *_c_*"+a+
+"       |__"+a+
+"       \>      跳舞"+a,
+
+"     *_c_*"+a+
+"     __|__"+a+
+"              跳舞"+a,
+
+" "+a+
+"     *_c_*"+a+
+"     __)__    跳舞"+a,
+
+" "+a+
+"     *\\c/*"+a+
+"     __)__    跳舞"+a
+
+);
+var x=0;
+function tick() {
+document.animation.cheerleader.value = " " + a +
+tl[x];
+x++;
+if (x != max)
+setTimeout("tick()", 200);
+else
+x = 0;
+}
+//  End -->
+</script>
+<form name=animation>
+<textarea name=cheerleader rows=6 cols=25 style="border: 1 solid #000000"></textarea>
+<br>
+<input type=button value="增加次数" onClick = "javascript:tick()">&nbsp; <input type=button value="重新开始" onClick = "javascript:tick()">
+</form>
+</td></tr>
+</table></center>
+<br>
+<br>
+&nbsp;
+</form>
+<br>
+&nbsp; 
+<SCRIPT LANGUAGE="JavaScript"> 
+ 
+<!-- hide 
+ 
+function goHist(a)  
+ 
+{ 
+ 
+   history.go(a); 
+ 
+} 
+ 
+//--> 
+ 
+</script> 
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

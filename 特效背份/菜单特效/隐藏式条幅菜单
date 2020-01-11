@@ -1,0 +1,78 @@
+<script language="JavaScript1.2">
+ie=document.all?1:0
+n=document.layers?1:0
+lshow=60
+var move=10;
+menuSpeed=40
+var moveOnScroll=true
+var tim;
+var ltop;
+function makeMenu(obj,nest){
+    nest=(!nest) ? '':'document.'+nest+'.'
+    this.css=(n) ? eval(nest+'document.'+obj):eval(obj+'.style')
+        this.state=1
+        this.go=0
+        this.width=n?this.css.document.width:eval(obj+'.offsetWidth')
+        this.left=b_getleft
+    this.obj = obj + "Object";         eval(this.obj + "=this")
+}
+function b_getleft(){
+        var gleft=(n) ? eval(this.css.left):eval(this.css.pixelLeft);
+        return gleft;
+}
+function moveMenu(){
+        if(!oMenu.state){
+                clearTimeout(tim)
+                mIn()
+        }else{
+                clearTimeout(tim)
+                mOut()
+        }
+}
+function mIn(){
+        if(oMenu.left()>-oMenu.width+lshow){
+                oMenu.go=1
+                oMenu.css.left=oMenu.left()-move
+                tim=setTimeout("mIn()",menuSpeed)
+        }else{
+                oMenu.go=0
+                oMenu.state=1
+        }
+}
+
+function mOut(){
+        if(oMenu.left()<0){
+                oMenu.go=1
+                oMenu.css.left=oMenu.left()+move
+                tim=setTimeout("mOut()",menuSpeed)
+        }else{
+                oMenu.go=0
+                oMenu.state=0
+        }
+}
+function checkScrolled(){
+        if(!oMenu.go) oMenu.css.top=eval(scrolled)+ltop
+        if(n) setTimeout('checkScrolled()',30)
+}
+function menuInit(){
+        oMenu=new makeMenu('divMenu')
+        scrolled=n?"window.pageYOffset":"document.body.scrollTop"
+        oMenu.css.left=-oMenu.width+lshow
+        ltop=(n)?oMenu.css.top:oMenu.css.pixelTop;
+        oMenu.css.visibility='visible'
+        if(moveOnScroll) ie?window.onscroll=checkScrolled:checkScrolled();
+}
+onload=menuInit;
+</script>
+<div id="divMenu"
+style="position: absolute; top: 10; left: 1; width: 10; visibility: hidden; background-color: #F0F0F0; height: 19"><nobr>
+<a href="http://www.163.com" target="_blank">网易</a>-
+<a href="http://www.onlinedown.net" target="_blank">华军软件园</a>-
+<a href="http://www.sina.com.cn" target="_blank">新浪网</a>-
+<a href="http://yangshiy.533.net" target="_blank">仕毅风采</a>-
+<a href="http://samool.533.net" target="_blank">傻猫软件</a>-
+
+<a style="background-color: #FFAE88; text-decoration: none" href="javascript://" onclick="moveMenu()">>>></a></nobr>
+</div>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

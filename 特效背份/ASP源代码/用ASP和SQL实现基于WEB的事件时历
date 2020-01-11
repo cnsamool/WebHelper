@@ -1,0 +1,100 @@
+建立SQL服务器端  
+对Web日历而言，我们在服务器端仅需保存表明事件性质的一个文本字符串即可，字符串最长为100个字符。设计源代码如下：  
+
+Calendar.sql 
+-- 创建表 
+create table Schedule 
+( 
+idSchedule smallint identity primary key, 
+dtDate smalldatetime not null, 
+vcEvent varchar(100) not null 
+) 
+go 
+-- 存储过程 
+create procedure GetSchedule (@nMonth tinyint, @nYear smallint) 
+as 
+select idSchedule, convert(varchar, datepart(dd, dtDate)) ''nDay'', vcEvent 
+from Schedule 
+where datepart(yy, dtDate) = @nYear and datepart(mm, dtDate) = @nMonth 
+order by datepart(dd, dtDate) 
+go 
+create procedure AddEvent (@vcDate varchar(20), @vcEvent varchar(100)) 
+as 
+insert Schedule 
+select @vcDate, @vcEvent  
+go 
+create procedure DeleteEvent (@idSchedule smallint) 
+as 
+delete Schedule where idSchedule = @idSchedule 
+go  
+
+设计ASP客户端  
+下图是Web日历的主要用户界面，用户可以看到哪些事件是已安排的。另外，使用底部的链接可以在日历中按月前后翻动。  
+
+
+ASP的实现代码如下：  
+
+header.asp 
+<@ LANGUAGE="VBSCRIPT"  
+ENABLESESSIONSTATE = False ％＞ 
+＜％ 
+'' 目的：表头包括用来启动所有页的文件 
+'' 还包括全局函数 
+Option Explicit 
+Response.Buffer = True 
+Response.Expires = 0 
+sub Doheader(strTitle) 
+％＞ 
+＜html＞ 
+　　 ＜head＞ 
+　　 ＜META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb2312"＞ 
+　　 ＜title＞Event Calendar - ＜%= strTitle %＞＜/title＞ 
+　　 ＜/head＞ 
+　　 ＜body bgcolor="white" link="blue" alink="blue" vlink="blue"＞ 
+　　 ＜basefont face="Verdana, Arial"＞ 
+　　 ＜center＞＜h1＞Event Calendar＜/h1＞ 
+　　 ＜h3＞＜%= strTitle %＞＜/h3＞ 
+＜％ 
+end sub 
+function GetDataConnection() 
+dim oConn, strConn 
+Set oConn = Server.CreateObject("ADODB.Connection") 
+strConn = "Provider=SQLOLEDB; Data Source=adspm; Initial Catalog=TeamWeb; " 
+strConn = strConn && "User Id=TeamWeb; Password=x" 
+oConn.Open strConn 
+set GetDataConnection = oConn 
+end function  
+％＞  
+
+利用ADO，我们可以很容易地将 ASP 页面与 SQL 数据库相连接。首先我们要创建一个到数据库的连接。为了获得记录集，我们要调用 Connection 对象的 Execute 方法，将希望执行的命令的文本字符串传入，一旦有了记录集，就可以在其中循环。header.asp 包含获得数据连接的函数，这意味着如果数据源有变化，我们只有一个位置需要编辑连接信息（服务器、用户和口令）。请注意，作为结果，我们必须在函数的末尾使用 set 命令传出新连接。  
+
+优化性能  
+ASP使建立Web页面变得十分容易，但如果想建立一个可以适应大量用户的站点，你就需要仔细考虑编码。下面笔者将为读者介绍增强基于Web日历可伸缩性的几种方法，这些方法也可用于提高任何基于ASP的Web站点的性能。  
+
+1.SQL优化  
+
+提高站点性能的一个简单方法是给 Schedule表的date字段添加一个索引,这样，它会在给定日期之间进行查找，因而将加快 GetEvents的存储过程。  
+
+对于小型站点，我们可以将 SQL 与 IIS 安装在同一服务器上，一旦站点访问量开始增长，我们可将 SQL 移动到其自身的服务器上,当访问量进一步增长时，我们可以添加均指向同一 SQL 服务器的多个 IIS 服务器。如果 SQL 服务器的通信量过度增长时，还可以将数据分割到不同的服务器上,我们可以将奇数月份分配到一台服务器，将偶数月份分配到另一台服务器上,当然，这需要修改 header.asp 中的 GetDataConnection，以便它为你提供基于此月份的正确连接。  
+
+2.ASP 优化  
+
+ASP 解释的主要优化方法将是利用高速缓存页面，以便无需每次读取都对它们进行解释。做到这一点的最简单的方法是借助 ASP Application 对象。要做到这一点，你只需将HTML保存到含有月份和年份名称的应用程序变量（例如 Calendar07-2000）中。然后,当显示 Event Calendar 页时，你首先检查一下看看日历是否已经保存在应用程序变量中，如果是，则只需检索它，这种方式会大大加快网站的查询过程。下面的代码显示了这个工作过程：  
+
+＜＜do header＞＞ 
+ShowCalendar(nMonth, nYear) 
+＜＜do Footer＞＞ 
+sub ShowCalendar(nMonth, nYear) 
+if Application("Calendar" && nMonth && "-" && nYear) = "" then 
+＜＜Build Calendar＞＞ 
+Application("Calendar" && nMonth && "-" && nYear) = ＜＜Calendar＞＞ 
+End if 
+Response.Write Application("Calendar" && nMonth && "-" && nYear)  
+End sub  
+
+当然，在 Events.asp 页更改某个月份的事件时，你需要清空该月份的应用程序变量，以便反映这些事件的更改状况。  
+
+安全性  
+有几种方法可实现此站点上的安全性。对于 Intranet 站点，基于Windows NT的验证是最容易设置的，其原因是你的用户将很可能已经登录到网络。你可让所有用户查看 Event Calendar 页，但是只有管理员能访问Add/Remove Events 页。  
+
+如果关心审计，你可以容易地修改 AddEvent 和 DeleteEvent 过程将其信息保存到审计表中。你还可以确保 IIS 为每个页命中的查询字符串和用户进行日志记录，然后逐个分析日志以确定何人于何时做了什么，这是非常简单的。 

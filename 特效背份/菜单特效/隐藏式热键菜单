@@ -1,0 +1,116 @@
+<style>
+<!--
+#slidemenubar, #slidemenubar2{
+position:absolute;
+left:-115px;
+width:120px;
+top:100px;
+border:1.5px solid #ee8323;
+background-color:#FFFFE0;
+layer-background-color:lightyellow;
+font:12px 宋体;
+line-height:20px;
+}
+-->
+</style>
+<layer id="slidemenubar" onMouseover="showtip(0)" onMouseout="showtip(1)">
+<script language="JavaScript1.2">
+
+function showtip(nulling){
+if (document.all){
+if (nulling==0&&slidemenubar2.style.pixelLeft==-110)
+slidemenubar2.title='按"x"键显示菜单, "z"键隐藏菜单'
+else
+slidemenubar2.title=''
+}
+else if (document.layers){
+if (nulling==0&&!window.pullit)
+window.status='按"x"键显示菜单, "z"键隐藏菜单'
+else
+window.status=''
+}
+}
+
+if (document.all)
+document.write('<div id="slidemenubar2" style="left:-110" onMouseover="showtip(0)" onMouseout="showtip(1)">')
+var sitems=new Array()
+var sitemlinks=new Array()
+
+sitems[0]="新浪网"; sitemlinks[0]="http://www.sina.com.cn"
+sitems[1]="华军软件园"; sitemlinks[1]="http://www.newhua.com.cn"
+sitems[2]="网易"; sitemlinks[2]="http://www.netease.com"
+sitems[3]="傻猫"; sitemlinks[3]="http://samool.533.net"
+
+<!-- 使用说明：使用时将上面的网址替换成你的网址即可！'按"x"键显示菜单, "z"键隐藏菜单'-->
+for (i=0;i<=sitems.length-1;i++)
+document.write('<a href='+sitemlinks[i]+' target=_blank>'+sitems[i]+'</a><br>')
+function regenerate(){
+window.location.reload()
+}
+function regenerate2(){
+if (document.layers)
+setTimeout("window.onresize=regenerate",400)
+}
+window.onload=regenerate2
+if (document.all){
+document.write('</div>')
+themenu=document.all.slidemenubar2.style
+rightboundary=0
+leftboundary=-110
+}
+else{
+themenu=document.layers.slidemenubar
+rightboundary=110
+leftboundary=10
+}
+function pull(){
+if (window.drawit)
+clearInterval(drawit)
+pullit=setInterval("pullengine()",50)
+}
+function draw(){
+clearInterval(pullit)
+drawit=setInterval("drawengine()",50)
+}
+function pullengine(){
+if (document.all&&themenu.pixelLeft<rightboundary)
+themenu.pixelLeft+=5
+else if(document.layers&&themenu.left<rightboundary)
+themenu.left+=5
+else if (window.pullit)
+clearInterval(pullit)
+}
+function drawengine(){
+if (document.all&&themenu.pixelLeft>leftboundary)
+themenu.pixelLeft-=5
+else if(document.layers&&themenu.left>leftboundary)
+themenu.left-=5
+else if (window.drawit)
+clearInterval(drawit)
+}
+
+<!-- 此特效使用《心梦网页特效精灵》编辑制作-->
+<!-- 心梦家园：http://xmhome.in70s.com-->
+
+
+if (document.layers)
+document.captureEvents(Event.KEYPRESS)
+function menuengine(e){
+if (document.layers){
+if (e.which==120)
+pull()
+if (e.which==122)
+draw()
+}
+else if (document.all){
+if (event.keyCode==120)
+pull()
+if (event.keyCode==122)
+draw()
+}
+}
+document.onkeypress=menuengine
+</script>
+</layer>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,51 @@
+
+<BODY bgcolor="#ffffff" OnLoad="setVariables();checkLocation()">
+
+<script language="JavaScript">
+
+function setVariables() {
+if (navigator.appName == "Netscape") {
+v=".top=";
+dS="document.";
+sD="";
+y="window.pageYOffset";
+}
+else {
+v=".pixelTop=";
+dS="";
+sD=".style";
+y="document.body.scrollTop";
+   }
+}
+function checkLocation() {
+object="object1";
+yy=eval(y);
+eval(dS+object+sD+v+yy);
+setTimeout("checkLocation()",10);
+}
+</script>
+<div id="object1" style="position:absolute; visibility:show; left:0px; top:0px; z-index:5"> 
+  <table width=150 border=0 cellspacing=20 cellpadding=0 >
+    <tr> 
+      <td bgcolor="#EAEAEA">
+        <center>
+          静态导航菜单 
+        </center>
+      </td>
+    </tr>
+    <tr> 
+      <td bgcolor="#EAEAEA"><a href="http://www.microsoft.com" >微软公司</a></td>
+    </tr>
+    <tr> 
+      <td bgcolor="#EAEAEA"><a href="http://www.yahoo.com" >雅虎在线</a></td>
+    </tr>
+    <tr> 
+      <td bgcolor="#EAEAEA"><a href="http://www.sina.com.cn">新浪在线</a></td>
+    </tr>
+    <tr> 
+      <td bgcolor="#EAEAEA"><a href="http://samool.533.com" >傻猫软件</a></td>
+    </tr>
+  </table>
+  </div>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

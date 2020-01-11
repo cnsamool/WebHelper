@@ -1,0 +1,120 @@
+<script language="JavaScript">
+done = 0;
+step = 4
+function anim(yp,yk)
+{
+if(document.layers) document.layers["napis"].top=yp;
+else  document.all["napis"].style.top=yp;
+if(yp>yk) step = -4
+if(yp<60) step = 4
+setTimeout('anim('+(yp+step)+','+yk+')', 35);
+}
+function start()
+{
+if(done) return
+done = 1;
+if(navigator.appName=="Netscape") {
+document.napis.left=innerWidth/2 - 145;
+anim(60,innerHeight - 60)
+}
+else {
+napis.style.left=11;
+anim(60,document.body.offsetHeight - 60)
+}
+}
+//-->
+</script>
+<div id="napis"
+style="position: absolute;top: -50;
+color: #000000;font-family:宋体;font-size:9pt;">
+</div><script language="JavaScript">
+<!--
+setTimeout('start()',10);
+//-->
+</script>
+<script language="JavaScript">
+<!-- Begin
+function initArray() {
+for (var i = 0; i < initArray.arguments.length; i++) {
+this[i] = initArray.arguments[i];
+}
+this.length = initArray.arguments.length;
+}
+var colors = new initArray(
+"#000000","#0000FF","#80FFFF","#80FF80","#FFFF00","#FF8000","#FF00FF","#FF0000"
+);
+delay = 100
+link = 0;
+vlink = 0;
+function linkDance() {
+link = (link+1)%colors.length;
+vlink = (vlink+1)%colors.length;
+document.linkColor = colors[link];
+document.vlinkColor = colors[vlink];
+setTimeout("linkDance()",delay);
+}
+linkDance();
+// End -->
+</script>
+<script>
+function colors(c1){
+this.c1 = c1;
+}
+a00 = new colors("FFFBD0");
+a01 = new colors("FF0000");
+a02 = new colors("FF8080");
+a03 = new colors("FF8000");
+a04 = new colors("FFFF00");
+a05 = new colors("000080");
+a06 = new colors("0000FF");
+a07 = new colors("008000");
+a08 = new colors("00FF00");
+a09 = new colors("804000");
+a10 = new colors("808000");
+a11 = new colors("000000");
+a12 = new colors("FFFFFF");
+a13 = new colors("C0C0C0");
+a14 = new colors("408080");
+a15 = new colors("808080");
+a16 = new colors("D2BF51");
+a17 = new colors("44BBE8");
+a18 = new colors("C97AB9");
+a19 = new colors("A2C97A");
+a20 = new colors("804000");
+a21 = new colors("6AE6C4");
+a22 = new colors("33A3D1");
+a23 = new colors("6C9AEE");
+function changebg(type){
+scheme = type;
+document.bgColor = scheme.c1;
+timerID=setTimeout('document.bgColor = scheme.c2', document.selector.value * 10);
+}
+</script>
+<form NAME="selector">
+<p><input TYPE="button" onClick="changebg(a00)" style="background-color: rgb(255,251,208)"><input
+TYPE="button" onClick="changebg(a01)" style="background-color: rgb(255,0,0)"><input
+TYPE="button" onClick="changebg(a02)" style="background-color: rgb(255,128,128)"><input
+TYPE="button" onClick="changebg(a03)" style="background-color: rgb(255,128,0)"><input
+TYPE="button" onClick="changebg(a04)" style="background-color: rgb(255,255,0)"><input
+TYPE="button" onClick="changebg(a05)" style="background-color: rgb(0,0,128)"><input
+TYPE="button" onClick="changebg(a06)" style="background-color: rgb(0,0,255)"><input
+TYPE="button" onClick="changebg(a07)" style="background-color: rgb(0,128,0)"><input
+TYPE="button" onClick="changebg(a08)" style="background-color: rgb(0,255,0)"><input
+TYPE="button" onClick="changebg(a09)" style="background-color: rgb(128,0,0)"><input
+TYPE="button" onClick="changebg(a10)" style="background-color: rgb(128,128,0)"><input
+TYPE="button" onClick="changebg(a11)" style="background-color: rgb(0,0,0)"><input
+TYPE="button" onClick="changebg(a12)" style="background-color: rgb(255,255,255)"><input
+TYPE="button" onClick="changebg(a13)" style="background-color: rgb(192,192,192)"><input
+TYPE="button" onClick="changebg(a14)" style="background-color: rgb(64,128,128)"><input
+TYPE="button" onClick="changebg(a15)" style="background-color: rgb(128,128,128)"><input
+TYPE="button" onClick="changebg(a16)" style="background-color: rgb(210,191,81)"><input
+TYPE="button" onClick="changebg(a17)" style="background-color: rgb(68,187,232)"><input
+TYPE="button" onClick="changebg(a18)" style="background-color: rgb(201,122,185)"><input
+TYPE="button" onClick="changebg(a19)" style="background-color: rgb(162,201,122)"><input
+TYPE="button" onClick="changebg(a20)" style="background-color: rgb(106,230,196)"><input
+TYPE="button" onClick="changebg(a21)" style="background-color: rgb(194,219,185)"><input
+TYPE="button" onClick="changebg(a22)" style="background-color: rgb(51,163,209)"><input
+TYPE="button" onClick="changebg(a23)" style="background-color: rgb(108,154,238)"> </p>
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,74 @@
+    在使用基本的图像创建函数之前，需要安装GD库文件。如果要使用与JPEG有关的图像创建函数，还需要安装jpeg-6b，如果要在图像中使用Type 1型字体，则必须安装t1lib。  
+ 
+
+    在建立图像创建环境之前，还需要做一些准备工作。首先，安装t1lib接着安装jpeg-6b，然后再安装GD库文件。在安装时一定要按这里给定的顺序进行安装，因为在编译GD入库时会用到jpeg-6b，如果没有安装jpeg-6b，在编译时就会出错。  
+
+    在安装完这三个组件后，还需要重新配置一次PHP，这也是你对采用DSO方式安装PHP感到庆幸的地方之一。运行make clean，然后在当前的配置中添加下面的内容：  
+
+--with-gd=[/path/to/gd] 
+--with-jpeg-dir=[/path/to/jpeg-6b] 
+--with-t1lib=[/path/to/t1lib]  
+
+    完成添加后执行make命令，然后再执行make install命令，重新启动Apache后运行phpinfo()来检查一下新的设置是否生效了。现在，我们就可以开始图像创建工作了。  
+
+    根据所安装的GD库文件的版本将决定你是否能创建GIF或PNG格式的图形文件。如果安装的是gd-1.6或以前的版本，可以使用GIF格式的文件但不能创建PNG格式，如果安装的是gd-1.6以后的版本，可以创建PNG文件但不能创建GIF格式的文件。  
+
+    创建一幅简单的图像也需要用到许多的函数，我们将一步一步地进行说明。  
+
+    在下面的例子中，我们将创建一个PNG格式的图像文件，下面的代码是一个包含所创建的图像的MIME类型的头部：  
+
+＜? header ("Content-type: image/png");  
+
+    使用ImageCreate()创建一个代表空白图像的变量，这个函数要求以像素为单位的图像大小的参数，其格式是ImageCreate(x_size, y_size)。如果要创建一个大小为250×250的图像，就可以使用下面的语句：  
+
+$newImg = ImageCreate(250,250);  
+
+    由于图像还是空白的，因此你可能会希望用一些彩色来填充它。你需要首先使用ImageColorAllocate()函数用其RGB值为这种颜色指定一个名字，这一函数的格式为ImageColorAllocate([image], [red], [green], [blue])。如果要定义天蓝色，可以使用如下的语句：  
+
+$skyblue = ImageColorAllocate($newImg,136,193,255);  
+
+    接下来，需要使用ImageFill()函数用这种颜色填充这个图像，ImageFill()函数有几个版本，例如ImageFillRectangle()、ImageFillPolygon()等。为简单起见，我们通过如下的格式使用ImageFill()函数：  
+
+ImageFill([image], [start x point], [start y point], [color]) 
+ImageFill($newImg,0,0,$skyblue);  
+
+    最后，在图像建立后释放图像句柄和所占用的内存：  
+
+ImagePNG($newImg); 
+ImageDestroy($newImg); ?＞  
+
+    这样，创建图像的全部代码如下所示：  
+
+＜? header ("Content-type: image/png"); 
+$newImg = ImageCreate(250,250); 
+$skyblue = ImageColorAllocate($newImg,136,193,255); 
+ImageFill($newImg,0,0,$skyblue); 
+ImagePNG($newImg); 
+ImageDestroy($newImg); 
+?＞  
+
+    如果把这个脚本文件保存为skyblue.php，并用浏览器访问它，我们会看到一个天蓝色的250×250的PNG格式的图像。  
+
+    我们还可以使用图像创建函数对图像进行处理，例如把一个较大图像作成一个小图像：  
+
+    假设你有一幅图像，想从中裁剪出一个35×35大小的图像。你所需要作的是创建一个35×35大小的空白图像，创建一个包含原来图像的图像流，然后把一个经过调整大小的原来的图像放到新的空白图像中。  
+
+    要完成这一任务的关键函数是ImageCopyResized()，它要求的格式如下所示：  
+
+ImageCopyResized([new image handle],[original image handle],[new image X], [new Image Y], [original image X], [original image Y], [new image X], [new image Y], [original image X], [original image Y])。 
+＜? /* 发送一个头部，以便让浏览器知道该文件所包含的内容类型*/ 
+header("Content-type: image/png"); 
+/* 建立保存新图像高度和宽度的变量*/ 
+$newWidth = 35; 
+$newHeight = 35; 
+/* 建立给定高度和宽度的新的空白图像*/ 
+$newImg = ImageCreate($newWidth,$newHeight); 
+/* 从原来较大的图像中得到数据*/ 
+$origImg = ImageCreateFromPNG("test.png"); 
+/*拷贝调整大小后的图像，使用ImageSX()、ImageSY()得到原来的图像在X、Y方面上的大小 */ 
+ImageCopyResized($newImg,$origImg,0,0,0,0,$newWidth,$newHeight,ImageSX($origImg),ImageSY($origImg)); 
+/*创建希望得到的图像，释放内存 */ 
+ImagePNG($newImg); 
+ImageDestroy($newImg); ?＞  
+
+   如果把这一小段脚本保存为resized.php，然后用浏览器对它进行访问，就会看到一个35×35大小的PNG格式的图像。  

@@ -1,0 +1,92 @@
+<script language="JavaScript">
+<!--  
+var images='laughface.gif';//Put your image name here!!
+var amount=8;       //Number of images here!!
+var yBase = 150;
+var xBase = 200;
+var step = 0.2;
+var currStep = 0;
+var Xpos = 5;
+var Ypos = 5;
+var i = 0;
+var j = 0;
+if (document.all)
+{
+document.write('<div id="ieDiv" style="position:absolute;top:0px;left:0px">')
+document.write('<div id="c" style="position:relative">');
+for (n=0; n < amount; n++)
+document.write('<img src=" '+images+'" style="position:absolute;top:0px;left:0px">')
+document.write('</div>')
+document.write('</div>')
+
+function MsieMouseFollow(){
+ Xpos = document.body.scrollLeft+event.x-5;
+ Ypos = document.body.scrollTop+event.y-5;
+ }
+ document.onmousemove = MsieMouseFollow;
+}
+else if (document.layers)
+{
+window.captureEvents(Event.MOUSEMOVE);
+for (ns=0; ns < amount; ns++) 
+document.write("<LAYER NAME='n"+ns+"' LEFT=0 TOP=0><IMG SRC='"+images+"'></LAYER>");
+function NsMouseFollow(evnt){
+ Xpos = evnt.pageX-5;
+ Ypos = evnt.pageY-5;
+ }
+ window.onMouseMove = NsMouseFollow;
+}
+function Swirl(){
+if (document.all)
+{
+ yBase = window.document.body.offsetHeight/4;
+ xBase = window.document.body.offsetWidth/4;
+}
+else if (document.layers)
+{
+ yBase = window.innerHeight/4;
+ xBase = window.innerWidth/4;
+}
+
+if (document.all)
+{
+ for (i=0;i<ieDiv.all.c.all.length;i++)
+ {
+  ieDiv.all.c.all[i].style.top = Ypos + 
+
+Math.cos((20*Math.sin(currStep/20))+i*70)*yBase*(Math.sin(10+currStep/10)+0.2)*Math.cos((currStep 
+
++ i*25)/10);
+  ieDiv.all.c.all[i].style.left = Xpos + 
+
+Math.sin((20*Math.sin(currStep/20))+i*70)*xBase*(Math.sin(10+currStep/10)+0.2)*Math.cos((currStep 
+
++ i*25)/10);
+ }
+}
+else if (document.layers)
+{
+ for ( j = 0 ; j < ns ; j++ ) //7 is number of NS layers!
+ {
+  var temp="n"+j
+  document.layers[temp].top = Ypos + 
+
+Math.cos((20*Math.sin(currStep/20))+j*70)*yBase*(Math.sin(10+currStep/10)+0.2)*Math.cos((currStep 
+
++ j*25)/10);
+  document.layers[temp].left =Xpos + 
+
+Math.sin((20*Math.sin(currStep/20))+j*70)*xBase*(Math.sin(10+currStep/10)+0.2)*Math.cos((currStep 
+
++ j*25)/10);
+ }
+}
+currStep += step;
+setTimeout("Swirl()", 10);
+}
+Swirl();
+// -->
+
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

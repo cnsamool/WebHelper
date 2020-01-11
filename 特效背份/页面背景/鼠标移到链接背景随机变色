@@ -1,0 +1,62 @@
+<!--脚本说明:
+把如下代码加入<body>区域中-->
+<script language="javascript">
+
+<!--
+function backcolor(form){
+	temp = ""
+	for (var i = 0; i < 16; i++) {
+		temp = form.color[i].value
+		if (form.color[i].checked){ document.bgColor = temp }
+		}
+	}
+function randombackground(){
+	document.bgColor = getColor()
+	}
+function getColor(){
+	currentdate = new Date()
+	backgroundcolor = currentdate.getSeconds()
+	if (backgroundcolor > 44)
+		backgroundcolor = backgroundcolor - 45
+	else if (backgroundcolor > 29)
+		backgroundcolor = backgroundcolor - 30
+	else if (backgroundcolor > 15)
+		backgroundcolor = backgroundcolor - 16
+	if (backgroundcolor == 0 )
+		return "olive";
+	else if (backgroundcolor == 1 )
+		return "teal";
+	else if (backgroundcolor == 2 )
+		return "red";
+	else if (backgroundcolor == 3 )
+		return "blue";
+	else if (backgroundcolor == 4 )
+		return "maroon";
+	else if (backgroundcolor == 5 )
+		return "navy";
+	else if (backgroundcolor == 6 )
+		return "lime";
+	else if (backgroundcolor == 7 )
+		return "fuschia";
+	else if (backgroundcolor == 8 )
+		return "green";
+	else if (backgroundcolor == 9 )
+		return "purple";
+	else if (backgroundcolor == 10 )
+		return "gray";
+	else if (backgroundcolor == 11 )
+		return "yellow";
+	else if (backgroundcolor == 12 )
+		return "aqua";
+	else if (backgroundcolor == 13 )
+		return "black";
+	else if (backgroundcolor == 14 )
+		return "white";
+	else if (backgroundcolor == 15 )
+		return "silver";
+	}
+// --> 
+</script>
+<a href=http://lwjrj.yeah.net onMouseOver=randombackground()>鼠标经过这里，背景色会改变的。。</a>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

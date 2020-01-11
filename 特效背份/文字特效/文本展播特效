@@ -1,0 +1,159 @@
+
+<SCRIPT language="JavaScript">
+
+<!--
+
+var thissize=20
+
+var textfont="隶书"
+
+
+
+var textcolor= new Array()
+
+textcolor[0]="000000"
+
+textcolor[1]="000000"
+
+textcolor[2]="000000"
+
+textcolor[3]="111111"
+
+textcolor[4]="222222"
+
+textcolor[5]="333333"
+
+textcolor[6]="444444"
+
+textcolor[7]="555555"
+
+textcolor[8]="666666"
+
+textcolor[9]="777777"
+
+textcolor[10]="888888"
+
+textcolor[11]="999999"
+
+textcolor[12]="aaaaaa"
+
+textcolor[13]="bbbbbb"
+
+textcolor[14]="cccccc"
+
+textcolor[15]="dddddd"
+
+textcolor[16]="eeeeee"
+
+textcolor[17]="ffffff"
+
+textcolor[18]="ffffff"
+
+
+
+var message = new Array()
+
+message[0]="傻猫软件"
+
+message[1]="网页助手"
+
+message[2]="更多的特效更多的方便"
+
+message[3]="谢谢使用"
+
+i_message=0
+
+
+
+var i_strength=0
+
+var i_message=0
+
+var timer
+
+
+
+function glowtext() { 
+
+if(document.all) {
+
+if (i_strength <=17) {
+
+glowdiv.innerText=message[i_message]
+
+document.all.glowdiv.style.filter="glow(color="+textcolor[i_strength]+", strength=4)"
+
+i_strength++
+
+timer=setTimeout("glowtext()",100)
+
+}
+
+else {
+
+clearTimeout(timer)
+
+setTimeout("deglowtext()",1500)
+
+}
+
+} 
+
+}
+
+
+
+function deglowtext() { 
+
+if(document.all) {
+
+if (i_strength >=0) {
+
+glowdiv.innerText=message[i_message]
+
+document.all.glowdiv.style.filter="glow(color="+textcolor[i_strength]+", strength=4)"
+
+i_strength--
+
+timer=setTimeout("deglowtext()",100)
+
+}
+
+else {
+
+clearTimeout(timer)
+
+i_message++
+
+if (i_message>=message.length) {i_message=0}
+
+i_strength=0
+
+intermezzo()
+
+}
+
+} 
+
+}
+
+function intermezzo() { 
+
+glowdiv.innerText=""
+
+setTimeout("glowtext()",1000) 
+
+}
+//-->
+</SCRIPT>
+
+<head>
+<title></title>
+</head>
+
+<body onLoad="glowtext()">
+<div id="glowdiv" style="position:absolute;visibility:visible;width:600px;text-align:center; top:185px;left:70px;font-family:隶书;font-size:30pt;color:000000"></div>
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

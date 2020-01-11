@@ -1,0 +1,31 @@
+<!--本特效需要将appopupmenu.jar  empty.au  put.au文件支持 -->
+<!--必须将appopupmenu.jar  empty.au  put.au和网页放在同一目录下才能显示效果 -->
+<!--C:\webhelpview\webhelpview 有这些文件-->
+
+<applet Code=apPopupMenu Archive=apPopupMenu.jar Width=200 Height=20 MAYSCRIPT>
+<param name="Copyright" value="Apycom Software - www.apycom.com">
+<param name="isHorizontal" value="true">
+<param name="overSound" value="put.au">
+<param name="clickSound" value="empty.au">
+<param name="systemSubFont" value="false">
+<param name="solidArrows" value="false">
+<param name="buttonType" value="1">
+<param name="status" value="link">
+<param name="alignText" value="left">
+<param name="backColor" value="0066cc">
+<param name="backHighColor" value="FFCC00">
+<param name="fontColor" value="ffffff">
+<param name="fontHighColor" value="000000">
+<param name="font" value="宋体,13,0">
+<param name="menuItems" value="
+
+    {收藏网站}
+       {|网页助手,http://samool.533.net,_self}
+       {|新浪网站,http://www.sina.com.cn,_self}
+       {|网易社区,http://www.163.net,_self}
+    {其它网站}
+       {|网页助手,http://samool.533.net,_self}
+       {|新浪网站,http://www.sina.com.cn,_self}
+       {|网易社区,http://www.163.net,_self}
+">
+</applet>

@@ -1,0 +1,126 @@
+<style>
+.Food{background-color:red}
+.Snake{background-color:blue}
+</style>
+
+<script>
+var Rows=20
+var Cells=30
+var Num=15
+var BorderWidth=5
+var SpeedUp=5000
+
+
+//创建地图
+function CreateMap(){
+BW=eval(Cells*Num+2*BorderWidth)
+BH=eval(Rows*Num+2*BorderWidth)
+document.body.innerHTML='<div id=MainMap style=position:absolute;left:'+(document.body.clientWidth-BW)/2+';top:'+(document.body.clientHeight-BH)/2+';width:'+BW+';height:'+BH+';border-width:'+BorderWidth+';border-style:inset;border-color:#0000cc></div>'
+Map=new Array()
+for(y=0;y<Rows;y++){
+	Map[y]=new Array()
+	for(x=0;x<Cells;x++){
+		Map[y][x]='0'
+		}
+	}
+Sx=parseInt(Math.random()*Cells)
+Sy=parseInt(Math.random()*Rows)
+CreateSnake()
+CreatFood()
+AllDiv=MainMap.all.tags('DIV')
+AllSpan=MainMap.all.tags('SPAN')
+}
+
+//创建食物的位置
+function CreatFood(){
+Fx=parseInt(Math.random()*Cells)
+Fy=parseInt(Math.random()*Rows)
+if(Map[Fy][Fx]=='0'){
+	MainMap.innerHTML+='<span style=position:absolute;left:'+Fx*Num+';top:'+Fy*Num+';width:'+Num+';height:'+Num+';overflow:hidden class=Food></span>'
+	Map[Fy][Fx]='F'
+	}
+else CreatFood()
+}
+
+//创建蛇的位置
+function CreateSnake(){
+MainMap.innerHTML+='<div x='+Sx+' y='+Sy+' style=position:absolute;left:'+Sx*Num+';top:'+Sy*Num+';width:'+Num+';height:'+Num+';overflow:hidden class=Snake></div>'
+Map[Sy][Sx]='S'
+}
+
+//主移动--判断蛇头前面的是什么
+function Move(){
+Sx+=GoX
+Sy+=GoY
+if(Sy<0||Sy>=Rows)Move1()
+else{
+	SnakeFront=Map[Sy][Sx]
+	if(SnakeFront=='0')Move2()
+	else{
+		if(SnakeFront=='F')Move3()
+		else Move1()
+		}
+	}
+}
+
+//重新开始
+function Move1(){
+ReStart=confirm("Game Over，重新开始？")
+if(ReStart)window.location.reload()
+}
+
+var Times=200
+
+//蛇前是空地时
+
+function Move2(){
+Map[AllDiv[0].y][AllDiv[0].x]='0'
+AllDiv[0].removeNode(true)
+CreateSnake()
+setTimeout('Move()',Times)
+}
+
+//蛇前面是食物时
+
+function Move3(){
+CreateSnake()
+AllSpan[0].removeNode(true)
+CreatFood()
+setTimeout('Move()',Times)
+}
+
+//蛇越行越快
+function oTimes(){
+Times-=5
+if(Times>5)setTimeout('oTimes()',SpeedUp)
+}
+
+document.onkeydown=KeyDown
+
+//方向
+function KeyDown(){
+Key=event.keyCode
+switch(Key){
+case 37:Dir(-1,0);break//左
+case 39:Dir(1,0);break//右
+case 38:Dir(0,-1);break//上
+case 40:Dir(0,1);break}//下
+return false
+}
+
+var Star=0
+
+function Dir(x,y){
+GoX=x
+GoY=y
+if(Star==0){
+	oTimes()
+	Star=1
+	Move()
+	}
+}
+//开始时运行
+onload=CreateMap
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

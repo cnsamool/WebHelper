@@ -1,0 +1,9 @@
+<script language="Javascript">
+function mPopupWin() {
+javascript:win=open('http://samool.533.net', 'content', 'width=300,height=200,left=10,top=10,location=no,toolbar=no,status=no,resizable=yes,scrollbars=no,menubar=no,directories=no');
+}
+
+</script>
+<body onUnload="mPopupWin()"><p align="center">退出后弹出指定样式的窗口</p>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

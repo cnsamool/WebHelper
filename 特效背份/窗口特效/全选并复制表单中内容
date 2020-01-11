@@ -1,0 +1,32 @@
+<style>
+.highlighttext{
+background-color:yellow;
+font-weight:bold;
+}
+</style>
+
+</head>
+<form name=test>
+<input type="button" value="全选并复制"  onclick="javascript:HighlightAll('test.select1')" ><br>
+<textarea name="select1" rows=3 cols=46 >你好，欢迎使用</textarea>
+</form> 
+<script language="Javascript">         
+<!--         
+        
+var copytoclip=1         
+         
+function HighlightAll(theField) {         
+var tempval=eval("document."+theField)         
+tempval.focus()         
+tempval.select()         
+if (document.all&&copytoclip==1){         
+therange=tempval.createTextRange()         
+therange.execCommand("Copy")         
+window.status="Contents highlighted and copied to clipboard!"         
+setTimeout("window.status=''",1800)         
+}         
+}         
+//-->         
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

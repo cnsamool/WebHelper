@@ -1,0 +1,21 @@
+<script LANGUAGE="JavaScript">
+function initArray() {
+for (var i = 0; i < initArray.arguments.length; i++) {
+this[i] = initArray.arguments[i];
+}
+this.length = initArray.arguments.length;
+}
+var colors = new initArray("ff0000","000000","aff1b1","d5aaff","00f97c","ff93ff","7575ff","ff8484");//这里的颜色可以修改。增加，删除
+delay = .8; link = 0;
+vlink = 0;
+function linkDance() {
+link = (link+1)%colors.length;
+vlink = (vlink+1)%colors.length;
+document.linkColor = colors[link];
+document.vlinkColor = colors[vlink];
+setTimeout("linkDance()",delay*1000);
+}
+linkDance();
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

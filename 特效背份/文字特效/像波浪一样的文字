@@ -1,0 +1,24 @@
+<body onLoad="if (document.all)test()">
+<script language="javascript">
+if (document.layers)
+ {
+ alert("Your Browser is not capable of displaying this effect.\nPick another.");
+ opener.gO();window.close();
+ }
+else
+if (document.all){
+var step=3;
+var xstep=0;
+var msg='该特效是由《网页助手》编译制作的.';
+document.write("<center><div id='water' style='position:relative;width:650px;height:150px;font-family:宋体;font-size:20px;color:#0000FF'>"+msg+"</div></center>");
+function test(){
+<!-- 使用说明：使用时将文字换成你需要的文字即可！-->
+document.all.water.style.filter='wave(freq=3, strength=5, phase='+xstep+', lightstrength=45, add=0, enabled=1)';
+xstep+=step;
+TIMER=setTimeout('test()',10);
+}
+}
+</script>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

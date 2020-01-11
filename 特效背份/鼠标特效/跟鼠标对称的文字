@@ -1,0 +1,47 @@
+<body onmousemove="mover()">
+<script language="JavaScript">
+<!-- Begin
+function mover()
+{
+document.all.x.style.left = event.clientX;
+document.all.x.style.top = event.clientY;
+document.all.x1.style.top = event.clientX;
+document.all.x1.style.left = event.clientY;
+document.all.x2.style.top = event.clientX;
+document.all.x2.style.right = event.clientY;
+document.all.x3.style.right = event.clientX;
+document.all.x3.style.top = event.clientY;
+document.all.x4.style.bottom= event.clientX;
+document.all.x4.style.right = event.clientY;
+document.all.x5.style.bottom= event.clientX;
+document.all.x5.style.left = event.clientY;
+document.all.x6.style.left= event.clientX;
+document.all.x6.style.bottom = event.clientY;
+document.all.x7.style.right= event.clientX;
+document.all.x7.style.bottom = event.clientY;
+}
+
+//  End -->
+</script>
+<div id="x"
+style="FILTER: glow(strength = 3, color = red); POSITION: absolute" ,>
+
+<p>Hello there! </p>
+</div><div id="x1" style="FILTER: glow(strength = 3, color = blue); POSITION: absolute" ,>
+<p>Good to see you! </p>
+</div><div id="x2" style="FILTER: glow(strength = 3, color = blue); POSITION: absolute" ,>
+<p>Hello there! </p>
+</div><div id="x3" style="FILTER: glow(strength = 3, color = red); POSITION: absolute" ,>
+<p>Good to see you! </p>
+</div><div id="x4" style="FILTER: glow(strength = 3, color = green); POSITION: absolute" ,>
+<p>Hello there! </p>
+</div><div id="x5" style="FILTER: glow(strength = 3, color = green); POSITION: absolute" ,>
+<p>Good to see you! </p>
+</div><div id="x6" style="FILTER: glow(strength = 3, color = purple); POSITION: absolute" ,>
+<p>Hello there! </p>
+</div><div id="x7" style="FILTER: glow(strength = 3, color = purple); POSITION: absolute" ,>
+<p>Good to see you! </p>
+</div>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

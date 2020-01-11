@@ -1,0 +1,41 @@
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+ function es() {    
+ alert("请先作好准备.")         
+ x=0    
+ var today=new Date()    
+ sec=0    
+ for (i=1;i<=5;i++) {             
+ sec=today.getSeconds()        
+ rand1 = 31        
+ while ( rand1 > 30 ) {            
+ rand1 = Math.random()*sec*100           
+ rand1 = Math.ceil(rand1)        
+ }        
+ rand2 = Math.random()        
+ if (rand2>0.5) { 
+ mes="加上 "; 
+ mes1=" 到 "; 
+ y=rand1 
+ }                  
+ else{ 
+ mes=" 减去 " ; 
+ mes1=" 从 "; 
+ y=-rand1
+ }    
+ x1=x    
+ x=x+y    
+ if (x<0) { 
+ mes="加上 "; 
+ mes1=" 到 "; 
+ x=x1+rand1 
+ }    
+ alert("请把原来结果"+mes+rand1+mes1+". ")                
+ }    
+ alert("请仔细想一下最后的结果.")    
+ alert("最后结果为 "+x+" , 你算对了吗 ?")
+ } 
+ //-->
+ </SCRIPT><FORM NAME="f"><INPUT TYPE="button" VALUE="开始啦" onClick="es()">
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

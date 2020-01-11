@@ -1,0 +1,40 @@
+ 留言板实现的原理一 
+般有两种，即文件型和数据库型。它们是以留言信息在服务器的存放方式来区分的。由于文件型留言系统难以胜任多用户、大容量的信息处理和查询事务，因此具有良好延展性的数据库驱动方式是很多事务处理应用的首选。下面我们以PHP、Mysql系统为平台构建一个基本的留言板。 　　基本的留言板由留言填写、保存、显示、管理等程序组成，架构很简单，但是涉及了PHP＋Mysql结构的大部分操作，是我们学习PHP编程的绝佳入门练习。 　　  
+　　 1.数据库结构： 　　  
+　　 留言编号 id int 自动递增 　　  
+　　 留言者姓名 name varchar 20 最多20个字符 　　  
+　　 留言时间 msgdate datetime 日期型 　　  
+　　 电子邮件 email varchar 40 最多40个字符 　　  
+　　 留言内容 msg text 类型 　　  
+　　 这是一个简单的留言存储模型库，根据设计需要还可以增加一些字段，例如记录访问者的IP地址、操作系统类型等特征，为进一步分析客户群体提供依据。 　　  
+　　 2.填写留言的HTML文件： 　　  
+　　 write.htm 　　  
+　　 该文件构造了留言本最基本的界面，定义了一个包含姓名、电子邮件、留言内容等基本填写项目的表单，提交后将由savemsg.php程序进行错误校验和入库处理。 　　3  
+　　 . 错误校验和入库处理savemsg.php 　　  
+　　 　　 { 　　Sdb = mysql_connect(′localhost′,′username′,′password′); //连接数据库，注意将用户名、口令替换成自己的用户名和口令，以符合实际情况 　　  
+　　 mysql_select_db(′test′); //选择guesbook表所在数据库，这里是test库 　　  
+　　 Squery=″INSERT into guestbook(name, email,msgdate,msg) values(′Sname′, ′Semail′, now(),′Smsg′)″; //构造插入数据的SQL语句 　　  
+　　 mysql_query(Squery, Sdb); //执行插入数据操作 　　} 　　?> 　　  
+　　 我们可能注意到：在SQL语句中我们使用了Mysql的NOW()函数以‘YYYY－MM－DD HH:MM:SS’的形式返回当前的日期时间，并直接存到DATETIME字段中（事实上在定义字段时就可以将msgdate字段的默认值设置成NOW()，这样我们对程序就不必另行处理了），另外CURDATE()以‘YYYY－MM－DD’的格式返回今天的日期，可以直接存到DATE字段中，CURTIME()以‘HH:MM:SS’的格式返回当前的时间，可以直接存到TIME字段中。 　　  
+　　 4.查看留言view.php 　　  
+　　 　　  
+　　 　　  
+　　 　　 mysql_select_db(′test′); //选择数据库 　　  
+　　 Squery=″select ＊ from guestbook″; //构造查询语句 　　  
+　　 Sresult=mysql_query(Squery, Sdb); //执行查询语句 　　  
+　　 echo ′姓名 电子邮件 留言时间 留言内容  
+′; 　　  
+　　 //构造表格头 　　  
+　　 while(Srow = mysql_fetch_array(Sresult)) { //用循环输出表格 　　  
+　　 echo ′ ′.Srow［″name″］.′ ′; 　　  
+　　 echo ′ ′.Srow［″email″］.′ ′; 　　  
+　　 echo ′ ′.Srow［″msgdate″］.′ ′; 　　  
+　　 echo ′ ′.Srow［″msg″］.′  
+′; 　　} 　　  
+　　 mysql_free_result(Sresult);//释放资源 　　  
+　　 mysql_close(Sdb);//关闭数据库 　　  
+　　 echo ′ ′; 　　?> 　　  
+　　 　　  
+　　 　　  
+　　 5．管理留言本，该程序能列出所有留言条目概况，并为每个条目提供checkbox，以供选择删除。 　　Addmin.php 　　  
+　　 到这里，我们已经构建了一个具备填写、保存、浏览、管理（主要是删除操作）等功能的留言本。应该说这个程序达到了我们预期的目的。然而，一个留言本真正投入实用，必须考虑许多特殊情况，并具有良好的人机界面，和一定容错、纠错性。

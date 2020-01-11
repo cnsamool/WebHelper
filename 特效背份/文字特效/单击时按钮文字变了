@@ -1,0 +1,22 @@
+<!--在<head>…</head>之间插入：-->
+
+<style type="text/css">
+<!--
+.over {color:#000000; background: #fcc546}
+.down {color:#000000 background: #fcc546; font-style: italic}
+-->
+</style>
+
+<!--在<body> …</body>之间插入:-->
+
+<input 
+type="Button"
+onMouseOver="this.className='over';" 
+onMouseOut="this.className='';" 
+onMouseDown="this.className='down';" 
+onMouseUp="this.className='over';" 
+value="按钮也疯狂" 
+onClick="this.value='我真的好喜欢你！'" name="Button"> 
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

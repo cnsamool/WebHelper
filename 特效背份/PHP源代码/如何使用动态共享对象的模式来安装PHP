@@ -1,0 +1,77 @@
+    PHP 通常被安装在 Linux/Unix 操作系统上，并且搭配 Apache 服务器一起使用。在将 PHP 与 Apache 服务器一起安装的时候，你有三种不同的安装方式可以选择：静态模块，动态共享对象（Dynamic Shared Object, DSO）以及 CGI 程序执行文件。  
+
+   在这里建议大家使用动态共享对象的模式来安装 PHP，这是因为这种安装方式为日后的维护与升级提供了极大的便利。假设你一开始安装 PHP 的时候，只加入了PHP 的数据库相关模块。几天以后你决定再加装 PHP 的编码功能相关模块，这时候你只需要在你的系统命令列输入 make clean 指令，然后输入新的 PHP 设定选项，然后再输入 make 与 make install 指令，接下来系统就会产生一个新的 PHP 动态共享对象，并且安装到 Apache 服务器所指定的适当目录位置去了。接下来你要做的只是重新激活 Apache 服务器就行了，你就不需要把 Apache 服务器整个重新编译过。  
+
+下面几个基本步骤可以让你安装一套全新的 Apache 服务器，并且内含 PHP 动态加载模块：  
+
+1.到 http://www.***.org下载最新版本的 Apache 服务器原始码。  
+
+2.将取得的档案复制到某个有意义的目录位置，例如 /usr/local/ 或者 /opt/ ，或者其它你觉得适当的目录位置。  
+
+3.将取得的档案解压缩，解开以后你会得到一些 *.tar 档案。  
+
+4.输入下面的指令将这些 *.tar 档案解开，并且将解开的档案放置到一个名叫 apache_[version] 的目录位置：  
+
+tar -xvf apache_[version].tar   
+
+5.输入 cd 指令将工作目录切换到 /usr/local/apache_[version]（如果你在上一个步骤把 *.tar 档案解到其它不同目录，那么就切换到你所指定的目录去）  
+
+6. 输入下面的指令准备编译程序，记得将下面指令里面的 [path] 部分代换成你自己的目录名称，例如 /usr/local/apache[version] （不要加上最后面的斜线！）。这个步骤所做的工作是激活 mod_so，如此一来 Apache服务器才可以使用动态共享对象。  
+
+./configure --prefix=[path] --enable-module=so   
+
+7.等到系统回到命令提示符号，输入 make，然后继续等候系统回到命令提示符号。  
+
+8.输入 make install指令。  
+
+此时编译程序将会产生最后需要用到的目录与档案，完成以后会再度回到命令提示符号。  
+
+接下来可以开始安装 PHP 了：  
+
+1.到 PHP 官方网站：http://www.php.net/downloads.php 下载最新版本的 PHP 原始程序代码。  
+
+2.将取得的档案放置到某个有意义的目录位置，例如 /usr/local/ 或者 /opt/ ，或者其它你觉得适当的目录位置。  
+
+3.将取得的档案解压缩，解开以后你会得到一些 *.tar 档案。  
+
+4.输入下面的指令将这些 *.tar 档案解开，并且将解开的档案放置到一个名叫 php-[version] 的目录位置：  
+
+tar -xvf php-[version]   
+
+5.输入 cd 指令将工作目录切换到 /usr/local/php-[version]（如果你在上一个步骤把 *.tar 档案解到其它不同目录，那么就切换到你所指定的目录去）。现在你就可以开始编译 PHP 动态共享对象了，真正必须的设定选项只有一个：--with-apxs（这是一个位在 Apache 服务器安装位置下的 bin 目录里面的一个档案）。不过在这里我建议把 PHP 的 MySQL 相关模块也一起加入。  
+
+./configure --with-mysql=/[path to mysql] --with-apxs=/[path to apxs]   
+
+6.等到系统回到命令提示符号，输入 make指令，然后继续等候系统回到命令提示符号再输入make install指令。  
+
+接下来编译程序便会产生我们最后要使用的 PHP 动态共享对象，将它放置到Apache 用来放置动态共享对象的目录下，并且替你修改 Apache 服务器设定档 httpd.conf 的某些部分，最后系统会再度回到命令提示符号。等你回到命令提示符号以后，你必须回头去修改 httpd.conf 档案，里面有些设定必须修改：  
+
+1.找出 ServerAdmin 那一行，把你的 email 信箱加上去，也就是把那一行修改成： ServerAdmin you@yourdomain.com  
+
+2.找出 ServerName 那一行，并且将服务器名称设定好，例如：ServerName localhost  
+
+3.找出下面这一段设定：  
+
+# And for PHP 4.x, use: 
+# 
+#AddType application/x-httpd-php .php 
+#AddType application/x-httpd-php-source .phps  
+
+你必须修改这里的设定值，把 AddType 那两行前面的#符号去掉（这里的#符号是代表批注），并且加入其它你想要配合 PHP 程序使用的扩展名，修改完以后这段设定看起来应该像是（请注意里面的 .php 和 .phtml 就是将来你可以用来分辨 PHP 程序的扩展名）：  
+
+# And for PHP 4.x, use: 
+# 
+AddType application/x-httpd-php .php .phtml  
+AddType application/x-httpd-php-source .phps  
+
+把 httpd.conf 存盘，输入 cd 指令回到上一层目录，然后输入下面的指令激活Apache 服务器：  
+
+./bin/apachectl start   
+
+如果激活过程没有任何错误讯息出现的话，接下来我们就可以开始测试看看刚刚安装好的 Apache 服务器和 PHP 模块是不是真的一切无误了。请建立一个档案，命名为 phpinfo.php，里面只要输入下面这行 PHP 程序代码就可以了：  
+
+＜? phpinfo() ?＞  
+
+将档案存盘，然后把它放置到 Apache 服务器的文件根目录（该目录名称是 htdocs）去。启动你的浏览器，在地址列输入 http://localhost/phpinfo.php，如果一切安装无误的话，你应该会看到一个很长的网页，上面显示了完整的 PHP系统设定信息，这表示我们已经顺利安装完成 Apache 服务器和 PHP 了！  
+
+在初次安装完成以后，日后当你想要重新设定 PHP 的时候（比方说加入原本没有安装的 PHP 模块），你只需要在系统命令提示符号下输入 make clean指令，然后输入新的 ./configure设定指令，再输入 make和 make install指令，系统便会产生一个新的PHP动态共享对象。 接下来你只需要重新激活 Apache 服务器让它重新加载刚刚建立好的新模块即可。只需要几个简单的步骤便可以解决掉一堆烦人的问题了！

@@ -1,0 +1,47 @@
+<!--第一步:把如下代码加入<head>区域中//-->
+<script language="JavaScript1.2">
+scores = new Array(20);var numTotal=0;NS4 = (document.layers) ? 1 : 0;IE4 = (document.all) ? 1 : 0;ver4 = (NS4 || IE4) ? 1 : 0;if (ver4) {    with (document) {        write("<STYLE TYPE='text/css'>");        if (NS4) {            write(".parent {position:absolute; visibility:visible}");            write(".child {position:absolute; visibility:visible}");            write(".regular {position:absolute; visibility:visible}")        }        else {            write(".child {display:none}")        }        write("</STYLE>");    }}function getIndex(el) {    ind = null;    for (i=0; i<document.layers.length; i++) {        whichEl = document.layers[i];        if (whichEl.id == el) {            ind = i;            break;        }    }    return ind;}function arrange() {    nextY = document.layers[firstInd].pageY +document.layers[firstInd].document.height;    for (i=firstInd+1; i<document.layers.length; i++) {        whichEl = document.layers[i];        if (whichEl.visibility != "hide") {            whichEl.pageY = nextY;            nextY += whichEl.document.height;        }    }}function initIt(){    if (!ver4) return;    if (NS4) {        for (i=0; i<document.layers.length; i++) {            whichEl = document.layers[i];            if (whichEl.id.indexOf("Child") != -1) whichEl.visibility = "hide";       }        arrange();    }    else {        divColl = document.all.tags("DIV");        for (i=0; i<divColl.length; i++) {            whichEl = divColl(i);            if (whichEl.className == "child") whichEl.style.display = "none";        }    }}function expandIt(el) {	if (!ver4) return;    if (IE4) {        whichEl1 = eval(el + "Child");		for(i=1;i<=numTotal;i++){			whichEl = eval(scores[i] + "Child");			if(whichEl!=whichEl1) {				whichEl.style.display = "none";			}		}        whichEl1 = eval(el + "Child");        if (whichEl1.style.display == "none") {            whichEl1.style.display = "block";        }        else {            whichEl1.style.display = "none";        }    }    else {        whichEl = eval("document." + el + "Child");		for(i=1;i<=numTotal;i++){			whichEl = eval("document." + scores[i] + "Child");			if(whichEl!=whichEl1) {				whichEl.visibility = "hide";			}		}        if (whichEl.visibility == "hide") {            whichEl.visibility = "show";        }        else {            whichEl.visibility = "hide";        }        arrange();    }}onload = initIt;
+</script>
+
+</head>
+<body>
+<!--第二步:把如下代码加入<body>区域中//-->
+<div id='KB1Parent' class='parent'><a href="#" onClick="expandIt('KB1'); return false">
+<IMG SRC="1.gif" BORDER=0>时间日期类</a></div><div id='KB1Child' class='child'>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>任意位置显示时钟</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>倒计时代码生成器</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>八种风格时间显示</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>显示登陆时间</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>日历生成器</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>退出显示访问时间</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>一款特酷的时钟</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>全中文日期显示</a></div>
+<div id='KB2Parent' class='parent'><a href="#" onClick="expandIt('KB2'); return false">
+<IMG SRC="1.gif" BORDER=0>页面导航类</a></div><div id='KB2Child' class='child'>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>显示站点信息导航</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>任意显示导航信息</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>动态导航脚本</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>下拉式导航菜单</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>静止导航菜单</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>静止图片脚本</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>文本静止不动</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>信息框显示链接</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>友情链接导航框</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>目录式导航菜单</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>重要信息说明脚本</a>
+</div>
+<div id='KB3Parent' class='parent'><a href="#" onClick="expandIt('KB3'); return false">
+<IMG SRC="1.gif" BORDER=0>页面背景类</a></div><div id='KB3Child' class='child'>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>背景向下移动</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>背景不停变换色彩</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>使页面产生百叶窗</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>颜色代码英文集</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>自已选择背景颜色</a><br>
+<a href="#" target="_target"> <IMG SRC="2.gif" BORDER=0>背景颜色安全测试</a><br>
+<a href="#" target='_target'> <IMG SRC="2.gif" BORDER=0>颜色选择器</a><br>
+</div>
+
+  <SCRIPT>numTotal=4;scores[1]='KB1';scores[2]='KB1';scores[3]='KB2';scores[4]='KB3';        //numtotal是共多少个下拉菜单 
+  </SCRIPT>  
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

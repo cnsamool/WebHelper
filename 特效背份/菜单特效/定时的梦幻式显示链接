@@ -1,0 +1,114 @@
+<style>
+<!--
+#tickertape{
+position:relative;
+layer-background-color:black;
+width:400;
+height:12;
+; font-family: "宋体"; font-size: 9pt}
+#subtickertape{
+background-color:black;
+position:absolute;
+border: 1px solid black;
+width:400;
+height:12;
+; font-family: "宋体"; font-size: 9pt
+}
+.subtickertapefont{
+font:bold 9pt "宋体";
+text-decoration:none;
+color:white;
+}
+
+.subtickertapefont a{
+color:white;
+text-decoration:none;
+; font-family: "宋体"; font-size: 9pt}
+-->
+</style>
+
+
+<!--第二步:把如下代码加入<body>区域中-->
+
+
+<div id="tickertape"> 
+<div id="subtickertape" class="subtickertapefont">初始化...</div>
+</div>
+<script language="JavaScript1.2">
+//默认速度4.5秒，自己修改速度快慢。
+var speed=4500
+
+var news=new Array()
+news[0]="<a href='http://samool.533.net'>傻猫软件  http://samool.533.net</a>"
+news[1]="<a href='http://www.sina.com.cn'>新浪在线 http://www.sina.com.cn</a>"
+news[2]="<a href=#>自己添加链接信息</a>"
+news[3]="<a href=#>连接4</a>"
+news[4]="<a href=#>连接5</a>"
+news[5]="<a href=#'>连接6</a>"
+news[6]="<a href=#>连接7</a>"
+
+//显示的信息内容可以任意按照格式添加。
+
+i=0
+if (document.all)
+tickerobject=document.all.subtickertape.style
+else
+tickerobject=document.tickertape.document
+function regenerate(){
+window.location.reload()
+}
+function regenerate2(){
+if (document.layers)
+setTimeout("window.onresize=regenerate",450)
+}
+
+function update(){
+ BgFade(0xff,0xff,0xff, 0x00,0x00,0x00,10);
+if (document.layers){
+document.tickertape.document.subtickertape.document.write('<span class="subtickertapefont">'+news[i]+'</span>')
+document.tickertape.document.subtickertape.document.close()
+}
+else 
+document.all.subtickertape.innerHTML=news[i]
+
+if (i<news.length-1)
+i++
+else
+i=0
+setTimeout("update()",speed)
+}
+
+ function BgFade(red1, grn1, blu1, red2,
+ grn2, blu2, steps) {
+ sred = red1; sgrn = grn1; sblu = blu1; 
+ ered = red2; egrn = grn2; eblu = blu2; 
+ inc = steps; 
+ step = 0; 
+ RunFader();
+ }
+ function RunFader() {
+ var epct = step/inc; 
+ var spct = 1 - epct; 
+ if (document.layers)
+ tickerobject.bgColor =
+ Math.floor(sred * spct + ered *
+ epct)*256*256 +
+ Math.floor(sgrn * spct + egrn * epct)*256 +
+ Math.floor(sblu * spct + eblu * epct); 
+ else
+ tickerobject.backgroundColor=
+ Math.floor(sred * spct + ered *
+ epct)*256*256 +
+ Math.floor(sgrn * spct + egrn * epct)*256 +
+ Math.floor(sblu * spct + eblu * epct); 
+ if ( step < inc ) {
+ setTimeout('RunFader()',50); 
+ }
+ step++;
+ }
+</script>
+
+<body bgcolor="#fef4d9" onload="if (document.all||document.layers) {regenerate2();update()}">
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

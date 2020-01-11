@@ -1,0 +1,33 @@
+
+<script language=JavaScript>
+var mylocation="http://lwjrj.126.com"
+var winheight=100
+var winsize=100
+var x=5
+function go(){
+win2=window.open("","","scrollbars")
+win2.location=mylocation
+if (!document.layers&&!document.all){
+win2.location=mylocation
+return}
+win2.resizeTo(100,100)
+win2.moveTo(0,0)
+go2()}
+function go2(){
+if (winheight>=screen.availHeight-3)
+x=0
+win2.resizeBy(5,x)
+winheight+=5
+winsize+=5
+if (winsize>=screen.width-5){
+win2.location=mylocation
+winheight=100
+winsize=100
+x=5
+return}
+setTimeout("go2()",50)
+}
+</script>
+<a href="javascript:go()">点击此处弹出窗口</a>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,58 @@
+<SCRIPT language=JavaScript1.2>
+var trailLength = 8;
+var path = "cursor.gif";
+var isIE = false, isNav = false, range = "all.", style = ".style", i, d = 0;
+var topPix = ".pixelTop", leftPix = ".pixelLeft", images, storage;
+if (document.layers) {
+isNav = true, range = "layers.", style = "", topPix = ".top", leftPix = ".left";
+} else if (document.all) {
+isIE = true;
+}
+
+function initTrail() {
+images = new Array();
+for (i = 0; i < parseInt(trailLength); i++) {
+images[i] = new Image();
+images[i].src = path;
+}
+storage = new Array();
+for (i = 0; i < images.length*3; i++) {
+storage[i] = 0;
+}
+for (i = 0; i < images.length; i++) {
+(isIE) ? document.write('<div id="obj' + i + '" style="position: absolute; z-Index: 100; height: 0; width: 0"><img src="' + images[i].src + '"></div>') : document.write('<layer name="obj' + i + '" width="0" height="0" z-index="100"><img src="' + images[i].src + '"></layer>');
+}
+trail();
+}
+function trail() {
+for (i = 0; i < images.length; i++) {
+eval("document." + range + "obj" + i + style + topPix + "=" + storage[d]);
+eval("document." + range + "obj" + i + style + leftPix + "=" + storage[d+1]);
+d = d+2;
+}
+for (i = storage.length; i >= 2; i--) {;
+storage[i] = storage[i-2];
+}
+d = 0;
+clearTimeout(timer);
+var timer = setTimeout("trail()", 10);
+}
+function processEvent(e) {
+if (isIE) {
+storage[0] = window.event.y+document.body.scrollTop+10;
+storage[1] = window.event.x+document.body.scrollLeft+10;
+} else {
+storage[0] = e.pageY+12;
+storage[1] = e.pageX+12;
+   }
+}
+if (isNav) {
+document.captureEvents(Event.MOUSEMOVE);
+}
+if (isIE || isNav) {
+initTrail();
+document.onmousemove = processEvent;
+}
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,62 @@
+<?PHP   
+if ($domain)   
+{   
+if ($domain)   
+        {   
+   
+;       
+        $fp = fsockopen( "rs.internic.net", 43, &$errno, &$errstr, 10);   
+        if (!$fp)    
+    {   
+        echo  "$errstr ($errno)
+n";   
+        }   
+        else   
+        {   
+        fputs($fp, "$domainrn");   
+        while(!feof($fp))   
+                {   
+                $buf = fgets($fp,128);   
+                if (ereg( "Whois Server:", $buf))   
+                        {   
+                        $server = str_replace( "Whois Server: ",  "", $buf);   
+                        $server = trim($server);   
+                        }   
+                }   
+        fclose($fp);   
+        }   
+        if ($server)   
+                {   
+                echo  "<B>$domain is registered at $server:</B><BR>";   
+                echo  "<PRE>";   
+                $fp = fsockopen($server, 43, &$errno, &$errstr, 10);   
+                if(!$fp)   
+                        {   
+                        echo  "Could not open connection to $server on port 43.n";   
+                        echo  "$errstr ($errno)
+n";   
+                        }   
+                else   
+                        {   
+                        fputs($fp, "$domainrn");   
+                        while(!feof($fp))   
+                                {   
+                                echo fgets($fp,128);   
+                                }   
+                        fclose($fp);   
+                        }   
+                }   
+        else    {   
+                echo( "<b>$domain does not appear to be registered.</b><BR>");   
+                }   
+        echo ( "</PRE><BR>");   
+        }   
+    
+}   
+?>   
+<FORM ACTION=" <?PHP echo($PHP_SELF); ?>" METHOD="post">   
+  查找 .com, .org, and .net 主机
+   
+  主机名: <INPUT TYPE="text" NAME="domain" SIZE="40" MAXLENGTH="100">   
+  <INPUT TYPE=submit VALUE="Find out"><INPUT TYPE=reset VALUE="Reset">   
+</FORM>  

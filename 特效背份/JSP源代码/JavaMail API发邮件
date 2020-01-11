@@ -1,0 +1,137 @@
+import java.io.*;
+
+import javax.servlet.*;
+
+import javax.servlet.http.*; 
+
+import sun.net.smtp.*; 
+
+public class SendMailServlet extends HttpServlet { 
+
+public static String MAIL_FROM = "from"; 
+
+public static String MAIL_TO = "to"; 
+
+public static String MAIL_SUBJECT = "subject"; 
+
+public static String MAIL_BODY = "body"; 
+
+public static String MAIL_HOST = "mailhost"; 
+
+public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
+
+{
+
+resp.setContentType("text/html; charset=gb2312"); 
+
+PrintWriter out = resp.getWriter(); 
+
+out.println("<form method=POST action=\"" + req.getRequestURI() + "\">"); 
+
+out.println("<table>");
+
+out.println("<tr><td>send mail server:</td>"); 
+
+out.println("<td><input type=text name=" + MAIL_HOST + " size=30></td></tr>"); 
+
+out.println("<tr><td>from:</td>"); 
+
+out.println("<td><input type=text name=" + MAIL_FROM + " size=30></td></tr>"); 
+
+out.println("<tr><td>to:</td>"); 
+
+out.println("<td><input type=text name=" + MAIL_TO + " size=30></td></tr>");
+
+out.println("<tr><td>subject:</td>"); 
+
+out.println("<td><input type=text name=" + MAIL_SUBJECT + " size=30></td></tr>"); 
+
+out.println("<tr><td>text:</td>"); 
+
+out.println("<td><textarea name=" + MAIL_BODY + " cols=40 rows=10></textarea></td></tr>"); 
+
+out.println("</table><br>"); 
+
+out.println("<input type=submit value=\"Send\">"); 
+
+out.println("<input type=reset value=\"Reset\">"); 
+
+out.println("</form>");
+
+out.flush();
+
+} 
+
+public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException 
+
+{ 
+
+resp.setContentType("text/html; charset=gb2312"); 
+
+PrintWriter out = new PrintWriter(resp.getOutputStream()); 
+
+String from = req.getParameter(MAIL_FROM); 
+
+String to = req.getParameter(MAIL_TO); 
+
+String subject = req.getParameter(MAIL_SUBJECT); 
+
+String body = req.getParameter(MAIL_BODY); 
+
+String mailhost = req.getParameter(MAIL_HOST); 
+
+try 
+
+{ 
+
+SmtpClient mailer = new SmtpClient(mailhost); 
+
+mailer.from(from);
+
+mailer.to(to);
+
+PrintStream ps = mailer.startMessage();
+
+ps.println("From: " + from);
+
+ps.println("To: " + to); 
+
+ps.println("Subject: " + subject); 
+
+ps.println(body); 
+
+mailer.closeServer(); 
+
+out.println("Success!"); 
+
+} 
+
+catch (Exception ex) 
+
+{ 
+
+out.println("An error about:" + ex.getMessage()); 
+
+}
+
+out.flush();
+
+}
+
+public void init(ServletConfig cfg) throws ServletException 
+
+{
+
+super.init(cfg);
+
+}
+
+public void destroy() 
+
+{
+
+super.destroy(); 
+
+}
+
+} 

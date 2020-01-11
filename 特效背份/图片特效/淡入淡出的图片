@@ -1,0 +1,13 @@
+<SCRIPT language=JavaScript>
+var d=0
+function JM_fade(ob){
+if (d==0) {ob.filters.alpha.opacity+=1} else {ob.filters.alpha.opacity-=1}
+if (ob.filters.alpha.opacity==100){d=1;} else if (ob.filters.alpha.opacity==0){d=0}
+}
+setInterval("JM_fade(u)",10)
+
+</SCRIPT>
+<IMG style="FILTER: alpha(opacity=0)"  src="sample.jpg" name=u>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

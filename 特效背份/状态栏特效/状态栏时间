@@ -1,0 +1,44 @@
+<BODY onLoad="run(); timerONE=window.setTimeout"></BODY>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Hide
+      timeID = null;
+      timeRunning = false;
+function stop () {
+      if(timeRunning)
+            clearTimeout(timeID);
+      timeRunning = false;
+}
+function time () {
+      tick = new Date();
+      hours = tick.getHours();
+      minutes = tick.getMinutes();
+      seconds = tick.getSeconds();
+      day = tick.getDay();
+      month = tick.getMonth();
+      date = tick.getDate();
+      year = tick.getYear();
+      current = "" + ((hours >12) ? hours -12 :hours)
+      current += ((minutes < 10) ? ":0" : ":") + minutes
+      current += ((seconds < 10) ? ":0" : ":") + seconds
+      current += (hours >= 12) ? " P.M." : " A.M."
+      if(day==0){var weekday = " 星期日"}
+      if(day==1){var weekday = " 星期一"}
+      if(day==2){var weekday = " 星期二"}
+      if(day==3){var weekday = " 星期三"}
+      if(day==4){var weekday = " 星期四"}
+      if(day==5){var weekday = " 星期五"}
+      if(day==6){var weekday = " 星期六"}
+      current +=(weekday)
+      window.status=current;
+      timeID = setTimeout("time()",1000);
+      timeRunning = true;
+}
+function run(){
+      stop();
+      time();
+}
+
+//-->
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,14 @@
+<!--脚本说明:
+把如下代码加入<body>区域中-->
+<SCRIPT language="JavaScript"><!--
+var Firstname=prompt("您是光临本站的贵宾，请在贵宾簿里签名，让我知道您是谁！","网友");
+
+document.write("<h3><center>真诚欢迎您来访http://samool.533.net<BR><P>" + " ")
+
+document.write("<font color=red>"+Firstname +"</font>"+ "先生(小姐)</h3>");
+
+document.write("")
+//-->
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

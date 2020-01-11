@@ -1,0 +1,39 @@
+<!--第一步:把如下代码加入<head>区域中-->
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+var max=0;
+function textlist() {
+max=textlist.arguments.length;
+for (i=0; i<max; i++)
+this[i]=textlist.arguments[i];
+}
+tl = new textlist( 
+"随着网络时代的到来，中国的个人网站如雨后春笋般的冒了出来。",
+"看惯了那些样式死板的网站，你是不是对一个制作精美的网站印象极好呢？",
+"回答当然是肯定的。不过你想不想也让自己的网站也让别人留在心中？",
+"不要告诉我你不会吧，有了《网页助手V1.0》一切都变得那么的简单，只",
+"要鼠标轻轻一点，意想不到特效立刻出现在你的眼前。哈哈，还等什么，",
+"请经常访问风云谷查询最新信息哦"
+);
+var x = 0; pos = 0;
+var l = tl[0].length;
+function textticker() {
+document.tickform.tickfield.value = tl[x].substring(0, pos) + "_";
+if(pos++ == l) {
+pos = 0; 
+setTimeout("textticker()", 18000); //值越小速度越慢
+if(++x == max) x = 0; 
+l = tl[x].length;
+} else
+setTimeout("textticker()", 200);
+}
+
+//  End -->
+</script>
+<!--第二步:把如下代码加入<body>区域中-->
+<form name=tickform>
+<body bgcolor="#fef4d9" OnLoad="textticker()">
+<textarea name=tickfield rows=3 cols=38 style="background-color: rgb(0,0,0); color: rgb(255,255,255); cursor: default; font-family: Arial; font-size: 12px" wrap=virtual>cool</textarea>
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

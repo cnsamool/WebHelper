@@ -1,0 +1,52 @@
+<head>
+<style type="text/css">
+.sample {
+	FONT-WEIGHT: bold; FONT-SIZE: 40px; CURSOR: hand; FONT-STYLE: italic; FONT-FAMILY: arial black
+}	
+}
+</style>
+</head>
+
+<body>
+<div align="left"></div><b><font color="#0099cc" size="4"><div align="center"><center>
+<table borderColor="#0099cc" cellSpacing="0" borderColorDark="#0099cc" cellPadding="15"
+width="450" borderColorLight="#0099cc" border="1">
+<TBODY>
+  <tr>
+    <td height="56"><div align="center"><p>以下是一些很酷的CSS做成的3D文字<br>
+    </p>
+    <div class="webfx-main-body"><h2>3D Text</h2>
+    <p>以下是一个用了blur滤镜而另一个没用的叠加效果</p>
+    <p onclick="alert(this.innerHTML)"><span class="sample"
+    style="FILTER: Blur(Add=0, Direction=135, Strength=10); WIDTH: 200px; COLOR: black; HEIGHT: 70px">ChiKin</span><span
+    class="sample"
+    style="LEFT: -201px; WIDTH: 200px; COLOR: #2984ff; POSITION: relative; TOP: -15px"> ChiKin</span> 
+    </p>
+    <h2>Glass Text</h2>
+    <p>这个是两个都用了alpha滤镜的效果</p>
+    <p onclick="alert(this.innerHTML)"><span class="sample"
+    style="FILTER: Alpha(Opacity=60) Blur(Add=0, Direction=135, Strength=20); WIDTH: 200px; COLOR: lightskyblue; HEIGHT: 70px">ChiKin</span><span
+    class="sample"
+    style="FILTER: Alpha(Opacity=60); LEFT: -201px; WIDTH: 200px; COLOR: lightskyblue; POSITION: relative; TOP: -15px">ChiKin</span> 
+    </p>
+    <h2>Inner Shadow</h2>
+    <p>这个是先用了一段白色的文字，再加了mask()滤镜，再用了shadow()滤镜，最后加入chroma()滤镜形成后一段字体，放在前一段文字的相对left: 
+    -200px位置上形成的。</p>
+    <p onclick="alert(this.innerHTML)"><span class="sample"
+    style="WIDTH: 200px; COLOR: white; HEIGHT: 70px">Annie</span><span class="sample"
+    style="FILTER: mask(color=red) shadow(direction=135) chroma(color=red); LEFT: -200px; WIDTH: 200px; POSITION: relative; HEIGHT: 70px">Annie</span> 
+    </p>
+    <h2>Outline Text</h2>
+    <p>用mask, glow and chroma三个滤镜联合作用</p>
+    <p onclick="alert(this.innerHTML)"><span class="sample"
+    style="FILTER: mask(color=red) glow(color=black, strength=1) chroma(color=red); WIDTH: 200px; HEIGHT: 70px">Annie</span> 
+    </p>
+    </div></div></td>
+  </tr>
+</TBODY>
+</table>
+</center></div>
+<!-- 使用说明：使用时将文字换成你需要的文字即可！-->
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

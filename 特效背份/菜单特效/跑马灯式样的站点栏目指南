@@ -1,0 +1,129 @@
+
+<div id="tooltip2" style="position:absolute;visibility:hidden;clip:rect(0 150 50 0);width:150px;background-color:seashell">
+
+<layer name="nstip" width=1000px bgColor="seashell"></layer>
+
+</div>
+
+<SCRIPT language="JavaScript">
+
+<!--
+
+if (!document.layers&&!document.all)
+
+event="test"
+
+function showtip2(current,e,text){
+
+
+
+if (document.all&&document.readyState=="complete"){
+
+document.all.tooltip2.innerHTML='<marquee style="border:1px solid black">'+text+'</marquee>'
+
+document.all.tooltip2.style.pixelLeft=event.clientX+document.body.scrollLeft+10
+
+document.all.tooltip2.style.pixelTop=event.clientY+document.body.scrollTop+10
+
+document.all.tooltip2.style.visibility="visible"
+
+}
+
+
+
+else if (document.layers){
+
+document.tooltip2.document.nstip.document.write('<b>'+text+'</b>')
+
+document.tooltip2.document.nstip.document.close()
+
+document.tooltip2.document.nstip.left=0
+
+currentscroll=setInterval("scrolltip()",100)
+
+document.tooltip2.left=e.pageX+10
+
+document.tooltip2.top=e.pageY+10
+
+document.tooltip2.visibility="show"
+
+}
+
+}
+
+function hidetip2(){
+
+if (document.all)
+
+document.all.tooltip2.style.visibility="hidden"
+
+else if (document.layers){
+
+clearInterval(currentscroll)
+
+document.tooltip2.visibility="hidden"
+
+}
+
+}
+
+
+
+function scrolltip(){
+
+if (document.tooltip2.document.nstip.left>=-document.tooltip2.document.nstip.document.width)
+
+document.tooltip2.document.nstip.left-=5
+
+else
+
+document.tooltip2.document.nstip.left=150
+
+}
+
+//-->
+
+
+
+
+
+</SCRIPT>
+
+        <table border="0">
+
+      <tr>
+
+        <td><font face="Arial, Helvetica, sans-serif" size="3"><b> 
+
+          <a href="ye0.htm" onMouseOver="showtip2(this,event,'字符从天而降!')" onMouseOut="hidetip2()">新的链接</a></b></font></td>
+
+        <td><font face="Arial, Helvetica, sans-serif" size="3"><b><a href="ye1.htm" onMouseOver="showtip2(this,event,'状态栏跑马灯1!')" onMouseOut="hidetip2()">新的链接</a></b></font></td>
+
+        <td><font face="Arial, Helvetica, sans-serif" size="3"><b><a href="ye2.htm" onMouseOver="showtip2(this,event,'状态栏跑马灯2!')" onMouseOut="hidetip2()">新的链接</a> 
+
+          </b></font></td>
+
+        <td><font face="Arial, Helvetica, sans-serif" size="3"><b><a href="ye3.htm" onMouseOver="showtip2(this,event,'页面自动滚屏效果!')" onMouseOut="hidetip2()">新的链接</a> 
+
+          </b></font></td>
+
+      </tr>
+
+      <tr>
+
+        <td><font face="Arial, Helvetica, sans-serif" size="3"><b><a href="ye1.htm" onMouseOver="showtip2(this,event,'隐藏显示字符脚本!')" onMouseOut="hidetip2()">新的链接</a></b></font></td>
+
+        <td><font face="Arial, Helvetica, sans-serif" size="3"><b><a href="ye2.htm" onMouseOver="showtip2(this,event,'滚动显示的LOGO!')" onMouseOut="hidetip2()">新的链接</a></b></font></td>
+
+        <td><font face="Arial, Helvetica, sans-serif" size="3"><b><a href="ye3.htm" onMouseOver="showtip2(this,event,'鼠标跟踪器!')" onMouseOut="hidetip2()">新的链接</a></b></font></td>
+
+        <td> </td>
+
+      </tr>
+
+    </table>
+
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

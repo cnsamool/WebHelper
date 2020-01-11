@@ -1,0 +1,20 @@
+<!--脚本说明:
+第一步:把如下代码加入<head>区域中-->
+<SCRIPT language=javascript>
+<!--
+function makeArray(q){for(i=1;i<=q;i++){this[i]=0}}Colors=new makeArray(7);Colors[1]="00";Colors[2]="33";Colors[3]="66";Colors[4]="99";Colors[5]="CC";Colors[6]="FF";
+-->
+</SCRIPT>
+
+
+<!--第二步:把如下代码加入<body>区域中-->
+<center><table cellspacing=0 cellpadding=0><SCRIPT language=javascript>
+<!--
+for(i=1;i<=6;i++){for(j=1;j<=6;j++){for(k=1;k<=6;k++){var thiscolor=Colors[i]+Colors[j]+Colors[k];document.writeln("<tr><td height = 20 bgcolor = \"#" + thiscolor + "\" align = right><a href = ");document.writeln("\'\' onMouseOver = \"document.bgColor=\'"+thiscolor+"\'\">"+thiscolor+"</a></td></tr>");}}}
+
+-->
+
+
+</SCRIPT></table></center>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

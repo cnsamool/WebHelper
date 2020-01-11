@@ -1,0 +1,43 @@
+<script language="JavaScript1.2">
+//设置marquee的宽度 (in pixels)
+var marqueewidth=400
+//设置marquee的高度 (in pixels, 该参数只适用于NS)
+var marqueeheight=20
+//设置marquee滚动的速度(数值大速度快)
+var speed=4
+//设置marquee显示内容，使用标准的HTML语法。
+var marqueecontents='<strong><big>欢迎访问 <a href="http://samool.533.net">傻猫软件</a> 欢迎您光临 <a href="mailto:wzsflwj@163.com">给我来封信！</a></big></strong></font>'
+if (document.all)
+document.write('<marquee scrollAmount='+speed+' style="width:'+marqueewidth+'">'+marqueecontents+'</marquee>')
+function regenerate(){
+window.location.reload()
+}
+function regenerate2(){
+if (document.layers){
+setTimeout("window.onresize=regenerate",450)
+intializemarquee()
+}
+}
+function intializemarquee(){
+document.cmarquee01.document.cmarquee02.document.write('<nobr>'+marqueecontents+'</nobr>')
+document.cmarquee01.document.cmarquee02.document.close()
+thelength=document.cmarquee01.document.cmarquee02.document.width
+scrollit()
+}
+function scrollit(){
+if (document.cmarquee01.document.cmarquee02.left>=thelength*(-1)){
+document.cmarquee01.document.cmarquee02.left-=speed
+setTimeout("scrollit()",100)
+}
+else{
+document.cmarquee01.document.cmarquee02.left=marqueewidth
+scrollit()
+}
+}
+window.onload=regenerate2
+</script>
+<ilayer width=&{marqueewidth}; height=&{marqueeheight}; name="cmarquee01"> 
+<layer name="cmarquee02"></layer>
+</ilayer>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,73 @@
+
+<script language="javascript">
+
+
+function displayinfo(){
+        var who=document.emails.list.options[document.emails.list.selectedIndex].value;
+        var address=document.emails.address;
+        var info=document.emails.information;
+        var ss="@yourdomain.com";
+        
+if (who=="webmaster"){
+                address.value="webmaster"+ss;
+                info.value="这里输入发信内容";}
+if (who=="bteditor"){
+                address.value="barrington"+ss;
+                info.value="这里输入发信内容";}
+if (who=="bpeditor"){
+                address.value="bristol"+ss;
+                info.value="这里输入发信内容";}
+if (who=="steditor"){
+                address.value="sakonnet"+ss;
+                info.value="S这里输入发信内容";}
+if (who=="wteditor"){
+                address.value="warren"+ss;
+                info.value="这里输入发信内容";}
+if (who=="publisher"){
+                address.value="matthayes"+ss;
+                info.value="这里输入发信内容";}
+if (who=="subscriptions"){
+                address.value="subscriptions"+ss;
+                info.value="这里输入发信内容";}
+if (who=="classifieds"){
+                address.value="classifieds"+ss;
+                info.value="这里输入发信内容";}
+if (who=="info"){
+                address.value="info"+ss;
+                info.value="这里输入发信内容";}
+if (who=="tips"){
+                address.value="webmaster"+ss;
+                info.value="这里输入发信内容";}
+if (who=="advertising"){
+                address.value="sales"+ss;
+                info.value="这里输入发信内容";}
+}
+
+
+</script>
+<FORM name="emails">
+
+<P><B>请选择你要发信的部门：</B>
+<BR>
+<SELECT NAME="list" onBlur="displayinfo()">
+<OPTION value="nameoflist">EBN Email Directory
+<OPTION value="webmaster">Webmaster
+<OPTION value="bteditor">Barrington Times Editor
+<OPTION value="bpeditor">Bristol Phoenix Editor
+<OPTION value="steditor">Sakonnet Times Editor
+<OPTION value="wteditor">Warren Times-Gazette Editor
+<OPTION value="publisher">Publisher
+<OPTION value="subscriptions">Subscriptions/Circulation
+<OPTION value="classifieds">Classified Office
+<OPTION value="info">Information Requests
+<OPTION value="tips">News Tips
+<OPTION value="advertising">Advertising Sales Department
+</SELECT>
+<TABLE BORDER WIDTH="300" BGCOLOR="#CCFFFF" >
+<TR>
+<TD VALIGN=TOP>
+<CENTER>
+<INPUT TYPE="text" NAME="address" VALUE="" SIZE=45><BR>
+<TEXTAREA NAME="information" ROWS=7 COLS=27 wrap=virtual>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

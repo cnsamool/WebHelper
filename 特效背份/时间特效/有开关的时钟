@@ -1,0 +1,43 @@
+<script language="JavaScript">
+	var enabled = 0;    
+
+function TOfunc() {       
+
+
+	TO = window.setTimeout( "TOfunc()", 1000 
+);       
+
+
+	var today = new Date();       
+
+
+	document.clock.disp.value = 
+today.toLocaleString();
+
+	}
+
+</script>
+
+
+<form name="clock">
+<input type="text" name="disp" value="" size=20 
+onFocus="this.blur()" >
+<br>
+<input type="radio" name="rad" value="OFF" 
+checked  
+onClick="
+  if( enabled==1 ) 
+    {
+     document.clock.disp.value='';
+     clearTimeout( TO ); 
+     enabled = 0;
+     }
+   "> 关
+<input type="radio" name="rad" value="on"  
+onClick="
+     if( enabled == 0 ) {
+        var TO = setTimeout( 'TOfunc()', 1000 );
+        enabled = 1;     }" > 开
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

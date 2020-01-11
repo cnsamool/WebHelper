@@ -1,0 +1,47 @@
+<!--把如下代码加入到<body>区域中-->
+
+<script language=javascript>
+ie4=(document.all)?true:false;
+ns4=(document.layers)?true:false;
+function toExit(){
+var args=toExit.arguments;
+var visible=args[0];
+if(ns4){
+		theObj=eval("document.layers[\'"+args[1]+"\']");
+		if(theObj)theObj.visibility=visible;
+		}
+else if(ie4){
+		if(visible=='show')visible='visible';
+		if(visible=='hide')visible='hidden';
+		theObj=eval("document.all[\'"+args[1]+"\']");
+		if(theObj)theObj.style.visibility=visible;
+		}
+
+}     
+</script>
+<div id=div32 
+style="HEIGHT: 80px; LEFT: 309px; POSITION: absolute; TOP: 150px; VISIBILITY: hidden; WIDTH: 180px; Z-INDEX: 1">
+<table bgcolor=#FF9900 border=1 cellpadding=0 cellspacing=0 height=80 
+  width=180>  <tbody> 
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->
+                      <tr> 
+                        <td height=65 width="100%"> 
+                          <table border=0 cellpadding=0 cellspacing=0 height=80 width="99%">
+                            <tbody> 
+                            <tr> 
+                              <td height=57> <font 
+            color=#ffffff>这是一个较简单的显示、隐藏层的例子，具体的应用范围还是比较大的。<b></b></font></td>
+                            </tr>
+                            <tr align="center"> 
+                              <td height=23 width="100%"><a 
+            href="javascript:toExit('hide','div32')"><font color=white>关闭此层</font></a></td>
+                            </tr>
+                            </tbody> 
+                          </table>
+                        </td>
+                      </tr>
+                      </tbody> 
+                    </table>
+                  </div>
+<a href="javascript:toExit('show','div32')"><font color="#FF9900">打开隐藏层</font></a>

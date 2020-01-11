@@ -1,0 +1,213 @@
+<SCRIPT>
+
+function morph(e,wait,steps,style,done){
+	if(e.morphing){
+		return;
+	}
+	e.morphing = true;
+	e.step = 0;
+	e.done = steps;
+	e.wait = wait;
+	e.morphDone = done;
+
+	// initialize the given element for the process
+	// save some temporary variables within it
+	var attribs = _eat_attrib(style);
+	if(attribs["top"] != null){
+		e.deltaTop = Math.round(Number((attribs["top"] - e.style.posTop) / steps));
+		e.finalTop = attribs["top"];
+	}else{
+		e.deltaTop = null;
+		e.finalTop = e.style.posTop;
+	}
+	if(attribs["left"] != null){
+		e.deltaLeft = Math.round(Number((attribs["left"] - e.style.posLeft) / steps));
+		e.finalLeft = attribs["left"];
+	}else{
+		e.deltaLeft = null;
+		e.finalLeft = e.style.posLeft;
+	}
+	if(attribs["height"] != null){
+		e.deltaHeight = Math.round(Number((attribs["height"] - e.style.posHeight) / steps));
+		e.finalHeight = attribs["height"];
+	}else{
+		e.deltaHeight = null;
+		e.finalHeight = e.style.posHeight;
+	}
+	if(attribs["width"] != null){
+		e.deltaWidth = Math.round(Number((attribs["width"] - e.style.posWidth) / steps));
+		e.finalWidth = attribs["width"];
+	}else{
+		e.deltaWidth = null;
+		e.finalWidth = e.style.posWidth;
+	}
+
+	// group all of the coloring elements together
+	e.colors = new Array();
+	for(attrib in attribs){
+		// check each one individually to kludge
+		// if we need to use a "safe" name for the css attribute
+		if(attrib == "background"){
+				e.colors[e.colors.length] = new Array();
+				e.colors[e.colors.length - 1].name = attrib;
+				e.colors[e.colors.length - 1].safename = attrib;
+		}
+		if(attrib == "color"){
+				e.colors[e.colors.length] = new Array();
+				e.colors[e.colors.length - 1].name = attrib;
+				e.colors[e.colors.length - 1].safename = attrib;
+		}
+		if(attrib == "border-color"){
+				e.colors[e.colors.length] = new Array();
+				e.colors[e.colors.length - 1].name = attrib;
+				e.colors[e.colors.length - 1].safename = "borderColor";
+		}
+	}
+	for(var i=0;i<e.colors.length;i++){
+		var rgb = _eat_rgb(attribs[e.colors[i].name]);
+		var prergb = _eat_rgb(e.style[e.colors[i].safename]);
+		e.colors[i].delta = _eat_rgb(attribs[e.colors[i].name]);
+		e.colors[i].finish = _eat_rgb(attribs[e.colors[i].name]);
+		e.colors[i].delta["red"] = Math.round(Number((rgb["red"] - prergb["red"]) / steps));
+		e.colors[i].delta["green"] = Math.round(Number((rgb["green"] - prergb["green"]) / steps));
+		e.colors[i].delta["blue"] = Math.round(Number((rgb["blue"] - prergb["blue"]) / steps));
+	}
+
+	// fire the first morphing step
+	setTimeout("_morphing(document.all." + e.id + ")", wait);
+}
+/////////////////////////////
+
+
+
+/////////////////////////////
+//// private function that does the work of morphing the element
+function _morphing(e){
+	e.step++;
+
+	if(e.deltaTop!=null){
+		e.style.posTop += e.deltaTop;
+	}
+
+	if(e.deltaLeft!=null){
+		e.style.posLeft += e.deltaLeft;
+	}
+
+	if(e.deltaHeight!=null){
+		e.style.posHeight += e.deltaHeight;
+	}
+
+	if(e.deltaWidth!=null){
+		e.style.posWidth += e.deltaWidth;
+	}
+
+
+	for(var i=0;i<e.colors.length;i++){
+		var rgb = _eat_rgb(e.style[e.colors[i].safename]);
+		e.style[e.colors[i].safename] 	= "rgb("
+						+ (e.colors[i].delta["red"] + rgb["red"])
+						+ ","
+						+ (e.colors[i].delta["green"] + rgb["green"])
+						+ ","
+						+ (e.colors[i].delta["blue"] + rgb["blue"])
+						+ ")";
+	}
+
+	// do special things when we are done
+	if(e.step == e.done){
+		if(e.deltaTop != null)
+			e.style.posTop = e.finalTop;
+		if(e.deltaLeft != null)
+			e.style.posLeft = e.finalLeft;
+		if(e.deltaWidth != null)
+			e.style.posWidth = e.finalWidth;
+		if(e.deltaHeight != null)
+			e.style.posHeight = e.finalHeight;
+		for(var i=0;i<e.colors.length;i++){
+			e.style[e.colors[i].safename] 	= "rgb("
+							+ (e.colors[i].finish["red"] + rgb["red"])
+							+ ","
+							+ (e.colors[i].finish["green"] + rgb["green"])
+							+ ","
+							+ (e.colors[i].finish["blue"] + rgb["blue"])
+							+ ")";
+		}
+		e.morphing = false;
+		eval(e.morphDone);
+	}else{
+		setTimeout("_morphing(document.all." + e.id + ")", e.wait);
+	}
+	return;
+}
+
+
+//////////////////
+//// util for element attribute parsing
+//// returns an array of all of the keys = values
+function _eat_attrib(str){
+	var chunks = new Array();
+	var all = new Array();
+
+	chunks=str.split(";");
+
+	for(var i=0;i<chunks.length;i++){
+		var tmpA = new Array();
+		tmpA=chunks[i].split(":");
+		all[tmpA[0]]=tmpA[1];
+	}
+	return all;
+}
+////////////////////
+
+
+//////////////////
+//// util for style rgb(#,#,#) parsing
+//// returns an array of red/green/blue = number
+function _eat_rgb(str){
+	var all = new Array();
+
+	var a = str.indexOf("(");
+	var b = str.indexOf(")");
+
+	str = str.substring(a + 1, b);
+
+	var tmpA = str.split(",");
+
+	all["red"]=Number(tmpA[0]);
+	all["green"]=Number(tmpA[1]);
+	all["blue"]=Number(tmpA[2]);
+
+	return all;
+}
+////////////////////
+
+</SCRIPT>
+<SPAN ID="test" STYLE="border:solid;border-width:5;border-color:rgb(0,0,0);color:rgb(255,255,255);position:absolute;top:0;left:0;width:400;height:400;overflow:hidden;background:rgb(0,0,255);">
+欢迎光临 <B>傻猫软件</B> ，请多提意见！！
+</SPAN>
+<SCRIPT>
+function rander(){
+	var top = Math.round(Math.random() * 400);
+	var left = Math.round(Math.random() * 600);
+	var width = Math.round(Math.random() * 200);
+	var height = Math.round(Math.random() * 200);
+	var r = Math.round(Math.random() * 255);
+	var g = Math.round(Math.random() * 255);
+	var b = Math.round(Math.random() * 255);
+	var background = "rgb(" + r + "," + g + "," + b + ")";
+	var r = Math.round(Math.random() * 255);
+	var g = Math.round(Math.random() * 255);
+	var b = Math.round(Math.random() * 255);
+	var borderColor = "rgb(" + r + "," + g + "," + b + ")";
+	var r = Math.round(Math.random() * 255);
+	var g = Math.round(Math.random() * 255);
+	var b = Math.round(Math.random() * 255);
+	var color = "rgb(" + r + "," + g + "," + b + ")";
+	morph(document.all.test,30,20,"top:" + top + ";left:" + left + ";width:" + width + ";height:" + height + ";background:" + background + ";border-color:" + borderColor + ";color:" + color + ";","rander();");
+}
+
+rander();
+
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

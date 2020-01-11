@@ -1,0 +1,102 @@
+<!--脚本说明：
+把如下代码加入<body>区域中:-->
+<script language="Javascript">
+
+<!-- 
+
+numQuotes=42;
+quoteArray = new Array(numQuotes);
+quoteArray[0]="\"Great spirits have always encountered violentopposition from mediocre minds.\"  -Albert Einstein";
+quoteArray[0]="男孩不坏女孩不爱。真的是这样的话，那就要看男孩是坏在哪里，而女孩又是谁了。";
+quoteArray[1]="不知从何时开始，到处都流传着一句爱情名言：“男孩不坏女孩不爱！”。"
+quoteArray[2]="在瞧了金庸先生的封笔之作《鹿鼎记》后，笔者更是颇有些感触"
+quoteArray[3]="坏男孩该是副什么模样呢？也许就如同《鹿鼎记》中的韦小宝一般吧，一个精灵跳脱的小无赖？"
+quoteArray[4]="他能哄就哄，能骗就骗，侠士嘛说不上，高人嘛更是做不得。"
+quoteArray[5]="但是，小无赖也罢，坏男孩也罢，这种男孩具有一种让女孩子们不能不接受的求爱精神，即“三疯精神”，叫“猎狗、疯狗、赖皮狗”，物色对象时象猎狗，求爱时像疯狗，耗上了像赖皮狗。"
+quoteArray[6]="虽说这提法有些过分偏激之处，却也正点中了要害。如果真的认真按此精神去对付女孩子，恐怕无一幸免了。" 
+quoteArray[7]="坏男孩到底用了什么手段那么能招人爱呢？这正如雅俗之分。"
+quoteArray[8]="雅，好象是高人一等的，所谓“阳春白雪”者；俗，好象是低人一等的，所谓“下里巴人”者也。"
+quoteArray[9]="然而高人一等者，“国中属而和者不过数十人”；低人一等者，“国中属而和者数千人”。究竟谁高谁低，不可"
+quoteArray[10]="妄评，各人喜好而已。但毕竟还是俗人多啊！"
+quoteArray[11]="韦小宝就是个纯纯粹粹的俗人，俗得不能再俗了，其实也是世间每一个俗人的影子、劣根。是人都有欲，有欲则必有争，不争才是虚伪的很，那么剩下的就是用何种手段去争了。"
+quoteArray[12]="小宝用的也算是一种方法啊，不论黑猫白猫，只要抓到老鼠就是好猫嘛"
+quoteArray[13]="韦小宝好象还缺了点“英俊”，若是能把这点也加上了，小宝可就是“大众情人”啦！"
+quoteArray[14]="话又说回来，如果让你在英俊却死板的男孩和韦小宝之间做个爱情选择，恐怕你会脱口而出：“选那个可恨又可爱的小宝”呢！"
+quoteArray[15]="你瞧，他聪明伶俐，了解人情世故，又会见风使舵，讨女孩的欢心，还深谙处世之道。"
+quoteArray[16]="本来么，小宝也不是什么罪大恶极的坏人。"
+quoteArray[17]="他这个“坏”，坏得有学问，有原则，有所为而有所不为。"
+quoteArray[18]="他可以偷抢拐骗，但那要看是对什么人"
+quoteArray[19]="对吴应熊那群卖国贼、四处收刮民脂民膏的人该贪就贪，该拿就拿，何况小宝还懂得钱财乃身外之物，对于天地会和交友的费用他是豪爽大方，丝毫也不吝啬，该给就给，该送就送了。"
+quoteArray[20]="小宝还很知道讲良心，讲义气，杀小人，宁死也不出卖朋友，这可是做人最基本的准则。"
+quoteArray[21]="在对待康熙和陈近南两个对立面时，小宝更是大显神通可算是忠义两全之士了。"
+quoteArray[22]="他和康熙可算是总角之交，其间的友谊真挚而坚定，中有地位的悬殊却是牢不可破的。"
+quoteArray[23]="因此一涉及到对康熙不利的事，他是绝对不干的，还想主设法地从中作梗。"
+quoteArray[24]="对陈近南他也同样够义气，陈近南和天地会是一体性的，对陈近南忠就是对天地会忠。"
+quoteArray[25]="当康熙要小宝剿灭天地会时，小宝说出一番道理来：“皇上，他们要来害你，我拼命阻挡，奴才对你是讲义气的。"
+quoteArray[26]="皇上要去拿他们，奴才夹在中间，难以做人，只好向你求情，那也是讲义气。"
+quoteArray[27]="我拜你为师……那陈近南也是我师父，我如存心害你，那是欺师灭祖。"
+quoteArray[28]="我如去害那个师父，也是欺师灭宗……。"
+quoteArray[29]="这个道理十分简单，谁都想得出，可又有几人能真正做的到？"
+quoteArray[30]="小宝为了这个道理不要高官，不要厚禄，甚至连性命也可以豁出去了，于是康熙虽是恼怒，却也敬重他为人有义。"
+quoteArray[31]="旁观者虽瞧你行为话语不耻，却也不得不佩服。"
+quoteArray[32]="于是在金庸先生笔下，只要跟小宝作对之人，均无什么好下场，都同风际中一样自取灭亡。"
+quoteArray[33]="也许小宝还够不上潇洒，但他在这个世俗语社会里为人处事的游刃有余，是谁也比不上的。"
+quoteArray[34]="那么，说句真心话，在这世俗社会中，若真的有一个如小宝一样既能赚钱，又会花钱"
+quoteArray[35]="会玩会闹会逗你天心，骨子里也讲点良心、义气的俗人，你会不会喜欢他？爱他？"
+quoteArray[36]="嘻，“男孩不坏，女孩不爱”嘛！"
+quoteArray[37]="小宝为了这个道理不要高官，不要厚禄，甚至连性命也可以豁出去了，于是康熙虽是恼怒，却也敬重他为人有义"
+quoteArray[38]="旁观者虽瞧你行为话语不耻，却也不得不佩服。"
+quoteArray[39]="于是在金庸先生笔下，只要跟小宝作对之人，均无什么好下场，都同风际中一样自取灭亡。"
+quoteArray[40]="那么，说句真心话，在这世俗社会中，若真的有一个如小宝一样既能赚钱，又会花钱"
+quoteArray[41]="小宝为了这个道理不要高官，不要厚禄，甚至连性命也可以豁出去了，于是康熙虽是恼怒，却也敬重他为人有义。"
+quoteArray[42]="当康熙要小宝剿灭天地会时，小宝说出一番道理来：“皇上，他们要来害你，我拼命阻挡，奴才对你是讲义气的。"
+
+
+quoteShowing=-1;
+
+
+
+function nextQuote()
+{
+  // restart at 0 if done
+  if (quoteShowing >= numQuotes) quoteShowing=-1;
+  quoteShowing++;
+
+  // assign the value in the textbox to the new quote
+  document.quoteForm.quoteHere.value = quoteArray[quoteShowing];
+}
+
+function prevQuote()
+{
+  // restart at end if on 0
+  if (quoteShowing <= 0) quoteShowing=numQuotes+1;
+  quoteShowing--;
+
+  document.quoteForm.quoteHere.value = quoteArray[quoteShowing];
+}
+
+function randQuote()
+{ 
+  // Make sure you don't show the same quote 2x in a row
+  prevQuoteShowing = quoteShowing;
+  while(quoteShowing == prevQuoteShowing)
+    quoteShowing = Math.ceil(Math.random() * numQuotes);
+
+  document.quoteForm.quoteHere.value = quoteArray[quoteShowing];
+}
+
+//!-->
+
+
+</script>
+<h1>消息输出框!!</h1>
+<form name="quoteForm">
+  <textarea wrap="virtual" name="quoteHere" Rows=3 Cols=60>
+    消息显示器
+  </textarea><br>
+  <input type=button value="下一条" onClick="nextQuote();">
+  <input type=button value="上一条" onClick="prevQuote();">
+  <input type=button value="随机" onclick="randQuote();">
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

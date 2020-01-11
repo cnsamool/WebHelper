@@ -1,0 +1,91 @@
+<html>
+<head>
+<style type="text/css">
+<!-- 
+.time{
+	font-family : Comic Sans Ms;
+	font-size : 14pt;
+	font-weight : bold;
+	color: #00008D;
+}
+-->
+</style>
+<style type="text/css">
+<!-- 
+.time{
+	font-family : Comic Sans Ms;
+	font-size : 14pt;
+	font-weight : bold;
+	color: #00008D;
+}
+-->
+</style>
+</head>
+<script Language="JavaScript">
+<!-- Hiding
+var ctimer;
+
+function init(){
+if (document.all){
+tim2.style.left=tim1.style.posLeft;
+tim2.style.top=tim1.style.posTop+tim1.offsetHeight-6;
+settimes();
+}
+}
+
+function settimes(){
+var time= new Date();
+hours= time.getHours();
+mins= time.getMinutes();
+secs= time.getSeconds();
+if (hours<10)
+hours="0"+hours;
+if(mins<10)
+mins="0"+mins;
+if (secs<10)
+secs="0"+secs;
+tim1.innerHTML=hours+":"+mins+":"+secs
+tim2.innerHTML=hours+":"+mins+":"+secs
+ctimer=setTimeout('settimes()',960);
+}
+// -->
+
+</script>
+<body onLoad="init()">
+<div Id="tim1" Style="position:absolute; width:10; height:10; top:10; left:50"
+class="time"></div><div Id="tim2"
+Style="position:absolute; filter:flipv() alpha(opacity=20); font-style:italic"
+class="time"></div>
+</body>
+<script Language="JavaScript">
+<!-- Hiding
+var ctimer;
+
+function init(){
+if (document.all){
+tim2.style.left=tim1.style.posLeft;
+tim2.style.top=tim1.style.posTop+tim1.offsetHeight-6;
+settimes();
+}
+}
+
+function settimes(){
+var time= new Date();
+hours= time.getHours();
+mins= time.getMinutes();
+secs= time.getSeconds();
+if (hours<10)
+hours="0"+hours;
+if(mins<10)
+mins="0"+mins;
+if (secs<10)
+secs="0"+secs;
+tim1.innerHTML=hours+":"+mins+":"+secs
+tim2.innerHTML=hours+":"+mins+":"+secs
+ctimer=setTimeout('settimes()',960);
+}
+// -->
+</script>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,140 @@
+<html>
+<head>
+<style>#D1 {
+    BACKGROUND-COLOR: blue; 
+    BORDER-BOTTOM: white 2px outset; 
+    BORDER-LEFT: white 2px outset; 
+    BORDER-RIGHT: white 2px outset; 
+    BORDER-TOP: white 2px outset; 
+    LEFT: 0px; POSITION: absolute; 
+    TOP: 0px; VISIBILITY: hidden; 
+    WIDTH: 300px; 
+    layer-background-color: lightgreen
+}
+a{font-size:9pt}
+a:link{text-decoration:none}
+a:hover{text-decoration:none;}
+a:visited{text-decoration:none}
+</style>
+<title></title>
+</head>
+
+<body onload="init()">
+<script language="javascript">
+function menuIn() //菜单隐藏
+{
+        if(n4) {
+                clearTimeout(out_ID)
+                if( menu.top > menuH*-1+20+10 ) {  
+                        menu.top -= 8
+                        in_ID = setTimeout("menuIn()", 1)
+                }
+                else if( menu.top > menuH*-1+20 ) {
+                        menu.top--
+                        in_ID = setTimeout("menuIn()", 1)
+                }
+        }
+        else { 
+                clearTimeout(out_ID)
+                if( menu.pixelTop > menuH*-1+20+10 ) {
+                        menu.pixelTop -= 8
+                        in_ID = setTimeout("menuIn()", 1) 
+                }
+                else if( menu.pixelTop > menuH*-1+20 ) {
+                        menu.pixelTop--
+                        in_ID = setTimeout("menuIn()", 1)
+                }
+        }
+}
+function menuOut() //菜单显示
+{
+        if(n4) {
+                clearTimeout(in_ID)
+                if( menu.top < -10) { 
+                        menu.top += 4
+                        out_ID = setTimeout("menuOut()", 1)
+                }
+                else if( menu.top < 0) { 
+                        menu.top++
+                        out_ID = setTimeout("menuOut()", 1)
+                }
+                
+        }
+        else { 
+                clearTimeout(in_ID)
+                if( menu.pixelTop < -10) {
+                        menu.pixelTop += 2
+                        out_ID = setTimeout("menuOut()", 1)
+                }
+                else if( menu.pixelTop < 0 ) {
+                        menu.pixelTop++
+                        out_ID = setTimeout("menuOut()", 1)
+                }
+        }
+}
+function fireOver() { 
+        clearTimeout(F_out)           
+        F_over = setTimeout("menuOut()", 10) 
+}
+function fireOut() { 
+        clearTimeout(F_over)
+         F_out = setTimeout("menuIn()", 10)
+}
+function init() {
+        if(n4) {
+                menu = document.D1
+                menuH = menu.document.height
+                menu.top = menu.document.height*-1+20 
+                menu.onmouseover = menuOut
+                menu.onmouseout = menuIn
+        menu.visibility = "visible"
+        }
+        else if(e4) {
+                menu = D1.style
+                menuH = D1.offsetHeight
+                D1.style.pixelTop = D1.offsetHeight*-1+20
+                D1.onmouseover = fireOver
+                D1.onmouseout = fireOut
+                D1.style.visibility = "visible"
+        }
+}
+F_over=F_out=in_ID=out_ID=null
+n4 = (document.layers)?1:0
+e4 = (document.all)?1:0;
+
+</script>
+<div id="D1">
+<table border="0" width="100%" bgcolor="#FFFFC1">
+<TBODY>
+  <tr>
+    <td align="middle" bgColor="ff0000" rowSpan="2"><b style="COLOR: ub39a1">M<br>
+    E<br>
+    N<br>
+    U</b></td>
+    <td>　<ul>
+      <li><a href="link.htm">选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项 1</a> </li>
+      <li><a href="link.htm">选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项 2</a> </li>
+      <li><a href="link.htm">选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项 3</a> </li>
+      <li><a href="link.htm">选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项 4</a> </li>
+      <li><a href="link.htm">选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项 5</a> </li>
+    </ul>
+    </td>
+    <td>　<ul>
+      <li><a href="link.htm">选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项 6</a> </li>
+      <li><a href="link.htm">选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项 7</a> </li>
+      <li><a href="link.htm">选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项 8</a> </li>
+      <li><a href="link.htm">选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项 9</a> </li>
+      <li><a href="link.htm">选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项 10</a> </li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+    <td align="right" colSpan="2"></td>
+  </tr>
+</TBODY>
+</table>
+</div>
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

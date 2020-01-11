@@ -1,0 +1,18 @@
+<TABLE  border=0>
+  <TBODY>
+  <TR>
+    <TD ALIGN=CENTER>正常图片
+    <TD ALIGN=CENTER>灰度图
+    <TD ALIGN=CENTER>底片效果
+    <TD ALIGN=CENTER>X光效果
+  <TR>
+    <TD ><IMG  height=401 weight=300  src="sample.jpg"></TD>
+    <TD ><IMG style="FILTER: gray"  height=401 weight=300" src="sample.jpg" ></TD>
+    <TD ><IMG style="FILTER: invert"  height=401 weight=300 src="sample.jpg"></TD>
+    <TD ><IMG style="FILTER: xray" height=401 weight=300 X光效果" src="sample.jpg"></TD>
+    </TR>
+   </TBODY>
+</TABLE>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

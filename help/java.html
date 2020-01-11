@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>JavaScript教程</title>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 5px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+-->
+</style>
+<link href="css.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<table width="400" border="0" align="center">
+  <tr>
+    <td>      <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="5%"><img src="image/tem.gif" width="19" height="16"> </td>
+        <td width="95%"><span class="text"><strong>&nbsp;JavaScript教程</strong></span></td>
+      </tr>
+      <tr>
+        <td colspan="2"><hr color="#000000" size="1"></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="left" valign="top"><table width="100%"  border="0">
+          <tr>
+            <td width="5%" height="71">&nbsp;</td>
+            <td width="95%" align="left" valign="top" class="text"> JavaScript 变量范围 <br>
+              <br>
+JavaScript 有两种变量范围：全局和局部。如果在任何函数定义之外声明了一个变量，则该变量为全局变量，且该变量的值在整个持续范围内都可以访问和修改。如果在函数定义内声明了一个变量，则该变量为局部变量。每次执行该函数时都会创建和破坏该变量；且它不能被该函数外的任何事物访问。 一个局部变量的名称可以与某个全局变量的名称相同，但这是完全不同和独立的两个变量。因此，更改一个变量的值不会影响另一个变量的值。在声明局部变量的函数内，只有该局部变量有意义。
+<p>var aCentaur = "a horse with rider,"; // aCentaur 的全局定义。 </p>
+<p>// JavaScript 代码，为简洁起见有省略。 <br>
+  function antiquities() // 在这个函数中声明了一个局部 aCentaur 变量。 <br>
+  { </p>
+<p>// JavaScript 代码，为简洁起见有省略。 <br>
+  var aCentaur = " A centaur is probably a mounted Scythian warrior "; </p>
+<p>// JavaScript 代码，为简洁起见有省略。 <br>
+  aCentaur += ", misreported; that is, "; // 添加到局部变量。 </p>
+<p>// JavaScript 代码，为简洁起见有省略。 <br>
+  } // 函数结束。 </p>
+<p>var nothinginparticular = antiquities(); <br>
+  aCentaur += " as seen from a distance by a naive innocent. "; </p>
+<p>/* <br>
+  在函数内，该变量的值为 "A centaur is probably a mounted Scythian warrior, <br>
+  misreported; that is, "；在函数外，该变量的值为这句话的其余部分： <br>
+"a horse with rider, as seen from a distance by a naive innocent." <br>
+  */ </p>
+<p>很重要的一点是注意变量是否是在其所属范围的开始处声明的。有时这会导致意想不到的情况。 </p>
+<p>var aNumber = 100 ; <br>
+  var withAdditive = 0 ; </p>
+<p>withAdditive += aNumber; // withAdditive 现在是 100。 <br>
+  tweak(); <br>
+  withAdditive += aNumber; // withAdditive 现在是 200。 </p>
+<p>function tweak() { <br>
+  var newThing = 0 ; // 显示声明 newThing 变量。 <br>
+  // 如果不注释下一条语句，将产生一个错误。 <br>
+  // newThing = aNumber; <br>
+  // 下一条语句将值 42 赋给局部的 aNumber，该变量是隐式声明的。 <br>
+  aNumber = 42 ; <br>
+  if (false) { <br>
+  var aNumber; // 该语句永远不会执行。 <br>
+  aNumber = " Hello !"; // 该语句永远不会执行。 <br>
+  } // 条件语句结束。 <br>
+  } // 该函数定义结束。 </p>
+<p> 被注释掉的语句试图将局部变量 aNumber 的值赋给局部变量 newThing 的值。尽管事实上在函数的其他地方定义了一个局部 aNumber 变量，并且因此在整个函数内都存在，这样做也不会成功。 aNumber 变量在代码中这条语句的位置处没有被赋值，因此是 undefined。 </p>
+<p>------------------------------------------- </p>
+<p>JavaScript 的函数 <br>
+    <br>
+  什么是函数？ <br>
+  JavaScript 的函数执行各种操作。函数还可以返回结果。有时是计算或比较的结果。 </p>
+<p> 函数将若干操作合并在一个名字下。这样就可以简化代码。可以编写一组语句为其命名，然后通过调用该语句组并给其传递所需的任何信息，根据需要随时执行整个语句组。 </p>
+<p> 给函数传递信息的方式是在函数名后用圆括号将信息括起来。要传递给某个函数的信息的各部分被称为参数。有些函数不需要任何参数；有些函数可能要带一个参数；有些可能有多个。甚至有一些函数的参数个数取决于使用该函数的方式。 </p>
+<p> JavaScript 支持两种函数：即在语言中内置的函数，以及自己创建的函数。 </p>
+<p> 特殊的内置函数 <br>
+    <br>
+  JavaScript 语言中包括若干内置的函数。有些可以用来处理表达式和特殊字符，以及将字符串转换为数值。 </p>
+<p> 例如，escape() 和 unescape() 用来转换 HTML 代码中具有特殊意义的字符、不能直接输入到文字的字符。例如，尖括号 "&lt;" 和 "&gt;"，描述了 HTML 标识。 </p>
+<p> escape 函数将任何特殊字符作为其参数，并返回代表该字符的转义码。每个转义码由两个数字以及后跟的一个百分号 (%) 组成。unescape 函数就是对应的逆函数。它的参数为由两个数字和一个百分号组成的字符串，并返回一个字符。 </p>
+<p> 另一个有用的内置函数是 eval()，该函数对用字符串形式表示的任何合法数学表达式求值。eval() 函数有一个参数，即要求值的表达式。 </p>
+<p>var anExpression = "6 * 9 % 7"; <br>
+  var total = eval(anExpression); // 将 5 赋给变量 total。 <br>
+  var yetAnotherExpression = "6 * (9 % 7)"; <br>
+  total = eval(yetAnotherExpression) // 将 12 赋给变量 total。 </p>
+<p>var totality = eval("...surrounded by acres of clams."); // 产生一个错误。 </p>
+<p>创建自己的函数 <br>
+  可以创建自己的函数并在需要的地方使用。一个函数定义由一个 function 语句和一个 JavaScript 语句块组成。 </p>
+<p>下面示例中的 checkTriplet 函数将三角形的边长作为其参数，然后通过检查这三个数是否能组成一个 Pythagorean （毕达哥拉斯）三元组（直角三角形斜边长的平方等于其它两条边长的平方和。），从而计算出该三角形是否为直角三角形。 checkTriplet 函数调用另两个函数中的其中一个来进行实际测试。 </p>
+<p>请注意使用了非常小的数 (“epsilon”) 作为该测试的浮点数版本的一个测试变量。因为浮点数计算不精确和存在舍入误差，因此直接判断斜边的平方是否等于另两边的平方和是不实际的，除非已知该问题中的三个值都是整数。由于直接测试更精确，因此该示例中的代码先判断这个数是否适当，如果是，再使用。 </p>
+<p>var epsilon = 0.0000000000001 ; // 用于测试的非常小的数。 <br>
+  var triplet = false ; </p>
+<p>function integerCheck(a, b, c) { // 适用于整数的检验函数。 <br>
+  if ( (a*a) == ((b*b) + (c*c)) ) { // 具体的检验代码 。 <br>
+  triplet = true; <br>
+  } <br>
+  } // 整数判别函数结束。 </p>
+<p>function floatCheck(a, b, c) { // 适用于浮点数的检验函数。 <br>
+  var theCheck = ((a*a) - ((b*b) + (c*c))) // 求检验数。 <br>
+  if (theCheck &lt; 0) { // 判别需要使用绝对值，如果 theCheck 为负数，先转为相应的正数。 <br>
+  theCheck *= - 1 ; <br>
+  } <br>
+  if (epsilon &gt; theCheck) { // 如果足够接近非常小值，则可以认为满足条件！ <br>
+  triplet = true ; <br>
+  } <br>
+  } // 浮点数判别函数结束。 </p>
+<p>function checkTriplet(a, b, c) { // 三元组判别函数。首先将最长边设为 "a"。 <br>
+  var d = 0; // 创建一个临时存放变量。 <br>
+  if (c &gt; b) { // 如果 c 大于 b，两者进行交换。 <br>
+  d = c; <br>
+  c = b; <br>
+  b = d; <br>
+  } // 否则无需操作。 <br>
+  if (b &gt; a) { // 如果 b 大于 a，两者进行交换。 <br>
+  d = b; <br>
+  b = a; <br>
+  a = d; <br>
+  } // 否则无需操作。 </p>
+<p>// 如果是直角三角形，则 "a" 边现在就是斜边。 </p>
+<p>if (((a%1) == 0) &amp;&amp; ((b%1) == 0) &amp;&amp; ((c%1) == 0)) { // 测试所有 3 个值是否均为整数？ <br>
+  integerCheck( a , b , c ); // 如果是，则使用精确判别。 <br>
+  } <br>
+  else <br>
+  floatCheck( a , b , c ); // 如果不是，则求最可能的结果。 <br>
+  } // 三元组判别函数结束。 </p>
+<p>// 下面三条语句指定示例值，以进行测试。 <br>
+  var sideA = 5 ; <br>
+  var sideB = 5 ; <br>
+  var sideC = Math.sqrt( 50 ); </p>
+<p>checkTriplet( sideA , sideB , sideC ); // 调用该函数。在调用后， triplet 即包含了结果。 </p>
+<p>----------------------------------------------- </p>
+<p>JavaScript 的对象 <br>
+    <br>
+  什么是对象？ <br>
+  在 JavaScript 中，对象本质上就是属性和方法的集合。方法是作为某个对象成员的函数，属性是作为对象成员的一个值或一组值（数组或对象的形式）。JavaScript 支持三种对象：固有对象、创建自己的对象以及浏览器对象，后者将在其他地方介绍。 </p>
+<p>对象也是数组 <br>
+  在 JavaScript 中，对象和数组是一样处理的。可以按名称（使用对象名称，后跟一个圆点和属性的名称）来引用一个对象的任何成员（属性和方法）, 也可以按其数组下标索引来引用。JavaScript 中下标的是从 0 开始编号的，也可以用其名称来引用下标。 </p>
+<p>因此可以用多种方式来引用一个属性。下面所有语句都是等价的。 </p>
+<p>theWidth = spaghetti.width; <br>
+  theWidth = spaghetti[3]; // [3] 是 "width" 的索引。 <br>
+  theWidth = spaghetti["width"]; </p>
+<p>虽然可以使用方括号按其数字索引来引用一个属性，但不能使用圆点 (.) 带索引号。下面的语句将产生一个错误。 </p>
+<p>theWidth = spaghetti.3; </p>
+<p>当一个对象中的某个属性是另一个对象时，可以直接扩展这种命名约定。 </p>
+<p>var init4 = toDoToday.shoppingList[ 3 ].substring( 0 , 1 ); // 数组 shoppingList 是 toDoToday 的一个属性。 </p>
+<p>对象包含其他对象作为其属性的这种情况可以产生具有多个下标的数组，虽然并不直接支持多重数组。下面的代码创建了一个从 0 乘 0 到 16 乘 16 的乘法表。 </p>
+<p>var multTable = new Array(17); // 产生乘法表的外壳。 <br>
+  for (var j = 0; j &lt; multTable.length; j++) { // 准备用行进行填充。 <br>
+  var aRow = new Array(17); // 创建一行。 <br>
+  for (var i = 0; i &lt; aRow.length; i++) { // 准备填充这一行。 <br>
+  aRow[i] = (i + " times " + j + " = " + i*j); // 计算并存储值。 <br>
+  } <br>
+  multTable[j] = aRow; // 将已填充的行放入表中。 <br>
+  } </p>
+<p>要引用这种数组中的一个元素，可以使用多重方括号。 </p>
+<p>var multiply3x7 = multTable[ 3 ][ 7 ]; </p>
+<p>下面的语句将产生一个错误。 </p>
+<p>var multiply3x7 = multTable[ 3 , 7 ]; </p>
+<p>----------------------------------------------- </p></td>
+          </tr>
+        </table>        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="left" valign="top"><hr size="1"></td>
+      </tr>
+      <tr align="left" valign="middle">
+        <td colspan="2"><span class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 傻猫制作&nbsp;&nbsp; 2003-3-28</span></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<p class="Btxt">&nbsp;</p>
+</body>
+</html>

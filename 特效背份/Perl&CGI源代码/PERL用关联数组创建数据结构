@@ -1,0 +1,68 @@
+1、用关联数组可以模拟在其它高级语言中常见的多种数据结构，本节讲述如何用之实现：链表、结构和树。 
+
+2、结构 
+
+许多编程语言可以定义结构(structure)，即一组数据的集合。结构中的每个元素有其自己的名字，并通过该名字来访问。 
+Perl不直接提供结构这种数据结构，但可以用关联数组来模拟。例如模拟C语言中如下的结构： 
+
+struce{ 
+int field1; 
+int field2; 
+int field3; }mystructvar; 
+
+我们要做的是定义一个含有三个元素的关联数组，下标分别为field1、field2、field3，如： 
+
+%mystructvar = ("field1" , "" , 
+"field2" , "" , 
+"field3" , "" ,); 
+
+像上面C语言的定义一样，这个关联数组%mystrctvar有三个元素，下标分别为field1、field2、field3，各元素初始值均为空串。对各元素的访问和赋值通过指定下标来进行，如： 
+$mystructvar{"field1"} = 17; 
+
+3、树 
+
+另一个经常使用的数据结构是树。树与链表类似，但每个节点指向的元素多于一个。最简单的树是二叉树，每个节点指向另外两个元素，称为左子节点和右子节点（或称孩子），每个子节点又指向两个孙子节点，依此类推。 
+注：此处所说的树像上述链表一样是单向的，每个节点指向其子节点，但子节点并不指向父节点。 
+树的概念可以如下描述： 
+
+因为每个子节点均为一个树，所以左/右子节点也称为左/右子树。（有时称左/右分支） 
+第一个节点（不是任何节点的子节点的节点）称为树的根。 
+没有孩子（子节点）的节点称为叶节点。 
+有多种使用关联数组实现树结构的方法，最好的一种应该是：给子节点分别加上left和right以访问之。例如，alphaleft和alpharight指向alpha的左右子节点。下面是用此方法创建二叉树并遍历的例程： 
+
+1 : #!/usr/local/bin/perl 
+2 : 
+3 : $rootname = "parent"; 
+4 : %tree = ("parentleft", "child1", 
+5 : "parentright", "child2", 
+6 : "child1left", "grandchild1", 
+7 : "child1right", "grandchild2", 
+8 : "child2left", "grandchild3", 
+9 : "child2right", "grandchild4"); 
+10: # traverse tree, printing its elements 
+11: &print_tree($rootname); 
+12: 
+13: sub print_tree { 
+14: local ($nodename) = @_; 
+15: local ($leftchildname, $rightchildname); 
+16: 
+17: $leftchildname = $nodename . "left"; 
+18: $rightchildname = $nodename . "right"; 
+19: if ($tree{$leftchildname} ne "") { 
+20: &print_tree($tree{$leftchildname}); 
+21: } 
+22: print ("$nodenamen"); 
+23: if ($tree{$rightchildname} ne "") { 
+24: &print_tree($tree{$rightchildname}); 
+25: } 
+26: } 
+
+结果输出如下： 
+
+grandchild1 
+child1 
+grandchild2 
+parent 
+grandchild3 
+child2 
+grandchild4 

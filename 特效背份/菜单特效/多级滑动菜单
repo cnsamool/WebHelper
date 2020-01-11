@@ -1,0 +1,102 @@
+<head>
+<style>
+body,td,a {font-size:9pt;color:#000000;text-decoration:none}
+.normal {padding:2px}
+.up {padding:1px;border:#999999 1px solid;background:#CCCCCC}
+.down {padding:1px;border:dbdbdb 1px solid;background:dbdbdb}
+.menuv {filter: revealTrans(transition=23,duration=0.5);padding:2px}
+</style>
+</head>
+
+<body onmousemove="move()" onload=bodyload()>
+<script>
+//闪烁的表格边框
+function flashit(){if(!document.all)return;if (td123.style.borderColor=="black")td123.style.borderColor="#999999";else td123.style.borderColor="black"}setInterval("flashit()",500)
+//渐入的效果,改变alpha值
+function high(image){theobject=image,highlighting=setInterval("highlightit(theobject)",100)}function low(image){clearInterval(highlighting),image.filters.alpha.opacity=50}function highlightit(cur2){if (cur2.filters.alpha.opacity<100)cur2.filters.alpha.opacity+=20;else if(window.highlighting)clearInterval (highlighting)}
+//拖动层的js
+var over=false,down=false,divleft,divtop;function move(){if(down){plane.style.left=event.clientX-divleft;plane.style.top=event.clientY-divtop;}}
+//滑动层
+function bodyload()
+{
+if(plane.style.pixelTop!=0)
+{
+plane.style.pixelTop-=10
+setTimeout('bodyload()',1)
+}
+}
+//渐变显示层
+function Show(divid) {
+divid.filters.revealTrans.apply();
+divid.style.visibility = "visible";
+divid.filters.revealTrans.play();
+}
+function Hide(divid) {
+divid.filters.revealTrans.apply();
+divid.style.visibility = "hidden";
+divid.filters.revealTrans.play();
+}
+
+</script>
+<div style="position:absolute;z-index:1;width:1;height:1; left: 0; top: 500" ID=plane onmousedown="down=true;divleft=event.clientX-parseInt(plane.style.left);divtop=event.clientY-parseInt(plane.style.top)" onmouseup="down=false">
+<table id="td123" cellspacing=2 width=100 border=0 style="BORDER:#999999 1px solid;cursor:hand" cellpadding="0" bgcolor="F4F4F4">
+<tr>
+<td bgcolor="#CCCCCC" height="20" style="BORDER:#999999 1px solid;cursor:move">
+<div align="center"><font color="#000000">多级滑动菜单</font></div>
+</td>
+</tr>
+<tr><td class=normal onMouseDown="this.className='down'" onMouseOver="this.className='up',high(this),Show(menu1)" onMouseOut="this.className='normal',low(this),menu1.style.visibility='hidden'" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'"><div align="center">傻猫软件</div></td></tr>
+<tr><td class=normal onMouseDown="this.className='down'" onMouseOver="this.className='up',high(this),Show(menu2)" onMouseOut="this.className='normal',low(this),menu2.style.visibility='hidden'" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'"><div align="center">影视天地</div></td></tr>
+<tr><td class=normal onMouseDown="this.className='down'" onMouseOver="this.className='up',high(this),Show(menu3)" onMouseOut="this.className='normal',low(this),menu3.style.visibility='hidden'" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'"><div align="center">喜欢的网站</div></td></tr>
+<tr><td class=normal onMouseDown="this.className='down'" onMouseOver="this.className='up',high(this)" onMouseOut="this.className='normal',low(this)" style="filter:alpha(opacity=50)"onMouseUp="this.className='up'"><div align="center"><a href="mailto:wangdayong_21@sohu.com" target="_top">咨询信箱</a></div></td></tr>
+</table>
+<div id="menu1" style="position:absolute;top:24px;left:96px; z-index:1; visibility: hidden; width: 105" onMouseOver=this.style.visibility='visible' onMouseOut=this.style.visibility='hidden' class="menuv"><table cellspacing=2 width=100 border=0 style="BORDER:#999999 1px solid;cursor:hand" cellpadding="0" bgcolor="F4F4F4" align="right">
+<tr><td class=normal onMouseDown="this.className='down'" 
+onMouseOver="this.className='up',high(this)" onMouseOut="this.className='normal',low(this)" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'">
+<div align="center"><a href="http://samool.533.net" target="_blank">小小优化师</a></div></td></tr><tr><td class=normal onMouseDown="this.className='down'" 
+onMouseOver="this.className='up',high(this)" onMouseOut="this.className='normal',low(this)" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'">
+<div align="center"><a href="http://samool.533.net" target="_blank">网页助手<tr><td class=normal onMouseDown="this.className='down'" onMouseOver="this.className='up',high(this)" onMouseOut="this.className='normal',low(this)" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'">
+<div align="center"><a href="http://samool.533.net" target="_blank">傻猫在线</a></div></td></tr><tr><td class=normal onMouseDown="this.className='down'" 
+onMouseOver="this.className='up',high(this)" onMouseOut="this.className='normal',low(this)" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'">
+<div align="center"><a href="mailto:wangdayong_21@sohu.com" target="_top">咨询信箱</a></div></td></tr>
+</table></div><div id="menu2" style="position:absolute;top:44px;left:96px; z-index:1; visibility: hidden; width: 105" onMouseOver=this.style.visibility='visible' onMouseOut=this.style.visibility='hidden' class="menuv">
+<table cellspacing=2 width=100 border=0 style="BORDER:#999999 1px solid;cursor:hand" cellpadding="0" bgcolor="F4F4F4" align="right">
+<tr><td class=normal onMouseDown="this.className='down'" 
+onMouseOver="this.className='up',high(this)" onMouseOut="this.className='normal',low(this)" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'">
+<div align="center"><a href="http://" target="_blank">喜剧片</a></div></td></tr>
+<tr><td class=normal onMouseDown="this.className='down'" 
+onMouseOver="this.className='up',high(this)" onMouseOut="this.className='normal',low(this)" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'">
+<div align="center"><a href="http://" target="_blank">动作片</a></div></td></tr>
+<tr><td class=normal onMouseDown="this.className='down'" 
+onMouseOver="this.className='up',high(this)" onMouseOut="this.className='normal',low(this)" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'">
+<div align="center"><a href="http://" target="_blank">科幻片</a></div></td></tr>
+<tr><td class=normal onMouseDown="this.className='down'" 
+onMouseOver="this.className='up',high(this)" onMouseOut="this.className='normal',low(this)" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'">
+<div align="center"><a href="http://" target="_blank">爱情片</a></div></td></tr>
+<tr><td class=normal onMouseDown="this.className='down'" 
+onMouseOver="this.className='up',high(this)" onMouseOut="this.className='normal',low(this)" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'">
+<div align="center"><a href="http://" target="_blank">恐怖片</a></div></td></tr>
+<tr><td class=normal onMouseDown="this.className='down'" 
+onMouseOver="this.className='up',high(this)" onMouseOut="this.className='normal',low(this)" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'">
+<div align="center"><a href="http://" target="_blank">灾难片</a></div></td></tr>
+<tr><td class=normal onMouseDown="this.className='down'" 
+onMouseOver="this.className='up',high(this)" onMouseOut="this.className='normal',low(this)" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'">
+<div align="center"><a href="htpp://" target="_blank">战争片</a></div></td></tr>
+</table></div>
+<div id="menu3" style="position:absolute;top:64px;left:96px; z-index:1; visibility: hidden; width: 105" onMouseOver=this.style.visibility='visible' onMouseOut=this.style.visibility='hidden' class="menuv"><table cellspacing=2 width=100 border=0 style="BORDER:#999999 1px solid;cursor:hand" cellpadding="0" bgcolor="F4F4F4" align="right">
+<tr><td class=normal onMouseDown="this.className='down'"onMouseOver="this.className='up',high(this)" onMouseOut="this.className='normal',low(this)" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'">
+<div align="center"><a href="http://www.sina.com.cn" target="_blank">新浪</a></div></td></tr><tr><td class=normal onMouseDown="this.className='down'" 
+onMouseOver="this.className='up',high(this)" onMouseOut="this.className='normal',low(this)" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'">
+<div align="center"><a href="http://www.163.com" target="_blank">网易</a></div></td></tr><tr><td class=normal onMouseDown="this.className='down'" 
+onMouseOver="this.className='up',high(this)" onMouseOut="this.className='normal',low(this)" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'">
+<div align="center"><a href="http://www.sohu.com" target="_blank">搜狐</a></div></td></tr><tr><td class=normal onMouseDown="this.className='down'" 
+onMouseOver="this.className='up',high(this)" onMouseOut="this.className='normal',low(this)" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'">
+<div align="center"><a href="http://www.onlinedown.net" target="_blank">华军软件园</a></div></td></tr><tr><td class=normal onMouseDown="this.className='down'" 
+onMouseOver="this.className='up',high(this)" onMouseOut="this.className='normal',low(this)" style="filter:alpha(opacity=50)" onMouseUp="this.className='up'">
+<div align="center"><a href="http://samool.533.net" target="_blank">傻猫软件</a></div></td></tr></table></div>
+
+</div>
+<body>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

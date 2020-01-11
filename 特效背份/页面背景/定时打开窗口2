@@ -1,0 +1,36 @@
+<html>
+<head>
+<title></title>
+<!--第一步:把如下代码加入<head>区域中//-->
+<script language="JavaScript"> 
+<!-- 
+function win() {
+var h= document.winfrm.hig.value
+var w= document.winfrm.wid.value
+testWindow=window.open("about:blank",'testwin','toolbar=no,location=no,directories=no,menubar=no,scrollbars=no,resizable=no,width=' + w + ',height=' + h +'');
+testWindow.document.writeln("<head><title>测试窗口</title></head>");
+testWindow.document.writeln("<body bgcolor=#ffffcc>");
+testWindow.document.writeln("该窗口已经按照你要求的大小打开了！<p>");
+testWindow.document.writeln("如何使用就在于你的创意了！</body>");
+testWindow.document.writeln('');
+}
+// --> 
+</script>
+
+</head>
+<body>
+<!--第二步:把如下代码加入<body>区域中//-->
+<form name="winfrm">
+窗口宽度: 
+<input type="text" name="wid" maxlength="3">
+<br>
+窗口高度: 
+<input type="text" name="hig" maxlength="3">
+<br>
+<input type="button" name="s" value="开始测试" onClick="win()" class="yk9">
+</form>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,404 @@
+
+<SCRIPT>
+function _init(){
+	for(var i=0;i<document.all.length;i++){
+		if(document.all[i].getAttribute("menu")){
+			var attribs = _eat_attrib(document.all[i].getAttribute("menu"));
+			var tree = new Array();
+			var src = document.all.item(attribs["src"]).innerText;	// get the config info from the contents of the designated source element
+			src = _strip(src);	// remove whitespace informatin
+			tree = _compile(tree,src);	// turn it into a multilevel array
+
+			// at this time, associate the element the
+			// menu is attached to with the created menuing elements
+			var menuId = _menus.length;	
+			document.all[i].menuId = menuId;
+			document.all[i].onmouseover = _rootmouseover;
+			document.all[i].onmouseout = _rootmouseout;
+
+			// get and preset designer preferences
+			var attribs = _eat_attrib(document.all[i].getAttribute("menu"));
+			attribs["border-width"] = (attribs["border-width"]!=null?attribs["border-width"]:1);
+			attribs["border-color"] = (attribs["border-color"]!=null?attribs["border-color"]:"black");
+			attribs["background"] = (attribs["background"]!=null?attribs["background"]:"white");
+			attribs["highlight"] = (attribs["highlight"]!=null?attribs["highlight"]:"#DCDCDC");
+			attribs["font-size"] = (attribs["font-size"]!=null?attribs["font-size"]:"normal");
+			attribs["font-family"] = (attribs["font-family"]!=null?attribs["font-family"]:"");
+			attribs["font-color"] = (attribs["font-color"]!=null?attribs["font-color"]:"");
+			attribs["icon-color"] = (attribs["icon-color"]!=null?attribs["icon-color"]:"black");
+			attribs["arrow"] = (attribs["arrow"]!=null?attribs["arrow"]:true);
+			attribs["showrow"] = (attribs["showrow"]!=null?attribs["showrow"]:true);
+			attribs["height"] = (attribs["height"]!=null?attribs["height"]:22);
+			attribs["width"] = (attribs["width"]!=null?attribs["width"]:150);
+			attribs["arrow-offset"] = (attribs["arrow-offset"]!=null?Number(attribs["arrow-offset"]):135);
+			attribs["menu-offset"] = (attribs["menu-offset"]!=null?Number(attribs["menu-offset"]):1);
+			attribs["menu-topoffset"] = (attribs["menu-topoffset"]!=null?Number(attribs["menu-topoffset"]):0);
+			attribs["wait"] = (attribs["wait"]!=null?Number(attribs["wait"]):500);
+			document.all[i].attribs = attribs;
+
+			// now, create all of the needed elements for this menu
+			_create(document.all[i],tree);
+		}
+	}
+}
+window.onload = _init;
+/////////////////////////
+
+
+/////////////////////////
+//// takes a position and a string,
+//// returns the position of the next unpaired "]" character
+function _pair(after,str){
+	while(1){
+		var nextA = str.indexOf("[",after + 1);
+		var nextB = str.indexOf("]",after + 1);
+		if(nextA == -1){
+			return nextB;
+		}
+		if(nextA > nextB){
+			return nextB;
+		}
+		after = _pair(nextA,str);
+	}
+}
+
+/////////////////////////
+//// transforms raw text input into a multilevel array
+//// returns an array based on the string input
+function _compile(ary,str){
+	while(1){ // keep circling and eating the str
+
+		// when the str is empty, return the built array
+		if(str.length == 0){
+			return ary;
+		}
+
+		// is there any more sub-arrays?
+		var nextA = str.indexOf("[");
+		if(nextA == -1){
+			var go = str;
+			var spawn = "";
+			str = "";
+		}else{
+			var go = str.substring(0,nextA);
+			var spawn = str.substring(str.indexOf("[") + 1,_pair(str.indexOf("["),str))
+			str = str.substring(_pair(str.indexOf("["),str) + 1,str.length);
+		}
+
+		// build a flat array of key/value pairs and strip out the empty elements
+		var A = go.split(";");
+		var A2 = new Array();
+		for(var j=0;j<A.length;j++){
+			if(A[j].indexOf("!") != -1){
+				A2[A2.length] = A[j];
+			}
+		}
+		A = A2;
+
+		// parse the flat array
+		for(var i = 0;i < A.length;i++){
+			var tmpA = A[i].split("!");
+			var thisary = ary.length;
+			ary[thisary] = new Array();
+
+			// attach a sub array if needed
+			if((i+1)==A.length && spawn.length != ""){
+				ary[thisary] = _compile(ary[thisary],spawn);
+			}
+			// assign properties to this array based on the parsed array key/value pairs
+			ary[thisary].name = tmpA[0];
+			ary[thisary].url = tmpA[1];
+			ary[thisary].desc = tmpA[2];
+			ary[thisary].icon = tmpA[3];
+		}
+	}
+}
+///////////////////////
+
+
+///////////////////////
+//// Actually draw and initialize elements from the array
+function _create(e,ary){
+	var str = new String();
+	var menuId = _menus.length;	// save the ID for this menu
+	str 	= '<DIV ID="_div_'
+		+ menuId		// give it a unique name
+		+ '" STYLE="visibility:hidden;position:absolute;top:0;left:0;width:'
+		+ e.attribs["width"]
+		+ ';height:10;background-color:black;">';
+	e.insertAdjacentHTML("AfterEnd",str);	// paste it in below the root element
+	var thismenu = document.all.item("_div_" + menuId);	// save a reference to the element object
+	_menus[menuId] = thismenu;	// save a reference to the element object in a global array for later use
+	thismenu.menuId = menuId;	// tell the element object where it is in the global array
+	thismenu.close = _close;	// assign a close function to it
+	thismenu.menuParent = null;	// initialize some variables to null
+	thismenu.menuChild = null;
+	thismenu.highlightBG = e.attribs["highlight"];
+	thismenu.normalBG = e.attribs["background"];
+	thismenu.menuOffset = e.attribs["menu-offset"];
+	thismenu.menuTopoffset = e.attribs["menu-topoffset"];
+	thismenu.waitDelay = e.attribs["wait"];
+	var prevBottom = 0;		// initialize where the option elements should start drawing
+
+	// create a span element for every option
+	for(var i=0;i<ary.length;i++){
+		str 	= '<SPAN ID="_link_'	// assign a unique name
+			+ menuId
+			+ '_'
+			+ i
+			+ '" STYLE="position:absolute;top:'
+			+ prevBottom		// position it correctly
+			+ ';left:0;height:'
+			+ e.attribs["height"]
+			+ ';overflow:hidden;width:'
+			+ e.attribs["width"]
+			+ ';background:'
+			+ e.attribs["background"]
+			+ ';border-width:'
+			+ e.attribs["border-width"]
+			+ ';border-style:solid;border-color:'
+			+ e.attribs["border-color"]
+			+ ';';
+		if(e.attribs["showrow"]!=true && i != 0){
+			str	+='border-top-width:0;';
+		}
+		str	+='text-align:left;font-size:'
+			+ e.attribs["font-size"]
+			+ ';padding-left:4;">';
+		if(ary[i].icon!=null){
+			str	+='<SPAN STYLE="font-family:webdings;color:'
+				+ e.attribs["icon-color"]
+				+ '">&#'
+				+ ary[i].icon
+				+ ';</SPAN> ';
+		}
+		str	+='<A HREF="'
+			+ ary[i].url
+			+ '" TITLE="'
+			+ ary[i].desc
+			+ '" STYLE="font-family:'
+			+ e.attribs["font-family"]
+			+ ';color:'
+			+ e.attribs["font-color"]
+			+ ';padding-left:3;">'
+			+ ary[i].name		// fill in the content/name
+			+ '</A>';
+		if(ary[i].length > 0 && e.attribs["arrow"]){
+			str	+='<SPAN STYLE="font-family:webdings;position:absolute;top:0;left:'
+				+ e.attribs["arrow-offset"]
+				+ ';width:'
+				+ (e.attribs["width"] - e.attribs["arrow-offset"])
+				+ ';overflow:hidden;color:'
+				+ e.attribs["icon-color"]
+				+ '">4</SPAN>';
+		}
+		str	+='</SPAN>';
+		thismenu.insertAdjacentHTML("BeforeEnd",str);	// insert it inside the menu element
+		thisoption = document.all.item('_link_' + menuId + '_' + i);
+		thisoption.menuId = menuId;	// save some references and initialize some variables
+		thisoption.onmouseover = _optionmouseover;
+		thisoption.onmouseout = _optionmouseout;
+		prevBottom = thisoption.style.pixelTop + (e.attribs["height"] - e.attribs["border-width"]);	// where should the next one draw?
+		if(ary[i].length > 0){		// uhoh, if there is a submenu here, better draw it!
+			thisoption.menuChild=_menus.length;	// tell this option that it has a child
+			_create(e,ary[i]);
+		}
+	}
+	thismenu.style.pixelHeight = prevBottom;	// set the height on the menu element
+}
+/////////////////////
+
+
+
+
+///////////////////////////////////////////
+///////////////////////////////////////////
+//// All the following are used on the "fly"
+//// as needed during the documents life
+////
+////
+
+
+var _menus = new Array();	// global array of menus
+var _currentMenu = null;	// temporary storage of the current and current root menu elements
+var _rootMenu = null;
+var _rootKludge = null;
+var _zIndex = 1;
+
+/////////////////////
+//// show the menu for this object
+function _rootmouseover(){
+	var e = window.event.srcElement;
+	if(_rootMenu != null){
+		_menus[_rootMenu].close();
+	}
+	_rootMenu = e.menuId;	// store a temporary reference
+	_rootKludge = e.menuId;
+	var attribs = _eat_attrib(e.getAttribute("menu"));	// initialize its position based on the config
+	_menus[e.menuId].style.pixelTop = attribs["top"];
+	_menus[e.menuId].style.pixelLeft = attribs["left"]
+	_menus[e.menuId].style.visibility = "visible";
+	_menus[e.menuId].style.zIndex = _zIndex++;
+}
+////////////////////
+
+
+////////////////////
+//// if the mouse leaves the main element,
+//// try to close the displayed menu
+function _rootmouseout(){
+	_rootKludge = null;
+	window.setTimeout("if(_rootKludge != " + _rootMenu + "){_menus[" + _rootMenu + "].close();}",_menus[_rootMenu].waitDelay);
+}
+////////////////////
+
+
+////////////////////
+//// nifty little IMPORTANT recursive function that 
+//// returns true only if the id to check
+//// is in the heritage of the current menu!
+function _heritage(menu,check){
+	if(_menus[menu].menuId == check){
+		return true;
+	}else{
+		// if I have a parent, check it, otherwise the answer is no
+		if(_menus[menu].menuParent != null){
+			return _heritage(_menus[menu].menuParent,check);
+		}else{
+			return false;
+		}
+	}
+}
+///////////////////
+
+
+///////////////////
+//// associated with every menu element object,
+//// close this menu unless it is still active
+function _close(){
+	if(_currentMenu != null){
+		if(_heritage(_currentMenu,this.menuId)){
+			return;
+		}
+	}
+	if(this.menuChild != null){
+		_menus[this.menuChild].close();
+	}
+	this.style.visibility = "hidden";
+	this.menuChild = null;
+	this.menuParent = null;
+}
+//////////////////
+
+
+//////////////////
+//// when the mouse passes over an option
+function _optionmouseover(){
+	// some ugly kludges to reduce flashing when the mouse passes through a subelement of the option
+	if(window.event.srcElement.menuId==null && window.event.fromElement.id == window.event.srcElement.offsetParent.id){
+		return;
+	}
+	if(window.event.fromElement.offsetParent!=null){
+		if(window.event.fromElement.menuId==null && window.event.srcElement.id == window.event.fromElement.offsetParent.id){
+			return;
+		}
+	}
+	if(window.event.srcElement.menuId==null){
+		var e = window.event.srcElement.offsetParent;
+	}else{
+		var e = window.event.srcElement;
+	}
+	e.style.background = _menus[e.menuId].highlightBG;		// highlight it
+	_currentMenu = e.menuId;		// reset the current menu
+	if(_menus[_currentMenu].menuChild != null){	// close any previous children
+		_menus[_menus[_currentMenu].menuChild].close();
+	}
+	if(e.menuChild!=null){		// if this option has a submenu, display it
+		_menus[_currentMenu].menuChild = e.menuChild;	// tell the menu it has a child
+		_menus[e.menuChild].menuParent = _currentMenu;	// tell the child it has a parent
+		_menus[e.menuChild].style.pixelTop = _menus[_currentMenu].style.pixelTop + e.style.pixelTop + _menus[_currentMenu].menuTopoffset;
+		_menus[e.menuChild].style.pixelLeft = _menus[_currentMenu].style.pixelLeft + _menus[_currentMenu].style.pixelWidth + _menus[_currentMenu].menuOffset;
+		_menus[e.menuChild].style.visibility = "visible";
+		_menus[e.menuChild].style.zIndex = _zIndex++;
+	}
+}
+/////////////////
+
+
+/////////////////
+//// when the mouse leaves the option
+function _optionmouseout(){
+	// some ugly kludges to reduce flashing when the mouse passes through a subelement of the option
+	if(window.event.srcElement.menuId==null && window.event.toElement.id == window.event.srcElement.offsetParent.id){
+		return;
+	}
+	if(window.event.toElement.offsetParent!=null){
+		if(window.event.toElement.menuId==null && window.event.srcElement.id == window.event.toElement.offsetParent.id){
+			return;
+		}
+	}
+
+	if(window.event.srcElement.menuId==null){
+		var e = window.event.srcElement.offsetParent;
+	}else{
+		var e = window.event.srcElement;
+	}
+	e.style.background = _menus[e.menuId].normalBG;		// unhighlight it
+	var to = window.event.toElement.menuId;		// greener pasture?
+	if(to!=null){	// leaving to a menu element
+		if(to!=e.menuId){	// not this menu
+			_menus[_currentMenu].close();
+		}else{			// this menu, but hide any existing children
+			if(_menus[e.menuId].menuChild!=null){
+				_menus[_menus[e.menuId].menuChild].close();
+			}
+		}
+	}else{		// wait a bit, and close the whole menu
+		window.setTimeout("_menus[_rootMenu].close()",_menus[_rootMenu].waitDelay);
+	}
+	_currentMenu = null;
+}
+
+function _eat_attrib(str){
+	var chunks = new Array();
+	var all = new Array();
+
+	chunks=str.split(";");
+
+	for(var i=0;i<chunks.length;i++){
+		var tmpA = new Array();
+		tmpA=chunks[i].split(":");
+		all[tmpA[0]]=tmpA[1];
+	}
+	return all;
+}
+
+function _strip(str){
+	var A = new Array();
+
+	A = str.split("\t");
+	str = A.join("");
+
+	A = str.split("\n");
+	str = A.join("");
+
+	A = str.split("\r");
+	str = A.join("");
+
+	return str;
+}
+//////////////////
+</SCRIPT>
+
+<a href="default.htm" menu="top:60;left:200;src:menusrc;">Start</a>
+<div id="menusrc" style="display:none;">
+Yahoo!http://www.yahoo.com!Just a simple link to yahoo.;
+Microsoft!http://www.microsoft.com!Go ahead and visit Microsoft's Home Page;
+[
+	Internet Explorer!http://www.microsoft.com/ie!Microsoft Internet Explorer;
+	Internet Information Server!http://www.microsoft.com/iis!Ver 4 is VERY powerful;
+]
+W3C!http://www.w3.org!The 'source' :);
+</div>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

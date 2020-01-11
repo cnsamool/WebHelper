@@ -1,0 +1,19 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--将以下内容加到<body>中//-->
+<!--你的页面会被别人的frame引用，含在别人的frame时，会自动弹出-->
+<SCRIPT LANGUAGE=JAVASCRIPT>
+<!-- 
+if (top.location !== self.location) {
+top.location=self.location;
+}
+</SCRIPT>
+
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

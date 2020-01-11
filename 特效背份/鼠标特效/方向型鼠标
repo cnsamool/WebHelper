@@ -1,0 +1,48 @@
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+var x, y, xold, yold, xdiff, ydiff;
+var dir = Array();
+dir[0] = "n-resize";
+dir[1]="ne-resize";
+dir[2]="e-resize";
+dir[3]="se-resize";
+dir[4] = "s-resize";
+dir[5]="sw-resize";
+dir[6]="w-resize";
+dir[7]="nw-resize";
+document.onmousemove = FindXY;
+function display(direction) {
+document.body.style.cursor = 
+dir[direction];
+}
+
+function FindXY(loc) {
+x = (document.layers) ? loc.pageX : 
+event.clientX;
+y = (document.layers) ? loc.pageY : 
+event.clientY;
+xdiff = x - xold;
+ydiff = y - yold
+if ((xdiff <  2) && (ydiff < -2)) 
+display(0);
+if ((xdiff <  2) && (ydiff >  2)) 
+display(4);
+if ((xdiff >  2) && (ydiff <  2)) 
+display(2);
+if ((xdiff < -2) && (ydiff <  2)) 
+display(6);
+if ((xdiff >  2) && (ydiff >  2)) 
+display(3);
+if ((xdiff >  2) && (ydiff < -2)) 
+display(1);
+if ((xdiff < -2) && (ydiff >  2)) 
+display(5);
+if ((xdiff < -2) && (ydiff < -2)) 
+display(7);
+xold = x;
+yold = y;
+}
+//  End -->
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,29 @@
+<!--脚本说明:
+把如下代码加入<body>区域中-->
+<script language="JavaScript">
+<!-- Hide
+var a = Math.random() + ""
+var rand1 = a.charAt(5)
+quotes = new Array
+quotes[1] = '文本信息一'
+quotes[2] = '文本信息二'
+quotes[3] = '文本信息三'
+quotes[4] = '文本信息四'
+quotes[5] = '文本信息五'
+quotes[6] = '文本信息六'
+quotes[7] = '文本信息七'
+quotes[8] = '文本信息八'
+quotes[9] = '文本信息九'
+quotes[0] = '文本信息十'
+var quote = quotes[rand1]
+//-->
+</script>
+                    <script language="JavaScript">
+<!-- Hide
+document.write( quote )
+// -->
+</script>
+<br><br><br><br>
+<center>刷新后可以看到效果</center>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

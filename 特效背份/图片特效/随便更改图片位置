@@ -1,0 +1,31 @@
+<STYLE TYPE="text/css">
+<!--
+#moveobj {position: relative; 
+top: 0; 
+left: 0;
+z-index: -10}
+-->
+</STYLE>
+<script language="javascript">
+<!--
+//定义函数moveit; 
+function moveit(){
+moveTop = document.forms[0].elements[0].value;
+moveLeft = document.forms[0].elements[1].value;
+moveobj.style.top = moveTop;
+moveobj.style.left = moveLeft; 
+}
+//-->
+
+</script>
+<!--注意：设置一个唯一的ID=moueobj，该ID与CSS中的一致。form属性中action="javascript:moveit()"-->
+<div id="moveobj"><img src="logo.gif"></div><p>
+<form action="javascript:moveit()">
+top: 
+<input type=text size=5 name=topnum value=0>
+&nbsp;&nbsp; left: 
+<input type=text size=5 name=leftnum value=0>
+<input type=submit value="移动" name="submit">
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

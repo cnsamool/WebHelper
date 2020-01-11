@@ -1,0 +1,132 @@
+<BODY bgColor=#f7f7ff onload=tick()>
+<p>
+<CENTER><BR>
+<CENTER>
+</p>
+<TABLE border=1 borderColor=#ffcccc borderlight="#CCCCFF">
+  <TBODY>
+  <TR>
+    <TD align=middle><strong><font color="red" size="5">ÌøÎèĞ¡ÈË</font></strong></TD></TR>
+  <TR>
+    <TD align=middle>
+      <SCRIPT language=JavaScript>
+var agt=navigator.userAgent.toLowerCase();
+if (agt.indexOf("mac") != -1)
+var a="\r";
+else
+var a="\n";
+var max=0;
+function tlist() {
+max=tlist.arguments.length;
+for (i=0; i<max; i++)
+this[i]=tlist.arguments[i];
+}
+tl = new tlist(
+"   o"+a+
+"  /|\\"+a+
+" */ \\*        ÌøÎè"+a,
+"   o_"+a+
+"  \<| *"+a+
+"  *\>\\         ÌøÎè"+a,
+"  _o/*"+a+
+" * |"+a+
+"  / \\         ÌøÎè"+a,
+" *\o_"+a+
+"  /  *"+a+
+" \<\\           ÌøÎè"+a,
+"  _o/*"+a+
+" * |"+a+
+"  / \\         ÌøÎè"+a,
+" *\\c/*"+a+
+"   )"+a+
+"  / \>         ÌøÎè"+a,
+"     *"+a+
+"  \\__/c"+a+
+"   \> \\*       ÌøÎè"+a,
+"   __/"+a+
+"    (o_*"+a+
+"     \\*       ÌøÎè"+a,
+"      \\ /"+a+
+"       |"+a+
+"     */o\\*    ÌøÎè"+a,
+"       \\_"+a+
+"       ("+a+
+"     */o\\*    ÌøÎè"+a,
+"        \<_"+a+
+"      __("+a+
+"     * o|*    ÌøÎè"+a,
+"         /_"+a+
+"      __("+a+
+"     * o|*   ÌøÎè"+a,
+"         ___"+a+
+"      *\/ \>"+a+
+"       o|*    ÌøÎè"+a,
+"        *"+a+
+"       o|_/"+a+
+"      */  \\   ÌøÎè"+a,
+"        *"+a+
+"      _o|_"+a+
+"     *   \>\\   ÌøÎè"+a,
+"       _o/*"+a+
+"      * |"+a+
+"       / \\    ÌøÎè"+a,
+"      *\\o/*"+a+
+"        |"+a+
+"       / \\    ÌøÎè"+a,
+"      c/*"+a+
+"      \<\\"+a+
+"      */\\     ÌøÎè"+a,
+"      c__"+a+
+"      \<\ *"+a+
+"      */\\     ÌøÎè"+a,
+"      c__"+a+
+"      /\ *"+a+
+"     * /\>     ÌøÎè"+a,
+"      c/*"+a+
+"     /(__"+a+
+"    * /       ÌøÎè"+a,
+"    __o/*"+a+
+"    * (__"+a+
+"      \<       ÌøÎè"+a,
+"      __o_"+a+
+"     * /  *"+a+
+"      \<\\      ÌøÎè"+a,
+"     *_o_"+a+
+"       | *"+a+
+"      \< \\     ÌøÎè"+a,
+"     *_c_*"+a+
+"       |"+a+
+"       \>\\     ÌøÎè"+a,
+"     *_c_*"+a+
+"       |__"+a+
+"       \>      ÌøÎè"+a,
+"     *_c_*"+a+
+"     __|__"+a+
+"              ÌøÎè"+a,
+" "+a+
+"     *_c_*"+a+
+"     __)__    ÌøÎè"+a,
+" "+a+
+"     *\\c/*"+a+
+"     __)__    ÌøÎè"+a
+);
+var x=0;
+function tick() {
+document.animation.cheerleader.value = " " + a +
+tl[x];
+x++;
+if (x != max)
+setTimeout("tick()", 200);
+else
+x = 0;
+}
+
+</SCRIPT>
+      <FORM name=animation><TEXTAREA name=cheerleader rows=5 cols="20"></TEXTAREA> <BR><INPUT onclick=javascript:tick() type=button value="¿ªÊ¼ÌøÎè">
+      </FORM></TD></TR></TBODY></TABLE></CENTER><BR>
+</CENTER>
+</body>
+
+
+<!--±¾ÍøÒ³ÓÉ¡¶ÍøÒ³ÖúÊÖV1.1¡·ÖÆ×÷    °æÈ¨ËùÓĞ£ºÉµÃ¨Èí¼ş -->
+<!--Çë·ÃÎÊÉµÃ¨Èí¼ş¹Ù·½ÍøÕ¾   http://samool.533.net  -->

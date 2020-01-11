@@ -1,0 +1,259 @@
+
+<!--第一步：将下列代码复制到<head></head>之间：-->
+<SCRIPT language=JavaScript1.2>
+var message= new Array()
+// message[indexnumber]="傻猫软件"
+message[0]="傻猫软件 http://samool.533.net"
+message[1]="音乐、软件、图片"
+message[2]="网页助手 你的好朋友！！"
+// 卷轴的高
+var scrollerheight=20
+// 标题宽
+var titlezonewidth=180
+// 说明宽
+var copyzonewidth=240
+// 距离窗口顶
+var scrollertop=20
+// 距离窗口左
+var scrollerleft=20
+var scrollerborder=2
+// 标题背景色
+var titlezonebg="330066"
+// 文字的背景色
+var copyzonebg="CC0000"
+// 卷轴的背景色
+var scrollbg="AAAAAA"
+// 目标窗口
+var targetlink="_blank"
+// 标题的字体属性
+var font_titleface="宋体"
+var font_titlecolor="FFFFFF"
+var font_titlesize=2
+// 说明的字体属性
+var font_copyface="宋体"
+var font_copycolor="FFFFFF"
+var font_copysize=2
+// s设置 1 标题为粗体,  0 为正常
+var titlebold=1
+// 说明
+var copybold=1
+// 设置 'right', 'left' or 'center' 标题对齐方式
+var titlealign="left"
+// 说明
+var copyalign="left"
+// 停顿时间
+var standstill=4000
+var pre_titlebold
+var after_titlebold
+var pre_copybold
+var after_copybold
+
+var cliptop=0
+var clipbottom=0
+var clipleft=0
+var clipright=titlezonewidth+copyzonewidth
+
+var i_message=0
+var mes_joined
+var mes_split
+var contenttext
+var contentbg=""
+
+var step=1
+var pause=20
+
+if (titlebold==1) {
+	pre_titlebold="<b>"
+	after_titlebold="</b>"
+}
+else if (titlebold==0) {
+	pre_titlebold=""
+	after_titlebold=""
+}
+
+if (copybold==1) {
+	pre_copybold="<b>"
+	after_copybold="</b>"
+}
+else if (copybold==0) {
+	pre_copybold=""
+	after_copybold=""
+}
+
+function initiate() {
+		mes_joined=message[i_message]
+		mes_split=mes_joined.split("|")
+		
+		contenttext="<table cellpadding=4 cellspacing=0 border=0>"
+		contenttext+="<tr valign='top'>"
+		contenttext+="<td align="+titlealign+" width="+titlezonewidth+" height='"+scrollerheight+"' bgcolor='"+titlezonebg+"'>"
+		contenttext+="<a href='"+mes_split[2]+"' target='"+targetlink+"'>"
+		contenttext+="<font face='"+font_titleface+"' color='"+font_titlecolor+"' size='"+font_titlesize+"'>"
+		contenttext+=pre_titlebold
+		contenttext+=mes_split[0]
+		contenttext+=after_titlebold
+		contenttext+="</font></a></td>"
+		contenttext+="<td align="+copyalign+" width="+copyzonewidth+" height='"+scrollerheight+"' bgcolor='"+copyzonebg+"'>"
+		contenttext+="<font face='"+font_copyface+"' color='"+font_copycolor+"' size='"+font_copysize+"'>"
+		contenttext+=pre_copybold
+		contenttext+=mes_split[1]
+		contenttext+=after_copybold
+		contenttext+="</font></td></tr>"
+		contenttext+="</table>"
+		
+		var bg_width=titlezonewidth+copyzonewidth+2*scrollerborder
+		var bg_height=scrollerheight+2*scrollerborder
+		
+		contentbg="<table width="+bg_width+" height='"+bg_height+"' cellpadding=0 cellspacing=0 border='"+scrollerborder+"'><tr><td bgcolor='"+scrollbg+"'>&nbsp;</td></tr></table>"
+	
+	if (document.all) {
+		scrollertext.innerHTML=contenttext
+		scrollerbg.innerHTML=contentbg
+		document.all.scrollertext.style.posTop=scrollertop+scrollerheight
+		document.all.scrollertext.style.posLeft=scrollerleft
+		document.all.scrollerbg.style.posTop=scrollertop-scrollerborder
+		document.all.scrollerbg.style.posLeft=scrollerleft-scrollerborder
+		document.all.scrollertext.style.clip="rect("+cliptop+" "+clipright+" "+clipbottom+" "+clipleft+")"
+		scrollin()
+	}
+	if (document.layers) {
+		document.scrollertext.document.write(contenttext)
+		document.scrollertext.document.close()
+		document.scrollerbg.document.write(contentbg)
+		document.scrollerbg.document.close()
+		document.scrollertext.top=scrollertop+scrollerheight
+		document.scrollertext.left=scrollerleft
+		document.scrollerbg.top=scrollertop-scrollerborder
+		document.scrollerbg.left=scrollerleft-scrollerborder
+		document.scrollertext.clip.left=clipleft
+        document.scrollertext.clip.right=clipright
+        document.scrollertext.clip.top=cliptop
+        document.scrollertext.clip.bottom=clipbottom
+		scrollin()
+	}
+}
+
+function scrollin(){
+	if (document.all){
+		if (document.all.scrollertext.style.posTop>scrollertop) {
+			clipbottom+=step
+			document.all.scrollertext.style.clip="rect("+cliptop+" "+clipright+" "+clipbottom+" "+clipleft+")"
+			document.all.scrollertext.style.posTop-=step
+			var timer=setTimeout("scrollin()",pause)
+		}
+		else {
+			clearTimeout(timer)
+			var timer=setTimeout("scrollout()",standstill)
+		}
+	}
+	if (document.layers){
+		if (document.scrollertext.top>scrollertop) {
+			clipbottom+=step
+			document.scrollertext.clip.left=clipleft
+        	document.scrollertext.clip.right=clipright
+        	document.scrollertext.clip.top=cliptop
+        	document.scrollertext.clip.bottom=clipbottom
+			document.scrollertext.top-=step
+			var timer=setTimeout("scrollin()",pause)
+		}
+		else {
+			clearTimeout(timer)
+			var timer=setTimeout("scrollout()",standstill)
+		}
+	}
+}
+
+function scrollout(){
+	if (document.all){
+		if (document.all.scrollertext.style.posTop>(scrollertop-scrollerheight)) {
+			cliptop+=step
+			document.all.scrollertext.style.clip="rect("+cliptop+" "+clipright+" "+clipbottom+" "+clipleft+")"
+			document.all.scrollertext.style.posTop-=step
+			var timer=setTimeout("scrollout()",pause)
+		}
+		else {
+			clearTimeout(timer)
+			changemessage()
+		}
+	}
+	if (document.layers){
+		if (document.scrollertext.top>(scrollertop-scrollerheight)) {
+			cliptop+=step
+			document.scrollertext.clip.left=clipleft
+        	document.scrollertext.clip.right=clipright
+        	document.scrollertext.clip.top=cliptop
+        	document.scrollertext.clip.bottom=clipbottom
+			document.scrollertext.top-=step
+			var timer=setTimeout("scrollout()",pause)
+		}
+		else {
+			clearTimeout(timer)
+
+			changemessage()
+		}
+	}
+}
+
+function changemessage(){
+		i_message++
+		if (i_message>message.length-1) {i_message=0}
+		mes_joined=message[i_message]
+		mes_split=mes_joined.split("|")
+		cliptop=0
+		clipbottom=0
+		
+		contenttext="<table cellpadding=4 cellspacing=0 border=0>"
+		contenttext+="<tr valign='top'>"
+		contenttext+="<td align="+titlealign+" width="+titlezonewidth+" height='"+scrollerheight+"' bgcolor='"+titlezonebg+"'>"
+		contenttext+="<a href='"+mes_split[2]+"' target='"+targetlink+"'>"
+		contenttext+="<font face='"+font_titleface+"' color='"+font_titlecolor+"' size='"+font_titlesize+"'>"
+		contenttext+=pre_titlebold
+		contenttext+=mes_split[0]
+		contenttext+=after_titlebold
+		contenttext+="</font></a></td>"
+		contenttext+="<td align="+copyalign+" width="+copyzonewidth+" height='"+scrollerheight+"' bgcolor='"+copyzonebg+"'>"
+		contenttext+="<font face='"+font_copyface+"' color='"+font_copycolor+"' size='"+font_copysize+"'>"
+		contenttext+=pre_copybold
+		contenttext+=mes_split[1]
+		contenttext+=after_copybold
+		contenttext+="</font></td></tr>"
+		contenttext+="</table>"
+	
+	if (document.all) {
+		scrollertext.innerHTML=contenttext
+		document.all.scrollertext.style.posTop=scrollertop+scrollerheight
+		document.all.scrollertext.style.posLeft=scrollerleft
+		document.all.scrollertext.style.clip="rect("+cliptop+" "+clipright+" "+clipbottom+" "+clipleft+")"
+		scrollin()
+	}
+	if (document.layers) {
+		document.scrollertext.document.write(contenttext)
+		document.scrollertext.document.close()
+		document.scrollertext.top=scrollertop+scrollerheight
+		document.scrollertext.left=scrollerleft
+		document.scrollertext.clip.left=clipleft
+        document.scrollertext.clip.right=clipright
+        document.scrollertext.clip.top=cliptop
+        document.scrollertext.clip.bottom=clipbottom
+		scrollin()
+	}
+}
+
+</SCRIPT>
+
+<STYLE>A {
+	COLOR: #aa0000
+}
+A:hover {
+	COLOR: #ff0000
+}
+</STYLE>
+
+
+
+<!--第二步：将下列代码复制到<body></body>之间：-->
+<BODY onload=initiate() bgcolor="#FFFFFF">
+<DIV id=scrollerbg style="POSITION: absolute; TOP: -1000px"></DIV>
+<DIV id=scrollertext style="POSITION: absolute; TOP: -1000px"></DIV>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

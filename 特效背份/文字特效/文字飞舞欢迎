@@ -1,0 +1,170 @@
+<!--脚本说明:
+第一步：把如下代码加入<body>区域中-->
+<SCRIPT>
+<!-- Beginning of JavaScript -
+var your_message="傻猫软件,欢迎您的光临"
+var textfont="Verdana"
+var textsize=20
+var textcolor="006600"
+var textboldness=7
+var tempo=40
+var stepx=30
+var stepy=20
+var msg=new Array()
+var msg=your_message
+var message=msg.split("")
+var numberofletters=msg.length-1
+var x,y
+var marginbottom
+var marginleft=0
+var margintop=0
+var marginright
+textboldness=textboldness*100
+var timer
+var xpos=new Array()
+var ypos=new Array()
+var spancontent=new Array()
+
+for (i=0; i<=numberofletters;i++) {
+    xpos[i]=0
+	ypos[i]=0
+}
+
+for (i=0;i<=numberofletters;i++) {
+	spancontent[i]="<span style='position:relative;font-family:"+textfont+";font-size:"+textsize+"pt;color:"+textcolor+";font-weight:"+textboldness+"'>"+message[i]+"</span>"
+}
+
+function setValues() {
+    var firsttimer= setTimeout("setValues2()",2000)
+}
+
+function setValues2() {
+	if (document.all) {
+    	marginbottom = document.body.clientHeight-5
+    	marginright = document.body.clientWidth-5
+		for (i=0;i<=numberofletters;i++) {             
+			var thisspan = eval("document.all.span"+i)
+    		thisspan.innerHTML=spancontent[i]
+			var thisspan = eval("document.all.span"+(i)+".style")
+           	thisspan.posLeft=0 
+			thisspan.postop=0  
+		}
+		moveball()
+	}
+	
+	if (document.layers) {
+    	marginbottom = window.innerHeight-10
+    	marginright = window.innerWidth-10
+		for (i=0;i<=numberofletters;i++) {             
+			var thisspan=eval("document.span"+i+".document")
+    		thisspan.write(spancontent[i])
+			thisspan.close()
+			var thisspan=eval("document.span"+i)
+           	thisspan.left=0 
+			thisspan.top=0  
+		}
+    	moveball()
+	}
+}
+
+function randommaker(range) {		
+	rand=Math.floor(range*Math.random())
+    return rand
+}
+
+function moveball() {
+	if (document.all) {
+		checkposition()
+   		makesnake()
+   		document.all.span0.style.posTop+=stepy
+    	timer=setTimeout("moveball()",tempo)
+	}
+	if (document.layers) {
+		checkposition()
+   		makesnake()
+   		document.span0.top+=stepy
+    	timer=setTimeout("moveball()",tempo)
+	}
+}
+
+function makesnake() {
+		for (i=numberofletters; i>=1; i--) {
+   			xpos[i]=xpos[i-1]
+			ypos[i]=ypos[i-1]
+    	}
+		if (document.all) {
+			xpos[0]=document.all.span0.style.posLeft+stepx
+			ypos[0]=document.all.span0.style.posTop+stepy
+			for (i=0;i<=numberofletters;i++) {  
+    			var thisspan=eval("document.all.span"+(i)+".style")
+    			thisspan.posLeft=xpos[i]
+				thisspan.posTop=ypos[i]
+    		}
+		}
+		if (document.layers) {
+			xpos[0]=document.span0.left+stepx
+			ypos[0]=document.span0.top+stepy
+			for (i=0;i<=numberofletters;i++) {  
+    			var thisspan = eval("document.span"+i)
+    			thisspan.left=xpos[i]
+				thisspan.top=ypos[i]
+    		}
+		}
+}
+
+function checkposition() {
+	if (document.all) {
+		if (document.all.span0.style.posLeft>marginright) {
+			stepx=(stepx+randommaker(2))*-1
+			document.all.span0.style.posLeft-=1
+		}
+		if (document.all.span0.style.posLeft<marginleft) {
+			stepx=(stepx+randommaker(2))*-1
+			document.all.span0.style.posLeft+=1
+		}	
+		if (document.all.span0.style.posTop>marginbottom) {
+			stepy=(stepy+randommaker(2))*-1
+			document.all.span0.style.posTop-=1
+		}
+		if (document.all.span0.style.posTop<margintop) {
+			stepy=(stepy+randommaker(2))*-1
+			document.all.span0.style.posTop+=1
+		}
+	}
+	if (document.layers) {
+		if (document.span0.left>=marginright) {
+			stepx=(stepx+randommaker(2))*-1
+			document.span0.left-=10
+		}
+		if (document.span0.left<=marginleft) {
+			stepx=(stepx+randommaker(2))*-1
+			document.span0.left+=10
+		}	
+		if (document.span0.top>=marginbottom) {
+			stepy=(stepy+randommaker(2))*-1
+			document.span0.top-=10
+		}
+		if (document.span0.top<=margintop) {
+			stepy=(stepy+randommaker(2))*-1
+			document.span0.top+=10
+		}
+	}
+}
+// - End of JavaScript - -->
+</SCRIPT>
+  <SCRIPT>
+<!-- Beginning of JavaScript -
+
+for (i=0;i<=numberofletters;i++) {
+    document.write("<span id='span"+i+"' style='position:absolute'></span>")
+    document.close()
+}
+
+// - End of JavaScript - -->
+</SCRIPT>
+
+
+<!--第二步：把<body>中的内容改为：-->
+<body  onload=setValues()>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

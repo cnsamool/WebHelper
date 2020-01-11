@@ -1,0 +1,480 @@
+
+<SCRIPT LANGUAGE='JavaScript'>
+
+function fillall(){
+
+	for (var i = 0; i < 24; i++) {
+
+		document.form.elements[i].checked=1
+
+	}
+
+}
+
+
+
+function clearall(){
+
+	for (var i = 0; i < 24; i++) {
+
+		document.form.elements[i].checked=0
+
+	}
+
+}
+
+
+
+function level1(){
+
+	clearall()
+
+	document.form.elements[10].checked=1
+
+	document.form.elements[12].checked=1 
+
+	document.form.elements[14].checked=1
+
+}
+
+
+
+function level2(){
+
+	clearall()
+
+	document.form.elements[12].checked=1
+
+	document.form.elements[16].checked=1
+
+	document.form.elements[17].checked=1
+
+	document.form.elements[18].checked=1
+
+	document.form.elements[20].checked=1
+
+	document.form.elements[21].checked=1
+
+	document.form.elements[22].checked=1
+
+	document.form.elements[23].checked=1
+
+	document.form.elements[24].checked=1
+
+}
+
+
+
+function level3(){
+
+	fillall()
+
+	document.form.elements[4].checked=0
+
+	document.form.elements[6].checked=0
+
+	document.form.elements[7].checked=0
+
+	document.form.elements[8].checked=0
+
+	document.form.elements[11].checked=0
+
+	document.form.elements[12].checked=0
+
+	document.form.elements[13].checked=0
+
+	document.form.elements[16].checked=0
+
+	document.form.elements[17].checked=0
+
+	document.form.elements[18].checked=0
+
+	document.form.elements[24].checked=0
+
+}
+
+
+
+function level4(){
+
+	clearall()
+
+	document.form.elements[2].checked=1
+
+	document.form.elements[6].checked=1
+
+	document.form.elements[8].checked=1
+
+	document.form.elements[10].checked=1
+
+	document.form.elements[12].checked=1
+
+	document.form.elements[14].checked=1
+
+	document.form.elements[16].checked=1
+
+	document.form.elements[18].checked=1
+
+	document.form.elements[22].checked=1
+
+}
+
+
+
+function level5(){
+
+	clearall()
+
+	document.form.elements[11].checked=1
+
+	document.form.elements[16].checked=1
+
+	document.form.elements[21].checked=1
+
+}
+
+
+
+function checkall(){
+
+	var win=1;
+
+	for (var i = 0; i < 24; i++) {
+
+		if (document.form.elements[i].checked==1)  {
+
+			win=0;
+
+		}
+
+	}
+
+	if (win==1){
+
+		alert("\n   You Did It!!\n")
+
+	}
+
+}
+
+
+
+function check(v){        
+
+	q=5;
+
+	w=1;
+
+	row=parseInt(v/q)+w;
+
+	if (isNaN(row)) {
+
+		row=1;
+
+	}
+
+
+
+	intv = parseInt(v);
+
+	a=eval(intv+q);
+
+	b=eval(intv-q);
+
+	c=eval(intv+w);
+
+	d=eval(intv-w);
+
+	
+
+	if (a<0 || a>24){
+
+		a=25;
+
+	}
+
+	if (b<0 || b>24){
+
+		b=25;
+
+	}
+
+	if (c<0 || c>24){
+
+		c=25;
+
+	}
+
+	if (d<0 || d>24){
+
+		d=25;
+
+	}
+
+
+
+	kc = (parseInt(c/q)+w)
+
+	kd = (parseInt(d/q)+w)
+
+	kv = row;
+
+	if (kc != kv){
+
+		c=25;
+
+	}
+
+	if (kd != kv){
+
+		d=25;
+
+	}
+
+
+
+	if (v==5) d=25;//correction for strange bug
+
+
+
+	if (document.form.elements[a].checked == 1) { 
+
+		document.form.elements[a].checked=0        
+
+	} 
+
+	else {
+
+		document.form.elements[a].checked=1        
+
+	}        
+
+	if (document.form.elements[b].checked == 1) { 
+
+		document.form.elements[b].checked=0        
+
+	} 
+
+	else {
+
+		document.form.elements[b].checked=1        
+
+	}        
+
+	if (document.form.elements[c].checked == 1) { 
+
+		document.form.elements[c].checked=0        
+
+	} 
+
+	else {
+
+		document.form.elements[c].checked=1        
+
+	}        
+
+	if (document.form.elements[d].checked == 1) { 
+
+		document.form.elements[d].checked=0        
+
+	} 
+
+	else {
+
+		document.form.elements[d].checked=1        
+
+	}
+
+	checkall()  
+
+}
+
+
+
+</SCRIPT>
+
+
+
+<FORM NAME=form>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 清盘</p>
+<p>游戏目标：将盘面上的<br>
+空格清除干净</p>
+
+<TABLE COLSPEC="L20 L20 L20 L20 L20" BORDER=7>
+
+<TR>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=0 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=1 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=2 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=3 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=4 ONCLICK="check(value)"></p>
+</TD>
+
+</TR>
+
+
+
+<TR>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=5 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=6 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=7 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=8 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=9 ONCLICK="check(value)"></p>
+</TD>
+
+</TR>
+
+
+
+<TR>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=10 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=11 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=12 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=13 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=14 ONCLICK="check(value)"></p>
+</TD>
+
+</TR>
+
+
+
+<TR>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=15 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=16 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=17 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=18 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=19 ONCLICK="check(value)"></p>
+</TD>
+
+</TR>
+
+
+
+<TR>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=20 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=21 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=22 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=23 ONCLICK="check(value)"></p>
+</TD>
+
+<TD>
+  <p align="center"><INPUT TYPE=CHECKBOX VALUE=24 ONCLICK="check(value)"></p>
+</TD>
+
+</TR>
+
+
+
+</TABLE>
+
+
+
+<BR>
+
+
+
+<TABLE BORDER=10>
+
+<TR>
+
+<TD align="center"><A HREF="JavaScript:level1()">级别 1</A></TD> 
+ 
+<TD align="center"><A HREF="JavaScript:level2()">级别 2</A></TD> 
+ 
+</TR> 
+ 
+ 
+ 
+<TR> 
+ 
+<TD align="center"><A HREF="JavaScript:level3()">级别 3</A></TD> 
+ 
+<TD align="center"><A HREF="JavaScript:level4()">级别 4</A></TD> 
+ 
+</TR> 
+ 
+ 
+ 
+<TR> 
+ 
+<TD align="center"><A HREF="JavaScript:level5()">级别 5</A></TD> 
+ 
+<TD align="center"> 
+  <p align="right"><INPUT TYPE="RESET" VALUE="清除"></p>
+</TD>
+
+</TR>
+
+</TABLE>
+
+</FORM>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

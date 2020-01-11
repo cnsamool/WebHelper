@@ -1,0 +1,11 @@
+<form> 
+<div align="center"><center><p>本站很好: <input TYPE="radio" NAME="radio" value="谢谢您的鼓励和支持！" onClick="alert(value)">
+
+本站一般: <input TYPE="radio" NAME="radio" value="我会不断努力的！" onClick="alert(value)">
+
+本站太差: <input TYPE="radio" NAME="radio" value="具体的意见建议请Email给我，谢谢！" onClick="alert(value)">
+</p> 
+</center></div> 
+</form> 
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

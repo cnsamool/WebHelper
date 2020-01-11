@@ -1,0 +1,151 @@
+
+<script LANGUAGE="JAVASCRIPT">
+
+<!-- hide this script tag's contents from old browsers
+
+function ClearForm(form){
+
+    form.weight.value = "";
+
+    form.height.value = "";
+
+    form.bmi.value = "";
+
+    form.my_comment.value = "";
+
+}
+
+
+
+function bmi(weight, height) {
+
+          bmindx=weight/eval(height*height);
+
+          return bmindx;
+
+}
+
+function checkform(form) {
+
+       if (form.weight.value==null||form.weight.value.length==0 
+
+        || form.height.value==null||form.height.value.length==0){
+
+            alert("\nPlease complete the form first");
+
+            return false;
+
+       }
+
+       else if (parseFloat(form.height.value) <= 0||
+
+                parseFloat(form.height.value) >=500||
+
+                parseFloat(form.weight.value) <= 0||
+
+                parseFloat(form.weight.value) >=500){
+
+                alert("\nReally know what you're doing? \nPlease enter values again. \nWeight in kilos and \nheight in cm");
+
+                ClearForm(form);
+
+                return false;
+
+       }
+
+       return true;
+
+}
+
+function computeform(form) {
+
+       if (checkform(form)) {
+
+       yourbmi=Math.round(bmi(form.weight.value, form.height.value/100));
+
+       form.bmi.value=yourbmi;
+
+       if (yourbmi >30) {
+
+          form.my_comment.value="不要在闹了!!!";
+
+       }
+
+       else if (yourbmi >28 && yourbmi <=30) {
+
+          form.my_comment.value="您是猪吗?";
+
+       }
+
+       else if (yourbmi >23 && yourbmi <=28) {
+
+          form.my_comment.value="两头猪也没有你重吧?";
+
+       }
+
+       else if (yourbmi >21 && yourbmi <=23) {
+
+          form.my_comment.value="您现在是偏胖,应该注意饮食!";
+
+       }
+
+       else if (yourbmi >=19 && yourbmi <=21) {
+
+          form.my_comment.value="哇!!!您太苗条了! 是标准身材";
+
+       }
+
+       else if (yourbmi >=18 && yourbmi <19) {
+
+          form.my_comment.value="您是不是营养不良?????";
+
+       }
+
+       else if (yourbmi >=17 && yourbmi <18) {
+
+          form.my_comment.value="这个不是骨头吗????";
+
+       }
+
+       else if (yourbmi <17) {
+
+          form.my_comment.value="按照生物学来说这种生物是不能生存的";
+
+       }
+
+      }
+
+       return;
+
+}
+
+ // -- done hiding from old browsers -->
+
+
+
+
+</script>
+
+
+<form NAME="BMI" method="POST">
+  <table border="1">
+    <tr>
+      <td><font color="red"><div align="center"><center><p>体重</font> (kg)</td>
+      <td align="center"><font color="red"><div align="center"><center><p>身高</font>(cm)</td>
+      <td align="center"><font color="blue"><div align="center"><center><p>健康值</font></td>
+      <td align="center"><font color="blue"><div align="center"><center><p>电脑对您的评价</font></td>
+    </tr>
+    <tr align="center">
+      <td><input TYPE="TEXT" NAME="weight" SIZE="6" onFocus="this.form.weight.value=''"></td>
+      <td><input TYPE="TEXT" NAME="height" SIZE="6" onFocus="this.form.height.value=''"></td>
+      <td><input TYPE="TEXT" NAME="bmi" SIZE="5"></td>
+      <td><input TYPE="TEXT" NAME="my_comment" size="40"></td>
+    </tr>
+  </table>
+  <div align="center"><center><p><input TYPE="button" VALUE="确定"
+  onClick="computeform(this.form)"> <input TYPE="reset" VALUE="取消"
+  onClick="ClearForm(this.form)"> </p>
+  </center></div>
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

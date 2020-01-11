@@ -1,0 +1,85 @@
+<head>
+<style>
+body,td,a {font-size:9pt;color:000000;text-decoration:none}
+.none{border:black 1px solid;background:D9D9D9;padding-top:2}
+.over {border:black 1px solid;background:707888;color:white;padding-top:2}
+</style>
+<title></title>
+</head>
+
+<body oncontextmenu="return false">
+<div style="position:absolute; left: 100; top: 100;cursor: hand;display='none';" id="plane" onMouseDown="down=true;divleft=event.clientX-parseInt(plane.style.left);divtop=event.clientY-parseInt(plane.style.top)" onMouseUp="down=false">
+
+<div align="center" style="position:absolute; left:150px; top:33px; width:100px; height:19px; z-index:1;color:white;background:707888;cursor:default;" class="none" onMouseOver="menuin();init()">
+<p><a href="http://samool.533.net" target="_blank"><font color="#000000">傻猫在线</font></a></p></div>
+<div align="center" id="item1" style="position:absolute; left:50px; top:55px; width:100px; height:19px; z-index:2; filter:alpha(opacity=0)" class="none" onMouseOver="this.className='over';menuin()" onMouseOut="this.className='none';">
+<p><a href="http://yangshiy.533.net" target="_blank">仕毅风采</a></p></div>
+<div align="center" id="item2" style="position:absolute; left:250px; top:77px; width:100px; height:19px; z-index:3; filter:alpha(opacity=0)" class="none" onMouseOver="this.className='over';menuin()" onMouseOut="this.className='none';">
+<p><a href="http://www.sina.com.cn" target="_blank">新浪</a></p></div>
+<div align="center" id="item3" style="position:absolute; left:50px; top:99px; width:100px; height:19px; z-index:4; filter:alpha(opacity=0)" class="none" onMouseOver="this.className='over';menuin()" onMouseOut="this.className='none';">
+<p><a href="http://www.onlinedown.net" target="_blank">华军软件</a></p></div>
+<div align="center" id="item4" style="position:absolute; left:250px; top:121px; width:100px; height:19px; z-index:5; filter:alpha(opacity=0)" class="none" onMouseOver="this.className='over';menuin()" onMouseOut="this.className='none';">
+<p><a href="http://www.163.com" target="_blank">网易</a></p></div>
+</div>
+<script language="VBScript">
+dim down,divleft,divtop,timelinestart,timelinestop,tidone,tidtwo,tidtree
+down=false
+timelinestart=0
+timelinestop=0
+sub document_onmousedown
+if window.event.button=2 then
+plane.style.display=""
+plane.style.left=window.event.clientx-153
+plane.style.top=window.event.clienty-35
+end if
+end sub
+sub document_ondargstart
+window.event.returnvalue=false
+end sub
+function menuin()
+cleartimeout(tidtree)
+end function
+sub document_onclick
+tidtree=settimeout("outit()",200)
+end sub
+function init()
+if timelinestart<>5 then
+cleartimeout(tidtwo)
+item1.style.pixelLeft=item1.style.pixelLeft+20
+item1.filters.alpha.opacity=item1.filters.alpha.opacity+20
+item2.style.pixelLeft=item2.style.pixelLeft-20
+item2.filters.alpha.opacity=item2.filters.alpha.opacity+20
+item3.style.pixelLeft=item3.style.pixelLeft+20
+item3.filters.alpha.opacity=item3.filters.alpha.opacity+20
+item4.style.pixelLeft=item4.style.pixelLeft-20
+item4.filters.alpha.opacity=item4.filters.alpha.opacity+20
+timelinestart=timelinestart+1
+else
+cleartimeout(tidone)
+end if
+tidone=settimeout("init()",1)
+end function
+function outit()
+if timelinestart<>0 then
+cleartimeout(tidone)
+item1.style.pixelLeft=item1.style.pixelLeft-20
+item1.filters.alpha.opacity=item1.filters.alpha.opacity-20
+item2.style.pixelLeft=item2.style.pixelLeft+20
+item2.filters.alpha.opacity=item2.filters.alpha.opacity-20
+item3.style.pixelLeft=item3.style.pixelLeft-20
+item3.filters.alpha.opacity=item3.filters.alpha.opacity-20
+item4.style.pixelLeft=item4.style.pixelLeft+20
+item4.filters.alpha.opacity=item4.filters.alpha.opacity-20
+timelinestart=timelinestart-1
+else
+cleartimeout(tidtwo)
+plane.style.display="none"
+exit function
+end if
+tidtwo=settimeout("outit()",1)
+end function
+
+</script>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

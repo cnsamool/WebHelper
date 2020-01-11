@@ -1,0 +1,38 @@
+<html>
+<head>
+<title></title>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+</head>
+
+<BODY>
+<p><OBJECT id=sims classid=CLSID:D45FD31B-5C6E-11D1-9EC1-00C04FD7081F>
+  </OBJECT> 
+  <SCRIPT>
+var MerlinID;
+var MerlinACS;
+sims.Connected = true;
+MerlinLoaded = LoadLocalAgent(MerlinID, MerlinACS);
+Merlin = sims.Characters.Character(MerlinID);
+Merlin.Show();
+Merlin.Play("Surprised");
+Merlin.Speak("大家好");
+Merlin.Play("GestureLeft");
+Merlin.Think("我是老河！");
+Merlin.Play("Pleased");
+Merlin.Think("感谢你使用网页助手");
+Merlin.Play("GestureDown");
+Merlin.Speak("哈哈！");
+Merlin.Hide();
+function LoadLocalAgent(CharID, CharACS){
+LoadReq = sims.Characters.Load(CharID, CharACS);
+return(true);
+}
+</SCRIPT>
+</p>
+<p>&nbsp;</p>
+<p>看此效果必须装有office2000！！！</p>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

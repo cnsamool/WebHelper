@@ -1,0 +1,131 @@
+<script language="JavaScript">
+<!-- Activate Cloaking Device
+var i = 0; 
+var TextNumber = -1;
+var TextInput = new Object();
+var HelpText=""; 
+var Text = ""; 
+var Speed=50;
+var message=0;
+var addPadding="\r\n";
+// 以下改为你自己的信息
+TextInput[0] = "朋友你好!"; 
+TextInput[1] = "喜欢你来到我的主页";
+TextInput[2] = "你要什么？";
+TextInput[3] = "不会吧？";
+TextInput[4] = "网络愉快";
+TextInput[5] = "看看我怎么样";
+TextInput[6] = "我要走了。";
+TextInput[7] = "有空到 http://samool.533.net找我。";
+TotalTextInput = 7; // (0, 1, 2, 3, 4, 5, 6, 7)
+// Positioning and speed vary between versions.
+var Version = navigator.appVersion; 
+if (Version.substring(0, 1)==3)
+{
+Speed=200;
+addPadding="";
+}
+
+for (var addPause = 0; addPause <= TotalTextInput; addPause++) 
+{TextInput[addPause]=addPadding+TextInput[addPause];}
+var TimerId
+var TimerSet=false;
+
+// Called by >>> button (display next message) .
+function nextMessage() 
+{
+if (!TimerSet)
+{
+TimerSet=true;
+clearTimeout (TimerId);
+if (TextNumber>=TotalTextInput)
+{ 
+alert("已经没有信息了");
+TimerSet=false;
+}
+else
+{
+TextNumber+=1;
+message=TextNumber+1;
+document.forms[0].elements[2].value= message;
+Text = TextInput[TextNumber];
+HelpText = Text;
+}
+teletype();
+}
+}
+
+// Gets and displays character from rollMessage() . 
+// Variable Speed controls length of timeout and thus the speed of typing.
+function teletype() 
+{
+if (TimerSet)
+{
+Text=rollMessage();
+TimerId = setTimeout("teletype()", Speed);
+document.forms[0].elements[0].value=Text;
+}
+}
+
+// Pulls one character at a time from string and returns (as Text) to function teletype() for displaying.
+function rollMessage () 
+{
+i++;
+var CheckSpace = HelpText.substring(i-1, i);
+CheckSpace = "" + CheckSpace;
+if (CheckSpace == " ") 
+{i++;}
+if (i >= HelpText.length+1) 
+{
+TimerSet=false;
+Text = HelpText.substring(0, i);
+i=0; 
+return (Text);
+}
+Text = HelpText.substring(0, i);
+return (Text);
+}
+// Initially called by onLoad in BODY tag to load title. 
+function initTeleType() 
+{
+Text="\r\n Manual Tele-Type Display";
+document.forms[0].elements[0].value=Text;
+}
+// Called by <<< button (get previous message).
+function lastMessage() 
+{
+if (!TimerSet && TextNumber!=-1)
+{
+TimerSet=true;
+clearTimeout (TimerId);
+if (TextNumber<=0)
+{ 
+alert("This is the beginning of the list!");
+TimerSet=false;
+}
+else 
+{
+TextNumber-=1;
+message=TextNumber+1;
+document.forms[0].elements[2].value= message;
+Text = TextInput[TextNumber];
+HelpText = Text;
+} 
+teletype(); 
+}
+}
+// Deactivate Cloaking --></script>
+<form>
+<table CELLSPACING="0" CELLPADDING="0" WIDTH="17%">
+<tr>
+<td width="100%" colspan="3" valign="top"><div align="center"><p><textarea NAME="teletype" ROWS="3" COLS="28" wrap="yes"></textarea> </td>
+</tr>
+<tr align="center">
+<td width="40%" valign="top" bgcolor="#FACD1D"><input TYPE="button" VALUE="公告栏" onClick="lastMessage()"></td>
+<td width="30%" bgcolor="#FACD1D" valign="top"><input TYPE="text" value="共8条" SIZE="5" name="1"></td>
+<td width="30%" bgcolor="#FACD1D" valign="top"><input TYPE="button" VALUE="阅 读" onClick="nextMessage()"></td>
+</tr>
+</table>
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

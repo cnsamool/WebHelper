@@ -1,0 +1,103 @@
+<style>
+.BorderOn {BORDER-RIGHT: #456789 1px solid; BORDER-TOP: #456789 1px solid; MARGIN-LEFT: 10px; BORDER-LEFT: #456789 1px solid; WIDTH: 90px; BORDER-BOTTOM: #456789 1px solid}
+.BorderOff {BORDER-RIGHT: #444444 1px solid; BORDER-TOP: #444444 1px solid; MARGIN-LEFT: 0px; BORDER-LEFT: #444444 1px solid; WIDTH: 90px; BORDER-BOTTOM: #444444 1px solid}
+A.mBlue:link {COLOR: #0000ff; TEXT-DECORATION: none}
+A.mBlue:visited {COLOR: #0000ff; TEXT-DECORATION: none}
+A.mBlue:active {COLOR: #ff0000; TEXT-DECORATION: none}
+A.mBlue:hover {COLOR: #ff0000; TEXT-DECORATION: underline}
+td {  font-size: 9pt; font-family: "宋体"}
+</style>
+
+<body>
+<script language="JavaScript1.2">
+offMessage = "移动鼠标到上面的菜单可以看到它的详细介绍。"
+function boxOn(which,message) {
+if (document.all||document.getElementById) {
+which.className = 'BorderOn';
+if (document.getElementById) {
+document.getElementById("Message").innerHTML = message
+}
+else {
+Message.innerHTML = message;
+      }
+   }
+}
+function boxOff(which) {
+if (document.all||document.getElementById) {
+which.className = 'BorderOff';
+if (document.getElementById) {
+document.getElementById("Message").innerHTML = offMessage
+}
+else {
+Message.innerHTML = offMessage;
+      }
+   }
+}
+</script>
+
+
+<table cellSpacing="0" cellPadding="0" width="200">
+<TBODY>
+<tr>
+<td align="middle"><table class="BorderOff" cellSpacing="0" cellPadding="3" bgColor="#FFCC66">
+<TBODY>
+<tr>
+   <td><p align="center">导航菜单</td>
+</tr>
+</TBODY>
+</table>
+
+<table class="BorderOff" onmouseover="boxOn(this,'绝对经典的软件！')" onmouseout="boxOff(this)" cellSpacing="0" cellPadding="3">
+<TBODY>
+<tr>
+  <td bgcolor="#CACAFF" align="center"><a class="mBlue" href="http://samool.533.net" target="_blank">傻猫软件</a></td>
+</tr>
+</TBODY>
+</table>
+<table class="BorderOff" onmouseover="boxOn(this,'彼此交流的园地！')" onmouseout="boxOff(this)" cellSpacing="0" cellPadding="3">
+<TBODY>
+<tr>
+  <td bgcolor="#CACAFF" align="center"><a class="mBlue" href="http://yangshiy.533.net" target="_blank">仕毅风采</a></td>
+</tr>
+</TBODY>
+</table>
+<table class="BorderOff" onmouseover="boxOn(this,'我喜欢看它的新闻！')" onmouseout="boxOff(this)" cellSpacing="0" cellPadding="3">
+<TBODY>
+<tr>
+  <td bgcolor="#CACAFF" align="center"><a class="mBlue" href="http://www.sina.com.cn" target="_blank">新浪网站</a></td>
+</tr>
+</TBODY>
+</table>
+<table class="BorderOff" onmouseover="boxOn(this,'要下载软件就到这里找。')" onmouseout="boxOff(this)" cellSpacing="0" cellPadding="3">
+<TBODY>
+<tr>
+  <td bgcolor="#CACAFF" align="center"><a class="mBlue" href="http://www.newhua.com.cn" target="_blank">华军软件</a></td>
+</tr>
+</TBODY>
+</table>
+<table class="BorderOff" onmouseover="boxOn(this,'三大门户网站之一呀！')" onmouseout="boxOff(this)" cellSpacing="0" cellPadding="3">
+<TBODY>
+<tr>
+  <td bgcolor="#CACAFF" align="center"><a class="mBlue" href="http://www.netease.com" target="_blank">网易社区</a></td>
+</tr>
+</TBODY>
+</table>
+
+<table cellSpacing="0" cellPadding="1" width="90" bgColor="#444444">
+<TBODY>
+<tr>
+<td>
+<table height="70" cellSpacing="0" cellPadding="2" width="100%" bgColor="#FFCC66">
+<TBODY>
+<tr>
+<td vAlign="top" align="left" bgcolor="#FFCC66"><font id="Message">移动鼠标到上面的菜单可以看到它的详细介绍。</font></td>
+</tr>
+</TBODY>
+</table>
+</td>
+</tr>
+</TBODY>
+</table>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

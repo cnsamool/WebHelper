@@ -1,0 +1,33 @@
+<STYLE type="text/css">
+<!--
+.article { 
+BORDER-BOTTOM: #008000 1px dashed; BORDER-LEFT: #008000 1px dashed; BORDER-RIGHT: #008000 1px dashed; BORDER-TOP: #008000 1px dashed; FILTER: revealTrans(transition=23,duration=0.5) blendTrans(duration=0.5); POSITION: absolute; VISIBILITY: hidden;
+background-color:#BBFFBB;
+padding-top: 3px; padding-right: 3px; padding-bottom: 3px; padding-left: 3px}
+-->
+</STYLE>
+<body>
+<SCRIPT language=JavaScript1.2>
+<!--
+function Show(divid) {
+divid.filters.revealTrans.apply();
+divid.style.visibility = "visible";
+divid.filters.revealTrans.play();
+}
+function Hide(divid) {
+divid.filters.revealTrans.apply();
+divid.style.visibility = "hidden";
+divid.filters.revealTrans.play();
+}
+
+<!-- 使用说明：使用时将下面的网址替换成你的网址即可！
+//-->
+</script>
+<a href="http://samool.533.net" target="_blank" onMouseOver=Show(aosky0) onMouseOut=Hide(aosky0)>傻猫软件</a><div id="aosky0" class="article">为你提供最酷的主页特效！</div><br>
+<a href="http://samool.533.net" target="_blank" onMouseOver=Show(aosky1) onMouseOut=Hide(aosky1)>网页助手</a><div id="aosky1" class="article">提供最新、最全的网址！</div><br>
+<a href="http://www.sina.com.cn" target="_blank" onMouseOver=Show(aosky2) onMouseOut=Hide(aosky2)>新浪网站</a><div id="aosky2" class="article">我喜欢看它的新闻！</div><br>
+<a href="http://www.newhua.com.cn" target="_blank" onMouseOver=Show(aosky3) onMouseOut=Hide(aosky3)>华军软件园</a><div id="aosky3" class="article">要下载软件就到这里找。</div><br>
+<a href="http://www.netease.com" target="_blank" onMouseOver=Show(aosky4) onMouseOut=Hide(aosky4)>网易</a><div id="aosky4" class="article">三大门户网站之一呀！</div><br>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

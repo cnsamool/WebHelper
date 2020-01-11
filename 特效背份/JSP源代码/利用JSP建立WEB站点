@@ -1,0 +1,177 @@
+RS JavaBeans是基于Java组件技术——JavaBeans开发的，具有良好的跨平台特性。本文将介绍利用JSP、TRS及JavaBeans建立一个Web的过程。 
+
+TRS JavaBeans配置步骤 
+
+　　以NT下WebLogic5.1.0为例说明。 
+
+　　1.安装WebLogic5.1.0 
+
+　　2.修改startWebLogic.cmd 
+
+　　将“set PRE_CLASSPATH=”改为“set PRE_CLASSPATH=%TRSBean.jar的全路径%;%TRSDemo.jar的全路径%”。 
+
+　　例如：如果TRSBean.jar位于C:\TRSJavaBeans\lib\目录下,则将此语句改为： 
+
+　　set PRE_CLASSPATH=C:\TRSJavaBeans\lib\TRSBean.jar 
+
+　　3.修改weblogic.properties 
+
+　　将语句：#weblogic.httpd.register.servlets=weblogic.servlet.ServletServlet前面的#号去掉。  
+
+　　将下列语句前的“#”号去掉： 
+# weblogic.httpd.register.*.jsp=\ 
+
+　　# weblogic.servlet.JSPServlet 
+
+　　#weblogic.httpd.initArgs.*.jsp=\ 
+
+　　# pageCheckSeconds=1,\ 
+
+　　# compileCommand=C:/java/bin/javac.exe,\ 
+
+　　# workingDir=D:/weblogic/myserver/classfiles,\ 
+
+　　# verbose=true  
+
+接着将“compileCommand=C:/java/bin/ javac.exe,\”改为“compileCommand=JAVA_ PATH/bin/javac.exe,\”，其中JAVA_PATH为实际所用JDK的安装根目录。 
+
+4.安装DEMO 
+
+将TRSJavaBeans安装包的DEMO目录全部复制到D:/weblogic/myserver/public_html目录下。 
+
+完成以上配置后，我们即可进入设计开发阶段。 
+
+开发示例 
+
+设数据库为:“news.投资动态”,字段为“标题”、“内容”、“日期”和“编号”(惟一性字段)。 
+
+　　以显示某一条具体记录的详细内容为例，至于分页显示、全文检索和BBS等，篇幅所限，不再赘述，感兴趣的用户可以自己试一试。实际运行结果可以参看易信网（www.exin.net）或北京投资平台（www.bjinvest.gov.cn）。 
+
+　　jsp程序如下： 
+<HTML> 
+
+　　<HEAD> 
+
+　　<TITLE>新闻</TITLE> 
+
+　　<link REL="stylesheet" href="mycss.css"TYPE="text/css"> 
+
+　　<META content="text/html; charset=GB2312"http-equiv=Content-Type> 
+
+　　<%@ page import="com.eprobiti.TRS.*"%> 
+
+　　<%@ page import="java.util.*"%> 
+
+　　<jsp:useBean id="TRSConn"scope ="session" class="com.eprobiti.TRS.TRSConnection"/> 
+
+　　<jsp:useBean id="TRSRS"scope ="page" class="com.eprobiti.TRS.TRSResultSet"/> 
+
+　　</HEAD> 
+
+　　<BODY> 
+
+　　<% 
+
+　　String item_id = request.getParameter("id"); 
+
+　　//参数id由URL或者前一个文件的表单隐藏域传过来 
+
+　　String dbname,ip,port,username,password; 
+
+　　dbname = "news.北京新闻"; 
+
+　　//TRS数据库名字 
+
+　　ip="202.123.166.99"; //TRS服务器IP 
+
+　　port="8888";//TRS服务器端口 
+
+　　username="yourname"; 
+
+　　// 可以检索"news.北京新闻"的用户名 
+
+　　password="yourpassword"; 
+
+　　// 该用户名对应的口令 
+
+　　String filter = "编号="+item_id; 
+
+　　//定义检索条件 
+
+　　try { 
+
+　　 if (TRSConn.connect(ip,port,username,password)){ } 
+
+　　//建立与TRS服务器的连接 
+
+　　else { 
+
+　　 out.println("Connection 连接失败！\n"); 
+
+　　 } 
+
+　　 TRSRS = TRSConn.executeSelect(dbname,s1,"","", null, 0, 0, false); 
+
+　　// 执行查询操作，生成记录集 
+
+　　 } catch(TRSException TRSe) { 
+
+　　 out.println("ResultSet 连接失败！\n"); 
+
+　　 } 
+
+　　try { 
+
+　　 TRSRS.moveFirst(); 
+
+　　//记录定位 
+
+　　%> 
+
+　　<p> 
+
+　　<center> 
+
+　　<table width=80%> 
+
+　　<tr align=center> 
+
+　　<td><%=TRSRS.getString("标题")%> 
+
+　　</td> 
+
+　　</tr> 
+
+　　<tr align=center> 
+
+　　<td><%=TRSRS.getString("日期")%> 
+
+　　</td> 
+
+　　</tr> 
+
+　　<tr> 
+
+　　<td><%=TRSRS.getString("内容")%> 
+
+　　</td> 
+
+　　</tr> 
+
+　　</table> 
+
+　　</center> 
+
+　　<p> 
+
+　　<% 
+
+　　TRSRS.close(); 
+
+　　} catch(TRSException TRSe) {} 
+
+　　%> 
+
+　　</body> 
+
+　　</html> 

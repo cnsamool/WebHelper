@@ -1,0 +1,76 @@
+<html>
+<head>
+<title></title>
+<!--第一步:把如下代码加入<head>区域中://-->
+<script janguage="javascript">
+<!--
+// Title: JavaScript - FTP log-on script
+
+function goFtpSite() {
+document.location.href = "ftp://" + document.ftp.login.value + ":" + document.ftp.password.value + "@" + document.ftp.url.value;
+}
+
+//-->
+</script>
+
+</head>
+<body>
+<!--第二步:把如下代码加入<body>区域中://-->
+<form name="ftp">
+<table border="0" cellpadding="1" cellspacing="1" bgcolor="#000000" align="center">
+<tr>
+<td>
+<table border="0" cellspacing=0 cellpadding=5 align="center">
+<tr bgcolor="#bbbbbb">
+<td width="75" align="right">
+<font face="arial,helvetica" size="-1">
+Ftp://
+</font>
+</td>
+<td>
+<font face="arial,helvetica" size="-1">
+<input type="text" size=15 name="url">
+</font>
+</td>
+</tr>
+<tr bgcolor="#dddddd">
+<td align="right">
+<font face="arial,helvetica" size="-1">
+Login:
+</font>
+</td>
+<td>
+<font face="arial,helvetica" size="-1">
+<input type="text" size="15" name="login" maxlength="20">
+</font>
+</td>
+</tr>
+<tr bgcolor="#bbbbbb">
+<td align="right">
+<font face="arial,helvetica" size="-1">
+Password:
+</font>
+</td>
+<td>
+<font face="arial,helvetica" size="-1"> 
+<input type="password" size="15" name="password" maxlength="20">
+</font></td>
+</tr>
+<tr bgcolor="#ffffff">
+<td colspan="2" align="center">
+<font face="arial,helvetica" size="-2">
+<input type=button onclick="goFtpSite();" value="LOG-IN">
+<input type=reset value="CLEAR">
+</font>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</form>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

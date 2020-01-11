@@ -1,0 +1,94 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中://-->
+<SCRIPT LANGUAGE="JavaScript">
+
+<!--Hide JavaScript from Java-Impaired Browsers
+var ls="";
+var dq='"';
+var sq="'";
+var rr="\r";
+
+function jsPars(){ 
+        ls=document.isn.txt.value; 
+        if (ls==""){  
+                alert("I'm sorry.  I don't find any text pasted into the text window");  
+        } 
+        else{  
+                htmlPar();  
+        } 
+}
+
+function htmlPar(){ 
+        document.isn.txt.value="Working......."; 
+        pos=ls.indexOf(dq); 
+        pos1=ls.indexOf(sq); 
+        if ((pos>-1)&&(pos1>-1)){  
+                reWrt();  
+        } 
+        if (pos>-1){  
+                qt=sq;  
+        } 
+        else{  
+                qt=dq;  
+        } 
+        while (ls.indexOf(rr)>-1){  
+                lc=ls.indexOf(rr);  
+                ls=ls.substring(0,lc)+" "+ls.substring(lc+1,ls.length);  
+        } 
+        nls="<SCRIPT LANGUAGE="+qt+"JavaScript"+qt+">"+rr +"<!-- Hide from JavaScript-Impaired Browsers"+rr +"  document.write("+qt+ls.substring(0,36)+qt; 
+        
+        ls=ls.substring(36,ls.length); 
+        lsl=ls.length 
+                pp=50;  
+                if (pp>lsl) {   
+                        pp=lsl;   
+                } 
+                while (lsl>0){  
+                        nls+="\r +"+qt+ls.substring(0,pp)+qt;  
+                        ls=ls.substring(pp,lsl);  
+                        lsl=ls.length;  
+                if (pp>lsl){   
+                        pp=lsl;   
+                }  
+        } 
+        nls+=");"+rr+"// End Hiding -->"+rr+"</SC" +"RIPT>"; 
+        document.isn.txt.value=nls+rr+"<!-- Size: "+nls.length +" bytes --> "+rr; 
+}
+
+function reWrt(){ 
+        pos=-1; 
+        while (ls.indexOf(dq)>-1){  
+                lc=ls.indexOf(dq);  
+                ls=ls.substring(0,lc)+sq+ls.substring(lc+1,ls.length);  
+        } 
+}
+
+function iA(){ 
+        this.length=iA.arguments.length; 
+        for (var i=0;i<this.length;i++){  
+                this[i]=iA.arguments[i]; 
+        }
+}
+
+// End Hiding -->
+
+</SCRIPT>
+
+<FORM NAME="isn">
+<TABLE BORDER=0 WIDTH=486>
+<TR><TD>
+<DIV ALIGN="center">
+<INPUT TYPE="button" NAME="but" VALUE=" Submit When Your HTML Has Been Pasted Below " onClick="jsPars()">
+</DIV>
+<P>
+<TEXTAREA NAME="txt" ROWS=20 COLS=75>
+</TEXTAREA>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

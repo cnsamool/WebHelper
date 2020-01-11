@@ -1,0 +1,146 @@
+
+<script language="javascript">
+<!--
+function createcodes(entry)
+{
+line="<script>version=parseInt(navigator.appVersion); browser='OTHER'; if (navigator.appName=='Netscape'){browser='NS'+version;} if (navigator.appName=='Microsoft Internet Explorer'){browser='MSIE'+version;} if (navigator.appVersion.indexOf('MSIE 3')>0) {browser='MSIE3';}";
+with (document.detectform)
+{ 
+ if (MSIE3.value!="") {line=line+"if (browser=='MSIE3') {window.location='"+MSIE3.value+"'}";}
+ if (MSIE4.value!="") {line=line+"if (browser=='MSIE4') {window.location='"+MSIE4.value+"'}";}
+ if (MSIE5.value!="") {line=line+"if (browser=='MSIE5') {window.location='"+MSIE5.value+"'}";}
+ if (NS3.value!="") {line=line+"if (browser=='NS3') {window.location='"+NS3.value+"'}";}
+ if (NS4.value!="") {line=line+"if (browser=='NS4') {window.location='"+NS4.value+"'}";}
+ if (NS5.value!="") {line=line+"if (browser=='NS5') {window.location='"+NS5.value+"'}";}
+ if (OTHER.value!="") {line=line+"if (browser=='OTHER') {window.location='"+OTHER.value+"'}";}
+
+}
+line=line+"</script>"
+
+entry.code.value=line;
+}
+//-->
+</script>
+<TABLE width="100%" border="0" cellspacing="0" cellpadding="0" align="CENTER" valign="TOP">
+  <tr>
+    <td colspan=3 bgcolor="#6C6C6C"></td>
+  </tr>
+  <tr> 
+    <td height="3"></td>
+    <TABLE align="CENTER">
+      <tr> 
+        <td> 
+          <form name="detectform">
+            <table align="center">
+              <tr>
+                <td></td>
+                <td> 
+                  <div align="center">
+                    <center>
+                      <table border="1" width="100%">
+                        <tr> 
+                          <td bgcolor="#CCCCDD" colspan="2"  width="100%">
+                            <p>请输入各项连接
+                          </td>
+                        </tr>
+                        <tr align="center"> 
+                          <td bgcolor="#FFFFFF" colspan=2 align=left> </td>
+                        </tr>
+                        <tr align="center"> 
+                          <td bgcolor="#EEEEFF" colspan="">BROWSER</td>
+                          <td bgcolor="#EEEEFF" colspan="">PAGE-URL</td>
+                        </tr>
+                        <tr align="center"> 
+                          <td bgcolor="#E4E4E4" colspan=""><font color="#000000" size="2"> MSIE 
+                            3 </font></td>
+                          <td bgcolor="#E4E4E4" colspan="">
+                            <input type="text" name="MSIE3" size="25" value="http://www.yahoo.com">
+                          </td>
+                        </tr>
+                        <tr align="center"> 
+                          <td bgcolor="#E4E4E4" colspan=""><font color="#000000" size="2"> MSIE 
+                            4 </font></td>
+                          <td bgcolor="#E4E4E4" colspan="">
+                            <input type="text" name="MSIE4" size="25" value="http://www.yahoo.com">
+                          </td>
+                        </tr>
+                        <tr align="center"> 
+                          <td bgcolor="#E4E4E4" colspan=""><font color="#000000" size="2"> MSIE 
+                            5 </font></td>
+                          <td bgcolor="#E4E4E4" colspan="">
+                            <input type="text" name="MSIE5" size="25" value="http://www.yahoo.com">
+                          </td>
+                        </tr>
+                        <tr align="center"> 
+                          <td bgcolor="#E4E4E4" colspan=""><font color="#000000" size="2">NETSCAPE 
+                            3</font></td>
+                          <td bgcolor="#E4E4E4" colspan="">
+                            <input type="text" name="NS3" size="25" value="http://www.yahoo.com">
+                          </td>
+                        </tr>
+                        <tr align="center"> 
+                          <td bgcolor="#E4E4E4" colspan=""><font color="#000000" size="2">NETSCAPE 
+                            4</font></td>
+                          <td bgcolor="#E4E4E4" colspan="">
+                            <input type="text" name="NS4" size="25" value="http://www.yahoo.com">
+                          </td>
+                        </tr>
+                        <tr align="center"> 
+                          <td bgcolor="#E4E4E4" colspan=""><font color="#000000" size="2">NETSCAPE 
+                            5</font></td>
+                          <td bgcolor="#E4E4E4" colspan="">
+                            <input type="text" name="NS5" size="25" value="http://www.yahoo.com">
+                          </td>
+                        </tr>
+                        <tr align="center"> 
+                          <td bgcolor="#E4E4E4" colspan=""><font color="#000000" size="2">OTHER 
+                            BROWSERS</font></td>
+                          <td bgcolor="#E4E4E4" colspan="">
+                            <input type="text" name="OTHER" size="25" value="http://www.yahoo.com">
+                          </td>
+                        </tr>
+                        <tr align="center"> 
+                          <td colspan="2" bgcolor="#C0C0C0" align="left">
+                            
+                              <input
+              type="button" value="代码生成" name="B1" onClick="createcodes(this.form)" class="pt9">
+                              <br>
+                              <input type="reset" value="清除重选" name="B2" class="pt9">
+                          </td>
+                        </tr>
+                      </table>
+                    </center>
+                  </div>
+                </td>
+                <td></td>
+              </tr>
+            </table>
+           
+            <table align="center">
+              <tr>
+                <td> 
+                  <table border="1" align="center">
+                    <tr> 
+                      <td bgcolor="#CCCCDD" colspan="2">
+                        <p>生成的代码如下：
+                      </td>
+                    </tr>
+                    
+                    <tr> 
+                    <tr> 
+                      <td bgcolor="#EEEEFF"> 
+                        <div align="center">
+                          <center>
+                            <p>拷贝如下代码</p>
+                          </center>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr> 
+                      <td bgcolor="#EEEEEE">
+                        <div align="center">
+                          <center>
+                            <p>
+                              <textarea name="code" cols="45" rows="20" wrap="PHYSICAL" class="pt9">选择上面的项目生成代码
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

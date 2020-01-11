@@ -1,0 +1,27 @@
+<!--脚本说明：
+把如下代码加入<body>区域中:-->
+<script LANGUAGE="JavaScript">
+ function showOrHide(value) {
+    if (value==0) {
+        if (document.layers)
+           document.layers["layer1"].visibility='hide';
+        else
+           document.all["layer1"].style.visibility='hidden';
+   }
+   else if (value==1) {
+       if (document.layers)
+          document.layers["layer1"].visibility='show';
+       else
+          document.all["layer1"].style.visibility='visible';
+   }
+}
+</script>
+<form NAME="form1">
+<input TYPE="button" VALUE="显 示" onClick="showOrHide(1);">
+<input TYPE="button" VALUE="关 闭" onClick="showOrHide(0);">
+</form>
+<div ID="layer1" style="position:absolute; LEFT:20; TOP:130; background-color:#BFE3C0; width:120;height:100; visibility:hidden">
+<font color=blue><b>欢迎你的光临！</b></font><br>
+<font color="#7E059C">这个脚本很有用的，具体的你自己想想</font></div>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

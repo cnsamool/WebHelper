@@ -1,0 +1,73 @@
+
+<SCRIPT language=javascript><!--
+
+document.onclick = popUp 
+
+  
+
+function popUp() {
+
+newX = window.event.x + document.body.scrollLeft
+
+newY = window.event.y + document.body.scrollTop
+
+menu = document.all.itemopen
+
+  if ( menu.style.display == ""){
+
+    menu.style.display = "none" }
+
+  else {
+
+     menu.style.display = ""}
+
+
+
+    menu.style.pixelLeft = newX - 50
+
+    menu.style.pixelTop = newY - 50
+
+}
+
+//-->
+
+
+
+
+
+</SCRIPT>
+
+
+
+
+
+ <!-- Start of Popup Menu  -->
+
+
+
+ <table id="itemopen" class='box'  style='display:none'>  
+
+ <tr><td><a href='index.htm' class="cc" >弹出菜单</a></td></tr>   
+
+ <tr><td><a href='time1.htm' class="cc" >本站首页</a></td></tr>
+
+ <tr><td><a href='time2.htm' class="cc">My求职信</a></td></tr>
+
+ <tr><td><a href='time3.htm' class="cc" >网上赚钱</a></td></tr>
+
+ <tr><td><a href='ye1.htm' class="cc" >免费资源</a></td></tr>
+
+ <tr><td><a href='ye2.htm' class="cc" >更多连接</a></td></tr>
+
+ <tr><td><a href='ye3.htm' class="cc" >更多连接</a></td></tr>
+
+ <tr><td><a href='zh1.htm' class="cc" >更多连接</a></td></tr>
+
+    </table>
+
+
+
+  <!-- End of Popup Menu  -->
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

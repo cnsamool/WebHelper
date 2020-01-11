@@ -1,0 +1,153 @@
+
+<div style="font-size:24pt;color:green;">
+  <table width="647" border="0">
+    <tr> 
+      <td width="157" height="26">&nbsp;</td>
+      <td colspan="3" height="26"> 
+        <div align="center"><font size="4"><b><font color="#660066">用CSS改变鼠标样式</font></b></font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="157">&nbsp;</td>
+      <td width="137"><font color="#990000">关键字：</font></td>
+      <td width="156"><font color="#990000">解释：</font></td>
+      <td width="192"><font color="#990000">样式：</font></td>
+    </tr>
+    <tr> 
+      <td width="157">&nbsp;</td>
+      <td width="137"><font color="#330066">auto</font></td>
+      <td width="156"><font color="#660066">自动改变样式</font></td>
+      <td width="192"> 
+        <div align="center"></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="157">&nbsp;</td>
+      <td width="137"><font color="#330066">crosshair</font></td>
+      <td width="156"><font color="#660066">精确定位&quot;+&quot;</font></td>
+      <td width="192"> 
+        <div align="center" style="cursor:crosshair"><font color="#006666">用鼠标指着我察看效果</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="157">&nbsp;</td>
+      <td width="137"><font color="#330066">default</font></td>
+      <td width="156"><font color="#660066">默认指针</font></td>
+      <td width="192"> 
+        <div align="center" style="cursor:default"><font color="#006666">用鼠标指着我察看效果</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="157">&nbsp;</td>
+      <td width="137"><font color="#330066">hand</font></td>
+      <td width="156"><font color="#660066">手形</font></td>
+      <td width="192"> 
+        <div align="center" style="cursor:hand"><font color="#006666">用鼠标指着我察看效果</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="157">&nbsp;</td>
+      <td width="137"><font color="#330066">move</font></td>
+      <td width="156"><font color="#660066">移动</font></td>
+      <td width="192"> 
+        <div align="center" style="cursor:move"><font color="#006666">用鼠标指着我察看效果</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="157">&nbsp;</td>
+      <td width="137"><font color="#330066">e-resize</font></td>
+      <td width="156"><font color="#660066">箭头朝右方</font></td>
+      <td width="192"> 
+        <div align="center" style="cursor:e-resize"><font color="#006666">用鼠标指着我察看效果</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="157">&nbsp;</td>
+      <td width="137"><font color="#330066">ne-resize</font></td>
+      <td width="156"><font color="#660066">箭头朝右上方</font></td>
+      <td width="192"> 
+        <div align="center" style="cursor:ne-resize"><font color="#006666">用鼠标指着我察看效果</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="157">&nbsp;</td>
+      <td width="137"><font color="#330066">nw-resize</font></td>
+      <td width="156"><font color="#660066">箭头朝左上方</font></td>
+      <td width="192"> 
+        <div align="center" style="cursor:nw-resize"><font color="#006666">用鼠标指着我察看效果</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="157">&nbsp;</td>
+      <td width="137"><font color="#330066">n-resize</font></td>
+      <td width="156"><font color="#660066">箭头朝上方</font></td>
+      <td width="192"> 
+        <div align="center" style="cursor:n-resize"><font color="#006666">用鼠标指着我察看效果</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="157">&nbsp;</td>
+      <td width="137"><font color="#330066">se-resize</font></td>
+      <td width="156"><font color="#660066">箭头朝右下方</font></td>
+      <td width="192"> 
+        <div align="center" style="cursor:se-resize"><font color="#006666">用鼠标指着我察看效果</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="157">&nbsp;</td>
+      <td width="137"><font color="#330066">sw-resize</font></td>
+      <td width="156"><font color="#660066">箭头朝左下方</font></td>
+      <td width="192"> 
+        <div align="center" style="cursor:sw-resize"><font color="#006666">用鼠标指着我察看效果</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="157">&nbsp;</td>
+      <td width="137"><font color="#330066">s-resize</font></td>
+      <td width="156"><font color="#660066">箭头朝下方</font></td>
+      <td width="192"> 
+        <div align="center" style="cursor:s-resize"><font color="#006666">用鼠标指着我察看效果</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="157">&nbsp;</td>
+      <td width="137"><font color="#330066">w-resize</font></td>
+      <td width="156"><font color="#660066">箭头朝左方</font></td>
+      <td width="192"> 
+        <div align="center" style="cursor:w-resize"><font color="#006666">用鼠标指着我察看效果</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="157">&nbsp;</td>
+      <td width="137"><font color="#330066">text</font></td>
+      <td width="156"><font color="#660066">文本&quot;I&quot;形</font></td>
+      <td width="192"> 
+        <div align="center" style="cursor:text"><font color="#006666">用鼠标指着我察看效果</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="157">&nbsp;</td>
+      <td width="137"><font color="#330066">wait</font></td>
+      <td width="156"><font color="#660066">等待</font></td>
+      <td width="192"> 
+        <div align="center" style="cursor:wait"><font color="#006666">用鼠标指着我察看效果</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="157">&nbsp;</td>
+      <td width="137"><font color="#330066">help</font></td>
+      <td width="156"><font color="#660066">帮助</font></td>
+      <td width="192"> 
+        <div align="center" style="cursor:help"><font color="#006666">用鼠标指着我察看效果</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td width="157" height="23">&nbsp;</td>
+      <td width="485" colspan="3" height="23"> 
+        <div align="left"><font color="#330066">使用方法：在需要改变鼠标样式的地方插入：</font>style="cursor:<font color="#990000">关键字</font>"</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

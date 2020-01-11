@@ -1,0 +1,139 @@
+
+<script LANGUAGE="JavaScript">
+<!-- Begin
+step = 0;
+diff=3;
+function clear_all(form) {
+step = 0;
+for (i=0;i<9; ++i) {
+position="a"+i;
+form[position].value="";
+   }
+}
+function clickit(field) {
+if (step == -1) {alert("重玩一局"); return;}
+position=field.name.substring(1,2,1);
+position = 'a'+position;
+if (field.form[position].value !="") {alert("不能这样走，有没搞错！"); return;}
+field.form[position].value="X";
+if (eval_pos(field.form)) {
+field.form.output.value="你胜了!"; 
+step = -1;
+return;
+}
+position=get_move(field.form);
+field.form.output.value='我下在' + position.substring(1,2,1)+'位';
+if (position=="") {
+field.form.output.value="黄了"; 
+step = -1;
+return;
+}
+field.form[position].value="O";
+if (eval_pos(field.form)) {
+field.form.output.value="真没用，再来一局!";
+step = -1;
+   }
+}
+function eval_pos(form) {
+if ((form.a0.value!="" && form.a0.value==form.a3.value && form.a0.value==form.a6.value)||
+(form.a0.value!="" && form.a0.value==form.a1.value && form.a0.value==form.a2.value) ||
+(form.a0.value!="" && form.a0.value==form.a4.value && form.a0.value==form.a8.value) ||
+(form.a1.value!="" && form.a1.value==form.a4.value && form.a1.value==form.a7.value) ||
+(form.a2.value!="" && form.a2.value==form.a5.value && form.a2.value==form.a8.value) ||
+(form.a2.value!="" && form.a2.value==form.a4.value && form.a2.value==form.a6.value) ||
+(form.a3.value!="" && form.a3.value==form.a4.value && form.a3.value==form.a5.value) ||
+(form.a6.value!="" && form.a6.value==form.a7.value && form.a6.value==form.a8.value))
+return true;
+else    
+return false;
+}
+function f(a) {
+if (a == "") return "."; else return a;
+}
+function comp_move(form,player,weight,depth) {
+var cost;
+var bestcost=-2;
+var position;
+var newplayer;
+if (player=="X") newplayer="O"; else newplayer="X";
+if (depth==diff) return 0;
+if (eval_pos(form)) return 1;
+for (var i=0; i<9; ++i) {
+position='a'+i;
+if (form[position].value != "")
+continue;
+form[position].value=player;
+cost = comp_move(form,newplayer, -weight, depth+1);
+if (cost > bestcost) {
+bestcost=cost;
+if (cost==1) i=9;
+}
+form[position].value="";
+}
+if (bestcost==-2) bestcost=0;
+return(-bestcost);
+}
+function get_move(form) {
+var cost;
+var bestcost=-2;
+bestmove="";
+if (step++ == 0)
+if (form.a4.value=="") 
+return "a4";
+else 
+if (form.a0.value=="") 
+return "a0";
+for (var i=0; i<9; ++i) {
+localposition='a'+i;
+if (form[localposition].value != "")
+continue;
+form[localposition].value="O";
+cost=comp_move(form,"X", -1, 0);
+if (cost > bestcost) {
+if (cost==1) i=9;
+bestmove=localposition;
+bestcost=cost;
+}
+form[localposition].value="";
+}
+return bestmove;
+}
+function complain(field) {
+field.form.output.focus();
+alert("不能直接在输入框内按，要点按钮才行。");
+}
+// End -->
+</script>
+<font color="red">
+
+<p align="center">九方格</font> </p>
+
+<form>
+  <p><input SIZE="2" NAME="a0" OnFocus="complain(this)"> <input TYPE="button" NAME="b0"
+  OnClick="clickit(this)"> <input SIZE="2" NAME="a1" OnFocus="complain(this)"> <input
+  TYPE="button" NAME="b1" OnClick="clickit(this)"> <input SIZE="2" NAME="a2"
+  OnFocus="complain(this)"> <input TYPE="button" NAME="b2" OnClick="clickit(this)"> <br>
+  <input SIZE="2" NAME="a3" OnFocus="complain(this)"> <input TYPE="button" NAME="b3"
+  OnClick="clickit(this)"> <input SIZE="2" NAME="a4" OnFocus="complain(this)"> <input
+  TYPE="button" NAME="b4" OnClick="clickit(this)"> <input SIZE="2" NAME="a5"
+  OnFocus="complain(this)"> <input TYPE="button" NAME="b5" OnClick="clickit(this)"> <br>
+  <input SIZE="2" NAME="a6" OnFocus="complain(this)"> <input TYPE="button" NAME="b6"
+  OnClick="clickit(this)"> <input SIZE="2" NAME="a7" OnFocus="complain(this)"> <input
+  TYPE="button" NAME="b7" OnClick="clickit(this)"> <input SIZE="2" NAME="a8"
+  OnFocus="complain(this)"> <input TYPE="button" NAME="b8" OnClick="clickit(this)"> <br>
+  <br>
+  现场解说: <input NAME="output" TYPE="text" size="20"><br>
+  选择难度: <select NAME="difficulty"
+  OnChange="diff=form.difficulty[form.difficulty.selectedIndex].value;" size="1">
+    <option VALUE="1"> 最简 </option>
+    <option VALUE="2"> 容易 </option>
+    <option VALUE="3" SELECTED> 中等 </option>
+    <option VALUE="4"> 难 (可能时间要长些) </option>
+  </select> <br>
+  <input TYPE="button" VALUE="计算机先走"
+  OnClick="
+if (!step++) this.form.a4.value='O';"> <br>
+  <input TYPE="reset" VALUE="重启" OnClick="clear_all(this.form)"> </p>
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

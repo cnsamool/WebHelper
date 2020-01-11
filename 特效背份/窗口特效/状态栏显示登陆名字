@@ -1,0 +1,72 @@
+
+<body BGCOLOR="#FFFFFF" onLoad="scrollon()">
+
+<p><script language="JavaScript">
+
+
+
+// This script is free to use as long as you keep
+
+// these comments with it.
+
+
+
+// This script scrolls a message through a text box.
+
+// the box can be any size  and cen be put anywhere
+
+// on your page.  Set "speedtogo" higher to go slower 
+
+// and lower to go faster.  Replace the second "f" with
+
+// your text.
+
+
+
+// Enjoy.
+
+Ret = prompt('Enter something',"something")
+
+
+
+var temp
+
+var f =
+
+"                                                                  "
+
+var f = f + (Ret)
+
+var speedtogo = 50
+
+
+
+var counter
+
+
+
+
+
+function scrollon() {
+
+ 
+
+   temp  = f.substring(0,1);
+
+   f += temp
+
+   f    = f.substring(1,100);
+
+   window.status = f.substring(0,100);
+
+ 
+
+  counter    = setTimeout("scrollon()",speedtogo);
+
+
+
+ }</script> </p>
+
+<p align="center"><font face="楷体_GB2312" color="#FF0000"><strong><big><big>填完名字，看看下面的状态拦</big></big></strong></font></p>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

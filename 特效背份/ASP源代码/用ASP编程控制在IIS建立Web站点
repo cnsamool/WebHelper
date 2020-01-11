@@ -1,0 +1,90 @@
+'**********************************************************************************  
+'' 创建一个WebServer  
+'' 必须参数：WRoot,为创建站点的物理目录；WComment为站点说明；WPort为站点端口；ServerRun为是否自动运行&n 
+bsp; 
+'' 当创建成功时返回1，失败时提示退出并返回0，当创建站点成功但启动失败时返回2  
+''**********************************************************************************  
+'' 　  
+''******************注意：WPort为List类型，意为服务器端口，***************  
+''　　本函数在IIS5.0上通过，＊＊必须以管理员身份登录＊＊  
+'' 端口举例：  
+'' Dim WPort,bindlists,createflag,oComputer  
+'' oComputer="LocalHost"  
+'' binglists=Array(0)  
+'' binglists(0)=":80:"''端口号为80  
+'' WPort=binglists  
+'' createflag=CreateWebServer("D:\myweb","我的家园",WPort,False)''调用建站函数  
+''　　If creatflag=0 Then  
+'' Response.Write "创建站点失败！请确定是否有权限"  
+'' ElseIf createflag=1 Then  
+'' Response.Write "创建站点成功！"  
+'' ElseIf createflag=2 Then  
+'' Response.Write "创建站点成功，但启动站点失败，可能端口冲突！"  
+'' End If  
+''********************************************************************************  
+''关于Ftp站点的创建我已发表在asp版，请有兴趣的朋友自己去查看  
+
+Function CreateWebServer(WRoot,WComment,WPort,ServerRun)  
+On Error Resume Next  
+Dim ServiceObj,ServerObj,VDirObj  
+Set ServiceObj = GetObject("IIS://"&oComputer&"/W3SVC")'' 首先创建一个服务实例  
+
+WNumber=1  
+Do While IsObject(ServiceObj.GetObject("IIsWebServer",WNumber))  
+If Err.number<>0 Then  
+Err.Clear()  
+Exit Do  
+End If  
+WNumber=WNumber+1  
+Loop  
+
+Set ServerObj = ServiceObj.Create("IIsWebServer", WNumber)'' 然后创建一个WEB服务器  
+
+If (Err.Number <> 0) Then'' 是否出错  
+''Response.Write "错误: 创建Web服务器的ADSI操作失败！"  
+CreateWebServer=0  
+Exit Function  
+End If  
+
+'' 接着配置服务器  
+ServerObj.ServerSize = 1 '' 中型大小  
+ServerObj.ServerComment = WComment ''说明  
+ServerObj.ServerBindings = WPort ''端口  
+ServerObj.EnableDefaultDoc=True  
+
+'' 提交信息  
+ServerObj.SetInfo  
+
+'' 最后，建立虚拟目录  
+Set VDirObj = ServerObj.Create("IIsWebVirtualDir", "ROOT")  
+
+If (Err.Number <> 0) Then'' 是否出错  
+''Response.Write "错误: 创建虚拟目录的ADSI操作失败！"  
+CreateWebServer=0  
+Exit Function  
+End If  
+
+'' 配置虚拟目录  
+VDirObj.Path = WRoot  
+VDirObj.AccessRead = True  
+VDirObj.AccessWrite = True  
+VDirObj.EnableDirBrowsing = False  
+VDirObj.EnableDefaultDoc=True  
+VDirObj.AccessScript=True  
+VDirObj.AppCreate2 2  
+VDirObj.AppFriendlyName="默认应用程序"  
+VDirObj.SetInfo  
+
+If ServerRun = True Then  
+ServerObj.Start  
+If (Err.Number <> 0) Then '' Error！  
+''Response.Write "错误: 起动服务器时出错！请手动启动WebServer "&WComment&"！<br>"  
+CreateWebServer=2  
+Exit Function  
+End If  
+End If  
+Set VDirObj=Nothing  
+Set ServerObj=Nothing  
+Set ServiceObj=Nothing  
+CreateWebServer=1  
+End Function  

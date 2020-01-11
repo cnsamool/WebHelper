@@ -1,0 +1,64 @@
+<table border="3" height="58">
+  <tr>
+    <td bgcolor="Black" border="2" align="center" height="52"><script Language="JavaScript"> 
+<!-- 
+  function  visitor() 
+{ 
+//define variable 
+ var Jsay; 
+ var Jdayr; 
+ var  Jtoday= new Date(); 
+ var  Jyear= Jtoday.getYear(); Jmonth=Jtoday.getMonth(); 
+         Jday= Jtoday.getDay();  Jdate=Jtoday.getDate(); 
+         Jhrs= Jtoday.getHours(); Jmin=Jtoday.getMinutes(); 
+          Jsec=Jtoday.getSeconds(); 
+document.write("<font size=+1>");      
+document.write("<font color=khaki>"); 
+ if   (Jhrs<12) 
+document.write("<font color=yellow>"+"早安"+"</font>");   
+else  if ( Jhrs<18) 
+document.write("<font color=red>"+"午安"+"</font>"); 
+else  
+document.write("<font color=cyan>"+"晚安"+"</font>"); 
+  document.write('\t'+"<font color=white>"+'!!'+"</font>"); 
+  document.write("<font color=white>"+"今天是"+"</font>"); 
+  document.write('<font color=white>'+'公元'+'</font>'+(Jyear )+"<font color=white>"+"年"+"</font>" ); 
+  document.write((Jmonth+1)); 
+  document.write("<font color=white>"+"月"+"</font>"+Jdate+"<font color=white>"+"日"+"</font>");        
+if (Jday==1) 
+ document.write("<font color=white>"+"星期"+"</font>"+"<font color=cyan>"+"一"+"</font>"); 
+else if (Jday==2)  
+ document.write("<font color=white>"+"星期"+"</font>"+"<font color=chartreuse>"+"二"+"</font>"); 
+else if (Jday==3)  
+ document.write("<font color=white>"+"星期"+"</font>"+"<font color=darksalmon>"+"三"+"</font>"); 
+else if (Jday==4)  
+ document.write("<font color=white>"+"星期"+"</font>"+"<font color=mediumaquamarine>"+"四"+"</font>"); 
+else if (Jday==5)  
+ document.write("<font color=white>"+"星期"+"</font>"+"<font color=lightgrey>"+"五"+"</font>"); 
+else if (Jday==6)  
+ document.write("<font color=white>"+"星期"+"</font>"+"<font color=orangered>"+"六"+"</font>"); 
+else if (Jday==7)  
+ document.write("<font color=white>"+"星期"+"</font>"+"<font color=dodgerblue>"+"日"+"</font>"); 
+} 
+visitor(); 
+// --> 
+</script> 
+<spacer size="10">    <br>
+    您光临的时间是： <script Language="JavaScript"> 
+<!-- 
+//define variable 
+ var Jsay; 
+ var Jdayr; 
+ var  Jtoday= new Date(); 
+ var  Jyear= Jtoday.getYear(); Jmonth=Jtoday.getMonth(); 
+         Jday= Jtoday.getDay();  Jdate=Jtoday.getDate(); 
+         Jhrs= Jtoday.getHours(); Jmin=Jtoday.getMinutes(); 
+          Jsec=Jtoday.getSeconds(); 
+document.write('<b><font color=white size=+2>'+Jhrs+'点'+Jmin+'分'); 
+document.write('</b></font>'); 
+//--> 
+</script> </td>
+  </tr>
+</table>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

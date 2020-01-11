@@ -1,0 +1,40 @@
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+function setVariables() {
+if (navigator.appName == "Netscape") {
+v=".top=";
+dS="document.";
+sD="";
+y="window.pageYOffset";
+}
+else {
+v=".pixelTop=";
+dS="";
+sD=".style";
+y="document.body.scrollTop";
+}
+}
+function checkLocation() {
+object="object1";
+yy=eval(y);
+eval(dS+object+sD+v+yy);
+setTimeout("checkLocation()",10);
+}
+// End -->
+</script>
+<BODY OnLoad="setVariables();checkLocation()">
+<div id="object1" style="position:absolute; visibility:show; left:0px; top:0px; z-index:2">
+<table width=128 border=0 cellspacing=20 cellpadding=0>
+<tr>
+<td height="97"><a href="http://samool.533.net"><img src="tp1.gif" width="105" height="21" border="0"></a><br>
+<a href="http://samool.533.net"><img src="tp2.gif" width="105" height="21" border="0"></a><br>
+<a href="http://samool.533.net"><img src="tp3.gif" width="105" height="21" border="0"></a><br>
+<a href="http://samool.533.net"><img src="zoom.gif" width="105" height="21" border="0"></a> 
+</td>
+</tr>
+</table>
+</div>
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

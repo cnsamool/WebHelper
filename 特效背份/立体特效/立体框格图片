@@ -1,0 +1,12 @@
+<!--本特效需要aipraise.class支持 bbs.gif可以换成你的图片-->
+<!--必需将realsnow.jar和bbs.gif放在同一目录下才能显示特效-->
+<!--C:\webhelpview\webhelpview 有这个文件-->
+
+<applet code=aipraise.class width=755 height=100>
+<param name=image value=bbs.gif>
+<param name=border value=3>
+<param name=delay value=100>
+<param name=url value="http://www.coolboo.com">
+<param name=blocksize value=10>
+<param name=maxraise value=5>
+</applet>

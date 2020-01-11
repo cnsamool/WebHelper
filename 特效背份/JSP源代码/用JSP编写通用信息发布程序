@@ -1,0 +1,131 @@
+提供发布信息的交互界面，调用 recordMessage.jsp程序。   
+  
+sayMessage.jsp   
+<HTML> <HEAD> <TITLE> 信息发布</TITLE> 
+   
+<META content = "text/html; charset=GB2312" http-equiv = Content-Type>  
+<LINK href ="css_01.css" rel = stylesheet>  
+<META content = "MSHTML 5.00.3103.1000" name =GENERATOR> </HEAD>  
+<BODY>  
+<％ @ page contentType=“ text/html; charset=GB2312”％ >   
+  
+<％ @ page language=“ java” import=“ java .sql .＊”％ >   
+  
+<jsp: usebean id ="rencommend" scope="page" class="ymbean.opDb"/>  
+<form action =recordmessage.jsp method =post name=sign>  
+<input name=dtkey type=hidden value=ta_routes>  
+<table bgcolor=#d5e8fd border=0 cellspacing=1 width="97%">  
+<tbody>  
+<tr> <td nowrap width="45%" height="185">  
+<div align=left>  
+<table bgcolor=#d5e8fd border=0 cellspacing=1 width="100%">  
+<tbody>  
+<tr> <td nowrap width="100%" >线路名称：  
+<input maxlength=100 name = routename size=36>  
+</td>  
+</tr>  
+<tr><td nowrap width="100%">显示序号：  
+<input maxlength=3 name=routeno size=36>  
+</td></tr>  
+<tr>  
+<td width="100%" >游览内容。文字超一行时 ,请您敲 Enter键换行</td>  
+</tr>  
+<tr><td width="100%" height="162">  
+<TEXTAREA cols=55 name =c04 rows=9>  
+</TEXTAREA>  
+</TD>  
+</TR></TBODY></TABLE></DIV></TD></TR>  
+<TR><TD align=middle colspan=2 nowrap>  
+<input name=cmdcommit type=submit value="提交">  
+</td></tr></tbody></table>  
+</form></center>  
+<div></div></body></html>   
+  
+  
+连接数据库  
+  
+通过调用 Java Bean连接 Oracle数据库。   
+  
+opDb.java   
+  
+package ymbean; // java包   
+  
+import java.sql.＊ ;   
+  
+public class opDb {   
+  
+public opDb() { }   
+  
+public ResultSet executeQuery(String sql)   
+  
+{   
+  
+ResultSet rs = null;   
+  
+Statement lstmt = null;   
+  
+try { lstmt = connectdb();   
+  
+rs = lstmt.executeQuery(sql);   
+  
+System.out.println(“ executeQuery:”＋ sql);   
+  
+} catch(SQLException ex) { return(null)； }   
+  
+return rs;   
+  
+}   
+  
+public String executeUpdate(String sql)   
+  
+{   
+  
+ResultSet rs = null;   
+  
+Statement lstmt = null;   
+  
+try {   
+  
+lstmt = connectdb();   
+  
+lstmt.executeUpdate(sql);   
+  
+System.out.println(“ executeUpdate:”＋ sql);   
+  
+lstmt.executeUpdate(“ commit” );   
+  
+}catch(SQLException ex) {}   
+  
+return(“ executeUpdate ok” );   
+  
+}   
+  
+//连接数据库   
+  
+public Statement connectdb()   
+  
+{ Statement lstmt=null;   
+  
+Connection conn=null;   
+  
+final String connect_string=“ jdbc:oracle:thin:scott/tiger@192.168.0.1:1521:test” ;   
+  
+final String driver_string=“ oracle.jdbc.driver.   
+  
+OracleDriver” ;   
+  
+Connection lconn;   
+  
+try { Class.forName(driverstr);   
+  
+lconn=DriverManager.getConnection(connectstr);   
+  
+lstmt=lconn.createStatement();   
+  
+} catch (Exception e) { return(null);}   
+  
+return lstmt;   
+  
+}   
+  
+}//end opDb.java  

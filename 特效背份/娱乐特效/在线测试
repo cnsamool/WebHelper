@@ -1,0 +1,88 @@
+<script language="JavaScript">
+var Total_Question = 4// 修改这里与题目数量一致
+var msg = ""
+// 正确答案
+var Solution = new Array(Total_Question)
+Solution[0] = "TCP/IP"
+Solution[1] = "集线器"
+Solution[2] = "SUN"
+Solution[3] = "Microsoft"
+// 
+function GetSelectedButton(ButtonGroup)
+{
+for (var x=0; x < ButtonGroup.length; x++)
+if (ButtonGroup[x].checked) return x
+return 0
+}
+function ReportScore(correct)
+{ 
+var SecWin = 
+window.open("","scorewin","scrollbars,width=300,height=220")
+var MustHave1 = "<HTML><HEAD><TITLE>测验成绩报告</TITLE></HEAD><BODY>"
+var Percent = "<H2>测验成绩 : "+Math.round(correct/Total_Question*100)
++ "</H2><HR>"
+lastscore=Math.round(correct/Total_Question*100)
+if (lastscore == "100"){
+msg = MustHave1 +Percent + "<font color='red'>恭喜，全部答对了！</font><p>" + msg  + "<input type='button' value='close' onclick=javascript:window.close()></BODY></HTML>"}
+else {
+msg = MustHave1 +Percent + "<font color='red'>正确答案：</font><p>" + msg  + "<input type='button' value='close' onclick=javascript:window.close()></BODY></HTML>"
+}
+SecWin.document.write(msg)
+msg = ""  //清空msg
+}
+function Grade()
+{
+var correct = 0
+var wrong = 0
+for (number=0; number < Total_Question; number++)
+{
+var form = document.forms[number]      // Question #
+var i = GetSelectedButton(form.q1)
+if (form.q1[i].value == "1")
+{ correct++ } 
+else 
+{ wrong++
+msg += "Question "+(number+1)+"."
++Solution[number]+"<BR>"
+}
+}
+ReportScore(correct)
+}
+</script>
+<style type="text/css">
+<!--
+.pt9 {  font: 9pt "宋体"}
+body { font: 9pt "宋体" ; margin: 0px}
+td { font: 9pt "宋体" }
+-->
+</style>
+<p align="center"><!--- BEGIN CLICK2NET CODE ---> </p>
+<dl>
+<dd align="center">　</dd>
+<table width="75%" border="0" align="center">
+<tr>
+<td><form>
+<p>三个非常简单的问题：</p>
+<p>(1)Internet上使用的网络协议是：__________ <br>
+<input type="radio" name="q1" value="0" checked>X.25 <input type="radio" name="q1"
+value="1">TCP/IP <input type="radio" name="q1" value="0">NetBEUI <br>
+<br></p></form><form>
+<p>(2)HUB是指：__________ <br>
+<input type="radio" name="q1" value="0" checked>网桥 <input type="radio" name="q1"
+value="1">集线器 <input type="radio" name="q1" value="0">网关 <input type="radio"
+name="q1" value="0">路由器 <br>
+<br></p></form><form>
+<p>(3)JAVA是哪个公司的产品：__________ <br>
+<input type="radio" name="q1" value="0" checked>Novell <input type="radio" name="q1"
+value="0">Microsoft <input type="radio" name="q1" value="1">SUN <br>
+<br>
+</p></form><form>
+<p>(4)IIS(Internet Information Server)是哪个公司的产品：__________ <br>
+<input type="radio" name="q1" value="0" checked>Novell <input type="radio" name="q1"
+value="1">Microsoft <input type="radio" name="q1" value="0">Netscape <br>
+<br></p></form></td></tr></table>
+<dd align="center"><p align="center"><input type="button" name="Submit" value="看看成绩"onClick="Grade()" class="pt9"> </p>
+</dd></dl>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

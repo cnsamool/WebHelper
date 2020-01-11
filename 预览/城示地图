@@ -1,0 +1,97 @@
+<head>
+<style>
+body,td  {font-family:宋体;font-size:12px;}
+iframe   {border:1px dotted blue;width:300px;height:220px;}
+select   {background:#f8fcfe;color:#0060da;}
+.Index   {width:100%;height:24px;border:2px solid outset;background:#d0d0d0;text-align:center;padding-top:4px;letter-spacing:4px;}
+a        {font-family:arial;font-size:11px;letter-spacing:1px;padding:4px 4px 3px 6px;}
+a:visited{text-decoration:none;color:#0066ee;background:#eff8ff;}
+a:link   {text-decoration:none;color:#0066ee;background:#eff8ff;}
+a:hover  {text-decoration:none;color:#fafdff;background:#0080d0;}
+a:active {text-decoration:none;color:#ffeeea;background:#c00000;}
+</style>
+<script language="JavaScript">
+<!-- 此特效使用《网页特效大王》编辑制作-->
+<!-- 阳光软件：http://www.1nsc.com-->
+function Key_Move(){
+if(event.keyCode==103){document.frames.gismap.scroll_To( 5, 5,'tl')}
+if(event.keyCode==105){document.frames.gismap.scroll_To( 5,-5,'tr')}
+if(event.keyCode==97 ){document.frames.gismap.scroll_To(-5, 5,'bl')}
+if(event.keyCode==99 ){document.frames.gismap.scroll_To(-5,-5,'br')}
+if(event.keyCode==104){document.frames.gismap.scroll_To( 5, 0,'tt')}
+if(event.keyCode==102){document.frames.gismap.scroll_To( 0,-5,'rr')}
+if(event.keyCode==98 ){document.frames.gismap.scroll_To(-5, 0,'bb')}
+if(event.keyCode==100){document.frames.gismap.scroll_To( 0, 5,'ll')}
+}
+function Key_Stop(){
+if(event.keyCode==103){document.frames.gismap.scroll_Stop('tl')}
+if(event.keyCode==105){document.frames.gismap.scroll_Stop('tr')}
+if(event.keyCode==97 ){document.frames.gismap.scroll_Stop('bl')}
+if(event.keyCode==99 ){document.frames.gismap.scroll_Stop('br')}
+if(event.keyCode==104){document.frames.gismap.scroll_Stop('tt')}
+if(event.keyCode==102){document.frames.gismap.scroll_Stop('rr')}
+if(event.keyCode==98 ){document.frames.gismap.scroll_Stop('bb')}
+if(event.keyCode==100){document.frames.gismap.scroll_Stop('ll')}
+}
+function Jump_To(newpos){
+newpos=newpos.split("#")
+newX=newpos[1].replace(/^[\s]+/gi,"").replace(/[\s]+$/gi,"")
+newY=newpos[0].replace(/^[\s]+/gi,"").replace(/[\s]+$/gi,"")
+document.frames.gismap.tmpposX=Math.floor(newX)
+document.frames.gismap.tmpposY=Math.floor(newY)
+document.frames.gismap.map.style.posTop=Math.floor(newY)
+document.frames.gismap.map.style.posLeft=Math.floor(newX)
+document.frames.gismap.label.innerHTML="X:"+(Math.abs(newX)+150)+"&nbsp;Y:"+(Math.abs(newY)+110)
+}
+</script>
+</head>
+
+<body scroll="no" onkeydown="Key_Move()" onkeyup="Key_Stop()">
+<div align="center"><center>
+
+<table height="90%">
+  <tr>
+    <td><table border="0" cellpadding="0" cellspacing="6">
+      <tr>
+        <td><!--webbot bot="HTMLMarkup" startspan --><IFRAME name="gismap" src="gis_map.htm" frameborder="no" scrolling="no" width="300" height="220"><!--webbot bot="HTMLMarkup" endspan --><!--webbot
+        bot="HTMLMarkup" startspan --></IFRAME><!--webbot bot="HTMLMarkup" endspan --></td>
+        <td valign="top"><table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td><div class="Index"><p>目标快速索引</p>
+            </div></td>
+          </tr>
+          <tr>
+            <td><select size="12" onchange="Jump_To(this.options[this.selectedIndex].value)"
+            onclick="Jump_To(this.options[this.selectedIndex].value)">
+              <option value="-540# -570">河南路加油站</option>
+              <option value="-635# -380">青海加油站</option>
+              <option value="-760# -750">西屯加油站</option>
+              <option value="-230# -880">逢甲邮局</option>
+              <option value="-155#-1040">第二信用合作社</option>
+              <option value="-420# -825">西屯图书馆</option>
+              <option value=" -35#-1290">逢甲托儿所</option>
+              <option value="-440# -330">上石国小</option>
+              <option value="-510# -950">福星公园</option>
+            </select> </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" bgcolor="#000000"><table width="100%" cellpadding="4" cellspacing="1">
+          <tr>
+            <td bgcolor="#fafafa">1.本范例使用台中市西屯区之部分地图（宽：1600 
+            高：1200 大小：54.9KB）。<br>
+            2.请使用鼠标或键盘右侧的数字区按键来控制地图的移动方向。<br>
+            3.点击[目标快速索引]可以将画面中心点位置迅速移动到该目标所在的位置。 
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+</center></div>
+</body>

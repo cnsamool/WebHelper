@@ -1,0 +1,84 @@
+
+<script language="JavaScript">
+<!--
+function go_to_station(){
+	if (document.stationform.stationselect.options[0].selected){
+		window.location.href = "http://java2000.126.com";}
+              else if (document.stationform.stationselect.options[1].selected)		
+ 	{	window.location.href = "http://zjjg.yeah.net/";}	
+	else if (document.stationform.stationselect.options[2].selected)		
+	{	window.location.href = "http://mcg.yeah.net/";}
+	else if (document.stationform.stationselect.options[3].selected)		
+	{	window.location.href = "http://tonyest.yeah.net/";}	
+	else if (document.stationform.stationselect.options[4].selected)		
+	{	window.location.href = "http://cp33.yeah.net/";}
+              else if (document.stationform.stationselect.options[5].selected)		
+	{	window.location.href = "http://ftp.maoming.gd.cn/e/yanghai";}		
+             else if (document.stationform.stationselect.options[6].selected)		
+	{	window.location.href = "http://jgq.yeah.net/";}		
+             else if (document.stationform.stationselect.options[7].selected)		
+	{	window.location.href = "http://nns.yeah.net/";}	
+             return true;	
+	}
+//This is were you load the Discription and the Author
+function textValue(){	
+	if (document.stationform.stationselect.options[0].selected){
+		document.stationform.disc.value = "Java脚本下载资源站"
+		document.stationform.author.value = "【最酷的Java脚本资源站】";}
+              else if (document.stationform.stationselect.options[1].selected)		
+	{	document.stationform.disc.value = "军事动态新闻及MUD"
+		document.stationform.author.value = "【军事与泥巴】";}	
+	else if (document.stationform.stationselect.options[2].selected)		
+	{	document.stationform.disc.value = "培训教学"
+		document.stationform.author.value = "【微软认证专家园地】";}
+	else if (document.stationform.stationselect.options[3].selected)		
+	{	document.stationform.disc.value = "电脑网络"
+		document.stationform.author.value = "【梧桐世界】";}	
+	else if (document.stationform.stationselect.options[4].selected)		
+	{	document.stationform.disc.value = "图形图象制作"
+		document.stationform.author.value = "【菜盆的'无中生有'】";}
+              else if (document.stationform.stationselect.options[5].selected)		
+	{	document.stationform.disc.value = "美术吉它"
+		document.stationform.author.value = "【杨海“倾心小筑”】";}	
+	else if (document.stationform.stationselect.options[6].selected)		
+	{	document.stationform.disc.value = "电脑网络"
+		document.stationform.author.value = "【江光强主页】";}
+              else if (document.stationform.stationselect.options[7].selected)		
+	{	document.stationform.disc.value = "游戏,编程"
+		document.stationform.author.value = "【未名创作室】";}	
+	return true;	
+	}
+
+//-->
+</script>
+<div align="center"><font color="#ffffff" size="5">
+
+<p align="center">不错的友情连接脚本</font> </p>
+</div>
+
+<form name="stationform">
+  <table>
+<TBODY>
+    <tr>
+      <td><select class="yk9" multiple name="stationselect" onchange="textValue()" size="8">
+        <option>Java2000</option>
+        <option>军事与泥巴</option>
+        <option>微软认证专家园地</option>
+        <option>梧桐世界</option>
+        <option>菜盆的"无中生有"</option>
+        <option>杨海“倾心小筑”</option>
+        <option>江光强主页</option>
+        <option>未名创作室</option>
+      </select> </td>
+      <td>站点名称<br>
+      <textarea class="yk9" cols="40" name="author" rows="1"></textarea> <br>
+      站点主题<br>
+      <textarea class="yk9" cols="40" name="disc" rows="3" wrap="physical"></textarea> </td>
+    </tr>
+</TBODY>
+  </table>
+<input class="yk9" name="stationbutton" onclick="go_to_station()"
+  type="button" value="参观参观"> 
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

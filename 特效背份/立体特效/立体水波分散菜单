@@ -1,0 +1,21 @@
+<!--本特效需要x_menuitem.class   x_menus.class文件支持 -->
+<!--必须将x_menuitem.class   x_menus.class和网页放在同一目录下才能显示效果 -->
+<!--C:\webhelpview\webhelpview 有这些文件-->
+
+<APPLET id=Applet1 name=X_MenuS code=X_MenuS.class width=100 height=80 VIEWASTEXT>
+        <PARAM NAME="backcolor" VALUE="FFFFFF">
+        <PARAM NAME="alignment" VALUE="center">
+        <PARAM NAME="backcoloroff" VALUE="FFFFFF">
+        <PARAM NAME="trantype" VALUE="2">
+        <PARAM NAME="stepcount" VALUE="15">
+        <PARAM NAME="menutype" VALUE="0">
+        <PARAM NAME="forecoloroff" VALUE="008000">
+        <PARAM NAME="forecoloron" VALUE="FFFFFF">
+        <PARAM NAME="delaytime" VALUE="50">
+        <PARAM NAME="backcoloron" VALUE="008000">
+
+	<PARAM NAME="m0" VALUE="傻猫软件,我的软件,http://samool.533.net,_self">
+	<PARAM NAME="m1" VALUE="新浪网站,十大中文网站之一,http://www.sina.com.cm,_self">
+	<PARAM NAME="m2" VALUE="网易社区,网易社区生活,http://www.163.com,_self">
+
+	</APPLET>

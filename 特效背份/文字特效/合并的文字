@@ -1,0 +1,143 @@
+
+<!--第一步：将下列代码复制到<head></head>之间：-->
+<SCRIPT>
+<!-- Beginning of JavaScript -
+
+var textwidth=300
+var textheight=150
+var message=new Array()
+message[0]="感谢使用网页助手！ "
+message[1]="傻猫软件，互动的世界"
+message[2]="赶快来访问吧"
+message[3]="肯定有您想要的东西"
+var x_finalpos=-1
+var y_finalpos=50
+var x_slices=24
+var y_slices=1
+var pause=10
+var screenwidth=700
+var screenheight=400
+var x_step=new Array()
+var y_step=new Array()
+var x_randompos=0
+var y_randompos=0
+var i_loop=0
+var max_loop=24
+var i_text=0
+var width_slice=Math.floor(textwidth/x_slices)
+var height_slice=Math.floor(textheight/y_slices)
+var cliptop=0
+var clipbottom=height_slice
+var clipleft=0
+var clipright=width_slice
+var spancounter=0
+
+function initiate() {
+	if (x_finalpos==-1) {
+		x_finalpos=Math.floor(document.body.clientWidth/2)-Math.floor(textwidth/2)
+	}
+	if (y_finalpos==-1) {
+		y_finalpos=Math.floor(document.body.clientHeight/2)-Math.floor(textheight/2)
+	}
+	cliptop=0
+	clipbottom=height_slice
+	clipleft=0
+	clipright=width_slice
+	i_loop=0
+	spancounter=0
+    if (document.all) {
+ 	    for (i=0;i<=y_slices-1;i++) {
+			for (ii=0;ii<=x_slices-1;ii++) {
+				var thisspan=eval("document.all.span"+spancounter+".style")
+				x_randompos=Math.ceil(screenwidth*Math.random())
+				y_randompos=Math.ceil(screenheight*Math.random())
+				thisspan.posLeft=x_randompos
+				thisspan.posTop=y_randompos
+                thisspan.clip ="rect("+cliptop+" "+clipright+" "+clipbottom+" "+clipleft+")"
+				clipleft+=width_slice
+		        clipright+=width_slice
+		        spancounter++
+			}
+        	clipleft=0
+	        clipright=width_slice
+	        cliptop+=height_slice
+	        clipbottom+=height_slice
+		}
+   }
+   explode_IE()
+}
+
+function changetext() {
+	spancounter=0
+	for (i=0;i<=y_slices-1;i++) {
+		for (ii=0;ii<=x_slices-1;ii++) {
+			var thisspan=eval("document.all.span"+spancounter+".style")		
+			thisspan.posLeft=-5000
+			spancounter++
+		}
+	}
+	spancounter=0
+	if (i_text>message.length-1) {i_text=0}
+	for (i=0;i<=y_slices-1;i++) {
+		for (ii=0;ii<=x_slices-1;ii++) {
+			var thisinnerspan=eval("span"+spancounter)
+    		thisinnerspan.innerHTML=message[i_text]
+			spancounter++
+		}
+	}
+	i_text++
+	initiate()
+}
+
+
+function explode_IE() {
+	spancounter=0
+	if (i_loop<=max_loop-1) {
+		for (i=0;i<=y_slices-1;i++) {
+			for (ii=0;ii<=x_slices-1;ii++) {
+				var thisspan=eval("document.all.span"+spancounter+".style")
+				x_step[spancounter]=(x_finalpos-thisspan.posLeft)/(max_loop-i_loop)
+				y_step[spancounter]=(y_finalpos-thisspan.posTop)/(max_loop-i_loop)		
+				thisspan.posLeft+=x_step[spancounter]
+				thisspan.posTop+=y_step[spancounter]
+				spancounter++
+			}
+		}
+		i_loop++
+		var timer=setTimeout("explode_IE()",pause)
+	}
+	else {
+		spancounter=0
+		clearTimeout(timer)
+		var timer=setTimeout("changetext()",2000)
+	}
+}
+
+
+// - End of JavaScript - -->
+</SCRIPT>
+
+<STYLE>.spanstyle {
+	BACKGROUND-COLOR: #004400; BORDER-BOTTOM-STYLE: solid; BORDER-LEFT-STYLE: solid; BORDER-RIGHT-STYLE: solid; BORDER-TOP-STYLE: solid; COLOR: olive; FONT-FAMILY: 宋体; FONT-SIZE: 30px; HEIGHT: 90px; LEFT: -5000px; PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; PADDING-TOP: 5px; POSITION: absolute; TEXT-ALIGN: center; WIDTH: 280px
+}
+</STYLE>
+
+
+
+<!--第二步：将下列代码复制到<body></body>之间：-->
+<BODY bgColor=#FFFFFF onload=changetext()>
+<SCRIPT>
+<!-- Beginning of JavaScript -
+if (document.all) {
+	for (i=0;i<=y_slices-1;i++) {
+		for (ii=0;ii<=x_slices-1;ii++) {
+    		document.write("<span id='span"+spancounter+"' class='spanstyle'></span>")
+			spancounter++
+		}
+	}
+	spancounter=0
+}
+// - End of JavaScript - -->
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,57 @@
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+
+function moveWindowLeft() {
+window.moveBy(-15, 0);
+window.moveBy(0, 0);
+}
+function moveWindowRight() {
+window.moveBy(15, 0);
+window.moveBy(0, 0);
+}
+function moveWindowUp() {
+window.moveBy(0, 0);
+window.moveBy(0, -15);
+}
+function moveWindowDown() {
+window.moveBy(0, 0);
+window.moveBy(0, 15);
+}
+//  End -->
+</script>
+<center>
+<form>
+<table>
+<tr>
+<td>
+</td>
+<td>
+<input type=button value="向上" onClick="moveWindowUp();">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<input type=button value="向左" onClick="moveWindowLeft();">
+</td>
+<td>
+</td>
+<td>
+<input type=button value="向右" onClick="moveWindowRight();">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+<input type=button value="向下" onClick="moveWindowDown();">
+</td>
+<td>
+</td>
+</tr>
+</table>
+</form>
+</center>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

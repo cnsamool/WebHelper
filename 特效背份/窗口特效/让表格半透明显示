@@ -1,0 +1,14 @@
+<style>
+.alpha1{filter: Alpha(Opacity=60)}
+</style>
+
+</head>
+
+<body background="imgeas\SHEN.GIF">
+<table border="1" width="42%" height="129"  class="alpha1" bgcolor="#FF9933" >
+  <tr>
+    <td width="100%" height="123">你好</td>
+  </tr>
+</table>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

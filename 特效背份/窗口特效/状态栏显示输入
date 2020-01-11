@@ -1,0 +1,39 @@
+
+<script LANGUAGE="JavaScript">
+
+var text = "在输入栏里您输入什么我就能显示什么!!!";
+var total_length = 60;	// length of string+spaces
+
+function doShoot(msg) {
+	var status_message = "";
+	var assembling = "";
+	this.status = status_message;
+	var index = 0;
+	var location = 0, i;
+	// now shoot one letter at a time
+	for(i=0; i < msg.length; i++) {		// moves through the message
+		for(j=total_length-status_message.length; j > -1;j--) {	
+			// see how many spaces have to be added
+			assembling = "";
+			for(var k=0; k < j; k++)
+				assembling += " ";
+			assembling += msg.charAt(i);
+			this.status=status_message +assembling;
+		}
+		status_message += assembling;
+	}
+}
+</script>
+
+
+<form name="shooterform" method="get">
+  <p><input type="text" name="shoot_text" size="20"> <input type="button" name="trigger"
+  value="请输入" onclick="doShoot(shoot_text.value)"> </p>
+</form>
+
+
+
+<body bgcolor="#fef4d9" onload="doShoot(text)">
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

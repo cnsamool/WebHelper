@@ -1,0 +1,12 @@
+<!--脚本说明:
+把如下代码加入<body>区域中-->
+<form>
+<div align="center">
+<input type="BUTTON" name="FullScreen" value="全屏显示" onClick="window.open(document.location, 'big', 'fullscreen=yes')">
+<input type="BUTTON" name="FullScreen" value="取消全屏" onClick="window.close()">
+</div>
+</form>
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,66 @@
+<!--将下面代码粘贴到网页Html的<body></body>之间-->
+
+<form action="http://www2.yeah.net/cgi-bin/gosearch/search.cgi" name="searchform">
+  <div align="center"><center><table border="0">
+    <tr align="center" vAlign="center">
+      <td><select class="p9" name="site" size="1">
+        <option selected value="---------------">*** 搜索引擎大全 ***</option>
+        <option value="网易yeah搜索">网易yeah搜索</option>
+        <option value="中文雅虎">中文雅虎</option>
+        <option value="中文cseek">中文cseek</option>
+        <option value="搜狐">搜狐</option>
+        <option value="悠游中文搜索">悠游中文搜索</option>
+        <option value="常青藤搜索">常青藤搜索</option>
+        <option value="北极星">北极星</option>
+        <option value="若比邻搜索">若比邻搜索</option>
+        <option value="中经搜索">中经搜索</option>
+        <option value="视讯中文搜索">视讯中文搜索</option>
+        <option value="----------------">---------------------</option>
+        <option value="哇塞中文网(B5)">哇塞中文网(Big5)</option>
+        <option value="奇摩搜索">奇摩搜索(Big5)</option>
+        <option value="蕃薯藤(B5)">蕃薯藤(Big5)</option>
+        <option value="添达香港搜索器">添达香港搜索器(Big5)</option>
+        <option value="盖世引擎">盖世引擎(Big5)</option>
+        <option value="绿界探索引擎">绿界探索引擎(Big5)</option>
+        <option value="Coo台湾索引">Coo台湾索引(Big5)</option>
+        <option value="UFO搜索">UFO搜索(Big5)</option>
+        <option value="怪兽搜索">怪兽搜索(Big5)</option>
+        <option value="茉莉之窗搜索">茉莉之窗搜索(Big5)</option>
+        <option value="八爪魚搜索机">八爪魚搜索机(Big5)</option>
+        <option value="***英文搜索引擎***">---------------------</option>
+        <option value="英文Yahoo">英文 Yahoo!</option>
+        <option value="英文Locys">英文 Locys</option>
+        <option value="英文Excite">英文 Excite</option>
+        <option value="英文Infoseek">英文 Infoseek</option>
+        <option value="Altavista中英文搜索">Altavista中英文搜索</option>
+        <option value="dejanews">dejanews 讨论组搜索</option>
+        <option value="feedME">feedME 讨论组搜索</option>
+        <option value="mp3">Mp3 音乐搜索</option>
+        <option value="ubl">Ubl 流行音乐资料库</option>
+        <option value="***软件及FTP搜索***">--------------------</option>
+        <option value="Download">Download.com 软件库</option>
+        <option value="ZDNet">ZDNet 软件库</option>
+        <option value="cnet">cnet 软件库</option>
+        <option value="Tucows软件搜索">Tucows 软件库</option>
+        <option value="------------------">---------------------</option>
+        <option value="Fastftp软件搜索">Fastftp 软件搜索</option>
+        <option value="filez">Filez 软件搜索</option>
+        <option value="fm">FM 软件搜索</option>
+        <option value="Igd软件搜索">Igd 软件搜索</option>
+        <option value="SoftSeek软件搜索">SoftSeek 软件搜索</option>
+        <option value="Winfiles软件搜索">Winfiles 软件搜索</option>
+        <option value="Winsite软件搜索">Winsite 软件搜索</option>
+        <option value="davecentral">davecentral</option>
+        <option value="sharepaper">sharepaper</option>
+        <option value="slaughterhouse">slaughterhouse</option>
+        <option value="shareshop">shareshop</option>
+      </select><input class="pp9" name="key" size="20"><input name="submit" type="submit"
+      value="开始搜索"></td>
+    </tr>
+  </table>
+  </center></div>
+</form>
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

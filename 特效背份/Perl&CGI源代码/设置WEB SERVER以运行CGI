@@ -1,0 +1,75 @@
+    一、设置NCSA Server或Apache Server以使用CGI
+
+    NCSA Server的CGI1.1只允许用下列两种方式激活用户服务器上的脚本：ScriptAlias指令和AddType指令。这两条指令都放在srm.conf文件中，该文件一般在用户的服务器根目录的conf目录中。
+
+    ScriptAlias指令告诉服务器该目录中的所有文件都是脚本或者是服务器作为CGI文件执行的程序。该方法能保证用户的CGI程序在特定位置。AddType指令允许用户告诉服务器任何具有指定前缀的文件都是可执行文件。如果希望将CGI程序放在服务器中任何地方的话该指令即很有用。
+
+    1、ScriptAlias指令
+
+    ScriptAlias指令位于Server Resource Map文件(srm.conf)中，程序内容例如下：
+
+DocumentRoot /usr/local/etc/httpd/htdocs
+UserDir public_html
+REdirect /HTTPD/ http://www.***.com/
+Alias /icons/ /usr/local/etc/httpd/icons/
+ScriptAlias /cgi-bin/ /usr/local/etc/httpd/cgi-bin/
+DirectoryIndex index.html index.shtml index.cgi
+IndexOptions FancyIndexing
+AddIcon /icons/movie.gif .mpg .qt
+AddIcon /icons/menu.gif
+AddIcon /icons/blank.xbm
+DefaultIcon /icons/unknown.xbm
+
+IndexIgnore */.??* *~ *# */HEADER* */README*
+DefaultType text/plain
+AccessFileName .htaccess 
+    srm.conf文件允许用户根据自己系统需要设置HTTP Server。它允许用户告诉服务器用户的主页在什么地方，目录中的哪个文档是索引文档，如果不存在索引文件的话将装载什么图片文件以显示文件的类型，等等。srm.conf及其他配置文件的说明可查阅http://www.nease.net/tppmsgs/msgs0.htm#34。
+
+    2、AddType指令 
+    AddType指令是执行CGI程序的另一种方式，它是在srm.conf文件中加入下列行：
+
+AddType application/x-httpd-cgi.cgi
+
+    在自己的系统中设置了该指令后，任何在服务器控制范围内的扩展名为.cgi的文件都会被作为CGI程序执行而不是作为文本文件阅读。这意味着用户可以在他的个人目录中创建脚本并能执行它。但是如果脚本写得不正确，就可能导致对文件系统、口令文件等的不同类型伤害。
+
+    AddType指令可以扩展为允许扩展名不是.cgi的程序同样被执行。大家经常会看见以.pl（Perl脚本的常见扩展名）或.sh（Bourne Shell脚本的常见扩展名）结尾的脚本。如果想支持其他扩展名的程序，只需简单地将它们加入AddType指令中，如下所示：
+
+AddType application/x-httpd-cgi .cgi .pl .sh
+
+    3、访问配置文件 
+    为了支持CGI程序的执行必须多加入一条指令。在Server Root/conf目录中是一个名为access.conf的配置文件。该文件允许用户设置ServerRoot下的哪个目录能够访问的全局限制，甚至允许用户控制哪些站点可以访问这些目录。下面是access.conf文件的一个例子：
+
+<Directory /usr/local/etc/httpd/cgi-bin>
+Options INdexes Exec CGI
+</Directory>
+
+<Directory /usr/local/etc/httpd/htdocs>
+Options Indexes FollowSymLinks
+AllowOverride All
+<Limit GET>
+order allow,deny
+allow from all
+</Limit>
+</Directory> 
+    Exec CGI表示允许执行该目录中的CGI脚本。Options Indexes FollowSymLinks表示允许索引（显示某文件夹中的内容）并能够遵循符号链（这就意味着在ServerRoot之外的文件也能被访问）。AllowOverride指令允许用户决定哪个指令可以被目录的.htaccess文件覆盖。中设置了对该目录中允许使用GET方式的限制。在HTTPD中，部分指令的选项是GET、POST和PUT（目前PUT尚未实现）。order allow,deny一行告诉服务器先找allow行再找deny行。下一行则是告诉服务器允许所有站点访问该目录中的页面。
+
+    二、设置CERN HTTP服务器以使用CGI 
+    CERN HTTP服务器（也称为W3C HTTP服务器）仅需要编辑/etc/httpd.conf文件即可支持在服务器内使用CGI程序。这个指令类似于NCSA Server使用的指令：
+
+Exec /url-prefix/* /physical-path/*
+
+    其中/url-prefix/定义了客户能看见的路径，而/physical-path/则是包含脚本的目录的实际路径。
+
+    三、设置Netscape以使用CGI 
+    首先要启动管理服务器。以root身份登录，并运行/ServerRoot/admserv/start-admin，缺省端口为81。然后启动浏览器连接。在Netscape Admin页面中，单击Select URL Mapping，从弹出窗口中选择Map a URL to a Local Directory。然后单击Select CGI and Server Parsed HTML，从弹出窗口中选择Activate CGI as a File Type。现在即可单击Browse Files并选择欲激活的目录。选择完目录后，单击I'd Like to Activate CGI as a File Type。在ServerRoot中即会看到Conf目录中的obj.conf配置文件中已加入了下列行：
+
+NameTrans form="/cgi-bin" fn="pfx2dir" dir="/usr/local/web/cgi-bin" name="cgi"
+
+name=cgi调用了下列行：
+
+<Object name="cgi">
+ObjectType fn="force-type" type="magnus-internal/cgi"
+Service fn="send-cgi"
+</Object> 
+    它告诉服务器此为一个CGI目录，其中的所有文件都将用Netscape内部提供的CGI执行。
+

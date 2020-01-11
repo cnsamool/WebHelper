@@ -1,0 +1,219 @@
+<form name="choose" Action="javascript:Simpleall(document.choose) //">
+  <table border="0" cellSpacing="2" cellpadding="2" align="center">
+    <tr>
+      <td>站点名称</td>
+      <td><input maxLength="35" name="title" size="31"></td>
+    </tr>
+    <tr>
+      <td>站点URL</td>
+      <td><input maxLength="58" name="http" size="31" value="http://"></td>
+    </tr>
+    <tr>
+      <td>简要描述</td>
+      <td><textarea cols="30" name="comm" rows="4" wrap="virtual"></textarea></td>
+    </tr>
+    <tr>
+      <td>关键词</td>
+      <td><input maxLength="58" name="keyw" size="31"></td>
+    </tr>
+    <tr>
+      <td>用户名</td>
+      <td><input maxLength="20" name="name" size="31"></td>
+    </tr>
+    <tr>
+      <td>E-mail</td>
+      <td><input maxLength="58" name="email" size="31"></td>
+    </tr>
+    <tr>
+      <td bgcolor="#FFFFFF">密码</td>
+      <td bgcolor="#FFFFFF"><input maxLength="10" name="passwd" type="password" value size="31"></td>
+    </tr>
+    <tr>
+      <td colspan="2" bgcolor="#FFFFFF"><input checked name="modify" type="radio" value="no"> 
+      新站加注  <input name="modify" type="radio" value="yes"> 修改已加注信息</td>
+    </tr>
+    <tr>
+      <td colspan="2" bgcolor="#FFFFFF"><hr size="1">
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" bgcolor="#FFFFFF"><table boder="0">
+        <tr vAlign="top" bgColor="#8edaad">
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.yahoo.com/info/suggest/">Yahoo</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.mckinley.com/magellan/Info/addsite.html">Magellan</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.linkmonster.com/contest.html">Linkmonst</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.aol.com/netfind/info/addurl.html">AOL find</a> </td>
+        </tr>
+        <tr bgColor="#8edaad">
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.newhoo.com/add.html">Newhoo</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.scrubtheweb.com/addurl.html">Scrubthe</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.whatsnew.com/whatsnew/submit/">Whatsnew</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://rex.skyline.net/add/">Rexsky</a> </td>
+        </tr>
+        <tr bgColor="#cdc191">
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.profind.com/">Profind</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.altavista.digital.com/av/content/addurl.htm">Alta Vista</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.nlsearch.com/docs/register.htm">Nlsearch</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.lycos.com/addasite.html">Lycos</a> </td>
+        </tr>
+        <tr bgColor="#cdc191">
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.excite.com/Info/add_url.html">Excite</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.hotbot.com/addurl.html">Hotbot</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://index.opentext.com/main/submitURL.html">Opentext</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.linkstar.com/linkstar/bin/doform?form=ecard">Linkstar</a> </td>
+        </tr>
+        <tr bgColor="#cdc191">
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.surfgopher.com/addurl.htm">Surfgopher</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.northernlight.com/docs/register.htm">Northernl</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.webcrawler.com/Help/GetListed/AddURLS.html">Webcrawler</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://guide-p.infoseek.com/AddUrl?pg=DCaddurl.html">InfoSeek</a> </td>
+        </tr>
+        <tr bgColor="#cdc191">
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.stpt.com/general/submit.html">STPT</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.searchking.com/add_url.htm">SearchKing</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="../../../www.jayde.com/cgi-bin/addurl.cgi">Jayde</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://in-142.infospace.com/_1_7815569__info/submit.htm">Infospace</a> </td>
+        </tr>
+        <tr bgColor="#8edaad">
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.infohiway.com/isn/addurl.shtml">Infohiway</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.cozycabin.com/add.htm">Cozycabin</a> </td>
+          <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+          href="http://www.dewa.com/submit/sub-universal.shtml">Dewa</a></td>
+ <td><input name="check" type="checkbox" value="ON"><a
+      href="http://www.web-search.com/faq.html">Websearch</a> </td>
+        </tr>
+      </table>
+      </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.web-search.com/faq.html">Websearch</a> </td>
+    </tr>
+    <tr bgColor="#8edaad">
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.fathead.net/search/addsite.html">Fathead</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.yeehaa.com/addurl.shtml">Yeehaa</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.whatuseek.com/addurl.htm">Whatuseek</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="../../../www.findlink.com/searchit/s-addurl.cgi">Findlink</a> </td>
+    </tr>
+    <tr bgColor="#8edaad">
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://personalweb.net/search/add.html">Personalweb</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.iexplorer.com/submiturl.asp">Iexplorer</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.psychcrawler.com/plweb/pcsubmit.html">Psychcrawler</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.411locate.com/join.htm">411locate</a> </td>
+    </tr>
+    <tr bgColor="#8edaad">
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.looksmart.com/r?notnew">Looksmart</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.mcp.com/directories/ypsubmit.html">Yellowpage</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://astalavista.box.sk/add.html">Astalavista</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://addsite.euroseek.net/page.cfm?page=start&ifl=uk">Euroseek</a> </td>
+    </tr>
+    <tr bgColor="#8edaad">
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://galaxy.einet.net/cgi-bin/annotate">Galaxy</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="../../../www.lexiconn.com/dir/addurl.cgi">Lexiconn</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://homepages.whowhere.com/bin/showpage.pl?add">Whowhere</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"> <a      href="http://www.register-it.com/scripts_clean/states/router.cgi?banner=metacrawler&istate=start&pflg=1&status=+++New+User+++">MetaCrawler</a></td>
+    </tr>
+    <tr bgColor="#8edaad">
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://cmtgroup.com/links/addurl.html">cMT</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.powercrawler.com/add.htm">PowerCrawler</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://home.snap.com/directory/submiturl/0,158,home-3,00.html">Snap</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="../../../www.nerdworld.com/cgi-bin/nwadd.cgi">Nerdworld</a> </td>
+    </tr>
+    <tr bgColor="#cdc191">
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://gbchinese.yahoo.com/docs/info/suggest.html">GB Yahoo</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.whatsite.com/main/add_url.htm">Whatsite</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://pccms.pku.edu.cn:8000/addurl.htm">天网</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.goyoyo.com.cn/bj/serv/urlgb.htm">Goyoyo_GB</a> </td>
+    </tr>
+    <tr bgColor="#cdc191">
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://cgi.chinabyte.com/cgi-bin/webdriver?MIval=searchjoin">Chinabyte</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.c3s.org.sg:80/template/urladd.BackCSite.html">华页指南</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.searchchina.com/cgi-bin/chsearch?page=form">中文查寻</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.cnnic.net.cn:802/cregister.html">若比邻</a> </td>
+    </tr>
+    <tr bgColor="#bcbcbc">
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.beijixing.com.cn/register.htm">北极星</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://newtoo.manifest.com/submit.html">Newtoo</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://matilda.aaa.com.au/dir2/add.shtml">AAA</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.yeah.net/addurl.html">网易</a> </td>
+    </tr>
+    <tr bgColor="#bcbcbc">
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.chinaok.com/add_db.htm">华好网景</a></td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.search.com.cn/addurl/url.htm">网现引擎</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.richsurf.com/richsurf/url_add.htm">四通</a> </td>
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="http://www.chinavista.com/hyper-c/chadd.html">中国指南</a> </td>
+    </tr>
+    <tr bgColor="#bcbcbc">
+      <td bgcolor="#FFFFFF"><input name="check" type="checkbox" value="ON"><a
+      href="../../../sohoo.com.cn/cgi-bin/sohoo/regform.pl">搜狐</a> </td>
+    </tr>
+  </table>
+  <table align="center">
+    <tr>
+      <td width="422" height="32" bgcolor="#FFFFFF">
+<div align="center"><center><p><input
+      name="send" type="submit" value=" 递 交 " class="buttonface">　　</div></td>
+    </tr>
+  </table>
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

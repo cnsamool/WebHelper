@@ -1,0 +1,185 @@
+<head>
+<STYLE type=text/css>TD {
+	FONT-SIZE: 14px
+}
+.outerSlideContainer {
+	BORDER-BOTTOM: buttonface 1px inset; BORDER-LEFT: buttonface 1px inset; BORDER-RIGHT: buttonface 1px inset; BORDER-TOP: buttonface 1px inset; HEIGHT: 20px; MARGIN-LEFT: 10px; WIDTH: 300px
+}
+.sliderHandle {
+	BACKGROUND: buttonface; BORDER-BOTTOM: white 2px outset; BORDER-LEFT: white 2px outset; BORDER-RIGHT: white 2px outset; BORDER-TOP: white 2px outset; FONT-SIZE: 12px; HEIGHT: 18px; OVERFLOW: hidden; TEXT-ALIGN: center; WIDTH: 33px
+}
+.lineContainer {
+	HEIGHT: 18px; POSITION: absolute; WIDTH: 298px
+}
+.line {
+	FILTER: alpha(style=1); HEIGHT: 18px; OVERFLOW: hidden; POSITION: relative; WIDTH: 298px
+}
+#colorBox {
+	BORDER-BOTTOM: buttonface 1px inset; BORDER-LEFT: buttonface 1px inset; BORDER-RIGHT: buttonface 1px inset; BORDER-TOP: buttonface 1px inset; HEIGHT: 50px; WIDTH: 50px
+}
+</STYLE>
+<SCRIPT type=text/javascript>
+var dragobject = null;
+var type;
+var onchange = "";
+var tx;
+var ty;
+<!-- 此特效使用《网页特效精灵》编辑制作-->
+<!-- 奥天软件：http://www.aosky.net-->
+function getReal(el, type, value) {
+	temp = el;
+	while ((temp != null) && (temp.tagName != "BODY")) {
+		if (eval("temp." + type) == value) {
+			el = temp;
+			return el;
+		}
+		temp = temp.parentElement;
+	}
+	return el;
+}
+
+function moveme_onmousedown() {
+	var tmp = getReal(window.event.srcElement, "className", "sliderHandle");	//Traverse the element tree
+	if(tmp.className == "sliderHandle") {
+		dragobject = tmp;			//This is a global reference to the current dragging object
+
+		onchange = dragobject.getAttribute("onchange");	//Set the onchange function
+		if (onchange == null) onchange = "";
+		type = dragobject.getAttribute("type");			//Find the type
+
+		if (type=="y")		//Vertical
+			ty = (window.event.clientY - dragobject.style.pixelTop);
+		else				//Horizontal
+			tx = (window.event.clientX - dragobject.style.pixelLeft);
+
+		window.event.returnValue = false;
+		window.event.cancelBubble = true;
+	}
+	else {
+		dragobject = null;	//Not draggable
+	}	
+}
+
+function moveme_onmouseup() {
+	if(dragobject) {
+		dragobject = null;
+	}
+}
+
+function moveme_onmousemove() {
+	if(dragobject) {
+		if (type=="y") {
+			if(event.clientY >= 0) {
+				if ((event.clientY - ty >= 0) && (event.clientY - ty <= dragobject.parentElement.style.pixelHeight - dragobject.style.pixelHeight)) {
+					dragobject.style.top = event.clientY - ty;
+				}
+				if (event.clientY - ty < 0) {
+					dragobject.style.top = "0";
+				}
+				if (event.clientY - ty > dragobject.parentElement.style.pixelHeight - dragobject.style.pixelHeight - 0) {
+					dragobject.style.top = dragobject.parentElement.style.pixelHeight - dragobject.style.pixelHeight;
+				}
+
+				dragobject.value = dragobject.style.pixelTop / (dragobject.parentElement.style.pixelHeight - dragobject.style.pixelHeight);
+				eval(onchange.replace(/this/g, "dragobject"));
+			}
+		}
+		else {
+			if(event.clientX  >= 0) {
+				if ((event.clientX  - tx >= 0) && (event.clientX - tx <= dragobject.parentElement.clientWidth - dragobject.style.pixelWidth)) {
+					dragobject.style.left = event.clientX - tx;
+				}
+				if (event.clientX - tx < 0) {
+					dragobject.style.left = "0";
+				}
+				if (event.clientX - tx > dragobject.parentElement.clientWidth - dragobject.style.pixelWidth - 0) {
+					dragobject.style.left = dragobject.parentElement.clientWidth - dragobject.style.pixelWidth;
+				}
+
+				dragobject.value = dragobject.style.pixelLeft / (dragobject.parentElement.clientWidth - dragobject.style.pixelWidth);
+				eval(onchange.replace(/this/g, "dragobject"));
+			}
+		}
+		
+		
+		window.event.returnValue = false;
+		window.event.cancelBubble = true;
+	} 
+}
+
+function setValue(el, val) {
+	el.value = val;
+	if (el.getAttribute("TYPE") == "x")
+		el.style.left =  val * (el.parentElement.clientWidth - el.style.pixelWidth);
+	else
+		el.style.top =  val * (el.parentElement.clientHeight - el.style.pixelHeight);
+
+	eval(el.onchange.replace(/this/g, "el"))
+}
+
+document.onmousedown = moveme_onmousedown;
+document.onmouseup = moveme_onmouseup;
+document.onmousemove = moveme_onmousemove;
+
+document.write('<style type="text/css">\
+				.sliderHandle	{position: relative; cursor: default;}\
+				</style>');
+</SCRIPT>
+<SCRIPT type=text/javascript>
+<!--
+function update(el) 
+{
+var red   = Math.round(255*redSlider.value);
+var green = Math.round(255*greenSlider.value);
+var blue  = Math.round(255*blueSlider.value);
+var color = "RGB(" + red + "," + green + "," + blue + ")";
+colorBox.style.backgroundColor = color;
+redSlider.innerHTML = red;	
+greenSlider.innerHTML = green;
+blueSlider.innerHTML = blue;
+redLeft.style.background = "RGB(" + 0 + "," + green + "," + blue + ")";
+redRight.style.background = "RGB(" + 255 + "," + green + "," + blue + ")";
+greenLeft.style.background = "RGB(" + red + "," + 0 + "," + blue + ")";
+greenRight.style.background = "RGB(" + red + "," + 255 + "," + blue + ")";
+blueLeft.style.background = "RGB(" + red + "," + green + "," + 0 + ")";
+blueRight.style.background = "RGB(" + red + "," + green + "," + 255 + ")";
+}
+function init() 
+{
+setValue(redSlider, 0.5);
+setValue(greenSlider, 0.5);
+setValue(blueSlider, 0.5);
+}
+//-->
+</SCRIPT>
+</head>
+
+<body onload=init()>
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD align=right>Red:</TD>
+    <TD><SPAN class=outerSlideContainer>
+      <DIV class=lineContainer id=redRight style="BACKGROUND: rgb(255,0,0)">
+      <DIV class=line id=redLeft style="BACKGROUND: rgb(0,0,0)"></DIV></DIV>
+      <DIV class=sliderHandle id=redSlider type="x" value="0" 
+      onchange="update(this)">0 </DIV></SPAN></TD>
+    <TD align=middle rowSpan=3 vAlign=center>
+      <DIV id=colorBox></DIV></TD></TR>
+  <TR>
+    <TD align=right>Green:</TD>
+    <TD><SPAN class=outerSlideContainer>
+      <DIV class=lineContainer id=greenRight style="BACKGROUND: rgb(0,255,0)">
+      <DIV class=line id=greenLeft style="BACKGROUND: rgb(0,0,0)"></DIV></DIV>
+      <DIV class=sliderHandle id=greenSlider type="x" value="0" 
+      onchange="update(this)">0 </DIV></SPAN></TD></TR>
+  <TR>
+    <TD align=right>Blue:</TD>
+    <TD><SPAN class=outerSlideContainer>
+      <DIV class=lineContainer id=blueRight style="BACKGROUND: rgb(0,0,255)">
+      <DIV class=line id=blueLeft style="BACKGROUND: rgb(0,0,0)"></DIV></DIV>
+      <DIV class=sliderHandle id=blueSlider type="x" value="0" 
+      onchange="update(this)">0 </DIV></SPAN></TD></TR></TBODY></TABLE>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

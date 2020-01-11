@@ -1,0 +1,51 @@
+
+<SCRIPT language="JavaScript">
+
+function ScrollText(seed)
+{
+ var msg = "欢迎使用《网页助手》！";
+ var out = " ";
+
+     var c   = 1;
+     if (seed > 100)
+     {
+          seed--;
+          var cmd="ScrollText(" + seed + ")";
+          timerTwo=window.setTimeout(cmd,100);
+     }
+     else if (seed <= 100 && seed > 0)
+     {
+        for (c=0 ; c < seed ; c++)
+        {
+            out+=" ";
+        }
+        out+=msg;
+        seed--;
+
+        var cmd="ScrollText(" + seed + ")";
+        window.status=out;
+        timerTwo=window.setTimeout(cmd,100);
+     }
+     else if (seed <= 0)
+     {
+         if (-seed < msg.length)
+         {
+            out+=msg.substring(-seed,msg.length);
+            seed--;
+
+            var cmd="ScrollText(" + seed + ")";
+            window.status=out;
+            timerTwo=window.setTimeout(cmd,100);
+         }
+         else
+         {
+            window.status=" ";
+            timerTwo=window.setTimeout("ScrollText(100)",75);
+         }
+     }
+}
+</SCRIPT>
+</HEAD>
+<BODY OnLoad="timerONE=window.setTimeout('ScrollText(100)',100);" <P>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

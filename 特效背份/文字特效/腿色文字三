@@ -1,0 +1,25 @@
+
+<!--第一步：将下列代码复制到<head></head>之间：-->
+<SCRIPT language=javaScript>
+function checkBrowserForVersion4(){var x=navigator.appVersion;y=x.substring(0,4);if(y>=4)strobeEffect();}
+var isNav=(navigator.appName.indexOf("Netscape")!=-1);a=0;b=1;ob=1;
+var colors=new Array("FFFFFF","FFFFFF","FFFFFF","FFFFFF","FFFFFF","FFFFFF","FFFFFF","F9F9F9","F1F1F1","E9E9E9","E1E1E1","D9D9D9","D1D1D1","C9C9C9","C1C1C1","B9B9B9","B1B1B1","A9A9A9","A1A1A1","999999","919191","898989","818181","797979","717171","696969","616161","595959","515151","494949","414141","393939","313131","292929","212121","191919","111111","090909","000000")
+function strobeEffect(){color=colors[a];
+aah="<table width=400><td><center><font color="+color+" size=+2>";aab="</font></a></center></td></table>"
+ob1="欢迎光临傻猫软件"
+ob2="http://samool.533.net"
+ob3="网页特效的家"
+
+obj=eval("ob"+ob);mid=obj;aa=aah+mid+aab
+if(isNav) {document.object1.document.write(aa);document.object1.document.close();}
+else {object1.innerHTML=aa}
+a+=b;if (a==38) b-=2,ob+=1;if (ob==4)ob=1;if (a==0) b+=2;xx=setTimeout("strobeEffect()",20);}
+</SCRIPT>
+
+
+<!--第二步：将下列代码复制到<body></body>之间：-->
+<BODY  onload=checkBrowserForVersion4()>
+<DIV id=object1 
+style="LEFT: 80px; POSITION: absolute; TOP: 50px; Z-INDEX: 2"></DIV>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

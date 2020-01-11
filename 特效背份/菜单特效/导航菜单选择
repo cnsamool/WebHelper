@@ -1,0 +1,29 @@
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+site = "http://javacool.3322.net/time"; // Do not include the final "/"
+function combineMenus(frm, menu1, menu2) {
+with (frm) {
+str = menu1.options[menu1.selectedIndex].value;
+str += menu2.options[menu2.selectedIndex].value;
+url = site + "/" + str + ".htm";
+window.location.href = url;
+   }
+}
+//  End -->
+</script>
+<form name=menufrm>
+<select name=menu1>
+<option value="">时间类</option>
+<option value="time">time</option>
+</select>
+<select name=menu2>
+<option value="">哪个</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select>
+<input type=button value="Select" onClick="combineMenus(this.form, this.form.menu1, this.form.menu2)">
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

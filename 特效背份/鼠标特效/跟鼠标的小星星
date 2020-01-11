@@ -1,0 +1,130 @@
+<html>
+<head>
+<style><!--
+ A {text-decoration: none;color :#ffffff
+ text-decorati on: underline;color: #ffFFFF}
+a:hover {color: yellow;text-decoration:underline}
+
+a:active {text-decoration:none;}
+#trailsprite1 {
+ position: absolute; z-index: 100; top: 1px; left:0px;
+ width: 10px; height: 10px; visibility: visible }
+#trailsprite2 {
+ position: absolute; z-index: 10; top: 0px; left:0px;
+ width: 10px; height: 10px; visibility: visible }
+#trailsprite3 {
+ position: absolute; z-index: 10; top: 0px; left:0px;
+ width: 10px; height: 10px; visibility: visible }
+#trailsprite4 {
+ position: absolute; z-index: 10; top: 0px; left:0px;
+ width: 10px; height: 10px; visibility: visible }
+#trailsprite5 {
+ position: absolute; z-index: 10; top: 0px; left:0px;
+ width: 10px; height: 10px; visibility: visible }
+#trailsprite6 {
+ position: absolute; z-index: 10; top: 0px; left:0px;
+ width: 10px; height: 10px; visibility: visible }
+ol {
+ font: 10pt arial, geneva, sans-serif }
+--></style>
+</head>
+<body bgcolor="#000000">
+</body>
+</html>
+<script language="JavaScript">
+        var version = 0;
+                if (navigator.userAgent.indexOf("MSIE 4") != -1)  version = 5;
+                else if
+                (navigator.userAgent.indexOf("MSIE 3") != -1)  version = 1;
+                else if
+                (navigator.userAgent.indexOf("Mozilla/4") != -1)  version = 4;
+                else if
+                (navigator.userAgent.indexOf("Mozilla/4.5") != -1)  version = 7;
+                else if
+                (navigator.userAgent.indexOf("Mozilla/3") != -1)  version = 3;
+                else if
+                (navigator.userAgent.indexOf("Mozilla/2") != -1)  version = 2;
+                else if
+                (navigator.userAgent.indexOf("MSIE 4.5") != -1)  version = 6;
+                else version = 8;
+        </script>
+<script LANGUAGE="JavaScript1.1">
+        if (version > 3)
+                document.write('<div id="trailSprite1"><img src="star5.gif" height="10" width="10" border="0" name="trailSprite1img"></DIV><div id="trailSprite2"><img src="star5.gif" height="10" width="10" border="0" name="trailSprite2img"></DIV><div id="trailSprite3"><img src="star5.gif" height="10" width="10" border="0" name="trailSprite3img"></DIV><div id="trailSprite4"><img src="star5.gif" height="10" width="10" border="0" name="trailSprite4img"></DIV><div id="trailSprite5"><img src="star5.gif" height="10" width="10" border="0" name="trailSprite5img"></DIV><div id="trailSprite6"><img src="star5.gif" height="10" width="10" border="0" name="trailSprite6img"></DIV>')
+</script>
+<script
+LANGUAGE="Javascript1.1"><!--
+        var isNS = (navigator.appName == "Netscape");
+        layerRef = (isNS) ? "document" :"document.all";
+        styleRef = (isNS) ? "" :".style";
+
+        var queue = new Array();
+        var NUM_OF_TRAIL_PARTS = 6
+
+        for (x=1; x < 7; x++) {
+                eval("trailSpriteFrame" + x + " = new Image(10,10);");
+                eval("trailSpriteFrame" + x + ".src = 'star" + x + ".gif';");
+        }
+
+        function trailSpriteObj(anID) {
+                this.trailSpriteID = "trailSprite" + anID;
+                this.imgRef = "trailSprite" + anID + "img";
+                this.currentFrame = 1;
+                this.animateTrailSprite = animateTrailSprite;
+        }
+
+        function animateTrailSprite() {
+                if (this.currentFrame <7) {
+                        if (isNS) {
+                                eval("document['"+ this.imgRef + "'].src  =  trailSpriteFrame" + this.currentFrame + ".src");
+                        } else {
+                                eval("document['" + this.imgRef + "'].src  =  trailSpriteFrame" + this.currentFrame + ".src");
+                        }
+                        this.currentFrame ++;
+                } else {
+                        eval(layerRef + '.' + this.trailSpriteID +  styleRef + '.visibility = "hidden"');
+                }
+        }
+        function processAnim() {
+                for(x=0; x < NUM_OF_TRAIL_PARTS; x++)
+                        queue[x].animateTrailSprite();
+        }
+        function processMouse(e) {
+                currentObj = shuffleQueue();
+                if (isNS) {
+                        eval("document." + currentObj + ".left = e.pageX - 0 ;");
+                        eval("document." + currentObj + ".top = e.pageY + 5;");
+                } else {
+                        eval("document.all." + currentObj + ".style.pixelLeft = event.clientX + document.body.scrollLeft - 0 ;");
+                        eval("document.all." + currentObj + ".style.pixelTop = event.clientY + document.body.scrollTop + 5;");
+                }
+        }
+        function shuffleQueue() {
+                lastItemPos = queue.length - 1;
+                lastItem = queue[lastItemPos];
+                for (i = lastItemPos; i>0; i--)
+                        queue[i] = queue[i-1];
+                queue[0] = lastItem;
+
+                queue[0].currentFrame = 1;
+                eval(layerRef + '.' + queue[0].trailSpriteID +  styleRef + '.visibility = "visible"');
+
+                return         queue[0].trailSpriteID;
+        }
+
+        function init() {
+                for(x=0; x<NUM_OF_TRAIL_PARTS; x++)
+                        queue[x] = new trailSpriteObj(x+1) ;
+
+                if (isNS) { document.captureEvents(Event.MOUSEMOVE); }
+                document.onmousemove = processMouse;
+
+                setInterval("processAnim();",25);
+        }
+
+        if (version > 3)
+                window.onload = init;
+
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

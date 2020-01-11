@@ -1,0 +1,61 @@
+<script language"javascript">
+var currentpos,timer; 
+function initialize() 
+{ 
+timer=setInterval("scrollwindow()",10);
+} 
+function sc(){
+clearInterval(timer);	
+}
+function scrollwindow() 
+{ 
+currentpos=document.body.scrollTop; 
+window.scroll(0,++currentpos); 
+if (currentpos != document.body.scrollTop) 
+sc();
+} 
+document.onmousedown=sc
+document.ondblclick=initialize
+</script>
+<body>
+<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>Ë«»÷¹ö¶¯µ¥»÷Í£Ö¹<br>
+<br>
+</body>
+<!--±¾ÍøÒ³ÓÉ¡¶ÍøÒ³ÖúÊÖV1.1¡·ÖÆ×÷    °æÈ¨ËùÓÐ£ºÉµÃ¨Èí¼þ -->
+<!--Çë·ÃÎÊÉµÃ¨Èí¼þ¹Ù·½ÍøÕ¾   http://samool.533.net  -->

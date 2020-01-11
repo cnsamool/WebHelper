@@ -1,0 +1,23 @@
+<!--第一步：把以下代码插入到<head>之间：-->
+<SCRIPT language="JavaScript">
+<!-- Begin
+function AddDays(form) {
+DaysToAdd=document.form.DaysToAdd.value;
+
+var now=new Date();
+var newdate=new Date();
+var newtimems=newdate.getTime()+(DaysToAdd*24*60*60*1000);
+newdate.setTime(newtimems);
+document.form.display.value=newdate.toLocaleString();
+}
+// End -->
+
+</SCRIPT>
+<!--第二步：把以下代码插入到<body>之间：-->
+<form name=form>
+<input type=text name=DaysToAdd size=5 value=10>
+<input type=button value="天后的日期将是..." onclick="AddDays(this.form)">
+<input type=text name="display" size=35 value="">
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

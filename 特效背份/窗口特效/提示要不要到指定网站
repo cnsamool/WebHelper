@@ -1,0 +1,11 @@
+<script>
+function winconfirm(){
+	question = confirm("你确认要到傻猫网吗?")
+	if (question != "0"){
+		window.open("http://samool.533.net")
+	}
+}
+</script>
+<input onclick=winconfirm() type=button value=go> 
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

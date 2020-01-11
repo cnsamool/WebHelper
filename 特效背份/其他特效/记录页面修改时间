@@ -1,0 +1,17 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中//-->
+<script language="JavaScript">
+<!--hide script from old browsers
+document.write("This page has been updated: " + document.lastModified + "")
+// end hiding -->
+</script>
+
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

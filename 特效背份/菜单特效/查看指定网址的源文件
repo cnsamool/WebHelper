@@ -1,0 +1,17 @@
+<!--把如下代码加入<body>区域中-->
+<SCRIPT>
+function add()
+{
+var ress=document.forms[0].luxiaoqing.value
+window.location="view-source:"+ress;
+}
+</SCRIPT>
+
+<!--输入要查看源代码的URL地址:-->
+
+<FORM><input type="text" name="luxiaoqing" size=28 value="http://"><INPUT type="button" value="查看源代码" onClick=add()>
+</FORM>
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

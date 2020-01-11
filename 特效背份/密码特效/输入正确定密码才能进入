@@ -1,0 +1,23 @@
+<SCRIPT LANGUAGE="JavaScript"> 
+function password() { 
+var testV = 1; 
+var pass1 = prompt('请输入密码(密码是welcome):',''); 
+while (testV < 3) { 
+if (!pass1)  
+history.go(-1); 
+if (pass1 == "welcome") { 
+alert('密码正确!'); 
+break; 
+}  
+testV+=1; 
+var pass1 =  
+prompt('密码错误!请重新输入:'); 
+} 
+if (pass1!="password" & testV ==3)                
+history.go(-1); 
+return " "; 
+}                         
+document.write(password()); 
+</SCRIPT> 
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

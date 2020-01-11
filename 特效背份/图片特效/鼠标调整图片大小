@@ -1,0 +1,16 @@
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+function resizeImage(evt,name){
+newX=evt.x
+newY=evt.y
+eval("document."+name+".width=newX")
+eval("document."+name+".height=newY")
+}
+
+//  End -->
+</script>
+<img src="sample.jpg"
+width="300" height="401" name="image"
+ondrag="resizeImage(event,'image')">
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

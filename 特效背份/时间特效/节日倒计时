@@ -1,0 +1,19 @@
+<script LANGUAGE="JavaScript">
+<!--你可以将圣诞节改为其它的节日-->
+var urodz= new Date("December 25,2003");
+var  s="圣诞";
+var now = new Date();
+var ile = urodz.getTime() - now.getTime();
+var dni = Math.floor(ile / (1000 * 60 * 60 * 24));
+if (dni > 1)
+   document.write("今天离"+s+"还有"+dni +"天")
+else if (dni == 1)
+     document.write("只有2天啦！")
+else if (dni == 0)
+     document.write("只有1天啦！")
+else
+    document.write("好象已经过了哦！");
+
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

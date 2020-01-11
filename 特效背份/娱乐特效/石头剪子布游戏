@@ -1,0 +1,62 @@
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+function playGame(choice) {
+with (document.game) {
+comp = Math.round((Math.random() * 2) + 1); 
+var choicename;
+if (comp == 1) choicename = "石头";
+if (comp == 2) choicename = "布";
+if (comp == 3) choicename = "剪刀";
+msg.value = '对手出的是' + choicename + ';  ';
+
+switch(choice) { // calculates score
+case 1 : // rock
+         if (comp == 1) {  draw.value++; msg.value += '打了个平手.'; break; }
+         if (comp == 2) {  loss.value++;  msg.value += '你输了……';     break; }
+         if (comp == 3) {  win.value++; msg.value += '你赢了祝贺你';      break; }
+case 2 : // paper
+         if (comp == 1) {  win.value++;  msg.value += '你赢了祝贺你';      break; }
+         if (comp == 2) {  draw.value++; msg.value += '打了个平手.'; break; }
+         if (comp == 3) {  loss.value++; msg.value += '你输了：（';     break; }
+case 3 : // scissors
+         if (comp == 1) {  loss.value++;  msg.value += '你输了……';     break; }
+         if (comp == 2) {  win.value++; msg.value += '你赢了祝贺你';      break; }
+         if (comp == 3) {  draw.value++; msg.value += '打了个平手.'; break; }
+ case 4 : // scissors
+         if (comp == 1) {  loss.value++;  msg.value += '你输了……';     break; }
+         if (comp == 2) {  win.value++; msg.value += '你赢了祝贺你';      break; }
+         if (comp == 3) {  draw.value++; msg.value += '打了个平手.'; break; }
+ case 5 : // paper
+         if (comp == 1) {  win.value++;  msg.value += '你赢了祝贺你';      break; }
+         if (comp == 2) {  draw.value++; msg.value += '打了个平手.'; break; }
+         if (comp == 3) {  loss.value++; msg.value += '你输了……';     break; }
+   
+ }
+      msg.value += '----再来吧!';
+   }
+}
+//  End -->
+
+</script>
+<body>
+<form name=game>
+<table border=1 cellpadding=5>
+<tr>
+<td align=center>你选择:</td>
+<td align=center><a href="javascript:void(0);" onClick="playGame(1);"><img src="rock.gif" border=0 ></a></td>
+<td align=center><a href="javascript:void(0);" onClick="playGame(2);"><img src="paper.gif"  border=0></a></td>
+<td align=center><a href="javascript:void(0);" onClick="playGame(3);"><img src="scissors.gif" border=0></a></td>
+</tr>
+<tr>
+<td colspan=4 align=center><input type=text name=msg size=45></td>
+</tr>
+<tr>
+<td colspan=4 align=center>
+<input type=text name=win readonly value="0" size="2"> <font size="2">赢&nbsp; <input type=text name=loss readonly value="0" size="2"> 
+输 </font> <input type=text name=draw readonly value="0" size="2">  <font size="2">平</font>
+</td>
+</tr>
+</table>
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

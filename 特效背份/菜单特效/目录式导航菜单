@@ -1,0 +1,43 @@
+
+<SCRIPT language=javascript><!--
+function out()
+{
+if(window.event.toElement.id!="menu"        &&       window.event.toElement.id!="link")
+  menu.style.visibility="hidden";
+}
+//-->
+
+function out1()
+{
+if(window.event.toElement.id!="menu1"        &&       window.event.toElement.id!="link")
+  menu1.style.visibility="hidden";
+}
+//-->
+</SCRIPT>
+
+<div id="back" onmouseout="out()"style="position:absolute;top:180;left:310;width:160;height:40;z-index:1;visibility:visible;">
+<span id="menubar"  onmouseover="menu.style.visibility='visible'">
+<font  color=red size=2>菜单</span>
+<div border=1  id="menu" style="position:absolute;top:15;left:0;width:60;height:10;z-index:2;visibility:hidden;">
+<a id="link" href="rjxz.htm">软件下载</a>
+<a id="link" href="yxxz.htm">游戏下载</a>
+<a id="link" href="hjsj.htm">黄金书籍</a>
+<a id="link" href="mntk.htm">美女图库</a>
+<a id="link" href="mp3.htm">MP3金曲</a>
+<a id="link" href="flash.htm">FLASH</a>
+</div>
+</div>
+<div id="back" onmouseout="out1()"style="position:absolute;top:180;left:370;width:160;height:40;z-index:3;visibility:visible;">
+<span id="menubar"  onmouseover="menu1.style.visibility='visible'">
+<font  color=red size=2>菜单</span>
+<div border=1  id="menu1" style="position:absolute;top:15;left:0;width:60;height:10;z-index:4;visibility:hidden;">
+<a id="link" href="rjxz.htm">软件下载</a>
+<a id="link" href="yxxz.htm">游戏下载</a>
+<a id="link" href="hjsj.htm">黄金书籍</a>
+<a id="link" href="mntk.htm">美女图库</a>
+<a id="link" href="mp3.htm">MP3金曲</a>
+<a id="link" href="flash.htm">FLASH</a>
+</div>
+</div>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

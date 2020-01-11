@@ -1,0 +1,36 @@
+
+<style>
+<!--
+#glowtext{
+filter:glow(color=0A9DF5,strength=2);
+width:100%;
+}
+-->
+</style>
+<script language="JavaScript1.2">
+function glowit(which){
+if (document.all.glowtext[which].filters[0].strength==2)
+document.all.glowtext[which].filters[0].strength=1
+else
+document.all.glowtext[which].filters[0].strength=2
+}
+function glowit2(which){
+if (document.all.glowtext.filters[0].strength==2)
+document.all.glowtext.filters[0].strength=1
+else
+document.all.glowtext.filters[0].strength=2
+}
+function startglowing(){
+if (document.all.glowtext&&glowtext.length){
+for (i=0;i<glowtext.length;i++)
+eval('setInterval("glowit('+i+')",150)')
+}
+else if (glowtext)
+setInterval("glowit2(0)",150)
+}
+if (document.all)
+window.onload=startglowing
+</script>
+<span id="glowtext"><font color="F5D20A" " face="宋体" size="3">网页助手  你的朋友</font></span>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

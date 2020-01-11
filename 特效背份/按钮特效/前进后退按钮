@@ -1,0 +1,21 @@
+<!--脚本说明:
+把如下代码加入<body>区域中-->
+<script language="VBScript">
+<!--
+Sub GoForward()
+ form1.btn2.value="正在前进"
+ history.go(1)
+end sub
+
+Sub GoBack()
+ form1.btn1.value="正在后退"
+ history.go(-1)
+end sub
+-->
+</script>
+                  <form name=form1>
+                    <input type="button"  name="btn1" value="<<后退" onClick="GoBack">
+                    <input type="button"  name="btn2" value="前进>>" onClick="GoForward">
+                  </form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

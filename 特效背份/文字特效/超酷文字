@@ -1,0 +1,52 @@
+<SCRIPT LANGUAGE="JScript">
+<!--
+if (window.top.frames.length!=0 && window.top.frames[0].ShowNoButtons!=null)
+    window.top.frames[0].ShowNoButtons();
+//-->
+</SCRIPT>
+<!--STRIP_END-->
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=2> 
+<CENTER>
+</CENTER>
+
+<OBJECT ID="DAControl"
+  STYLE="position:absolute; left:0; top:0;width:800;height:300;z-index: -1"
+  CLASSID="CLSID:B6FFC24C-7E13-11D0-9B47-00C04FC2F51D" width="192" height="192">
+</OBJECT>
+
+<SCRIPT LANGUAGE="VBScript">
+<!--
+sub window_onLoad 
+
+   Set m = DAControl.MeterLibrary
+
+   'Create an animated color
+   Set half = m.DANumber(0.5)
+   Set clr = m.colorHslAnim( _
+                m.Mul(m.LocalTime, m.DANumber(0.345)), _
+                half, half)
+
+   'Contstruct a 12pt font and a text image
+   Set font = m.Font("Arial", 12, clr)  
+   Set txtImg = m.StringImage("ÍøÒ³ÖúÊÖ", font)
+
+   'Move the text image across the page
+   Set pos = m.Mul(m.Sin(m.LocalTime), m.DANumber(0.02))
+   Set scl = m.Add(m.DANumber(2), m.Abs(m.Mul(m.Sin(m.LocalTime), m.DANumber(3))))
+   Set xf = m.Compose2(m.Translate2Anim(m.DANumber(0), pos),  _
+                       m.Scale2UniformAnim(scl))                       
+   Set txtImg = txtImg.Transform(xf)
+
+   'Assign the animation back to the control and start it
+   DAControl.Image = txtImg
+   DAControl.Start
+
+end sub
+-->
+</SCRIPT>
+<!--±¾ÍøÒ³ÓÉ¡¶ÍøÒ³ÖúÊÖV1.1¡·ÖÆ×÷    °æÈ¨ËùÓÐ£ºÉµÃ¨Èí¼þ -->
+<!--Çë·ÃÎÊÉµÃ¨Èí¼þ¹Ù·½ÍøÕ¾   http://samool.533.net  -->

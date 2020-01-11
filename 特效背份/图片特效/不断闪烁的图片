@@ -1,0 +1,19 @@
+<body ONLOAD="soccerOnload()">
+<div ID="soccer" STYLE="position:absolute; left:10; top:0"><a href="http://samool.533.net"
+target="_blank">
+<dd><img SRC="./fengyungulogo.gif" border="0"></a></dd>
+</div><script LANGUAGE="JavaScript">
+var msecs =500; var counter = 0; function soccerOnload() {
+setTimeout("blink()", msecs);
+}
+function blink() {
+soccer.style.visibility =
+(soccer.style.visibility == "hidden") ? "visible" : "hidden";
+counter +=1;
+setTimeout("blink()", msecs);
+}
+
+</script>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

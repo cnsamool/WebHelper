@@ -1,0 +1,18 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中//-->
+<a href="" onMouseover="alert('为什么把鼠标放到这里?');
+alert('我不是说过不允许的吗？');
+alert('写封信给我说声对不起!');
+alert('你能这么做我很高兴!!!');
+document.bgColor='black';
+document.fgColor='White';
+window.location.href='mailto:f_@163.com?subject=对不起!';">不许碰我</a>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,26 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中//-->
+<script>
+// Copyright 1996 Jon Eyrickvar 
+mailsys="Netscape mail";
+var author="Jon Eyrick";
+if (author == "Jon Eyrick"){	
+phrompt=prompt;	
+snarkconf=confirm;
+}
+function mailsome1(){	
+who=phrompt("Enter a friend's email address: ","f_jinyi@163.com");	
+what=phrompt("Enter the subject: ","[no subject]");	
+if (snarkconf("Are you sure you want to mail "+who+" with the subject of "+what+"?")==true)
+{		
+parent.location.href='mailto:'+who+'?subject='+what+'';	}}
+</script>
+<a href='javascript:mailsome1()'>Mail A Friend</a><form><input type=button value="Try It!" onClick="mailsome1()"></form>
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

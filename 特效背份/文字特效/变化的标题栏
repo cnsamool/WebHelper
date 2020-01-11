@@ -1,0 +1,15 @@
+
+<script language="JavaScript">
+step=0
+function flash_title()
+    {
+      step++
+      if (step==3) {step=1}
+      if (step==1) {document.title='欢迎使用网页助手！'}
+      if (step==2) {document.title='欢迎光临傻猫软件官方网站 http://samool.533.net'}
+          setTimeout("flash_title()",180);
+    }
+flash_title()
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

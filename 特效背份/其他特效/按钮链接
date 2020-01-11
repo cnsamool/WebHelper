@@ -1,0 +1,23 @@
+<style type="text/css">
+<!--
+a:hover {  font-family: "Arial", "Helvetica", "sans-serif"; font-size: 9pt; color: #000000 ;text-decoration : none;font-weight: bolder }
+.normal {background-color:#cccccc; border-top: 1px #ffffff solid;  border-left: 1px #ffffff solid; border-right: 1px #999999 solid; border-bottom: 1px #999999 solid;font-size:9pt}
+.over {background-color:#cccccc; border-top: 1px #ffffff solid;  border-left: 1px #ffffff solid; border-right: 1px #999999 solid; border-bottom: 1px #999999 solid;font-size:9pt}
+.down {background-color:#cccccc; border-top: 1px #999999 solid;  border-left: 1px #ffffff solid; border-right: 1px #ffffff solid; border-bottom: 1px #ffffff solid}
+.link {text-decoration: none; color:#000000; font-family: 宋体}
+-->
+</style>
+
+<table width="160" border="0" cellpadding="0" cellspacing="0" height="30">
+  <tr> 
+    <td class=normal onmouseover='this.className="over"' onmousedown='this.className="down"' onmouseup='this.className="over"' onmouseout='this.className="normal"' width="80" > 
+      <div align="center" ><a style="cursor: nw-resize" href="http://samool.533.net" target="_blank">傻猫软件网站</a> 
+      </div>
+    </td>
+    <td class=normal onmouseover='this.className="over"' onmousedown='this.className="down"' onmouseup='this.className="over"' onmouseout='this.className="normal"' width="80" > 
+      <div align="center"><a style="cursor: nw-resize" href="http://samool.533.net" target="_blank">雁去无声</a></div>
+    </td>
+  </tr>
+</table>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

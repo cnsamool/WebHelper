@@ -1,0 +1,28 @@
+em 显示左边的n个字符(自动识别汉字) 
+Function LeftTrue(str,n) 
+If len(str)<=n/2 Then 
+LeftTrue=str 
+else 
+Dim TStr 
+Dim&nb 
+sp;l,t,c 
+Dim i 
+l=len(str) 
+t=l 
+TStr="" 
+t=0 
+for i=1 to l 
+c=asc(mid(str,i,1)) 
+If c<0 then c=c+65536 
+If c>255 then 
+t=t+2 
+Else 
+t=t+1 
+End If 
+If t>n Then exit for 
+TStr=TStr&(mid(str,i,1)) 
+next 
+LeftTrue = TStr 
+End If 
+End Function 
+

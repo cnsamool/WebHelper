@@ -1,0 +1,24 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中//-->
+<P>下面为脚本显示区(用Alt+框前首字母选择)</p>
+<FORM>
+
+<LABEL FOR="Namebox" ACCESSKEY="N"><U>N</U>ame:</LABEL>
+<INPUT TYPE="TEXT" ID="Namebox" SIZE=30> <br>
+
+<LABEL FOR="Emailbox" ACCESSKEY="E"><U>E</U>mail:</LABEL>
+<INPUT TYPE="TEXT" ID="Emailbox" SIZE=30> <br>
+
+<LABEL FOR="Phonebox" ACCESSKEY="P"><U>P</U>hone:</LABEL>
+<INPUT TYPE="TEXT" ID="Phonebox" SIZE=30> <br>
+
+<LABEL FOR="areabox" ACCESSKEY="S"><U>S</U>uggest</LABEL>
+<TEXTAREA ID="areabox" COLS="10" ROWS="2">
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,14 @@
+<!--本特效需要duriuswaterpic.class和duriuswaterpic.jar支持,bbs.gif可以换成你的图片-->
+<!--必需将这三个文件放在同一目录下才能正常显示-->
+<!--C:\webhelpview\webhelpview 有这三个文件-->
+
+<APPLET archive="DuriusWaterPic.jar" width="755" height="100" code="DuriusWaterPic.class">
+    <PARAM name="image" value="bbs.gif">
+    <PARAM name="dotsize" value="9">
+    <PARAM name="ndotsize" value="5">
+    <PARAM name="dim" value="6">
+    <PARAM name="noise" value="1">
+    <PARAM name="mouse" value="1">
+    <PARAM name="bg" value="000000">
+    <PARAM name="reg" value="43752326">
+</APPLET>

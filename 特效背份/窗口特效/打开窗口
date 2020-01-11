@@ -1,0 +1,35 @@
+<SCRIPT LANGUAGE="JavaScript">
+
+<!-- Begin
+function popupPage(l, t, w, h) {
+var windowprops = "location=no,scrollbars=no,menubars=no,toolbars=no,resizable=yes" +
+",left=" + l + ",top=" + t + ",width=" + w + ",height=" + h;
+
+var URL = "http://laofuzi.3322.net/";
+popup = window.open(URL,"MenuPopup",windowprops);
+}
+//  End -->
+</script>
+<table>
+<tr>
+
+<td>
+<form name=popupform>
+<pre>
+打开页面的参数<br>
+离开左边的距离:  <input type=text name=left size=2 maxlength=4> pixels
+离开右边的距离:  <input type=text name=top size=2 maxlength=4> pixels
+
+窗口的宽度:      <input type=text name=width size=2 maxlength=4> pixels
+窗口的高度:      <input type=text name=height size=2 maxlength=4> pixels
+</pre>
+<center>
+<input type=button value="打开这个窗口!" onClick="popupPage(this.form.left.value, this.form.top.value, this.form.width.value, this.form.height.value)">
+</center>
+</form>
+</td>
+
+</tr>
+</table>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

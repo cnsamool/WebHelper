@@ -1,0 +1,35 @@
+
+<!--第一步：先将下列代码复制到<head></head>之间：-->
+<script language="JavaScript">
+<!--
+//*************This program is brought to you by Jaspon.************************
+//-------------              --------------------------
+var boodschap = '———welcome！———'; 
+function dgstatus()
+{
+      window.status = boodschap;
+ timerID= setTimeout("dgstatus()", 80);
+}
+dgstatus();
+var Flag=0
+//-->
+</SCRIPT>
+
+
+
+<!--第二步：再将下列代码复制到<body></body>之间：-->
+<p align="center"><a href="http://samool.533.net"
+                 target="_blank" onclick="Flag++;return true"><img src="bar1.gif"
+                 width="468" height="60" border="2" alt="点击所有广告后，你才能进入,在这里放置广告图象1"></a>
+                 
+                 <a href="http://samool.533.net" 
+                 target="_blank" onclick="Flag++;return true"><img src="bar2.gif" 
+                 width="468" height="60" border="2" alt="点击所有广告后，你才能进入,在这里放置广告图象2"></a> 
+ 
+<p align="center">         
+         
+<a href="index.htm" target="_blank"       
+             onclick="if(Flag==2) return true; else {alert('你好象没有点我们的广告或者没有点全，请点击上面所有广告,等广告全打开你就可以进入了！'); return false}"         
+             onmouseover="window.status='点击广告！';return true">点击所有广告后点此进入</a></p>  
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,6 @@
+<p><a HREF="#"
+ONCLICK="this.style.behavior='url(#default#homepage)';this.setHomePage('http://samool.533.net');">设为首页</a></p>
+<p><a
+href="javascript:window.external.AddFavorite('http://samool.533.net', '★网页助手★ ')">添加收藏</a></p>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

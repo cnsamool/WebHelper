@@ -1,0 +1,38 @@
+
+<!--第一步：将下列代码复制到<head></head>之间：-->
+<SCRIPT language=javascript type=text/javascript><!--
+// http://oke.yeah.net
+objectLeftPos = 0;
+objectTopPos = 0;
+function moveRight() {
+if (document.all) {object = object1.style}
+if (document.layers) {object = document.object1}
+if (objectLeftPos < 650) {
+	objectLeftPos += 10;
+	object.left = objectLeftPos;
+	setTimeout("moveRight()",10)
+	}
+}
+function moveDown() {
+if (document.all) {object = object1.style}
+if (document.layers) {object = document.object1}
+if (objectTopPos < 350) {
+	objectTopPos += 10;
+	object.top = objectTopPos;
+	setTimeout("moveDown()",10)
+	}
+}
+
+//--></SCRIPT>
+
+
+
+
+<!--第二步：将下列代码复制到<body></body>之间：-->
+
+<DIV id=object1 style="LEFT: 0px; POSITION: absolute; TOP: 0px; WIDTH: 200px">
+<H1>网页助手</H1></DIV><BR>
+<CENTER>
+<FORM><INPUT onclick=moveRight() type=button value="向右移"> <INPUT onclick=moveDown() type=button value="向下移"></FORM></CENTER>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

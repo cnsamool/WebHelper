@@ -1,0 +1,204 @@
+<body onload=startthedots()>
+<style type=text/css>#a0 {
+CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px; LEFT: 24px; POSITION: absolute; TOP:
+24px; WIDTH: 16px; Z-INDEX: 2000
+}
+#a1 {
+CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px; LEFT: 96px; POSITION: absolute; TOP:
+24px; WIDTH: 16px; Z-INDEX: 2000
+}
+#a2 {
+CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px; LEFT: 132px; POSITION: absolute;
+TOP: 24px; WIDTH: 16px; Z-INDEX: 2000
+}
+#a3 {
+CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px; LEFT: 192px; POSITION: absolute;
+TOP: 24px; WIDTH: 16px; Z-INDEX: 2000
+}
+#a4 {
+CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px; LEFT: 240px; POSITION: absolute;
+TOP: 24px; WIDTH: 16px; Z-INDEX: 2000
+}
+#a5 {
+CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px; LEFT: 280px; POSITION: absolute;
+TOP: 24px; WIDTH: 16px; Z-INDEX: 2000
+}
+#a6 {
+CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px; LEFT: 24px; POSITION: absolute; TOP:
+300px; WIDTH: 16px; Z-INDEX: 2000
+}
+#a7 {
+CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px; LEFT: 200px; POSITION: absolute;
+TOP: 300px; WIDTH: 16px; Z-INDEX: 2000
+}
+#a8 {
+CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px; LEFT: 300px; POSITION: absolute;
+TOP: 300px; WIDTH: 16px; Z-INDEX: 2000
+}
+#a9 {
+CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px; LEFT: 450px; POSITION: absolute;
+TOP: 300px; WIDTH: 16px; Z-INDEX: 2000
+}
+#what {
+LEFT: -96px; POSITION: absolute; TOP: 0px; VISIBILITY: hidden; Z-INDEX: 3000
+}
+</style>
+<script language=JavaScript>
+  window.onerror=null;
+  netscape = (document.layers) ? 1:0;
+  goodIE = (document.all) ? 1:0;
+  document.onmousemove=MoveHandler;
+  var gotthere = 0;
+  var count = 0;
+  toplocation = new Array( 0,30,57,80,101,125,80,80,101,125,80,0 );
+  temptoplocation = new Array( 50,100,100,150,150,200,200,100,150,150,200,200,0
+  );
+  leftlocation = new Array( 0,292,318,181,181,217,263,318,181,181,217,263,-96
+  );
+  templeftlocation = new Array( 0,0,260,390,420,550,680,390,420,550,680,0 );
+  difftop = new Array( 0,0,0,0,0,0,0,0,0,0,0,0 );
+  diffleft = new Array( 0,0,0,0,0,0,0,0,0,0,0,0 );
+  questtop = -13;
+  questleft2 = -96;
+  if (netscape) {
+  window.captureEvents(Event.MOUSEMOVE);
+  window.onMouseMove = MoveHandler;
+  var layerstart = "document.";
+  var layerleft = ".left";
+  var layertop = ".top";
+  var layerstyle = "";
+  var windowWidth = window.innerWidth;
+  var windowHeight = window.innerHeight; }
+  else if (goodIE) {
+  layerstart = "document.all.";
+  layerleft = ".left";
+  layertop = ".top";
+  layerstyle = ".style";
+  windowWidth=600;
+  windowHeight=400; }
+  var Ypos2 = 72;
+  var Xpos2 = 72;
+  function MoveHandler(e) {
+  if (netscape || goodIE) {
+  Xpos2 = (netscape)?e.pageX:event.x
+  Ypos2 = (netscape)?e.pageY:event.y
+  Xorigin = Xpos2;
+  Yorigin = Ypos2;
+  if (Ypos2 > windowHeight/2) {
+  if (Xpos2 > windowWidth/2) { direction = 1;}
+  else { direction = -1;} }
+  else {
+  if (Xpos2 > windowWidth/2) { direction = -1;}
+  else { direction = 1;} }
+  }}
+  amountup=44;
+  function startthedots() {
+  if (goodIE) {
+  windowWidth=document.body.clientWidth;
+  windowHeight=document.body.clientHeight; }
+  markMe();
+  eval(layerstart+"what"+layerstyle+layertop+" = windowHeight-amountup");
+  eval(layerstart+"what"+layerstyle+".visibility = 'visible'");
+  Xorigin = 204;
+  Yorigin = 147;
+  spin();run(); }
+  var OrbitSize = 250;
+  count=1; delay=100; direction = -1;
+  var speed = 0.0628;
+  var offset = 1;
+  Count = new Array ( 0, .63, 1.26, 1.89, 2.52, 3.15, 3.78, 4.41, 5.04, 5.67 );
+  PreCount = new Array ( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 );
+  Xcount = new Array()
+  Ycount = new Array()
+  for ( j = 0 ; j <= 300 ; j++ ) {
+  Xcount[j] = Math.sin(j*speed);
+  Ycount[j] = Math.cos(j*speed);
+  }
+  placeholder = 100;
+  Xpoint = new Array ( 0, .63, 1.26, 1.89, 2.52, 3.15, 3.78, 4.41, 5.04, 5.67
+  );
+
+  Ypoint = new Array ( 0, .63, 1.26, 1.89, 2.52, 3.15, 3.78, 4.41, 5.04, 5.67
+  );
+  function spin() {
+  if (direction) {
+  placeholder++;
+  if (placeholder > 199) { placeholder=100; }}
+  else {
+  placeholder--;
+  if (placeholder < 100 ) { placeholder=199; }}
+  for ( j = 0 ; j <= 9 ; j++ ) {
+  Xpoint[j] = Xorigin + ( (OrbitSize*offset) * Xcount[placeholder+(j*10*direction)]
+  );
+  Ypoint[j] = Yorigin + ((OrbitSize * Ycount[placeholder+(j*10*direction)]) +
+  dotsoff);
+  }
+  setTimeout('spin()',20);
+  }
+  function run() {
+  count++;
+  for ( j = 0 ; j <= 9 ; j++ ) {
+  difftop[j] = Ypoint[j] - temptoplocation[j];
+  diffleft[j] = Xpoint[j] - templeftlocation[j];
+  diff = 30;
+  temptoplocation[j] = temptoplocation[j] + (difftop[j]/diff);
+  templeftlocation[j] = templeftlocation[j] + diffleft[j]/diff;
+  eval(layerstart+"a"+j+layerstyle+layerleft+" = templeftlocation["+j+"]");
+  eval(layerstart+"a"+j+layerstyle+layertop+" = temptoplocation["+j+"]");
+  }
+  setTimeout('run()', 47) }
+  goforit=1;
+  function question0() {
+  if (goforit) { goforit=0; question1(); }}
+  function question1() {
+  questleft2++;questleft2++;questleft2++;
+  if (questleft2 <= 0) {
+  eval(layerstart+"what"+layerstyle+layerleft+" = questleft2");
+
+  setTimeout('question1()', 10); }
+  else { setTimeout('question2()',1000);}
+  }
+  function question2() {
+  questleft2--;questleft2--;questleft2--;
+  if (questleft2 >= -96) {
+  eval(layerstart+"what"+layerstyle+layerleft+" = questleft2");
+
+  setTimeout('question2()', 10); }
+  if (questleft2 == -96) { goforit=1; } }
+  mark = 150;
+  navDOM = window.innerHeight;
+  function markMe() {
+  window.onresize=setup;
+  markID = setInterval ("setup()",mark);
+  }
+  var dotsoff=0;
+  function setup() {
+  pagescroll=navDOM?pageYOffset:document.body.scrollTop
+  eval(layerstart+"what"+layerstyle+layertop+" = windowHeight-amountup+pagescroll");
+  if (!netscape) { dotsoff = pagescroll; }
+  }
+  </script>
+  <div align=center id=a0><img height=16 src="mball01.gif"
+  width=16></div>
+  <div align=center id=a1><img height=16 src="mball02.gif"
+  width=16></div>
+  <div align=center id=a2><img height=16 src="mball01.gif"
+  width=16></div>
+  <div align=center id=a3><img height=16 src="mball02.gif"
+  width=16></div>
+  <div align=center id=a4><img height=16 src="mball01.gif"
+  width=16></div>
+  <div align=center id=a5><img height=16 src="mball02.gif"
+  width=16></div>
+  <div align=center id=a6><img height=16 src="mball01.gif"
+  width=16></div>
+  <div align=center id=a7><img height=16 src="mball02.gif"
+  width=16></div>
+  <div align=center id=a8><img height=16 src="mball01.gif"
+  width=16></div>
+  <div align=center id=a9><img height=16 src="mball02.gif"
+  width=16></div>
+  <div align=left id=what></div>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

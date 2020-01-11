@@ -1,0 +1,35 @@
+
+<SCRIPT language=javascript>
+
+<!--
+
+function linkDisplay(selection){
+
+if(selection=="1"){document.form.info.value="凡是主页制作需要的图片资料,这里都有。";document.form.go.value="time1.htm";}
+
+else if(selection=="2"){document.form.info.value="流行软件和注册机码下载，软件分类齐全！";document.form.go.value="time2.htm";}//链接自己可以加入，说明也可以更改！
+
+else if(selection=="3"){document.form.info.value="主页制作密技奉献，正在学习和制作主页的朋友在这里一定能发现有用的资料。";document.form.go.value="3.htm";}
+
+else if(selection=="4"){document.form.info.value="大量的中外影视明星美女的剧照和写真，詹姆斯邦德，施瓦辛格，第五元素，哈里森福特，周润发,泰坦尼克，蝙蝠侠，变脸及X-档案等剧照。苏慧伦，王菲，酒井法子，朱茵等美女桌布！";document.form.go.value="4.htm";}
+
+else if(selection=="5"){document.form.info.value="几千个注册机码等着你呢！而且在不断地添加新的东西";document.form.go.value="5.htm";}
+
+else if(selection=="6"){document.form.info.value="MIDI音乐屋当然是最首欢迎的MIDI乐曲下载天地了，中外流行曲，美国乡遥，影视主题曲...";document.form.go.value="6.htm";}}function moreInfo(){
+
+var page=document.form.go.value;window.location=page;}
+
+
+
+//-->
+
+
+
+</SCRIPT>
+
+
+
+<form name=form> <input type=hidden name=go value><table border=0 width=300> <tr> <td align=center width=300><a href=javascript:linkDisplay(1);>网页图片库</a><br> </td> <td align=center width=300><a href=javascript:linkDisplay(2);>软件下载仓库</a><br> </td> <td align=center width=300><a href=javascript:linkDisplay(3);>主页制作密技</a><br> </td>  </tr> <tr> <td align=center width=300><a href=javascript:linkDisplay(4);>美女明星写真<br> </a></td> <td align=center width=300><a href=javascript:linkDisplay(5);>注册机码集中营</a><br> </td> <td align=center width=300><a href=javascript:linkDisplay(6);>MIDI音乐屋</a><br> </td> </tr> <tr> <td colspan=3 align=center width=300><div align=center><p><textarea name=info rows=5 cols=34 wrap=virtual>点击连接看个仔细</textarea><br> <input type=button name=button value=去看看 onClick=moreInfo()> </td> </tr> </table></form>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

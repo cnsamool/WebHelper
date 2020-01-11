@@ -1,0 +1,156 @@
+<script>
+var inflight, colatrel, tmt, colatarcher, oldcolatarcher, isHit, tmp, isIE, whichkey, cntr, cntr2, points;
+var targets=new Array(2,2,2,2,2,2,2,2,2,2);
+
+var images=new Array();
+for(a=0;a<7;a++){
+images[a]=new Image();
+images[a].src=("sj-pic"+a+".gif");
+}
+
+function init(){
+points=0;
+cntr=0;
+cntr2=0;
+inflight=false;
+colatrel=5;
+colatarcher=5;
+oldcolatarcher=5;
+document.f.cr_59.src="sj-pic1.gif";
+alert('键盘控制：\n“4”向左，“6”向右，空格射击!\n\n---射中汽球得一分!---\n---射中兔子扣二分!---\n---射中松鼠扣二分!---\n\n\n-----祝你好运!-----');
+startscroll();
+}
+
+function startscroll(){
+updatepos();
+if(cntr<10){
+cntr++;
+for(q=10;q>=1;q--){
+targets[q]=targets[(q-1)];
+document.f[('cr_'+q+0)].src=("sj-pic"+targets[(q-1)]+".gif");
+}
+targets[0]=Math.floor(Math.random()*4+2)
+document.f.cr_00.src=("sj-pic"+targets[0]+".gif");
+}else{
+cntr=0;
+}
+setTimeout('startscroll()', 400);
+}
+<!-- 此特效使用《心梦网页特效精灵》编辑制作-->
+<!-- 心梦家园：http://xmhome.in70s.com-->
+function shootarrow(){
+if(!inflight){
+inflight=true;
+cntr2=8;
+document.f[('cr_'+colatrel+8)].src="sj-pic0.gif";
+document.f[('cr_'+colatarcher+9)].src="sj-pic6.gif";
+setTimeout('fly()',10);
+}}
+
+function movearrow(left){
+if(left){
+if(colatarcher!=0)colatarcher--;
+}else{
+if(colatarcher!=10)colatarcher++;
+}
+updatepos();
+}
+
+function updatepos(){
+document.f[('cr_'+oldcolatarcher+9)].src="sj-pic2.gif";
+(inflight)? tmp=6: tmp=1;
+document.f[('cr_'+colatarcher+9)].src="sj-pic"+tmp+".gif";
+oldcolatarcher=colatarcher;
+if(!inflight)colatrel=colatarcher;
+}
+
+function fly(){
+if(cntr2>0){
+document.f[('cr_'+colatrel+cntr2)].src="sj-pic2.gif";
+document.f[('cr_'+colatrel+(cntr2-1))].src="sj-pic0.gif";
+cntr2--;
+setTimeout('fly()',10);
+}else{
+document.f[('cr_'+colatarcher+9)].src="sj-pic1.gif";
+switch(targets[colatrel]){
+case 2: points--;
+showtext('你是不是在射空气!!');
+break;
+case 5: points++;
+showtext('得分!');
+break;
+default: points=points-2;
+showtext('你是在射汽球吗?');
+break;
+}
+targets[colatrel]=2;
+inflight=false;
+document.f.t.value=points;
+}}
+
+function showtext(text){
+clearTimeout(tmt);
+document.f.t2.value=text;
+tmt=setTimeout('document.f.t2.value="请射汽球..."', 2000);
+}
+
+(navigator.appName=="Netscape")? isIE=false: isIE=true;
+
+function showkey(keypress){
+if(isIE){
+whichkey=window.event.keyCode;
+}else{
+whichkey=keypress.which;
+}
+switch(whichkey){
+case 52: movearrow(true);
+break;
+case 54: movearrow(false);
+break;
+case 32: shootarrow();
+break;
+}
+return false;
+}
+
+if(!isIE)window.captureEvents(Event.KEYPRESS);
+window.onkeypress=showkey;
+document.onkeypress=showkey;
+
+window.onload=init;
+
+</script>
+
+<html>
+
+<head>
+<title></title>
+</head>
+
+<body>
+
+<form name="f">
+  <table cellSpacing="0" cellPadding="0" align="center" bgColor="black" border="0">
+    <script language="javascript">
+for(row=0;row<10;row++){
+document.write('<tr height="40">');
+for(col=0;col<11;col++){
+document.write('<td width="40" align="center">');
+document.write('<img src="sj-pic2.gif" border="0" name="cr_'+col+row+'">');
+document.write('</td>');
+}
+document.write('</tr>');
+}
+</script>
+<TBODY>
+
+    <tr>
+      <td align="middle"><font color="white">得分</font><input size="4" value="0" name="t"> <input
+      value="请射汽球..." name="t2" size="20"></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

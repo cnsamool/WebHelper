@@ -1,0 +1,88 @@
+<script language="JavaScript">
+var timerID = null;
+var timerRunning = false;
+// Called by both onLoad in BODY tag, and Resume button.
+function startclock () 
+   {
+   // Make sure the clock is stopped
+   stopclock();
+   time();
+   }
+// Kills clock.
+function stopclock ()
+   {
+   if(timerRunning)
+      clearTimeout(timerID);
+   timerRunning = false;
+   }
+function time ()
+   {
+   var now = new Date();
+   var yr = now.getYear();
+   var mName = now.getMonth() + 1;
+   var dName = now.getDay() + 1;
+   var dayNr = ((now.getDate()<10) ? "0" : "")+ now.getDate();
+   var ampm = (now.getHours() >= 12) ? " P.M." : " A.M."
+   var hours = now.getHours();
+         hours = ((hours > 12) ? hours - 12 : hours);
+   var minutes = ((now.getMinutes() < 10) ? ":0" : ":") + now.getMinutes();
+   var seconds = ((now.getSeconds() < 10) ? ":0" : ":") + now.getSeconds();
+   if(dName==1) Day = "Sunday";
+   if(dName==2) Day = "Monday";
+   if(dName==3) Day = "Tuesday";
+   if(dName==4) Day = "Wednesday";
+   if(dName==5) Day = "Thursday";
+   if(dName==6) Day = "Friday";
+   if(dName==7) Day = "Saturday";
+   if(mName==1) Month="January";
+   if(mName==2) Month="February";
+   if(mName==3) Month="March";
+   if(mName==4) Month="April";
+   if(mName==5) Month="May";
+   if(mName==6) Month="June";
+   if(mName==7) Month="July";
+   if(mName==8) Month="August";
+   if(mName==9) Month="September";
+   if(mName==10) Month="October";
+   if(mName==11) Month="November";
+   if(mName==12) Month="December";
+   // String to display current date.
+   var DayDateTime=(" "
+       + Day
+       + "     "
+       + Month
+       + " "
+       + dayNr
+       + ", "
+       + ""
+       + yr
+       + "     "
+       + hours
+       + minutes
+       + seconds
+       + " "
+       + ampm
+        );
+   // Displays Day-Date-Time on the staus bar.
+   document.clock.face.value=DayDateTime;
+   timerID = setTimeout("time()",1000);
+   timerRunning = true;
+   }
+// Stops clock and clears status bar.
+function clearStatus()
+   {
+   if(timerRunning)
+      clearTimeout(timerID);
+   timerRunning = false;
+   window.status=" ";   
+   }
+// -- End Hiding Here -->
+</script>
+
+<form name="clock" onSubmit="0">
+<input type=button name="face" size=100 value=" JavaScript!!  ">
+</form>
+
+<body bgcolor="#fef4d9" onLoad="startclock ()">
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

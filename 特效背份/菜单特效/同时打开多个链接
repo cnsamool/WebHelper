@@ -1,0 +1,67 @@
+
+<SCRIPT LANGUAGE = "JavaScript">
+
+<!--
+
+function newlink(href, descr) {
+document.write ('<FORM><INPUT TYPE="checkbox" NAME="picklink" VALUE="off"><a href="' + href +'">' + href + '</a><br>' + descr +'<INPUT TYPE=HIDDEN NAME="site" VALUE="' + href + '"><INPUT TYPE=HIDDEN NAME="desc" VALUE="' + descr +'"></FORM>');
+}
+
+function makepage () {
+linkPage = '<HTML><HEAD><TITLE>Your Links:</TITLE></HEAD>' +
+          '<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#800000" VLINK="#800000" ALINK="#800000">' +
+          '<h1>Your Links:</H1><hr noshade color="#880000">'; 
+
+for (var i = 0; i < document.forms.length; i++) {
+if (document.forms[i].picklink.checked == true) {
+        var site = document.forms[i].site.value;
+        var desc = document.forms[i].desc.value;
+        link = '<a href="' + site + '" target="opener">' + site + '</a><br>' + desc + '<br><br>';
+        linkPage = linkPage + link
+        }
+}
+
+linkPage = linkPage + '<hr noshade color="#880000"></BODY></HTML>';
+
+remote = window.open("","remotewin","width=350,height=400");
+remote.document.write (linkPage);
+remote.document.close()
+    if (remote.opener == null) remote.opener = window; 
+remote.opener.name = "opener";
+}
+
+//-->
+
+</SCRIPT>
+
+<body bgcolor="#fef4d9">
+<br>
+<br>
+<center><font color=red face="隶书" size=6>同时打开多个链接</font></center>
+<br>
+<center>
+<table border=5 bordercolor=blue borderlight=green>
+<tr><td align=center><font size=5 color=red face="Arial, Helvetica, sans-serif"><strong>下面框中为脚本显示区</strong></font></td></tr>
+<tr><td align=left height=80>
+
+请选择下面的链接，你可以同时打开
+
+<script>
+newlink ("http://samool.533.net", "网页助手官方网站");
+newlink ("http://yangshiy.533.net", "仕毅风彩线");
+newlink ("http://www.163.com", "网易社区");
+newlink ("http://www.newhua.com", "中国最大的下载站 华军软件园");
+newlink ("http://www.microsoft.com/", "微软官方主页");
+</SCRIPT>
+<BR>
+<A HREF = "javascript:makepage()">打开所选链接</A>
+<input type="BUTTON" value="查看源代码" onClick= 'window.location = "view-source:" + window.location.href' name="BUTTON">
+</td></tr></table></center>
+<br>
+<br>
+<center>
+
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

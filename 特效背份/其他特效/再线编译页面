@@ -1,0 +1,18 @@
+
+<SCRIPT LANGUAGE="JavaScript">
+function checkDatabase() {
+var Item = document.forms[0].searchfor.value.toLowerCase();
+stats='toolbar=yes,location=yes,directories=yes,status=yes,menubar=yes,' 
+stats += 'scrollbars=yes,resizable=yes' 
+MsgBox = window.open ("","msgWindow",stats) 
+MsgBox.document.write ("<html><head><title>在线编辑页效果</title></head><body>");
+MsgBox.document.write (" "+Item+"");
+MsgBox.document.write ("</body></html>");}</SCRIPT><body background="../images/bg.jpg">
+<form method="POST" action="--WEBBOT-SELF--">
+<p align="center"><font color="#008000">在下面的文本框上写上代码，按开始运行即可欣赏你的大作。</font>
+<br><textarea rows="13" name="searchfor" cols="74"></textarea>
+<p align="center">
+<input type="button"  value="开始运行" size=30  onClick="checkDatabase()" name="button"><input type="reset" value="全部重写" name="B2">  
+</p></form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

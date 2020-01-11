@@ -1,0 +1,8 @@
+
+<SCRIPT language=JavaScript><!--
+function click() {
+if (event.button==2) {window.external.addFavorite('http://samool.533.net','ÉµÃ¨Èí¼þ')}}
+document.onmousedown=click
+// --></SCRIPT>
+<!--±¾ÍøÒ³ÓÉ¡¶ÍøÒ³ÖúÊÖV1.1¡·ÖÆ×÷    °æÈ¨ËùÓÐ£ºÉµÃ¨Èí¼þ -->
+<!--Çë·ÃÎÊÉµÃ¨Èí¼þ¹Ù·½ÍøÕ¾   http://samool.533.net  -->

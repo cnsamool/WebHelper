@@ -1,0 +1,341 @@
+    具体的例子是连接到一个公共的LDAP服务器并且进行搜索。这个例子模拟的是Netscape Communicator 4.*，通过自己的地址本连接到LDAP资源。  
+LDAP介绍 
+　　LDAP是一个用来发布目录信息到许多不同资源的协议。通常它都作为一个集中的地址本使用，不过根据组织者的需要，它可以做得更加强大。 
+
+　　LDAP最基本的形式是一个连接数据库的标准方式。该数据库为读查询作了优化。因此它可以很快地得到查询结果，不过在其它方面，例如更新，就慢得多。要特别注意的是，LDAP通常作为一个hierarchal数据库使用，而不是一个关系数据库。因此，它的结构用树来表示比用表格好。正因为这样，就不能用SQL语句了。 
+
+　　简单说来，LDAP是一个得到关于人或者资源的集中、静态数据的快速方式。 
+
+要求: 
+
+　　 PHPV.4（以前的版本也可以，不过没有经过测试），编译支持LADP，即使用编译时带--with-ldap公共的LDAP目录。在例子中提供了两个。 
+
+例子概览 
+
+1.设置公共LDAP服务器的信息 
+2.创建一个LDAP查询 
+3.连接到LDAP服务器  
+4.如果连接成功，处理查询 
+5.格式化输出 
+6.关闭连接 
+7.设计搜索界面的HTML表格 
+8.显示结果 
+
+设置公共LDAP服务器的信息 
+
+　　我们要做的第一件事情是定义所有欲搜索的LDAP服务器的信息 
+
+"LDAP_NAME" = 新的LDAP项目的名字 
+"LDAP_SERVER" = 新的LDAP项目的IP地址或者主机名 
+"LDAP_ROOT_DN" = 新的LDAP项目的根的辨识名 
+
+＜？php  
+
+$LDAP_NAME[0] = "Netscape Net Center";  
+$LDAP_SERVER[0] = "memberdir.netscape.com";  
+$LDAP_ROOT_DN[0] = "ou=member_directory,o=netcenter.com";  
+
+$LDAP_NAME[1] = "Bigfoot";  
+$LDAP_SERVER[1] = "ldap.bigfoot.com";  
+$LDAP_ROOT_DN[1] = "";  
+
+
+
+//如果没有选择服务器的话将它设置为0  
+if(!$SERVER_ID)  
+$SERVER_ID=0;  
+
+？＞  
+
+建立LDAP查询 
+
+　　前面已经提到，LDAP查询与SQL查询是不一样的。因此，语句要受到一定的限制，以下是一个基本的例子。 
+
+//Create Query $ldap_query = "cn=$common";  
+
+　　在我们的例子中，“cn”是我们要进行搜索的属性，而$common是由搜索的form中得到的字符串变量。LDAP的查询语句语句可使用通配符‘*’。例如‘$stanley’将可以找出‘dan stanley’。 
+
+连接到LDAP服务器 
+
+　　以下的函数连接到一个LDAP资源，并且将连接的识别号赋给一个变量，就好象连接到一个通常的数据库一样，例如MySQL。 
+
+＜？php  
+
+//连接到LDAP  
+$connect_id = ldap_connect($LDAP_SERVER[$SERVER_ID]);  
+
+？＞  
+
+　　在我们的例子中，“$connect_id”是连接的识别号，$LDAP_SERVER是可能的ldap服务器数组，而$SERVER_ID是由搜索表格得到的LDAP服务器变量。 
+
+如果连接成功，处理查询 
+
+　　 如果连接成功的话，我们将得到一个有效的LDAP连接识别号，这样我们就可以处理查询。 
+
+＜？php  
+
+if($connect_id)  
+{  
+//认证 
+$bind_id = ldap_bind($connect_id);  
+
+//执行搜索  
+$search_id = ldap_search($connect_id, $LDAP_ROOT_DN[$SERVER_ID], $ldap_query);  
+
+//将结果集合分配给一个数组  
+$result_array = ldap_get_entries($connect_id, $search_id);  
+}  
+else  
+{  
+//显示连接错误  
+echo "Could not connect to LDAP server: $LDAP_SERVER[$SERVER_ID]";  
+}  
+
+？＞  
+
+　　一旦我们与LDAP服务器建立好连接，我们就必须进行认证。PHP在连接大多数的数据库时，都是通过发送用户名和密码来进行的。不过，在LDAP中，认证是未知的，直到进行一个bind操作。在我们的例子中，“$bind_id”是绑定连接的标识符。我们是通过匿名绑定到公共的LDAP服务器的。因此，在执行ldap_bind()时，只使用连接识别号就可以了，无需其它的参数。 
+
+　　在经过认证后（这里是匿名的），我们就可以使用ldap_search()函数来执行查询，产生的$search_id是我们搜索的连接识别符。 
+
+　　然后，我们使用ldap_get_entries()函数将结果集赋给$result_array变量。这样我们能够以逻辑的方式排列信息，以便显示。  
+格式化输出 
+
+　　在执行完LDAP搜索后，返回的数据是以查找的顺序排列的。不过我们在排序时没有SQL这样方便，使用ORDER BY语句就可以了。通常多数公共的LDAP目录都没有标准的大小规范。排序是基于字符的ASCII值，我们必须将字符全部格式化为小写，以便按字母的顺序输出。 
+
+　　要特别注意的是，返回的LDAP结果集是一个多维的数组。因此，我们脚本中的$result_array的结构如下： 
+
+$result_array[0]["cn"] [0] = "Dannie Stanley" 
+["dn"] [0] = "uid=dannie,dc=spinweb.net" 
+["givenname"][0] = "Dannie" 
+["sn"] [0] = "Stanley" 
+["mail"] [0] = "danSPAM@spinweb.net" 
+$result_array[1]["cn"] [0] = "Michael Reynolds" 
+["dn"] [0] = "uid=michael,dc=spinweb.net" 
+["givenname"][0] = "Michael" 
+["sn"] [0] = "Reynolds" 
+["mail"] [0] = "michaelSPAM@spinweb.net"  
+
+　　数据以这种格式存放的原因是每个属性都可能有超过一个值（象树的结构）。例如，如果我的名字是‘Dannie’，我还可以在LDAP中增加一些属性，例如： 
+
+$result_array[0]["cn"] [0] = "Dannie Stanley" 
+["dn"] [0] = "uid=dannie,dc=spinweb.net" 
+["givenname"][0] = "Dannie" 
+["givenname"][0] = "Dan" 
+["sn"] [0] = "Stanley" 
+["mail"] [0] = "danSPAM@spinweb.net" 
+
+　　在我们的搜索中，我们只关心每个属性的首个值，因此除了dn只有一个值外，其它我们只使用每个属性中序号为0的值。以下就是属性和它们含义的简单列表： 
+
+"cn" = Common Name 
+"dn" = Distinguished Name 
+"givenname" = First Name 
+"sn" = Last Name 
+"mail" = Email地址 
+
+
+＜？php  
+
+//如果搜索成功，将结果排序  
+if($result_array)  
+{  
+for($i=0; $i {  
+$format_array[$i][0] = strtolower($result_array[$i]["cn"][0]);  
+$format_array[$i][1] = $result_array[$i]["dn"];  
+$format_array[$i][2] = strtolower($result_array[$i]["givenname"][0]);  
+$format_array[$i][3] = strtolower($result_array[$i]["sn"][0]);  
+$format_array[$i][4] = strtolower($result_array[$i]["mail"][0]);  
+}  
+
+//排序数组  
+sort($format_array, "SORT_STRING");  
+
+for($i=0; $i {  
+$cn = $format_array[$i][0];  
+$dn = $format_array[$i][1];  
+$fname = ucwords($format_array[$i][2]);  
+$lname = ucwords($format_array[$i][3]);  
+$email = $format_array[$i][4];  
+
+if($dn && $fname && $lname && $email)  
+{  
+$result_list .= "$fname $lname";  
+$result_list .= " <$email> 
+";  
+}  
+elseif($dn && $cn && $email)  
+{  
+$result_list .= "＜A href='/"ldap://$LDAP_SERVER[$SERVER_ID]/$dn/"'＞$cn＜/A＞";  
+$result_list .= " ＜A href='/"mailto:$email/"'＞$email＜/A＞ 
+";  
+}  
+}  
+}  
+else  
+{  
+echo "Result set empty for query: $ldap_query";  
+}  
+
+
+？＞  
+　　在我们的例子中，$format_array是我们建立的新数组，里面包括有查询的结果，并且被格式化用作输出。首先循环$result_array中的每个元素，并且将它分配给一个两维的数组用作排序。同时我们使用strtolower()函数将所有的值变为小写。 
+
+　　接着，我们使用PHP自带的一个称为sort()的函数进行排序。首个参数是要排序的数组，另一个是要执行的排序类型，该类型是由PHP的文档定义的。由于我们根据字符串排序，我们使用“SORT_STRING”。 
+
+　　第三，我们循环已经格式化好的数组，并且将它分配给一个名字为$result_list的输出字符，该字符包含了HTML描述。要特别注意的是，在超链接中，我使用的是ldap的URL格式。这个格式的例子类似：HREF="ldap://ldap.domain.net/uid=dannie,dc=domain.net"。 
+
+关闭连接 
+
+　　现在我们所有的数据已经包含在$result_list中了，我们可以安全地关闭LDAP的连接。 
+
+＜？php  
+
+//关闭连接 
+ldap_close($connect_id);  
+
+
+定制搜索界面的HTML表格 
+
+　　最后，我们要定制搜索用的HTML表格，它是用来给用户执行搜索的。 
+
+
+//定制表格 
+echo " ＜CENTER＞＜FORM action='"$PHP_SELF"' method='"GET"'＞";  
+echo "Search in:＜SELECT name='"SERVER_ID"'＞"; //循环以建立SELECT选项 for($i=0; $i＜COUNT($LDAP_NAME); ＜br $i++)＞ echo "＜OPTION selected value='"$i"'＞".$LDAP_NAME[$i]."＜/OPTION＞"; echo "＜/SELECT＞ 
+";  
+echo "Search for:＜INPUT name='"common"' type='"text"'＞";  
+echo "＜INPUT name='"lookup"' type='"submit"' value='"go"'＞ 
+";  
+echo "(You can use * for wildcard searches, ex. * Stanley will find all Stanleys) 
+";  
+echo "＜/FORM＞＜/CENTER＞";  
+
+？＞  
+
+　　代码中的$PHP_SELF是一个全局的常量，代表的是脚本页面自身，其中的循环是用来通过我们的$LDAP_NAME变量创建SELECT选项。 
+
+显示结果 
+
+　　现在所有的工作已经完成了，我们将打印出结果集。如果没有符合的结果，将会显示"No Results"的信息。 
+
+<<？>php  
+
+//显示结果 
+if($result_list)  
+{  
+echo " ＜CENTER＞＜TABLE border='"1"' cellPadding='"10"' cellSpacing='"0"'  
+BGCOLOR="#FFFFEA" WIDTH="450"＞ ＜TBODY＞＜TR＞＜TD＞$result_list＜/TD＞＜/TR＞ 
+＜/TBODY＞＜/TABLE＞＜/CENTER＞";  
+}  
+else  
+echo "No Results";  
+
+
+？＞  
+
+源代码 
+
+　　以下是完整的源代码，只要将它剪切并粘贴到一个HTML文档，就可以尝试一下了。 
+
+＜？php  
+
+$LDAP_NAME[0] = "Netscape Net Center";  
+$LDAP_SERVER[0] = "memberdir.netscape.com";  
+$LDAP_ROOT_DN[0] = "ou=member_directory,o=netcenter.com";  
+
+$LDAP_NAME[1] = "Bigfoot";  
+$LDAP_SERVER[1] = "ldap.bigfoot.com";  
+$LDAP_ROOT_DN[1] = "";  
+
+//如果没有选择服务器的话将它设置为0  
+if(!$SERVER_ID)  
+$SERVER_ID=0;  
+
+//建立查询 
+$ldap_query = "cn=$common";  
+
+//连接到LDAP  
+$connect_id = ldap_connect($LDAP_SERVER[$SERVER_ID]);  
+
+if($connect_id)  
+{  
+//认证  
+$bind_id = ldap_bind($connect_id);  
+
+//执行搜索  
+$search_id = ldap_search($connect_id, $LDAP_ROOT_DN[$SERVER_ID], $ldap_query);  
+
+//将结果集合分配给一个数组  
+$result_array = ldap_get_entries($connect_id, $search_id);  
+}  
+else  
+{  
+//显示连接错误  
+echo "Could not connect to LDAP server: $LDAP_SERVER[$SERVER_ID]";  
+}  
+
+//如果搜索成功，将结果排序  
+if($result_array)  
+{  
+for($i=0; $i {  
+$format_array[$i][0] = strtolower($result_array[$i]["cn"][0]);  
+$format_array[$i][1] = $result_array[$i]["dn"];  
+$format_array[$i][2] = strtolower($result_array[$i]["givenname"][0]);  
+$format_array[$i][3] = strtolower($result_array[$i]["sn"][0]);  
+$format_array[$i][4] = strtolower($result_array[$i]["mail"][0]);  
+}  
+
+//排序数组  
+sort($format_array, "SORT_STRING");  
+
+for($i=0; $i {  
+$cn = $format_array[$i][0];  
+$dn = $format_array[$i][1];  
+$fname = ucwords($format_array[$i][2]);  
+$lname = ucwords($format_array[$i][3]);  
+$email = $format_array[$i][4];  
+
+if($dn && $fname && $lname && $email)  
+{  
+$result_list .= "＜A href='/"ldap://$LDAP_SERVER[$SERVER_ID]/$dn/"'＞$fname $lname＜/A＞";  
+$result_list .= " <$email> 
+";  
+}  
+elseif($dn && $cn && $email)  
+{  
+$result_list .= "＜A href='/"ldap://$LDAP_SERVER[$SERVER_ID]/$dn/"'＞$cn＜/A＞";  
+$result_list .= " <＜A href='/"mailto:$email/"'＞$email＜/A＞ 
+";  
+}  
+}  
+}  
+else  
+{  
+echo "Result set empty for query: $ldap_query";  
+}  
+
+//关闭连接 
+ldap_close($connect_id);  
+
+//定制表格 
+echo " ＜CENTER＞＜FORM action='"$PHP_SELF"' method='"GET"'＞";  
+echo "Search in:＜SELECT name='"SERVER_ID"'＞"; //循环以建立SELECT选项 for($i=0; $i echo "＜OPTION selected value='"$i"'＞".$LDAP_NAME[$i]."＜/OPTION＞"; echo "＜/SELECT＞ 
+";  
+echo "Search for:＜INPUT name='"common"' type='"text"'＞";  
+echo "＜INPUT name='"lookup"' type='"submit"' value='"go"'＞ 
+";  
+echo "(You can use * for wildcard searches, ex. * Stanley will find all Stanleys) 
+";  
+echo "＜/FORM＞＜/CENTER＞";  
+
+//显示结果 
+if($result_list)  
+{  
+echo " ＜CENTER＞＜TABLE border='"1"' cellPadding='"10"' cellSpacing='"0"'  
+BGCOLOR="#FFFFEA" WIDTH="450"＞ ＜TBODY＞＜TR＞＜TD＞$result_list＜/TD＞＜/TR＞ 
+＜/TBODY＞＜/TABLE＞＜/CENTER＞";  
+}  
+else  
+echo "No Results";  
+}  
+
+？＞

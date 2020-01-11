@@ -1,0 +1,47 @@
+<!--脚本说明：
+把如下代码加入<body>区域中:-->
+<script language="JavaScript">
+<!--
+function surfto(form) {
+    var myindex=form.select1.selectedIndex
+    if (form.select1.options[myindex].value != null) {
+         parent.main.location.href=form.select1.options[myindex].value;
+    }
+}
+// -->
+</script>
+<script language="JavaScript1.2">
+<!--
+function shake(n) {
+if (window.top.moveBy) {
+for (i = 10; i > 0; i--) {
+for (j = n; j > 0; j--) {
+window.top.moveBy(0,i);
+window.top.moveBy(i,0);
+window.top.moveBy(0,-i);
+window.top.moveBy(-i,0);
+         }
+      }
+   }
+alert(" 没吓坏吧!!! ");
+}
+// End -->
+</script>
+<script
+language="JavaScript">
+<!--
+function moyamoya(htmlfile) {
+   parent.main.location.href=htmlfile;
+}
+// -->
+</script>
+
+
+<form>
+  <div align="center"><center><p><input onclick="shake(2)" type="button"
+  value="地震拉！！！"> </p>
+  </center></div>
+</form>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

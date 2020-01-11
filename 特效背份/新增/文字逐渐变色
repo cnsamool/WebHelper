@@ -1,0 +1,46 @@
+<SCRIPT language=JavaScript1.2>
+var message="文字一个一个地变色,好不好看啊?这里可以改成你的自己的文字!"
+var neonbasecolor="blue"
+var neontextcolor="red"
+var flashspeed=200  //in milliseconds
+
+var n=0
+if (document.all){
+document.write('<font color="'+neonbasecolor+'">')
+for (m=0;m<message.length;m++)
+document.write('<span id="neonlight">'+message.charAt(m)+'</span>')
+document.write('</font>')
+
+//cache reference to neonlight array
+var tempref=document.all.neonlight
+}
+else
+document.write(message)
+
+function neon(){
+
+//Change all letters to base color
+if (n==0){
+for (m=0;m<message.length;m++)
+tempref[m].style.color=neonbasecolor
+}
+
+//cycle through and change individual letters to neon color
+tempref[n].style.color=neontextcolor
+
+if (n<tempref.length-1)
+n++
+else{
+n=0
+clearInterval(flashing)
+setTimeout("beginneon()",1500)
+return
+}
+}
+
+function beginneon(){
+if (document.all)
+flashing=setInterval("neon()",flashspeed)
+}
+beginneon()
+</SCRIPT>

@@ -1,0 +1,23 @@
+<form>
+<div align="center"><input type="button" Value="打开新窗口" 
+ONCLICK="window.open('index.htm','Sample','toolbar=yes,location=no,directories=no,status=no,menubar=yes,scrollbars=no,resizable=no,copyhistory=yes,width=300,height=200,left=100,top=100')">
+</form> 
+
+<!--说明：将其中的链接文件test.htm改为你的路径，窗口参数如下： 
+
+toolbar=yes, 显示工具条
+location=yes,显示网址栏
+directories=no,导航条
+status=no,状态条
+menubar=yes,菜单
+scrollbars=yes,滚动条
+resizable=no,是否可以改变大小
+copyhistory=yes,历史按钮
+width=300,宽
+height=200'高
+left=100,距离左边100
+top=100,距离顶端100-->
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

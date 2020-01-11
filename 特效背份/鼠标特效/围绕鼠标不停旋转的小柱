@@ -1,0 +1,153 @@
+//把以下内容加入BODY标签中
+<script language="JavaScript">
+var color = "green";		//Change this color to whatever you want
+var noscroll = false;		//Set this to true if your page can wholly display on screen
+var delay = 30;		//Refresh time
+var dotn = 6;		//Number of flashing dots (15 or more may delay your system)
+
+
+//		YOU DON'T HAVE TO EDIT BELOW THIS LINE
+
+
+var ms = navigator.appVersion.indexOf("MSIE");
+var ie4 = (ms>0) && (parseInt(navigator.appVersion.substring(ms+5, ms+6)) >= 4);
+var userAgent=navigator.appName+" "+navigator.appVersion;
+var agentInfo=userAgent.substring(0, 12);
+var ns4 = (agentInfo>="Netscape 4.0");
+
+if (ie4||ns4)
+{
+var currStep = 0;
+var step = 0.2;
+var x = 50;
+var y = 50;
+var w = 200;
+var h = 200;
+var j = 0;
+var mdown = false;
+var tempx;
+var tempy;
+var G = 0;
+var ColorStep = 5;
+
+		//Internet Explorer 4 Settings
+
+if (ie4)
+{
+for (j=0;j<dotn;j++)
+	{
+	document.write("<div id=\"a\" style=\"position: absolute; width: 0px; height: 0px; background-color: " + color + "; border: solid 2px " + color + "\"><\/div>");
+	}
+
+function MouseMove()
+{
+x = window.event.x;
+y = window.event.y;
+}
+document.onmousemove = MouseMove;
+
+function MouseDown()
+{
+mdown=true;
+}
+document.onmousedown = MouseDown;
+function MouseUp()
+{
+mdown=false;
+}
+document.onmouseup= MouseUp;
+}
+
+		//End of Internet Explorer 4 Settings
+
+
+		//Netscape 4 Settings
+
+if(ns4)
+{
+window.captureEvents(Event.MOUSEMOVE);
+for (j=0;j<dotn;j++)
+	{
+	document.write("<layer LEFT=\"10\" TOP=\"10\" VISIBILITY=\"SHOW\" BGCOLOR=\"" + color + "\" CLIP=\"0,0,3,3\"><\/layer>");
+	}
+
+function MoveHandler(evnt)
+{
+x = evnt.pageX ;
+y = evnt.pageY ;
+}
+window.onMouseMove = MoveHandler;
+}
+
+		//End of Netscape 4 Settings
+
+
+		//Animation function begins here
+
+function FlashDots()
+{
+if (ie4)
+	{
+	w = document.body.clientWidth/4;
+	h = document.body.clientHeight/4;
+	}
+else if (ns4)
+	{
+	w = window.innerWidth/4;
+	h = window.innerHeight/4;
+	}
+if (mdown)
+	{
+	w=w/2;
+	h=h/2;
+	}
+
+for (j=0;j<dotn;j++)
+	{
+	if (ie4)
+		{
+		tempy = y+Math.cos((20*Math.sin(currStep/(20+j)))+j*70)* h *(Math.sin(10+currStep/10)+0.2)*Math.cos((currStep+j*25)/10);
+		if ((tempy > document.body.clientHeight-10) && (noscroll == true))
+			{
+			a[j].style.posTop = -50;
+			}
+		else
+			{
+			a[j].style.posTop = tempy;
+			}
+		tempx = x+Math.sin((20*Math.sin(currStep/20))+j*70)* w *(Math.sin(10+currStep/(10+j))+0.2)*Math.cos((currStep+j*25)/10);
+		if (tempx > document.body.clientWidth-10)
+			{
+			a[j].style.posLeft = -50;
+			}
+		else
+			{
+			a[j].style.posLeft = tempx;
+			}
+		a[j].style.borderColor = "RGB(255," + G + ",0)";
+		}
+	else if (ns4)
+		{
+		document.layers[j].top = y+Math.cos((20*Math.sin(currStep/(20+j)))+j*70)* h *(Math.sin(10+currStep/10)+0.2)*Math.cos((currStep + j*25)/10);
+		document.layers[j].left =x+Math.sin((20*Math.sin(currStep/20))+j*70)* w *(Math.sin(10+currStep/(10+j))+0.2)*Math.cos((currStep + j*25)/10);
+		document.layers[j].bgcolor = "RGB(255," + G + ",0)";
+		}
+	}
+G += ColorStep;
+if ((G >= 255) || (G <= 0))
+	{
+	ColorStep *= -1;
+	}
+currStep+=step;
+if (currStep>1000){currStep=0;}
+setTimeout("FlashDots()", delay);
+}
+
+		//End of animation function
+
+FlashDots();
+}
+</script>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

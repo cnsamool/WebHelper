@@ -1,0 +1,272 @@
+预备知识
+    在详细介绍PHP的安全功能之前，我们需要花点时间来向没有接触过这方面内容的读者介绍一些有关密码学的基本知识，如果对密码学的基本概念已经非常熟悉，就可以跳过去这一部分。
+
+    密码学可以通俗地被描述为对加/解密的研究和实验，加密是将易懂的资料转换为不易懂资料的过程，解密则是将不易懂的资料转换为原来易懂资料的过程。不易懂的资料被称作密码，易懂的资料被称作明码。
+
+    数据的加/解密都需要一定的算法，这些算法可以非常地简单，如著名的凯撒码，但当前的加密算法要相对复杂得多，其中一些利用现有的方法甚至是无法破译的。
+
+PHP的加密功能
+    只要有一点使用非Windows平台经验的人可能对crypt()也相当熟悉，这一函数完成被称作单向加密的功能，它可以加密一些明码，但不能够将密码转换为原来的明码。尽管从表面上来看这似乎是一个没有什么用处的功能，但它的确被广泛用来保证系统密码的完整性。因为，单向加密的口令一旦落入第三方人的手里，由于不能被还原为明文，因此也没有什么大用处。在验证用户输入的口令时，用户的输入采用的也是单向算法，如果输入与存储的经加密后的口令相匹配，则输入的口信一定是正确的。
+
+    PHP同样提供了使用其crypt()函数完成单向加密功能的可能性。我将在这里简要地介绍该函数：
+
+    string crypt (string input_string [, string salt]) 
+    其中的input_string参数是需要加密的字符串，第二个可选的salt是一个位字串，它能够影响加密的暗码，进一步地排除被称作预计算攻击的可能性。缺省情况下，PHP使用一个2个字符的DES干扰串，如果你的系统使用的是MD5（我将在以后介绍MD5算法），它会使用一个12个字符的干扰串。顺便说一下，可以通过执行下面的命令发现系统将要使用的干扰串的长度：
+
+    print "My system salt size is: ". CRYPT_SALT_LENGTH;
+    系统也可能支持其他的加密算法。crypt()支持四种算法，下面是它支持的算法和相应的salt参数的长度：
+
+算法 Salt长度 
+CRYPT_STD_DES 2-character (Default) 
+CRYPT_EXT_DES 9-character 
+CRYPT_MD5 12-character beginning with $1$ 
+CRYPT_BLOWFISH 16-character beginning with $2$ 
+
+用crypt()实现用户身份验证
+    作为crypt()函数的一个例子，考虑这样一种情况，你希望创建一段PHP脚本程序限制对一个目录的访问，只允许能够提供正确的用户名和口令的用户访问这一目录。我将把资料存储在我喜欢的数据库MySQL的一个表中。下面我们以创建这个被称作members的表开始我们的例子：
+
+mysql>CREATE TABLE members (
+    ->username CHAR(14) NOT NULL,
+    ->password CHAR(32) NOT NULL,
+    ->PRIMARY KEY(username)
+    ->); 
+
+    然后，我们假定下面的数据已经存储在该表中：
+
+用户名 密码 
+clark keloD1C377lKE 
+bruce ba1T7vnz9AWgk 
+peter paLUvRWsRLZ4U 
+
+    这些加密的口令对应的明码分别是kent、banner和parker。注意一下每个口令的前二个字母，这是因为我使用了下面的代码，根据口令的前二个字母创建干扰串的：
+
+$enteredPassword.
+$salt = substr($enteredPassword, 0, 2);
+$userPswd = crypt($enteredPassword, $salt);
+// $userPswd然后就和用户名一起存储在MySQL中 
+
+    我将使用Apache的口令-应答认证配置提示用户输入用户名和口令，一个鲜为人知的有关PHP的信息是，它可以把Apache的口令-应答系统输入的用户名和口令识别为$PHP_AUTH_USER和$PHP_AUTH_PW，我将在身份验证脚本中用到这二个变量。花一些时间仔细阅读下面的脚本，多注意一下其中的解释，以便更好地理解下面的代码：
+
+crypt()和Apache的口令-应答验证系统的应用
+<?php
+
+$host = "localhost";
+$user = "zorro";
+$pswd = "hellodolly";
+$db = "users";
+
+// Set authorization to False
+
+$authorization = 0;
+
+// Verify that user has entered username and password
+
+if (isset($PHP_AUTH_USER) && isset($PHP_AUTH_PW)) :
+
+mysql_pconnect($host, $user, $pswd) or die("Can't connect to MySQL
+server!");
+
+mysql_select_db($db) or die("Can't select database!");
+
+// Perform the encryption
+$salt = substr($PHP_AUTH_PW, 0, 2);
+$encrypted_pswd = crypt($PHP_AUTH_PW, $salt);
+
+// Build the query
+
+$query = "SELECT username FROM members WHERE
+username = '$PHP_AUTH_USER' AND
+password = '$encrypted_pswd'";
+
+// Execute the query
+
+if (mysql_numrows(mysql_query($query)) == 1) :
+$authorization = 1;
+endif;
+
+endif;
+
+// confirm authorization
+
+if (! $authorization) :
+
+header('WWW-Authenticate: Basic realm="Private"');
+header('HTTP/1.0 401 Unauthorized');
+print "You are unauthorized to enter this area.";
+exit;
+
+else :
+
+print "This is the secret data!";
+
+endif;
+
+?> 
+
+    上面就是一个核实用户访问权限的简单身份验证系统。在使用crypt()保护重要的机密资料时，记住在缺省状态下使用的crypt()并不是最安全的，只能用在对安全性要求较低的系统中，如果需要较高的安全性能，就需要我在本篇文章的后面介绍的算法。
+
+    下面我将介绍另一个PHP支持的函数━━md5()，这一函数使用MD5散列算法，它有几种很有趣的用法值得一提：
+
+混编
+    一个混编函数可以将一个可变长度的信息变换为具有固定长度被混编过的输出，也被称作“信息文摘”。这是十分有用的，因为一个固定长度的字符串可以用来检查文件的完整性和验证数字签名以及用户身份验证。由于它适合于PHP，PHP内置的md5()混编函数将把一个可变长度的信息转换为128位（32个字符）的信息文摘。混编的一个有趣的特点是不能通过分析混编后的信息得到原来的明码，因为混编后的结果与原来的明码内容没有依赖关系。 即便只改变一个字符串中的一个字符，也将使得MD5混编算法计算出二个截然不同的结果。我们首先来看下表的内容及其相应的结果：
+
+　
+使用md5()混编字符串 
+<?php
+$msg = "This is some message that I just wrote";
+$enc_msg = md5($msg);
+print "hash: $enc_msg ";
+?> 
+
+结果：
+
+hash: 81ea092649ca32b5ba375e81d8f4972c
+    注意，结果的长度为32个字符。再来看一下下面的表，其中的$msg的值有了一点微小的变化：
+
+使用md5()对一个稍微变化的字符串进行混编 
+<?php
+//注意，message中少了一个s
+$msg = "This is some mesage that I just wrote";
+$enc_msg = md5($msg);
+print "hash2: $enc_msg <br /><br />";
+?> 
+
+结果：
+
+hash2: e86cf511bd5490d46d5cd61738c82c0c
+    可以发现，尽管二个结果的长度都是32个字符，但明文中一点微小的变化使得结果发生了很大的变化，因此，混编和md5()函数是检查数据中微小变化的一个很好的工具。
+
+    尽管crypt()和md5()各有用处，但二者在功能上都受到一定的限制。在下面的部分中，我们将介绍二个非常有用的被称作Mcrypt和Mhash的PHP扩展，将大大拓展PHP用户在加密方面的选择。
+
+    尽管我们在上面的小节中说明了单向加密的重要性，但有时我们可能需要在加密后，再把密码数据还原成原来的数据，幸运的是，PHP通过Mcrypt扩展库的形式提供了这种可能性。
+
+Mcrypt
+Mcrypt 2.5.7 Unix | Win32 
+    Mcrypt 2.4.7是一个功能强大的加密算法扩展库，它包括有22种算法，其中就包括下面的几种算法：
+
+Blowfish RC2 Safer-sk64 xtea
+Cast-256 RC4 Safer-sk128
+DES RC4-iv Serpent
+Enigma Rijndael-128 Threeway
+Gost Rijndael-192 TripleDES
+LOKI97 Rijndael-256 Twofish
+PanamaSaferplus Wake
+安装：
+    在标准的PHP软件包中不包括Mcrypt，因此需要下载它。下载后，按照下面的方法进行编译，并把它扩充在PHP中：
+
+下载Mcrypt软件包。
+gunzipmcrypt-x.x.x.tar.gz
+tar -xvfmcrypt-x.x.x.tar
+./configure --disable-posix-threads
+make
+make install
+cd to your PHP directory.
+./configure -with-mcrypt=[dir] [--other-configuration-directives]
+make
+make install
+    当然了，根据你的要求和PHP安装时与互联网服务器软件的关系，上面的过程可能需要作适当的修改。
+
+使用Mcrypt
+    Mcrypt的优点不仅仅在于其提供的加密算法较多，还在于它可以对数据进行加/解密处理，此外，它还提供了35种处理数据用的函数。尽管对这些函数进行详细介绍已经超出了这篇文章的范围，我还是要就几个典型的函数作一下简要的介绍。
+
+    首先，我将介绍如何使用Mcrypt扩展库对数据进行加密，然后再介绍如何使用它进行解密。下面的代码对这一过程进行了演示，首先是对数据进行加密，然后在浏览器上显示加密后的数据，并将加密后的数据还原为原来的字符串，将它显示在浏览器上。
+
+使用Mcrypt对数据进行加、解密
+<?php
+
+// Designate string to be encrypted
+$string = "Applied Cryptography, by Bruce Schneier, is
+a wonderful cryptography reference.";
+
+// Encryption/decryption key
+$key = "Four score and twenty years ago";
+
+// Encryption Algorithm
+$cipher_alg = MCRYPT_RIJNDAEL_128;
+
+// Create the initialization vector for added security.
+$iv = mcrypt_create_iv(mcrypt_get_iv_size($cipher_alg,
+MCRYPT_MODE_ECB), MCRYPT_RAND);
+
+// Output original string
+print "Original string: $string <p>";
+
+// Encrypt $string
+$encrypted_string = mcrypt_encrypt($cipher_alg, $key,
+$string, MCRYPT_MODE_CBC, $iv);
+
+// Convert to hexadecimal and output to browser
+print "Encrypted string: ".bin2hex($encrypted_string)."<p>";
+
+$decrypted_string = mcrypt_decrypt($cipher_alg, $key,
+$encrypted_string, MCRYPT_MODE_CBC, $iv);
+
+print "Decrypted string: $decrypted_string";
+
+?> 
+
+执行上面的脚本将会产生下面的输出：
+
+Original string: Applied Cryptography, by Bruce Schneier, is a wonderful cryptography reference.
+
+Encrypted string: 02a7c58b1ebd22a9523468694b091e60411cc4dea8652bb8072 34fa06bbfb20e71ecf525f29df58e28f3d9bf541f7ebcecf62b c89fde4d8e7ba1e6cc9ea24850478c11742f5cfa1d23fe22fe8 bfbab5e
+
+Decrypted string: Applied Cryptography, by Bruce Schneier, is a wonderful cryptography reference.
+
+    上面的代码中二个最典型的函数是mcrypt_encrypt()和mcrypt_decrypt()，它们的用途是显而易见的。我使用了“电报密码本”模式，Mcrypt提供了几种加密方式，由于每种加密方式都有可以影响密码安全的特定字符，因此每种模式都需要了解。对于没有接触过密码系统的读者来说，可能对mcrypt_create_iv()函数更有兴趣，尽管对这一函数进行彻底的解释已经超出了本篇文章的范围，但我仍然会提到它创建的初始化向量（hence, iv），这一向量可以使每条信息彼此独立。尽管不是所有的模式都需要这一初始化变量，但如果在要求的模式中没有提供这一变量，PHP就会给出警告信息。
+
+Mhash扩展库
+http://sourceforge.net/projects/mhash/
+
+    0.8.3版的Mhash扩展库支持12种混编算法，仔细检查Mhash v.0.8.3的头文件mhash.h可以知道，它支持下面的混编算法：
+
+CRC32 HAVAL160 MD5
+CRC32B HAVAL192 RIPEMD160
+GOST HAVAL224 SHA1
+HAVAL128 HAVAL256 TIGER
+安装
+    象Mcrypt一样，Mhash也没有包括在PHP软件包中，对于非Windows用户而言，下面是安装过程：
+
+下载Mhash扩展库
+gunzipmhash-x.x.x.tar.gz
+tar -xvfmhash-x.x.x.tar
+./configure
+make
+make install
+cd <PHP所在的目录>
+./configure -with-mhash=[dir] [--other-configuration-directives]
+make
+make install
+    象Mcrypt一样，根据PHP在互联网服务器软件上的安装方式，可能需要对Mhash进行其他的配置。
+
+    对于Windows用户而言，http://www.php4win.de中有一个很好的包括Mhash扩展库在内的PHP软件包。只要下载并进行解压缩，然后根据其中的readme.first文档中的指令进行安装即可。
+
+使用Mhash
+    对信息进行混编非常简单，看一下下面的例子：
+
+<?php
+$hash_alg = MHASH_TIGER;
+$message = "These are the directions to the secret fort. Two steps left, three steps right, and cha chacha.";
+$hashed_message = mhash($hash_alg, $message);
+print "The hashed message is ". bin2hex($hashed_message);
+?> 
+
+    执行这一段脚本程序将得到下面的输出结果：
+
+The hashed message is 07a92a4db3a4177f19ec9034ae5400eb60d1a9fbb4ade461
+     在这里使用bin2hex()函数的目的是方便我们理解$hashed_message的输出，这是因为混编的结果是二进制格式，为了能够将它转化为易于理解的格式，必须将它转换为十六进制格式。
+
+    需要注意的是，混编是单向功能，其结果不依赖输入，因此可以公开显示这一信息。这一策略通常用于让用户比较下载文件和系统管理员提供的文件，以确保文件的完整性。
+
+     Mhash还有其他一些有用的函数。例如，我需要输出一个Mhash支持的算法的名字，由于Mhash支持的所有算法的名字都以MHASH_开头，因此，可以通过执行如下的代码完成这一任务：
+
+<?php
+$hash_alg = MHASH_TIGER;
+print "This data has been hashed with the".mhash_get_hash_name($hashed_message)."hashing algorithm.";
+?> 
+
+得到的输出是：
+
+This data has been hashed with the TIGER hashing algorithm.
+关于PHP和加密最后需要注意的一个问题
+    关于PHP和加密需要注意的最后的一个重要问题是在服务器和客户端之间传输的数据在传输过程中是不安全的！PHP是一种服务器端技术，不能阻止数据在传输过程中泄密。因此，如果想实现一个完整的安全应用，建议选用Apache-SSL或其他的安全服务器布置。

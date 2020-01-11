@@ -1,0 +1,30 @@
+
+<body bgcolor="ffffff" link="0000ff" vlink="770077" onLoad="setTimeout('enblur()', 500)">
+<SCRIPT LANGUAGE="JavaScript">
+<!-- hide from old browsers
+function enfocus()
+{
+	document.forms[0].Data.focus()
+	document.forms[0].Copy.value = document.forms[0].Data.value
+	setTimeout("enblur()", 500)
+}
+function enblur()
+{
+	document.forms[0].Data.blur()
+	setTimeout("enfocus()", 5)
+}
+<!-- done hiding --></SCRIPT></title>鹦鹉学“字”</HEAD>
+<BODY bgcolor="ffffff" link="0000ff" vlink="770077"
+	onLoad="setTimeout('enblur()', 500)">
+你相信吗？你写下的任何字句都逃不过我的眼睛哦。<p>
+
+<FORM>
+你的原文: <INPUT TYPE="TEXT" SIZE=40 NAME="Data"><br>
+我的复述: <INPUT TYPE="TEXT" SIZE=40 NAME="Copy"><br>
+	<INPUT TYPE="BUTTON" VALUE="清空重填" 
+
+		onClick="document.forms[0].Data.value=''">
+
+</FORM></CENTER>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

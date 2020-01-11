@@ -1,0 +1,11 @@
+<!--脚本说明:
+把如下代码加入<body>区域中-->
+<script>
+function freeze(){
+alert ('对不起，你死机了，哈哈!!!,请按Ctrl+Alt+Del结束任务');while(true){window.history.back(-1)}}
+</script>
+<FORM>
+<INPUT TYPE="BUTTON" VALUE="冻结本页" onClick="freeze()">
+</FORM>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

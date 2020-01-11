@@ -1,0 +1,206 @@
+<head>
+<style type="text/css">TD {
+	FONT-SIZE: 12px; FONT-FAMILY: 宋体
+}
+A {
+	FONT-SIZE: 9pt; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.t1 {
+	COLOR: #cc0000; TEXT-DECORATION: underline
+}
+.t2 {
+	COLOR: #006699; TEXT-DECORATION: none
+}
+.t3 {
+	COLOR: #006600; TEXT-DECORATION: underline overline
+}
+.t4 {
+	COLOR: #0066ff; TEXT-DECORATION: line-through
+}
+.t5 {
+	BORDER-RIGHT: #ff0000 1px solid; BORDER-TOP: #ff0000 1px solid; BORDER-LEFT: #ff0000 1px solid; COLOR: #000099; BORDER-BOTTOM: #ff0000 1px solid; HEIGHT: 20px
+}
+.t6 {
+	BORDER-RIGHT: #ff0000 0px solid; BORDER-TOP: #ff0000 0px solid; BORDER-LEFT: #ff0000 0px solid; COLOR: #0066ff; BORDER-BOTTOM: #ff0000 1px solid; HEIGHT: 0px
+}
+.38js {
+	FONT-SIZE: 9pt; FONT-FAMILY: "宋体"; TEXT-DECORATION: none
+}
+.t7 {
+	BORDER-RIGHT: #ff0000 0px solid; BORDER-TOP: #ff0000 0px solid; PADDING-BOTTOM: 5px; BORDER-LEFT: #ff0000 0px solid; COLOR: #0066ff; BORDER-BOTTOM: #ff0000 1px solid; HEIGHT: 0px
+}
+.t8 {
+	BORDER-RIGHT: #ff0000 0px solid; BORDER-TOP: #ff0000 0px solid; BORDER-LEFT: #ff0000 0px solid; WIDTH: 200px; COLOR: #0066ff; BORDER-BOTTOM: #ff0000 1px solid; HEIGHT: 0px; TEXT-ALIGN: center
+}
+.t9 {
+	BORDER-RIGHT: #ff0000 0px double; BORDER-TOP: #ff0000 0px double; BORDER-LEFT: #ff0000 0px double; COLOR: #0066ff; BORDER-BOTTOM: #ff0000 3px double; HEIGHT: 0px
+}
+.t10 {
+	BORDER-RIGHT: #ffff00 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #ffff00 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; BORDER-LEFT: #ffff00 1px solid; COLOR: #ffff00; PADDING-TOP: 5px; BORDER-BOTTOM: #ffff00 1px solid; HEIGHT: 20px; BACKGROUND-COLOR: #990000
+}
+.t11 {
+	BORDER-RIGHT: #d9dee8 2px outset; PADDING-RIGHT: 2px; BORDER-TOP: #d9dee8 2px outset; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; BORDER-LEFT: #d9dee8 2px outset; WIDTH: 150px; PADDING-TOP: 2px; BORDER-BOTTOM: #d9dee8 2px outset; HEIGHT: 25px; BACKGROUND-COLOR: #d9dee8; TEXT-ALIGN: center
+}
+.t12 {
+	BORDER-RIGHT: #0000cc 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #0000cc 1px solid; PADDING-LEFT: 4px; FILTER: Blur(Add=1, Direction=45, Strength=2); PADDING-BOTTOM: 4px; BORDER-LEFT: #0000cc 1px solid; WIDTH: 130px; COLOR: #006699; PADDING-TOP: 4px; BORDER-BOTTOM: #0000cc 1px solid; HEIGHT: 25px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.t13 {
+	PADDING-LEFT: 5px; FONT-SIZE: 12px; BACKGROUND-IMAGE: url(bk3.gif); WIDTH: 120px; COLOR: #ffff00; PADDING-TOP: 6px; FONT-FAMILY: "宋体"; HEIGHT: 25px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.t13:hover {
+	PADDING-LEFT: 5px; BACKGROUND-IMAGE: url(bk4.gif); WIDTH: 120px; COLOR: #ffffff; PADDING-TOP: 6px; HEIGHT: 25px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.t14 {
+	PADDING-LEFT: 5px; FONT-SIZE: 12px; BACKGROUND-IMAGE: url(bk1.gif); WIDTH: 120px; COLOR: #ffff00; PADDING-TOP: 5px; FONT-FAMILY: "宋体"; HEIGHT: 25px; TEXT-DECORATION: none
+}
+.t14:hover {
+	PADDING-LEFT: 5px; BACKGROUND-IMAGE: url(bk2.gif); WIDTH: 120px; COLOR: #000000; PADDING-TOP: 5px; HEIGHT: 25px; TEXT-DECORATION: none
+}
+.t1:hover {
+	COLOR: #0000ff; TEXT-DECORATION: underline
+}
+.t2:hover {
+	COLOR: #339900; TEXT-DECORATION: underline
+}
+.t3:hover {
+	COLOR: #9900cc; TEXT-DECORATION: none
+}
+.t4:hover {
+	COLOR: #ff0099; TEXT-DECORATION: none
+}
+.t5:hover {
+	BORDER-RIGHT: #0000ff 1px solid; BORDER-TOP: #0000ff 1px solid; BORDER-LEFT: #0000ff 1px solid; COLOR: #cccc00; BORDER-BOTTOM: #0000ff 1px solid; HEIGHT: 20px
+}
+.t6:hover {
+	BORDER-RIGHT: #00ff00 0px solid; BORDER-TOP: #00ff00 0px solid; BORDER-LEFT: #00ff33 0px solid; COLOR: #0066ff; BORDER-BOTTOM: #00ff33 1px solid; HEIGHT: 0px
+}
+.38js:hover {
+	FONT-SIZE: 12px; LEFT: 1px; COLOR: #009900; FONT-FAMILY: "宋体"; POSITION: relative; TOP: 1px
+}
+.t7:hover {
+	BORDER-RIGHT: #ff0000 0px solid; BORDER-TOP: #ff0000 0px solid; PADDING-BOTTOM: 2px; BORDER-LEFT: #ff0000 0px solid; COLOR: #990000; BORDER-BOTTOM: #ff0000 1px solid; HEIGHT: 0px
+}
+.t8:hover {
+	BORDER-RIGHT: #ff0000 0px solid; BORDER-TOP: #ff0000 0px solid; BORDER-LEFT: #ff0000 0px solid; WIDTH: 170px; COLOR: #336600; BORDER-BOTTOM: #ff0000 1px solid; HEIGHT: 0px; TEXT-ALIGN: center
+}
+.t9:hover {
+	BORDER-RIGHT: #ff0000 0px double; BORDER-TOP: #ff0000 0px double; BORDER-LEFT: #ff0000 0px double; COLOR: #0066ff; BORDER-BOTTOM: #ff0000 5px double; HEIGHT: 0px
+}
+.t10:hover {
+	BORDER-RIGHT: #0000ff 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #0000ff 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; BORDER-LEFT: #0000ff 1px solid; COLOR: #333333; PADDING-TOP: 5px; BORDER-BOTTOM: #0000ff 1px solid; HEIGHT: 20px; BACKGROUND-COLOR: #c8d8f0
+}
+.t11:hover {
+	BORDER-RIGHT: #99ccff 1px outset; PADDING-RIGHT: 2px; BORDER-TOP: #99ccff 1px outset; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; BORDER-LEFT: #99ccff 1px outset; WIDTH: 150px; PADDING-TOP: 2px; BORDER-BOTTOM: #99ccff 1px outset; HEIGHT: 25px; BACKGROUND-COLOR: #c8d8f0; TEXT-ALIGN: center
+}
+.t12:hover {
+	BORDER-RIGHT: #0000cc 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #0000cc 1px solid; PADDING-LEFT: 4px; FILTER: Blur(Add=1, Direction=45, Strength=1); PADDING-BOTTOM: 4px; BORDER-LEFT: #0000cc 1px solid; WIDTH: 130px; COLOR: #006699; PADDING-TOP: 4px; BORDER-BOTTOM: #0000cc 1px solid; HEIGHT: 25px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.txt10 {
+	LINE-HEIGHT: 15px
+}
+
+
+<!-- 使用说明：使用时将文字换成你需要的文字即可！-->
+</style>
+</head>
+
+<body leftMargin="0" topMargin="0">
+<b><font color="#0099cc" size="4">
+<p align="center">脚本特效展示</font></b><br>
+<br>
+</p>
+<div align="center"><center>
+
+<table borderColor="#0099cc" cellSpacing="0" borderColorDark="#0099cc" cellPadding="15"
+width="450" borderColorLight="#0099cc" border="1">
+<TBODY>
+  <tr>
+    <td height="56"><div align="center"><center><table cellSpacing="1" cellPadding="5"
+    width="300" align="center" bgColor="#cccccc" border="0">
+<TBODY>
+      <tr align="middle" bgColor="#ffffff">
+        <td class="txt10" colSpan="2">CSS打造多彩文字链接</td>
+      </tr>
+      <tr bgColor="#cccccc">
+        <td>一、</td>
+        <td>初级链接样式</td>
+      </tr>
+      <tr bgColor="#ffffff">
+        <td>1、</td>
+        <td><a class="t1" href="#">普通链接</a></td>
+      </tr>
+      <tr bgColor="#ffffff">
+        <td>2、</td>
+        <td><a class="t2" href="#">无下划线链接</a></td>
+      </tr>
+      <tr bgColor="#ffffff">
+        <td>3、</td>
+        <td><a class="t3" href="#">双划线链接</a></td>
+      </tr>
+      <tr bgColor="#ffffff">
+        <td>4、</td>
+        <td><a class="t4" href="#">删除线链接</a></td>
+      </tr>
+      <tr bgColor="#cccccc">
+        <td>二、</td>
+        <td>进阶链接样式风格</td>
+      </tr>
+      <tr bgColor="#ffffff">
+        <td>1、</td>
+        <td><a class="t5" href="#">另类下划线的原理</a></td>
+      </tr>
+      <tr bgColor="#ffffff">
+        <td>2、</td>
+        <td><a class="t6" href="#">定制下划线色彩</a></td>
+      </tr>
+      <tr bgColor="#ffffff">
+        <td>3、 </td>
+        <td><a class="t7" href="#">定制下划线距离</a></td>
+      </tr>
+      <tr bgColor="#ffffff">
+        <td>4、 </td>
+        <td><a class="t8" href="#">定制下划线长度和对齐方式</a></td>
+      </tr>
+      <tr bgColor="#ffffff">
+        <td>5、 </td>
+        <td><a class="t9" href="#">定制双下划线</a></td>
+      </tr>
+      <tr bgColor="#ffffff">
+        <td>6、 </td>
+        <td><a class="38js" href="#">按钮式链接</a></td>
+      </tr>
+      <tr bgColor="#cccccc">
+        <td>三、</td>
+        <td>高级链接样式风格</td>
+      </tr>
+      <tr bgColor="#ffffff">
+        <td>1、</td>
+        <td><a class="t10" href="#">定义块状链接</a></td>
+      </tr>
+      <tr bgColor="#ffffff">
+        <td>2、</td>
+        <td><a class="t11" href="#">定义按钮风格的链接</a></td>
+      </tr>
+      <tr bgColor="#ffffff">
+        <td>3、</td>
+        <td><a class="t12" href="#">定义特效链接</a></td>
+      </tr>
+      <tr bgColor="#ffffff">
+        <td>4、</td>
+        <td><a class="t13" href="#">静态背景切换链接</a></td>
+      </tr>
+      <tr bgColor="#ffffff">
+        <td>5、</td>
+        <td><a class="t14" href="#">动态背景切换链接</a></td>
+      </tr>
+</TBODY>
+    </table>
+    </center></div></td>
+  </tr>
+</TBODY>
+</table>
+</center></div>
+</body>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

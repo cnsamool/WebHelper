@@ -1,0 +1,377 @@
+<script LANGUAGE="JavaScript">
+function mod(x, x_div){
+for (var i=x; i>=x_div; i -= x_div);
+return i;
+}
+function checkNum(str, min, max) {
+if (str == "") {
+alert("Don't leave it blank!");
+return false;}
+for (var i = 0; i < str.length; i++) {
+var ch = str.substring(i, i + 1);
+if (ch < "0" || ch > "9") {
+alert("Number, please!");
+return false;
+}
+}
+var val = parseInt(str, 10);
+if ((val < min) || (val > max)) {
+alert("Type in a number from 1 to "+max+".");
+return false;
+}
+return true;
+}
+
+function pastlife(form){
+var sex; 
+//Check for a valid date
+if ((checkNum(form.day.value,1,31)) && (checkNum(form.month.value,1,12)) &&
+(checkNum(form.year.value,0,99)))  {
+var day = parseInt(form.day.value,10);
+var cur_month = parseInt(form.month.value,10);
+var cur_year = parseInt(form.year.value,10);
+// define past life sex
+if (cur_month-2*(parseInt(cur_month/2)) == 0){
+if (cur_year - 4*(parseInt(cur_year/4)) == 0)
+sex = 1; else sex = 2} 
+else if (cur_year - 4*(parseInt(cur_year/4)) == 0)
+sex = 0; else sex = 1};
+msgWindow=window.open("","有神者说");
+msgWindow.document.open(); 
+msgWindow.document.bgColor="black"; 
+msgWindow.document.writeln("<FONT Color=red Face=Arial><B><I>Diagnosis:</I></B></FONT><HR>");
+msgWindow.document.write("<FONT Color=white Face=Arial>"); 
+msgWindow.document.write("我不知道你的感觉如何，但你曾是");
+var yearString = "ZYXWOTZYQVUTSXWVNZYXPQTZRWVUMYXWOTZYQVUTSXWVNZYXPUTZRWVUMYXWOTZYQVUTSXWVNZYXPUTZRWVUMYXWOTZYQVUTSXWV";
+var ys; ys = yearString.charAt(cur_year);
+var p1; var p2; var place;
+if (sex == 1){
+msgWindow.document.write("<FONT color=yellow>男性</FONT>");
+//for males
+var indexString = "VTWZXYURPSOMNQYWZVTUXOMPSQRNWUXTYZVMRNQOPSUZVYWXTRPSOMNQTYUXVWZPNQMRSOYWZVTUXNSORPQM";
+var profString = "CDBADCABBACD";
+p1 = profString.charAt(cur_month-1);
+for (i=0;i<=6;i++){
+if (ys == indexString.charAt((cur_month-1)*7+i)) break}
+p2 = i+1;
+//PLACE OF BIRTH Male
+if (p2 == 1){
+if (day < 3) place=5;
+else if (day < 10) place=46;
+else if (day < 17) place=37;
+else if (day < 24) place=48;
+else if (day < 31) place=65;
+else place=6};
+if (p2 == 2){
+if (day < 8) place=28;
+else if (day < 15) place=58;
+else if (day < 22) place=10;
+else if (day < 29) place=38;
+else place=11};
+if (p2 == 3){
+if (day < 4) place=29;
+else if (day < 11) place=53;
+else if (day < 18) place=30;
+else if (day < 25) place=69;
+else place=1};
+if (p2 == 4){
+if (day < 7) place=74;
+else if (day < 14) place=4;
+else if (day < 21) place=47;
+else if (day < 28) place=20;
+else place=26};
+if (p2 == 5){
+if (day < 5) place=23;
+else if (day < 12) place=21;
+else if (day < 19) place=44;
+else if (day < 26) place=16;
+else place=43};
+if (p2 == 6){
+if (day < 6) place=34;
+else if (day < 13) place=27;
+else if (day < 20) place=14;
+else if (day < 27) place=41;
+else place=50};
+if (p2 == 7){
+if (day < 2) place=73;
+else if (day < 9) place=63;
+else if (day < 16) place=66;
+else if (day < 23) place=54;
+else if (day < 30) place=61;
+else place=72}
+}
+else {
+//for females
+msgWindow.document.write("<FONT color=yellow>女性</FONT>");
+var indexString = "OMPSQRNYWZVTUXSQMPNORUZVYWXTQORNSMPZXTWUVYOMPSQRNXVYUZTWNSORPQMVTWZXYUSQMPNORTYUXVWZ";
+var profString = "ACDBCABDDBCA";
+p1 = profString.charAt(cur_month-1);
+for (i=0;i<=6;i++){
+if (ys == indexString.charAt((cur_month-1)*7+i)) break}
+p2 = i+1;
+
+//PLACE OF BIRTH Female
+if (p2 == 1){
+if (day < 3) place=22;
+else if (day < 10) place=17;
+else if (day < 17) place=36;
+else if (day < 24) place=59;
+else if (day < 31) place=51;
+else place=9};
+if (p2 == 2){
+if (day < 8) place=40;
+else if (day < 15) place=2;
+else if (day < 22) place=64;
+else if (day < 29) place=56;
+else place=35};
+if (p2 == 3){
+if (day < 4) place=19;
+else if (day < 11) place=67;
+else if (day < 18) place=13;
+else if (day < 25) place=32;
+else place=31};
+if (p2 == 4){
+if (day < 7) place=15;
+else if (day < 14) place=49;
+else if (day < 21) place=12;
+else if (day < 28) place=39;
+else place=33};
+if (p2 == 5){
+if (day < 5) place=42;
+else if (day < 12) place=60;
+else if (day < 19) place=24;
+else if (day < 26) place=3;
+else place=52};
+if (p2 == 6){
+if (day < 6) place=18;
+else if (day < 13) place=25;
+else if (day < 20) place=57;
+else if (day < 27) place=45;
+else place=62};
+if (p2 == 7){
+if (day < 2) place=8;
+else if (day < 9) place=55;
+else if (day < 16) place=70;
+else if (day < 23) place=68;
+else if (day < 30) place=71;
+else place=7}
+}
+var pro; pro=p1+p2;
+msgWindow.document.write(" 在你的上一俗世生命之中" + "<BR>");
+//msgWindow.document.write("month=" + cur_month + " place=" + place + " ys=" + ys + " pro=" + pro + "<BR>");
+//countries data
+var countryString="";
+if (place == 1) countryString="今美国阿拉斯加洲（Alaska）"; 
+else if (place == 2) countryString="今北美洲育空河流域（YUKON）"; 
+else if (place == 3) countryString="今加拿大北部（North Canada）"; 
+else if (place == 4) countryString="今北美安大略湖区（Ontario）"; 
+else if (place == 5) countryString="今加拿大魁北克地区（Quebeck）";
+else if (place == 6) countryString="今黎巴嫩境内（Labrador）"; 
+else if (place == 7) countryString="今纽芬兰地区（Newfoundland）"; 
+else if (place == 8) countryString="今格陵兰岛（Greenland）"; 
+else if (place == 9) countryString="今美国西北部（USA North-West）"; 
+else if (place == 10) countryString="今美国西南部（USA South-West）";
+else if (place == 11) countryString="今美国中北部（USA North-Center）"; 
+else if (place == 12) countryString="今美国中南部（USA South-Center）"; 
+else if (place == 13) countryString="今美国东北部（USA North-East）"; 
+else if (place == 14) countryString="今美国东南部（USA South-East）"; 
+else if (place == 15) countryString="今美国阿肯色洲（Arkansas）"; 
+else if (place == 16) countryString="今苏格兰地区（Scotland）"; 
+else if (place == 17) countryString="今英国北部（Northern England）"; 
+else if (place == 18) countryString="今英国中部（Central England）"; 
+else if (place == 19) countryString="今英国南部（Southern England）";
+else if (place == 20) countryString="今威尔士地区（Wales）"; 
+else if (place == 21) countryString="今冰岛（Ireland）"; 
+else if (place == 22) countryString="今欧洲北部（North Europe）"; 
+else if (place == 23) countryString="今法国（France）"; 
+else if (place == 24) countryString="今西班牙（Spain）"; 
+else if (place == 25) countryString="今葡萄牙（Portugal）"; 
+else if (place == 26) countryString="今奥地利（Austria）"; 
+else if (place == 27) countryString="今德国（Germany）"; 
+else if (place == 28) countryString="今乌克兰（Ukraine）"; 
+else if (place == 29) countryString="今意大利（Italy）"; 
+else if (place == 30) countryString="今土耳其（Turkey）"; 
+else if (place == 31) countryString="今俄罗斯西部（West Russia）"; 
+else if (place == 32) countryString="今西伯利亚（Siberia）"; 
+else if (place == 33) countryString="今俄罗斯中部（Center Russia）"; 
+else if (place == 34) countryString="今希腊（Greece）"; 
+else if (place == 35) countryString="今伊朗（Iran）"; 
+else if (place == 36) countryString="今沙特阿拉伯（Saudi Arabia）"; 
+else if (place == 37) countryString="今波兰（Poland）"; 
+else if (place == 38) countryString="今匈牙利（Hungary）"; 
+else if (place == 39) countryString="今南斯拉夫（Yugoslavia）"; 
+else if (place == 40) countryString="今罗马尼亚（Romania）"; 
+else if (place == 41) countryString="今保加利亚（Bulgaria）"; 
+else if (place == 42) countryString="今伊兹米尔（Izmir）"; 
+else if (place == 43) countryString="今西藏（Tibet）"; 
+else if (place == 44) countryString="今缅甸（Burma）"; 
+else if (place == 45) countryString="今泰国（Thailand）"; 
+else if (place == 46) countryString="今中国南部（South China）"; 
+else if (place == 47) countryString="今蒙古（Mongolia）"; 
+else if (place == 48) countryString="今中国北部（North China）"; 
+else if (place == 49) countryString="今朝鲜（Korea）"; 
+else if (place == 50) countryString="今日本北部（North Japan）"; 
+else if (place == 51) countryString="今日本南部（South Japan）"; 
+else if (place == 52) countryString="今苏门答腊（Sumatra）"; 
+else if (place == 53) countryString="今婆罗洲（Borneo）"; 
+else if (place == 54) countryString="今菲律宾（Filippines）"; 
+else if (place == 55) countryString="今新圭亚那（New Guinea）"; 
+else if (place == 56) countryString="今澳洲北部（North Australia）"; 
+else if (place == 57) countryString="今澳洲西部（West Australia）"; 
+else if (place == 58) countryString="今澳洲东部（East Australia）";
+else if (place == 59) countryString="今澳洲南部（South Australia）"; 
+else if (place == 60) countryString="今新西兰北部（North New Zealand）"; 
+else if (place == 61) countryString="今新西兰南部（South New Zealand）"; 
+else if (place == 62) countryString="今大洋州地区（Oceania）";
+else if (place == 63) countryString="今印度北部（North India）"; 
+else if (place == 64) countryString="今印度中部（Central India）"; 
+else if (place == 65) countryString="今印度南部（South India）"; 
+else if (place == 66) countryString="今埃及（Egypt）"; 
+else if (place == 67) countryString="今非洲北部（North Africa）"; 
+else if (place == 68) countryString="今非洲西部（West Africa）"; 
+else if (place == 69) countryString="今非洲中部（Central Africa）"; 
+else if (place == 70) countryString="今非洲南部（South Africa）"; 
+else if (place == 71) countryString="今墨西哥（Mexico）"; 
+else if (place == 72) countryString="今塞浦路斯（Cyprus）";
+else if (place == 73) countryString="今拉美北部（North of Latin America）"; 
+else countryString="今拉美南部（South of Latin America）";
+//year of past life calculation
+var ys1;
+if (ys == "M") var mString = "185014001125102507000700180014751800130011751100";
+else if (ys == "N") var mString = "092518750425185017501350080006750825182515250875";
+else if (ys == "O") var mString = "172516750875070013251825177508001075165009001625";
+else if (ys == "P") var mString = "145005001800100008000550165017001325072511001550";
+else if (ys == "Q") var mString = "100014500950042517001525135011001625122517251025";
+else if (ys == "R") var mString = "097513751200127504500825137513500700092509250725";
+else if (ys == "S") var mString = "122506251250142509251150147507501300157506001125";
+else if (ys == "T") var mString = "117514001825127517500975185011501600187515251850";
+else if (ys == "U") var mString = "090009000775105013751675107515000825072510251500";
+else if (ys == "V") var mString = "122507501825140011501325167512751475160009501200";
+else if (ys == "W") var mString = "057516750775047517001450085017251775102517750400";
+else if (ys == "X") var mString = "180015751425157515501200160012001300037507751250";
+else if (ys == "Y") var mString = "107512501000165009501825155014250800175010750875";
+else var mString = "097505251175085015751125177513500700065013501050";
+ys1 = mString.charAt((cur_month-1)*4);
+if (ys1 == "0") ys1 = ""; {
+ys1 += mString.charAt((cur_month-1)*4+1);
+ys1 += mString.charAt((cur_month-1)*4+2); ys1 += mString.charAt((cur_month-1)*4+3)} ;
+//past life profession
+if (pro == "A1") var proString = "挖土匠,挑夫";
+else if (pro == "A2") var proString = "哲学家, 思想家";
+else if (pro == "A3") var proString = "设计师, 工程师, 工匠";
+else if (pro == "A4") var proString = "化学家, 炼金术者, 药剂师";
+else if (pro == "A5") var proString = "水手, 厨师, 木匠";
+else if (pro == "A6") var proString = "珠宝制造商, 钟表制造商";
+else if (pro == "A7") var proString = "医师, 外科医生, 草药医生";
+else if (pro == "C1") var proString = "牧羊人, 马术师, 护林人";
+else if (pro == "C2") var proString = "领导者, 元首, 领袖";
+else if (pro == "C3") var proString = "图书管理员, 牧师, 遗迹看护人";
+else if (pro == "C4") var proString = "船长, 音乐家, 诗人, 祭祀师";
+else if (pro == "C5") var proString = "船员, 经销商, 商人, 经纪人";
+else if (pro == "C6") var proString = "僧侣, 养蜂人, 游侠";
+else if (pro == "C7") var proString = "作家, 剧作家, 祭祀住持";
+else if (pro == "B1") var proString = "修路者, 建桥者, 码头工";
+else if (pro == "B2") var proString = "制图员, 占星家, 天文学家";
+else if (pro == "B3") var proString = "工匠, 机械师";
+else if (pro == "B4") var proString = "勇士, 猎手, 渔夫, 刽子手";
+else if (pro == "B5") var proString = "艺术家, 魔术师，富有者，出纳员";
+else if (pro == "B6") var proString = "水手, 皮鞋匠";
+else if (pro == "B7") var proString = "建造工人, 庙僧, 修士";
+else if (pro == "D1") var proString = "教练, 训兽员, 昆虫学家";
+else if (pro == "D2") var proString = "传道者, 发行人, 三流画家，书记员";
+else if (pro == "D3") var proString = "农夫, 纺织工, 裁缝";
+else if (pro == "D4") var proString = "剧作家,指挥家,音乐家, 吟游诗人";
+else if (pro == "D5") var proString = "银行家, 高利贷者, 旅行家, 法官";
+else if (pro == "D6") var proString = "教师, 数学家, 地质学家";
+else var proString = "舞蹈家, 歌唱家, 演员";
+//characteristics
+if (p2 == 1) {
+if (place-2*(parseInt(place/2)) > 0) var charString = "你具有强大的组织能力和管理能力。善待你自己，如果不是一个自暴自弃者，否则可以成为独立的领导者。";
+else var charString = "你具有革新精神。可以涉猎多种领域——从政、从商、宗教、家政，你都能成为领导者。"
+};
+else if (p2 == 2) {
+if (place-2*(parseInt(place/2)) > 0) var charString = "独特的艺术个性，你总可以在美丽与丑陋、灰暗和明亮之中来去自由。但你会在任何地点用任何方式表现自己。";
+else var charString = "有点胆小，有点反叛，有点沉静。但你有天才的创造力。直到个性被解放的那一天，否则将归于偏执。"
+};
+else if (p2 == 3) {
+if (place-2*(parseInt(place/2)) > 0) var charString = "对事实有细微的观察和深入的思索。你能看到前途的方向，并作为理想主义者寻找实现未来的路径。";
+else var charString = "你总喜欢旅行、调查，不甘于平静，具有较强的侦探和观察能力。"
+};
+else if (p2 == 4) {
+if (place-2*(parseInt(place/2)) > 0) var charString = "你理智，是实际的人。唯物主义，绝无唯心意识。能用简单的智慧化解烦劳和困难。";
+else var charString = "你总喜欢旅行、调查，不甘于平静，具有较强的侦探和观察能力。"
+};
+else if (p2 == 5) {
+if (place-2*(parseInt(place/2)) > 0) var charString = "波希米亚人个性，神秘的，高智慧，能了解远古文化，魔术家能力，能受黑暗仆人的驱使。";
+else var charString = "自然的天才，心理学者，你知道如何应用机会，在任何情况下平息心境。"
+};
+else if (p2 == 6) {
+if (place-2*(parseInt(place/2)) > 0) var charString = "好奇的，有创造性的，喜欢个性。戏剧化，是天然自成的表演者。"
+else var charString = "这样的人喜欢多变，爱好一切新鲜事物。尤其在艺术，音乐，烹饪上。"
+};
+else if (p2 == 7) {
+if (place-2*(parseInt(place/2)) > 0) var charString = "你有头脑，科学者，总在查找新解释，新答案，受到环境误解，但都会尊重你的学识。";
+else var charString = "无情人物。在决定重大情形前，有克制力，不将就，会受人喜欢，但不经常爱。"
+};
+// past life lesson
+if (p2 == 1){
+if (day < 12) var lesString = "力图改变环境的污染，致力于再生、可回收材料，通过各种渠道包括心理学方法消除放射性事物。";
+else if (day < 22) var lesString = "你学习进取，谦逊。自信精神上的原则，你应该为自己的信仰找到理由。";
+else  var lesString = "你努力学习。了解其他人和在生命中遇到的困难，并喜欢帮助他们，给他们带来高兴的精神。"};
+else if (p2 == 2) {
+if (day < 12) var lesString = "它总是象是你，那个世界于你的知觉有几分不同。你要相信你的直觉，最好接受它的指导。";
+else if (day < 22) var lesString = "它主持世界，制作世间更多的美丽，物理的和飘灵的沙漠荒芜都只是你的幻觉。保持乐观！";
+else var lesString = "你的主力在于馈赠、开发宽宏大量和手足情谊。试着更少坚持己见，个性与学习一样多。当然你可以后退。"};
+else if (p2 == 3) {
+if (day < 12) var lesString = "你要保持亲切。态度适人，表达理解，赠送同情的礼物。";
+else if (day < 22) var lesString = "你要发展心智，扩充意识，找到好老师。花费你的时间和部分能量分享他的智慧。";
+else var lesString = "你要帮助旧友和孩子，你关心生命的学习和无助的心灵。"};
+else if (p2 == 4) {
+if (day < 12) var lesString = "你应该敞开你的天才，成为爱、快乐和狂热的天使。把这些感觉分配给所有人。";
+else if (day < 22) var lesString = "你应该施与自信和自爱，让希望嵌进每个人的心。野心不是真的，真实的富有是埋葬你的灵魂。";
+else var lesString = "你要征服嫉妒，寻找愤怒的背后。谁将选择你作为他们的指导，你应该了解这些虚弱导致的害怕会带来自己的遗憾。"};
+else if (p2 == 5) {
+if (day < 12) var lesString = "你询问—学习，信任爱和天地，你一定想研究、回答，开发内部的智慧。";
+else if (day < 22) var lesString = "你有问题和学习的决心，将不幸撞碎在你强有力的臂膀上。";
+else var lesString = "胆小，委琐，孤单，有自信的人，随时克服这些倾向，然后帮助他人。"};
+else if (p2 == 6) {
+if (day < 12) var lesString = "世界充满疾病和孤单的人，你应该帮助那些比你更不幸的人。";
+else if (day < 22) var lesString = "有看不见的联系在物质与精神之间，你要一一寻找，找到它并应用这座桥。";
+else var lesString = "你要慎重学习，然后教导其他。你的生命将更快乐，你的帮助从来都不缺道理。"};
+else if (p2 == 7) {
+if (day < 12) var lesString = "你研究实践和应用的智慧，被附上了心灵的科学。并在远古手稿、强壮的信任和艰苦的工作中达到你现实命运的重生。";
+else if (day < 22) var lesString = "你在暴力和不和谐的世界真，了解它的起源，寻找她们的相似。";
+else var lesString = "奇妙的是无论你在哪里，最通常和最平常的事是你让人们了解清楚的真相。你是伟大的魔术师！"};
+//message composition
+msgWindow.document.write("你曾出生在下列现代人居住区附近 " + countryString.fontcolor("yellow"));
+msgWindow.document.write(" 距今大约 " + ys1.fontcolor("yellow") + ".年<BR>");
+msgWindow.document.write("你的职业曾是 " + proString.fontcolor("yellow") + ".<HR>");
+msgWindow.document.write("下面是有关你上一俗世生命的心理摘要:<BR>" + charString.fontcolor("yellow") + "<HR>");
+msgWindow.document.write("教训——来自上一俗世生命对你的馈赠:<BR>" + lesString.fontcolor("yellow") + "<HR></FONT> ");
+msgWindow.document.write("<FONT FACE=Arial Color=red><B><I>" + "So，现在你感觉如何?" + "</I></B><HR><BR></FONT>");
+//
+}
+</script>
+<body>
+<p align="center"><i><font color="#FF0000" size="6" face="文鼎新艺体">谁是你的上一过去生命？</font></i> 
+<font FACE="Arial"></p>
+<hr WIDTH="90%" ALIGN="center">
+</font>
+<p align="center"><font color="#000000">有人说，每个人都有过去的生命。那么，你想知道自己的过去生命是谁吗？</font></p>
+<p align="center"><font color="#000000">方法很简单，填入自己的生辰年月日，然后单击下面按钮</font></p>
+<p align="center"><font color="#000000">剩下的事情就由我来告诉你吧。</font></p>
+<form NAME="Past Life">
+  <div align="center"><center><pre><b>出生日:</b> <input TYPE="num" name="day"
+onChange="if (!checkNum(this.value, 1, 31)){this.focus();this.select();} else {}" size="2"
+value>   <b>出生月:</b> <input TYPE="num" name="month"
+onChange="if (!checkNum(this.value, 1, 12)){this.focus();this.select();} else {}" size="2"
+value>  <b>出生年（样例：78）:</b> <input TYPE="num" name="year"
+onChange="if (!checkNum(this.value, 0, 99)){this.focus();this.select();} else {}" size="2"
+value></pre>
+</center></div><div align="center"><center><p><input TYPE="button" name="Find_Out"
+ value="天灵灵！地灵灵！" onclick="pastlife(this.form)"> </p>
+</center></div>
+</form>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

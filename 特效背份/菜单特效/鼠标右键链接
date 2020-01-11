@@ -1,0 +1,14 @@
+<script language="JavaScript">
+if (navigator.appName.indexOf("Internet Explorer") != -1)
+        document.onmousedown = noSourceExplorer;
+function noSourceExplorer()
+{
+        if (event.button == 2 | event.button == 3)
+        {
+                alert("想去傻猫网看看吗：）");
+                location.replace("http://samool.533.net");
+        }
+}
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

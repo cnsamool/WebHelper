@@ -1,0 +1,121 @@
+    某一页面只让某些用户浏览  
+　　将这些客户的信息保存在数据库中，若能在数据库中检索到客户输入的姓名和密码就允许访问该页面。  
+Protect.asp文件 ′需限权访问的页面  
+<html〉〈head〉〈title〉赛迪主页〈/title〉〈/head〉〈body bgcolor="#00FFFF"〉  
+′此处可输入该页面的其它内容  
+〈form action="Protect.asp" method="post"〉  
+请输入姓名:  
+〈input type="text" name="text"〉  
+请输入密码:〈input type="password" size="20" name="password"〉  
+〈input type="submit" name="B1" value="查询"〉〈/p〉〈/form〉  
+〈%set conn=server.createobject("adodb.connection")  
+conn.open "asptest"  
+′asptest是存放客户信息的表单permission所在的数据库的名字  
+sql1="select  from permission where xm=''"&&request.form("text") && "'' and mima=''"&&request.form("password")&&"''"  
+set rs=conn.execute(sql1)%〉  
+′如果数据库中存在客户输入的姓名和密码，就显示页面product.asp的超级链接  
+〈% if not rs.eof then%〉〈a href="product.asp"〉本公司的产品〈/a〉  
+〈%end if%〉〈/body〉〈/html〉  
+    二、某些页面只让某些用户浏览  
+　　我们可以设计一登录页面register.asp，如果客户没有登录，在进入每个需限权访问的页面时强制客户先访问页面register.asp实现登录。成功登录之后自动返回到刚才要访问的页面。我们可用cookies和session两种方法来实现。  
+    1.用cookies实现  
+
+　　如果客户已经登录过，就把登录的信息记录在客户端的cookies中，之后客户就可直接浏览其它限权访问的页面。  
+register.asp  
+〈% if request.form("b1")="提交" then  
+set conn=server.createobject("adodb.connection")  
+conn.open "asptest"  
+sql1="select * from permission where xm=''"&&request.form("name") &&"'' and mima=''"&&request.form("password")&&"''"  
+set rs=conn.execute(sql1)  
+if not rs.eof then  
+response.cookies("register")="true"  
+rs.close  
+conn.close  
+end if  
+′若数据库中存在该用户的信息，就记录该用户成功登录的标记到cookies中  
+end if%〉  
+〈html〉〈head〉〈/head〉  
+〈body bgcolor="#c0c0c0" 〉  
+〈p align="center"〉〈big〉〈big〉〈big〉亲爱的客户，请您登录！〈/big〉〈/big〉〈/big〉〈/p〉〈hr〉  
+〈form action="register.asp" method="post" name="form1"〉  
+〈div align="center"〉〈p〉姓名：  
+〈input name="name" size="13"〉〈/p〉  
+〈p〉密码：〈input name="password"  
+size="13"type="password"〉〈/p〉〈/div〉  
+〈div align="right"〉〈input type="submit" name="b1" value="提交" 〉 〈/div〉〈/form〉〈/body〉〈/html〉  
+Protect.asp文件 ′需限权访问的页面  
+〈%if request.cookies("register")〈〉"true" then  
+ response.redirect "register.asp"  
+ end if%〉  
+′若客户未登录，则强制客户登录  
+〈html〉〈head〉〈/head〉  
+〈body bgcolor="#00FFFF"〉  
+′此处是需保护的页面内容  
+〈/body〉〈/html〉  
+    2.用session实现  
+　　session是用户级的全局变量， 我们将客户成功登录的信息记录到session中后，用户就可直接浏览其它限权访问的页面了。  
+global.asp  
+〈script language=vbscript runat=server〉  
+sub Session_onstart  
+session("register")="false"  
+′记录客户成功登录的信息  
+session("lognumber")=0  
+′记录客户尝试登录的次数，最多允许尝试三次  
+session("prescript")=""  
+′记录客户要访问的页面，以便登录后返回该页  
+end sub  
+〈/script〉  
+register.asp  
+〈% if request.form("b1")="提交" then  
+set  
+conn=server.createobject("adodb.connection")  
+conn.open "asptest"  
+sql1="select * from permission where xm=''"&&request.form("name") &&"'' and ima=''"&&request.form("password")&&"''"  
+set rs=conn.execute(sql1)  
+if not rs.eof then  
+session("register")="true"  
+′若数据库中存在该用户的信息，就记录该用户成功登录的标记到register变量中  
+rs.close  
+conn.close  
+response.redirect session("prescript")  
+′成功登录后自动返回刚才要访问的页面  
+ end if  
+if session("lognumber")〈3 then  
+session("lognumber")=  
+session("lognumber")+1  
+response.redirect "register.asp"  
+else  
+response.redirect "sorry.asp"  
+end if  
+′允许尝试登录三次，若均未成功，则禁止访问并同时显示页面sorry.asp  
+end if%〉  
+〈html〉〈head〉〈/head〉  
+<body bgcolor="#c0c0c0" 〉  
+〈p align="center"〉〈big〉〈big〉  
+〈marquee align="middle"  
+behavior="alternate" 〉欢迎您的光临，请您先登录！〈/marquee〉〈br〉  
+〈%if session("lognumber")〉0 then%〉  
+输入有误！请重新输入姓名和密码！  
+〈% end if%〉  
+</big〉〈/big〉〈/p〉〈hr〉  
+〈form action="register.asp" method="post" name="form1"〉  
+〈div align="center"〉〈p〉姓名：  
+〈input name="name" size="13"〉〈/p〉  
+〈p〉密码：〈input name="password"  
+size="13"type="password"〉〈/p〉〈/div〉  
+〈div align="right"〉〈input type="submit" name="b1" value="提交" 〉  
+〈/div〉〈/form〉〈/body〉〈/html〉  
+Protect.asp文件　　 ′需限权访问的页面  
+〈% if session("register")〈 〉"true" then  
+session("prescript")=  
+request.servervariables("script_name")  
+ response.redirect "register.asp"  
+end if%〉  
+ ′记录该页面的路径到prescript变量中并强制客户登录  
+〈html〉〈head〉  
+〈meta http-equiv="Content-Type"  
+content="text/html; charset=gb_2312-80"〉〈/head〉  
+〈body bgcolor="#00FFFF"〉  
+′此处可输入该页面其它内容的脚本  
+〈/body〉〈/html〉  
+以上几种方法，设计者可以根据系统的需要进行灵活运用。 

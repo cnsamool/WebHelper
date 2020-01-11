@@ -1,0 +1,12 @@
+<FORM name="guideform"> 
+<SELECT name="guidelinks"> 
+<OPTION SELECTED value="http://samool.533.net">傻猫软件 
+<OPTION value="http://samool.533.net">友情链接
+<OPTION value="http://samool.533.net">友情链接
+<OPTION value="http://samool.533.net">友情连接 
+</SELECT> 
+
+<INPUT type="button" name="go" value="Go!" onClick="window.location=document.guideform.guidelinks.options[document.guideform.guidelinks.selectedIndex].value"> </FORM> 
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

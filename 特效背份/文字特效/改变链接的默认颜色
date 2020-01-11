@@ -1,0 +1,37 @@
+<!--脚本说明:
+把如下代码加入<body>区域中-->
+<script language="JavaScript">
+<!-- Begin
+function initArray() {
+for (var i = 0; i < initArray.arguments.length; i++) {
+this[i] = initArray.arguments[i];
+}
+this.length = initArray.arguments.length;
+}
+var colors = new initArray(
+"red",
+"blue",
+"green",
+"purple",
+"black",
+"tan",
+"red");
+delay = .5; // seconds
+link = 0;
+vlink = 0;
+function linkDance() {
+link = (link+1)%colors.length;
+vlink = (vlink+1)%colors.length;
+document.linkColor = colors[link];
+document.vlinkColor = colors[vlink];
+setTimeout("linkDance()",delay*1000);
+}
+linkDance();
+// End -->
+</script>
+
+  <br>
+       <a href="http://www.263.net">首都在线</a> <a href="http://samool.533.net">傻猫软件</a> 
+                  <a href="http://www.163.net">163电子邮局</a> <a href="http://www.sina.com.cn">新浪网</a>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

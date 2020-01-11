@@ -1,0 +1,6 @@
+<input name="link" onmouseout="this.style.backgroundColor='#D2FFA6'"
+onmouseover="this.style.backgroundColor='#F0FFE1'" size="50"
+style="background-color: #D2FFA6; color: #008040; font-size: 9pt; border: 1px solid"
+type="text" value="把鼠标移到这里看看">
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

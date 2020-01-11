@@ -1,0 +1,57 @@
+
+<BODY  bgcolor="#000000" text="#FFFFFF" onLoad="getName()">
+  <SCRIPT LANGUAGE="JavaScript">
+
+
+
+
+
+function getName() {
+
+
+
+        var name1 = prompt("请问尊姓大名？", "")
+
+        var age = prompt("请问贵庚几何？", "")
+
+        var email1 = prompt("请留下你的EMAIL地址!!", "")
+
+
+
+
+
+        if( age <= 12) {
+
+
+
+                alert("嗨，" + name1 +  "你的年龄是 " + age + "抱歉，本站点拒绝你的的逗留" )
+
+        javascript:shutwin("")
+
+
+
+        } else {
+
+
+
+                alert("Hi!! 欢迎，欢迎你 " + name1 + " 你已年满 " + age + "周岁,你可以在本站尽情HAPPY!! ，你的邮件地址是 " + email1 + "."+"对吗？")
+
+
+        window.open("http://www.szren.com")
+
+                       }
+
+
+
+}
+
+
+
+</SCRIPT>
+<script language="JavaScript">       
+function shutwin(){       
+window.close();       
+return;}       
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

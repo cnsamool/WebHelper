@@ -1,0 +1,112 @@
+<style>
+<!--
+#slidemenubar, #slidemenubar2{
+cursor:hand;
+position:absolute;
+left:-115px;
+width:120px;
+top:100px;
+border:1.5px solid #ee8323;
+background-color:#FFFFE0;
+layer-background-color:lightyellow;
+font:12px Verdana;
+line-height:20px;
+}
+-->
+</style>
+<layer id="slidemenubar">
+
+<script language="JavaScript1.2">
+if (document.all)
+document.write('<div id="slidemenubar2" style="left:-110">')
+var sitems=new Array()
+var sitemlinks=new Array()
+
+sitems[0]="傻猫软件"; sitemlinks[0]="http://samool.533.net"
+sitems[1]="仕毅风采"; sitemlinks[1]="http://yangshiy.533.net"
+sitems[2]="新        浪"; sitemlinks[2]="http://www.sina.com.cn"
+sitems[3]="华军软件"; sitemlinks[3]="http://www.onlinedown.net"
+sitems[4]="网易社区"; sitemlinks[4]="http://www.163.com"
+
+for (i=0;i<=sitems.length-1;i++)
+document.write('<a href='+sitemlinks[i]+' target=_blank>'+sitems[i]+'</a><br>')
+</script>
+</layer>
+
+<script language="JavaScript1.2">
+
+function regenerate(){
+window.location.reload()
+}
+function regenerate2(){
+if (document.layers)
+setTimeout("window.onresize=regenerate",400)
+}
+window.onload=regenerate2
+if (document.all){
+document.write('</div>')
+themenu=document.all.slidemenubar2.style
+rightboundary=0
+leftboundary=-110
+}
+else{
+themenu=document.layers.slidemenubar
+rightboundary=110
+leftboundary=10
+}
+var dragapproved=false
+var x1,x2
+if (document.layers)
+themenu.captureEvents(Event.MOUSEDOWN | Event.MOUSEUP)
+
+function move(e){
+if (document.all&&event.button==1&&dragapproved){
+if(temp1+event.clientX-x1>leftboundary)
+themenu.pixelLeft=Math.min(rightboundary,temp1+event.clientX-x1)
+else
+themenu.pixelLeft=Math.max(leftboundary,temp1+event.clientX-x1)
+}
+
+else if (document.layers){
+if(themenu.left+e.x-x2>leftboundary)
+themenu.left=Math.min(rightboundary+2,themenu.left+e.x-x2)
+else
+themenu.left=Math.max(leftboundary-2,themenu.left+e.x-x2)
+}
+}
+
+function drags(e){
+if (document.all){
+dragapproved=true
+temp1=themenu.pixelLeft
+x1=event.clientX
+document.onmousemove=move
+}
+else{
+themenu.captureEvents(Event.MOUSEMOVE)
+x2=e.x
+}
+}
+
+function stopit(){
+if (document.all){
+dragapproved=false
+}
+if (document.layers)
+themenu.releaseEvents(Event.MOUSEMOVE)
+}
+
+if (document.all){
+document.all.slidemenubar2.onmousedown=drags
+document.all.slidemenubar2.onmouseup=new Function("dragapproved=false")
+document.onselectstart=new Function("return false")
+}
+else if (document.layers){
+themenu.onmousedown=drags
+themenu.onmousemove=move
+themenu.onmouseup=stopit
+}
+
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

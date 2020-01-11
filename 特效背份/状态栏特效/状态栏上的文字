@@ -1,0 +1,26 @@
+<script LANGUAGE="JavaScript">
+<!--
+// Scrolling message settings
+var MessageText = "»¶Ó­¹âÁÙ¨ÉµÃ¨Èí¼þ¨--http://samool.533.net"
+var DisplayLength = 260
+var pos = 1 - DisplayLength;
+function ScrollInStatusBar(){
+var scroll = "";
+pos++;
+if (pos == MessageText.length) pos = 1 - DisplayLength;
+if (pos<0) {
+for (var i=1; i<=Math.abs(pos); i++)
+scroll = scroll + "";
+scroll = scroll + MessageText.substring(0, DisplayLength - i + 1);
+}
+else
+scroll = scroll + MessageText.substring(pos, pos + DisplayLength);
+window.status = scroll;
+//Scrolling speed
+setTimeout("ScrollInStatusBar()",0);
+}
+ScrollInStatusBar()
+//-->
+</script>
+<!--±¾ÍøÒ³ÓÉ¡¶ÍøÒ³ÖúÊÖV1.1¡·ÖÆ×÷    °æÈ¨ËùÓÐ£ºÉµÃ¨Èí¼þ -->
+<!--Çë·ÃÎÊÉµÃ¨Èí¼þ¹Ù·½ÍøÕ¾   http://samool.533.net  -->

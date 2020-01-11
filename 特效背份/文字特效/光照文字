@@ -1,0 +1,67 @@
+<html>
+<head>
+<title> </title>
+</head>
+<body> 
+<!--将以下代码加到<body>中//-->
+<script language="JavaScript">
+function assignArray(text,delay) {
+this.text=text
+this.delay=delay
+}
+function createArray() {
+fadecolor=new Array("FF8000","8080FF","00FF00","00FFFF","008040","CA00CA")
+
+msg=new Array(4)
+msg[0]=new assignArray("第一条信息。",1000); 
+msg[1]=new assignArray("第二条信息。",1000);
+msg[2]=new assignArray("第三条信息。",1000);
+msg[3]=new assignArray("第四条信息。",1000);
+
+setTimeout("typeIt()", 1000)
+}
+var msgNo=0
+var character=1
+var colorNo=0
+var fixColor=1
+var colorCheck=0
+function typeIt() {
+var insertHTML=""
+if(msgNo <= msg.length-1) {
+if(character <= msg[msgNo].text.length || colorCheck < msg[msgNo].text.length) {
+colorCheck=0
+for(var charCheck=0; charCheck<character; charCheck++,colorNo--,fixColor--){
+if(fixColor>5)colorNo=5
+if(colorNo==5)colorCheck+=1
+insertHTML += '<SPAN style="font-family: Black; font-size:coolboo; color:'+fadecolor[colorNo]+'">' + msg
+[msgNo].text.substring(charCheck, charCheck+1) + '</SPAN>'
+}
+if(document.layers) {
+document.typeWriter.document.write(insertHTML)
+document.typeWriter.document.close()
+} else if (document.all) {
+document.all.typeWriter.innerHTML = insertHTML
+}
+setTimeout("typeIt()", 50)
+character++
+colorNo=character-1
+fixColor=character
+}
+else {
+character=1
+colorNo=character-1
+fixColor=character
+setTimeout("typeIt()", msg[msgNo].delay)
+msgNo++
+}
+}
+}
+</script>
+<body onLoad="createArray()" text="#ffffff" bgcolor=#696969>
+<div ID="typeWriter" style="position: absolute; left:2; top: 2; width: 601; height: 19"></div>
+
+</body>
+
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,68 @@
+<body>
+<SCRIPT language=JavaScript>
+st=n=m=0;k=9;ns=navigator.appName=="Netscape";
+t1=new Image();
+t1.src="bee.gif"
+t2=new Image();
+t2.src="bird.gif"
+function ner(){return true}
+window.onerror=ner
+function pop(name){
+  i=document.cookie.indexOf(name+"=");
+  if(i!=-1){
+    i=document.cookie.indexOf("=",i)+1;
+    j=document.cookie.indexOf("#",i);
+    if(j!=-1)return document.cookie.substring(i,j)}}
+function ps(name,value){document.cookie=name+"="+value+"#"}
+if(!(ym=parseInt(pop("tsym"))))ym=0;if(!(y=parseInt(pop("tsy"))))y=0;if(!(xm=parseInt(pop("tsxm"))))xm=100;if(!(x=parseInt(pop("tsx"))))x=0;if(!(m=parseInt(pop("tsm"))))m=0;
+function DM(){if(m)ps("tsm",--m);else ps("tsm",++m)}
+function M(e){
+  if(n){
+    if(ns){
+      ts.left=x=e.pageX-xm;ts.top=y=e.pageY-ym
+    }else{
+ts.left=x=document.body.scrollLeft+event.clientX-xm;ts.top=y=document.body.scrollTop+event.clientY-ym;event.returnValue=false}
+  }else{
+    if(ns){
+      xm=e.pageX;ym=e.pageY
+    }else{
+      xm=document.body.scrollLeft+event.clientX;ym=document.body.scrollTop+event.clientY}}}
+function dd(){
+  if(ns){ps("tsx",x);ps("tsy",y)}
+  if(n){
+    if(ns){ps("tsxm",xm+x);ps("tsym",ym+y)}
+  }else{
+    if(ns){ps("tsxm",xm);ps("tsym",ym)}
+    st=xm-x;
+    if(st>60&&k<0){k=-k;document.t.src=t2.src}
+    if(st<40&&k>0){k=-k;document.t.src=t1.src}
+    if(!m){
+      if((st>120&&k>0)||(st<-20&&k<0)){ts.left=x+=k}
+      st=ym-y;
+      if(st>85)ts.top=y+=9;
+      if(st<-5)ts.top=y-=9}}}
+function MD(e){
+  if(ns){
+        xm=e.pageX;ym=e.pageY
+  }else{
+    xm=document.body.scrollLeft+event.clientX;ym=document.body.scrollTop+event.clientY}
+  if(xm<x+80&&xm>x+10&&ym<y+70&&ym>y+10){
+    if(!ns){
+      if(event.button<2){xm=xm-x;ym=ym-y;n=1}
+    }else{
+      xm=xm-x;ym=ym-y;n=1;return false
+    }
+  }
+}
+function MU(){if(n){n=0;xm+=x;ym+=y}}
+function cls(){ps("tsym",ym);ps("tsy",y);ps("tsxm",xm);ps("tsx",x)}
+if(!ns)window.onunload=cls;
+if(ns)document.captureEvents(Event.DBLCLICK|Event.MOUSEDOWN|Event.MOUSEUP|Event.MOUSEMOVE);
+document.onmousemove=M;document.onmouseup=MU;document.onmousedown=MD;document.ondblclick=DM;
+document.write("<div id=ts style=position:absolute;width:96;height:80;z-index:10><img name=t src="+t2.src+"></div>");
+var ts=(ns)?document.ts:document.all.ts.style;ts.left=x;ts.top=y;dd();setInterval("dd()",100)
+
+</SCRIPT>
+</body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

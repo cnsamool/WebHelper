@@ -1,0 +1,59 @@
+
+<table border=1 bordercolor=#FFFFFF cellpadding=0 cellspacing=0      
+            width=195 bordercolordark="#FFFFFF">
+              <tr> 
+                <td height=15 align="center"> 
+                  <table align=center bgcolor=#ffffff border=1      
+                  bordercolordark=#ffffff bordercolorlight=#006666 cellpadding=0      
+                  cellspacing=0 width="237" bordercolor="#FFFFFF">
+                    <tbody> 
+                    <tr> 
+                      <td height="11" align="center" width="233"> 
+                        <script language=JavaScript>     
+var index = 10     
+link = new Array(9);     
+text = new Array(9);     
+
+link[0] ='http://samool.533.net'     
+link[1] ='http://samool.533.net'
+link[2] ='http://www.silversand.net/'     
+link[3] ='http://sky.net.cn/'     
+link[4] ='#'  	 
+link[5] ='#'     
+link[6] ='#'
+link[7] ='#'     
+link[8] ='#'     
+link[9] ='#'     
+     
+     
+text[0] ='傻猫软件'     
+text[1] ='samool' 
+text[2] ='碧海银沙'     
+text[3] ='天网防火墙个人版'     
+text[4] ='填写上您自己的内容'  	 
+text[5] ='填写上您自己的内容'     
+text[6] ='填写上您自己的内容'     
+text[7] ='填写上您自己的内容'     
+text[8] ='填写上您自己的内容' 
+text[9] ='填写上您自己的内容'     
+     
+     
+document.write ("<marquee scrollamount='1' scrolldelay='60' direction= 'up' width='188' id=xiaoqing height='120' onmouseover=xiaoqing.stop() onmouseout=xiaoqing.start()>");     
+for (i=0;i<index;i++){     
+document.write ("<a href="+link[i]+" target='_blank'><font color=#003399>");     
+document.write (text[i] + "</font></A><br>");     
+}     
+document.write ("</marquee>")     
+</script>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr align=middle> 
+                <td height="2"></td>
+              </tr>
+            </table>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

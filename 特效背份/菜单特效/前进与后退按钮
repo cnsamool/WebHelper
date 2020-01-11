@@ -1,0 +1,7 @@
+<FORM>
+<INPUT TYPE="button" VALUE="<<<后退" onClick="history.go(-1)">
+<INPUT TYPE="button" VALUE="前进>>>" onClick="history.go(1)">
+</FORM>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

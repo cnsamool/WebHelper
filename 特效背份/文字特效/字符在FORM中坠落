@@ -1,0 +1,146 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中://-->
+
+<script language="javascript">
+
+
+
+function drip(){
+
+        wordy="谢谢使用《网页助手》";
+
+        document.hey.a.value="";
+
+        document.hey.b.value="";
+
+        document.hey.c.value="";
+
+        document.hey.d.value="";
+
+        word="";
+
+        beat=0;
+
+        aa=0;
+
+        bb=0;
+
+        cc=0;
+
+        dd=0;
+
+        lo=wordy.length;
+
+        drop(); 
+
+}
+
+function drop(){
+
+        if(beat<=lo*3+1){
+
+        beat=beat+1;
+
+        if(beat<=1){
+
+                document.hey.a.value=wordy;
+
+        }
+
+        if(beat>1&&beat<=lo+1){
+
+                fin="";
+
+                aa=aa+1;
+
+                for(var x=0;x<=aa-1;x++){
+
+                        fin=fin+" ";
+
+                }
+
+                fin=fin+wordy.substring(aa,lo);
+
+                document.hey.a.value=fin;
+
+                document.hey.b.value=wordy.substring(0,aa);
+
+        }
+
+        if(beat>lo+1&&beat<=lo*2+1){
+
+                fin="";
+
+                bb=bb+1;
+
+                for(var x=0;x<=bb-1;x++){
+
+                        fin=fin+" ";
+
+                }
+
+                fin=fin+wordy.substring(bb,lo);
+
+                document.hey.b.value=fin;
+
+                document.hey.c.value=wordy.substring(0,bb);
+
+        }
+
+        if(beat>lo*2+1&&beat<=lo*3+1){
+
+                fin="";
+
+                cc=cc+1;
+
+                for(var x=0;x<=cc-1;x++){
+
+                        fin=fin+" ";
+
+                }
+
+                fin=fin+wordy.substring(cc,lo);
+
+                document.hey.c.value=fin;
+
+                document.hey.d.value=wordy.substring(0,cc);
+
+        }
+
+        setTimeout("drop()",200);
+
+        }
+
+        else{
+
+                document.hey.d.value=wordy;
+
+        }
+
+}
+
+
+
+</script>
+
+<form name="hey">
+
+<input type="text" name="a" size=12><br>
+
+<input type="text" name="b" size=12><br>
+
+<input type="text" name="c" size=12><br>
+
+<input type="text" name="d" size=12><br><BR>
+
+<input type="button" name="start" value="Start" onclick="drip()">
+
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

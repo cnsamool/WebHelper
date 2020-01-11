@@ -1,0 +1,32 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中://-->
+<script language = "Javascript">
+
+function mailer() {
+email = document.use.runit.value
+document.mailone.mail1.value = email
+document.mailtwo.mail2.value = email
+}
+
+</script>
+<center>
+<form name = "use">
+   <textarea name = "runit" class="pt9" cols= "35" rows = "5">你只要改变发送邮件的主题和相应的E-mail地址即可。 </textarea>
+</form>
+<form name = "mailone" method=post action="mailto:f_jinyi@163.com?subject=邮件主题" enctype = "text/plain" onClick="mailer()">
+    <input type = "hidden" name = "mail1">
+    <input type = "submit" value = "发到mail1" name="submit2" class="pt9">
+</form>
+<form name = "mailtwo" method=post action="mailto:javascript2000@china.com?subject=邮件主题" enctype = "text/plain" onClick="mailer()">
+     <input type = "hidden" name = "mail2">
+    <input type = "submit" value = "发到mail2" name="submit" class="pt9">
+</form></center>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

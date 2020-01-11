@@ -1,0 +1,16 @@
+1、第一种效果
+
+<div style="width: 350; font-size:15pt; font-family: Arial ; color: red; position: relative; filter: 
+blur(add=1, direction=45, strength=3)">傻猫软件制作</div>
+
+2、第二种效果
+
+<div style="width: 350; font-size:15pt; font-family: Arial ; color: red; position: relative; filter: 
+glow(color=ffff00, strength=5)">傻猫软件制作</div>
+
+3、第三种效果
+
+<div style="width: 350; font-size:15pt; font-family: Arial ; color: red; position: relative; filter: 
+dropshadow(color=000000, offx=3, offy=3, positive=1)"> 傻猫软件制作</div>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

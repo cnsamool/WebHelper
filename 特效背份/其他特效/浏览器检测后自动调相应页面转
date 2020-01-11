@@ -1,0 +1,12 @@
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Start Code
+var ver = navigator.appVersion;
+if (ver.indexOf("MSIE") != -1)
+{
+window.location.href="IE的页面.htm"
+}else
+window.location.href="NS的页面.htm"
+// End Code -->
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

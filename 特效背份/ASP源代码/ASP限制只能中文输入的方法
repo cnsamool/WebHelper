@@ -1,0 +1,27 @@
+实现函数:  
+function isCharsInBag (s, bag)  
+{   
+var i,c;  
+for (i = 0; i < s.length; i++)  
+{  
+  
+c = s.charAt(i);//字符串s中的字符  
+if (bag.indexOf(c) > -1)   
+return c;  
+}  
+return \"\";  
+}  
+检查函数:  
+function ischinese(s)  
+{  
+var errorChar;  
+var badChar = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789><,[]{}?/+=|\\\\\''\\\":;~!#$%()`\";  
+errorChar = isCharsInBag( s, badChar)  
+if (errorChar != \"\" )  
+{  
+report=report+\"请重新输入中文\\n\";  
+return false;  
+}   
+
+return true;  
+}

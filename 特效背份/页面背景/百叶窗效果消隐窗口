@@ -1,0 +1,12 @@
+<!--脚本说明:
+第一步:把如下代码加入<head>区域中-->
+<meta HTTP-EQUIV="Page-Enter" CONTENT="revealtrans(duration=6.0, transition=23)">
+<meta HTTP-EQUIV="Page-Exit" CONTENT="revealtrans(duration=6.0, transition=23)">
+<body bgcolor="red">
+<br>
+<br>
+<br>
+
+<center><a href="index.htm" >请点击这里</a></center>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

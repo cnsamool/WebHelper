@@ -1,0 +1,29 @@
+<!--脚本说明:
+把如下代码加入<body>区域中-->
+<script language="JavaScript">
+<!--Hide from non JavaScript browsers
+an = 3
+var ran = Math.random();
+var talet = Math.round(ran * (an-1))+1;
+function create() {
+        this.src = ''
+	
+}
+
+b = new Array()
+for(var i=1; i<=an; i++) { b[i] = new create() }
+
+b[1].src    = "<a href='http://samool.533.net'>"
+b[2].src    = "<a href='http://www.263.net'>"
+b[3].src    = "<a href='http://www.163.com'>"
+var vis = "";
+vis += b[talet].src;
+//-->
+</script>
+                  <script language="JavaScript">
+<!--
+document.write(vis+"随机文本链接,每次刷新后连接都不同"+"</a>");
+//-->
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

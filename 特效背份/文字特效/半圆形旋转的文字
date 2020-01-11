@@ -1,0 +1,48 @@
+<SCRIPT language=JavaScript>
+<!-- 
+if (document.all){
+msg="欢迎使用网页助手"
+msgColor="0000ff";
+msgFont="Verdana";
+file:
+msg=msg.split('');
+n=msg.length; 
+e=360/n;
+yp=0;
+xp=0;
+yb=40;
+xb=60;
+sa=0.07;
+sb=0;
+pa=new Array();
+pb=new Array();
+for (i=0; i < n; i++){
+document.write('<div id="logo" style="position:absolute;top:0;left:0;'
++'height:30;width:30;font-family:'+msgFont+';text-align:center;color:'+msgColor+'">'+msg[i]+'</div>');
+}
+function ani(){
+yp=document.body.scrollTop+50;
+xp=document.body.scrollLeft+window.document.body.clientWidth-100;
+for (i=0; i < n; i++){
+logo[i].style.top =yp+yb*Math.sin(sb+i*e*Math.PI/180);
+logo[i].style.left=xp+xb*Math.cos(sb+i*e*Math.PI/180);
+pb[i]=logo[i].style.pixelTop-yp;
+pa[i]=pb[i]-pb[i]*2;
+if (pa[i] < 1){
+pa[i]=0;
+logo[i].style.visibility='hidden';
+}
+else logo[i].style.visibility='visible';
+logo[i].style.fontSize=pa[i]/2.7;
+}
+sb-=sa;
+setTimeout('ani()',100);
+}
+window.onload=ani;
+}
+// -->
+
+<!-- 使用说明：使用时将文字换成你需要的文字即可！-->
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

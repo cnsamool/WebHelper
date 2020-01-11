@@ -1,0 +1,12 @@
+<script LANGUAGE="JavaScript">
+bg = new Array(2); //设定图片数量，如果图片数为3，这个参数就设为2，依次类推
+bg[0] = 'tp1.gif'  //显示的图片路径，可用http://
+bg[1] = 'tp2.gif'
+bg[2] = 'tp3.gif'
+index = Math.floor(Math.random() * bg.length);
+document.write("<BODY BACKGROUND="+bg[index]+">");
+</script> 
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

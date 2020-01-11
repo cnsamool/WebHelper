@@ -1,0 +1,159 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中//-->
+<SCRIPT LANGUAGE="JavaScript">
+var x=9;
+var strobe="on"
+if (navigator.appName == "Netscape") {
+visShow="'show'";
+visHide="'hide'";
+docStyle="document.";
+styleDoc="";
+}
+else {
+visHide="'hidden'";
+visShow="'visible'";
+docStyle="";
+styleDoc=".style";
+}
+</SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">
+function hide1() {
+eval(docStyle+ 'object1' + styleDoc + '.visibility=' + visHide);
+}
+function hide2() {
+eval(docStyle+ 'object2' + styleDoc + '.visibility=' + visHide);
+}
+function hide3() {
+eval(docStyle+ 'object3' + styleDoc + '.visibility=' + visHide);
+}
+function hide4() {
+eval(docStyle+ 'object4' + styleDoc + '.visibility=' + visHide);
+}
+function hide5() {
+eval(docStyle+ 'object5' + styleDoc + '.visibility=' + visHide);
+}
+function hide6() {
+eval(docStyle+ 'object6' + styleDoc + '.visibility=' + visHide);
+}
+function hide7() {
+eval(docStyle+ 'object7' + styleDoc + '.visibility=' + visHide);
+}
+function hide8() {
+eval(docStyle+ 'object8' + styleDoc + '.visibility=' + visHide);
+}
+function hide9() {
+eval(docStyle+ 'object9' + styleDoc + '.visibility=' + visHide);
+}
+function hide10() {
+eval(docStyle+ 'object10' + styleDoc + '.visibility=' + visHide);
+}
+function show1() {
+eval(docStyle+ 'object1' + styleDoc + '.visibility=' + visShow);
+hide2(),hide3();
+}
+function show2() {
+eval(docStyle+ 'object2' + styleDoc + '.visibility=' + visShow);
+hide1(),hide3();
+}
+function show3() {
+eval(docStyle+ 'object3' + styleDoc + '.visibility=' + visShow);
+hide2(),hide4();
+}
+function show4() {
+eval(docStyle+ 'object4' + styleDoc + '.visibility=' + visShow);
+hide3(),hide5();
+}
+function show5() {
+eval(docStyle+ 'object5' + styleDoc + '.visibility=' + visShow);
+hide4(),hide6();
+}
+function show6() {
+eval(docStyle+ 'object6' + styleDoc + '.visibility=' + visShow);
+hide5(),hide7();
+}
+function show7() {
+eval(docStyle+ 'object7' + styleDoc + '.visibility=' + visShow);
+hide6(),hide8();
+}
+function show8() {
+eval(docStyle+ 'object8' + styleDoc + '.visibility=' + visShow);
+hide7(),hide9();
+}
+function show9() {
+eval(docStyle+ 'object9' + styleDoc + '.visibility=' + visShow);
+hide8(),hide10();
+}
+function show10() {
+eval(docStyle+ 'object10' + styleDoc + '.visibility=' + visShow);
+hide9();
+}
+function strobe1() {
+x+=1;
+eval("show" + x + "()");
+if (x<10) setTimeout("strobe1()", 75);
+else if (strobe=="on") strobe2();
+}
+function strobe2() {
+x-=1;
+eval("show" + x + "()");
+if (x>1) setTimeout("strobe2()", 75);
+else strobe1();
+}
+function strobeOn() {
+x=9;
+strobe="on";
+strobe1();
+}
+function strobeOff() {
+strobe="off";
+}
+</SCRIPT>
+<div id="vis" style="position:absolute; visibility:show; left:20px; top:20px; z-index:1">
+<table cellpadding=2 border=1><tr>
+<td><center><b>Strobe:</b></center></font></a></td>
+<td><a href="javascript:strobeOn()">
+<font color="#000000"><center>on</center></font></a></td>
+<td><a href="javascript:strobeOff()">
+<font color="#000000"><center>off</center></font></a></td>
+</tr></table></div>
+
+<div id="object1" style="position:absolute; visibility:hide; left:20px; top:40px; z-index:1">
+<table border=1 bgcolor=#eaffff width=175 height=50><td><center><b><font color="#F9F9F9">JavaScript Planet</font></b></center></td></table>
+</div>
+<div id="object2" style="position:absolute; visibility:hide; left:20px; top:40px; z-index:1">
+<table border=1 bgcolor=eaffff width=175 height=50><td><center><b><font color="#ECECEC">JavaScript Planet</font></b></center></td></table>
+</div>
+<div id="object3" style="position:absolute; visibility:hide; left:20px; top:40px; z-index:1">
+<table border=1 bgcolor=eaffff width=175 height=50><td><center><b><font color="#D5D5D5">JavaScript Planet</font></b></center></td></table>
+</div>
+<div id="object4" style="position:absolute; visibility:hide; left:20px; top:40px; z-index:1">
+<table border=1 bgcolor=eaffff width=175 height=50><td><center><b><font color="#C0C0C0">JavaScript Planet</font></b></center></td></table>
+</div>
+<div id="object5" style="position:absolute; visibility:hide; left:20px; top:40px; z-index:1">
+<table border=1 bgcolor=eaffff width=175 height=50><td><center><b><font color="#b0b0b0">JavaScript Planet</font></b></center></td></table>
+</div>
+<div id="object6" style="position:absolute; visibility:hide; left:20px; top:40px; z-index:1">
+<table border=1 bgcolor=eaffff width=175 height=50><td><center><b><font color="#939393">JavaScript Planet</font></b></center></td></table>
+</div>
+<div id="object7" style="position:absolute; visibility:hide; left:20px; top:40px; z-index:1">
+<table border=1 bgcolor=eaffff width=175 height=50><td><center><b><font color="#808080">JavaScript Planet</font></b></center></td></table>
+</div>
+<div id="object8" style="position:absolute; visibility:hide; left:20px; top:40px; z-index:1">
+<table border=1 bgcolor=eaffff width=175 height=50><td><center><b><font color="#6b6b6b">JavaScript Planet</font></b></center></td></table>
+</div>
+<div id="object9" style="position:absolute; visibility:hide; left:20px; top:40px; z-index:1">
+<table border=1 bgcolor=eaffff width=175 height=50><td><center><b><font color="#424242">JavaScript Planet</font></b></center></td></table>
+</div>
+<div id="object10" style="position:absolute; visibility:show; left:20px; top:40px; z-index:1">
+<table border=1 bgcolor=eaffff width=175 height=50><td><center><b><font color="#000000">JavaScript Planet</font></b></center></td></table>
+</div><P>
+</FONT></CENTER>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,33 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中://-->
+
+<SCRIPT LANGUAGE="JavaScript">
+
+<!-- Begin
+var clocktext;
+var pagetitle = document.title;
+function scroll() {
+today = new Date();
+sec = today.getSeconds();
+hr = today.getHours();
+min = today.getMinutes();
+if (hr <= 9) hr = "0" + hr;
+if (min <= 9) min = "0" + min;
+if (sec <= 9) sec = "0" + sec;
+var clocktext = " 现在时间是: " + hr + ":" + min + ":" + sec;
+clocktimer = setTimeout("scroll()", 1000);
+document.title = pagetitle + clocktext;
+}
+if (document.all) scroll();
+//  End -->
+</script>
+<P>看看标题栏</p>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

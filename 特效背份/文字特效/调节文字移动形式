@@ -1,0 +1,92 @@
+<html>
+<head>
+<title></title>
+</head>
+<!--第一步:把如下代码加入<body>区域中//-->
+<body bgcolor="#fef4d9" onload=move(0)>
+
+<!--第二步:把如下代码加入<body>区域中//-->
+<script language="JavaScript">
+
+var u=0
+var v=0
+var f = Math.PI/180
+var txt="-----------------------------------------------------------------------------"
+u=0
+var text1 = "=> 傻猫软件 <=---"
+var text2 = "=> javascript <=---"
+var text = text1
+var cpt=19
+var t=0
+var z=0
+function maketab(pas) {
+        for (var i=0; i<180; i++) {
+        sinus = Math.round(Math.sin(i*f)*100);
+        this[i] = sinus;
+        }       
+}
+        var tb = new maketab()
+
+function change() {
+        cpt++
+        if (cpt==20) {
+                if (t==0) {
+                        text = text1
+                        t=1;
+                }
+                else {
+                        text = text2
+                        t=0;
+                }
+                cpt=0;
+        }
+}
+
+function move(z) {
+
+        if (u>180) {u=0}
+        if (v>180) {v=0}
+        change()
+        if (z==0) {
+                u+=2
+                document.forms[0].elements[0].value = txt.substring(0,tb[u]) + text
+        }
+        if (z==1) {
+                v+=2
+                window.status = txt.substring(0,tb[v]) + text
+        }
+        if (z==2) {
+                u+=2
+                v+=2
+                document.forms[0].elements[0].value = txt.substring(0,tb[u]) + text
+                window.status = txt.substring(0,tb[v]) + text
+        }
+
+        setTimeout ("move(z)",150);  //设置字符移动速度
+}
+
+</script>
+<form name="msg">
+  <p><input type="text" size="79" name="mesg"> </p>
+  </small></font></small></p>
+
+  <p><input type="text" size="37" name="message" value="在这里输入">
+  </small></font></small>
+  <input type="text" size="37" name="message2" value="也可在这里输入">
+  </small></font></small><br>
+  <input type="button" name="newmsg" value="自己创建文字" onclick="text1=form.message.value; text2=form.message2.value;">
+  </small></font></small></p>
+
+  <p><input type="button" size="79" name="winstatus" value="状态栏显示" onclick="z=1">
+  </small></font></small>
+  <input type="button" size="79" name="txtarea" value="文本框显示" onclick="z=0">
+  </small></font></small>
+  </small></font></small>
+  <input type="button" size="79" name="both" value="状态栏和文本框都显示" onclick="z=2">
+  </small></font></small></p>
+</form>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

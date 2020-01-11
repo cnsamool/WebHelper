@@ -1,0 +1,19 @@
+<SCRIPT LANGUAGE=JAVASCRIPT>
+<!-- 
+var msg = "如果你觉得《网页助手》好用，请推荐给你的朋友";
+var speed = 300; 
+var msgud = " " + msg; 
+function statusScroll() { 
+if (msgud.length <msg.length) msgud += " - " + msg; 
+msgud = msgud.substring(1, msgud.length); 
+window.status = msgud.substring(0, msg.length);
+window.setTimeout("statusScroll()", speed); 
+}
+
+</SCRIPT>
+<BODY onload="window.setTimeout('statusScroll()', 500)">
+
+
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

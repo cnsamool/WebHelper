@@ -1,0 +1,8 @@
+
+<script language="JavaScript">
+function bookmarkit(){window.external.addFavorite('http://samool.533.net','傻猫软件 http://samool.533.net')}//改为你自己的网址和站名
+if (document.all)document.write('<a href="#" onClick="bookmarkit()">加入收藏夹</a>')
+</script>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,98 @@
+<!--第一步：将以下代码插入网页原代码的<body></body>区域中-->
+<script language="JavaScript1.2">
+iens6=document.all||document.getElementById
+ns4=document.layers
+//specify speed of scroll (greater=faster)
+var speed=5
+
+if (iens6){
+document.write('<div id="container" style="position:relative;width:500;height:160;border:1px solid black;overflow:hidden">')
+document.write('<div id="content" style="position:absolute;width:500;left:0;top:0">')
+}
+</script>
+
+<ilayer name="nscontainer" width=500 height=160 clip="0,0,500,160">
+<layer name="nscontent" width=500 height=160 visibility=hidden>
+
+<!--请把以下改成你的内容-->
+<p><font size="2" face="Arial">-</font><font size="2" face="Arial" color=#000000>test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-</font></p>
+<p><font size="2" face="Arial" color=#999999>
+- test-- test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-
+- test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-
+- test-
+- test-
+- test-
+- test-
+- test-
+- test-
+- test-
+- test-
+- test-
+- test-
+- test-
+- test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-
+test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-
+- test-
+
+</font></p>
+<p><font size="2" face="Arial">-</font><font size="2" face="Arial"> - test-
+- test-- test-
+- test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-
+
+</font></p>
+<p><font size="2" face="Arial">test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-test-</font></p>
+<!--结束内容-->
+
+</layer>
+</ilayer>
+
+<script language="JavaScript1.2">
+if (iens6)
+document.write('</div></div>')
+</script>
+
+<table width="500px"><td><p align="right">
+|<a href="#" onMouseover="moveup()" onMouseout="clearTimeout(moveupvar)">
+向上
+</a>|<a href="#" onMouseover="movedown()" onMouseout="clearTimeout(movedownvar)">
+向下
+</a>|</p></td>
+</table>
+
+<script language="JavaScript1.2">
+if (iens6){
+var crossobj=document.getElementById? document.getElementById("content") : document.all.content
+var contentheight=crossobj.offsetHeight
+}
+else if (ns4){
+var crossobj=document.nscontainer.document.nscontent
+var contentheight=crossobj.clip.height
+}
+
+function movedown(){
+if (iens6&&parseInt(crossobj.style.top)>=(contentheight*(-1)+100))
+crossobj.style.top=parseInt(crossobj.style.top)-speed
+else if (ns4&&crossobj.top>=(contentheight*(-1)+100))
+crossobj.top-=speed
+movedownvar=setTimeout("movedown()",100)
+}
+
+function moveup(){
+if (iens6&&parseInt(crossobj.style.top)<=0)
+crossobj.style.top=parseInt(crossobj.style.top)+speed
+else if (ns4&&crossobj.top<=0)
+crossobj.top+=speed
+moveupvar=setTimeout("moveup()",100)
+}
+
+
+function getcontent_height(){
+if (iens6)
+contentheight=crossobj.offsetHeight
+else if (ns4)
+document.nscontainer.document.nscontent.visibility="show"
+}
+window.onload=getcontent_height
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

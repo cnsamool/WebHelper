@@ -1,0 +1,131 @@
+把如下代码加入<body>区域中
+<script language="javascript"> 
+var key = "";
+
+function makeEntry (){
+this.Date = "";
+this.Name="";
+this.URL = "";
+this.Desc = "";
+this.Category = "";
+return this;
+}
+
+function makeArray(n) {
+this.length = n;
+for (var k = 1; k <= n; k++) {
+this[k] = "";
+}
+return this;
+} 
+
+function makeLinks(size) {
+this.length = size;
+for (var r=1; r<= size; r++) {
+this[r] = new makeEntry();
+this[r].Date = datesArray[r];
+this[r].Name = namesArray[r];
+this[r].URL = urlsArray[r];
+this[r].Desc = descArray[r];
+}
+return this;
+}
+
+
+var linksize=0 
+
+datesArray = new makeArray(linksize);
+namesArray = new makeArray(linksize);
+urlsArray = new makeArray(linksize);
+descArray = new makeArray(linksize);
+
+
+var arraycount=0
+
+
+arraycount += 1 
+datesArray[arraycount] = "5/30/2000"
+urlsArray[arraycount] = "http://www.163.net"
+namesArray[arraycount] = "网易"
+descArray[arraycount] = "163 netease yeah 126 chinese "
+//alert(arraycount)
+
+arraycount += 1 
+datesArray[arraycount] = "5/30/2000 "
+urlsArray[arraycount] = "http://www.sina.com.cn"
+namesArray[arraycount] = "新浪网"
+descArray[arraycount] = "sina net chat chatting news super"
+//alert(arraycount)
+
+arraycount += 1 
+datesArray[arraycount] = "5/30/2000 "
+urlsArray[arraycount] = "http://www.sohu.com"
+namesArray[arraycount] = "搜狐"
+descArray[arraycount] = "sohu net chat news "
+//alert(arraycount)
+
+linksize = arraycount;
+
+// ----end data -------
+
+function showAll(linkobj) {
+for (var s=1; s<= linkobj.length; s++) {
+showLink(linkobj,s);
+}
+}
+
+function showLink (links, index) {
+//document.write("<table border>");
+document.write("<tr><td>" + links[index].Date +"</td>");
+document.write("<td><a href=" + links[index].URL +">" + links[index].Name + "</a></td>");
+document.write("<td>" + links[index].Desc + "</td></tr>");
+//document.write("</table>");
+}
+
+function searchLinks(links, keyword){
+document.write("搜寻结果: " +keyword +"<br>");
+
+document.write("<table border>");
+for (var q=1; q<=links.length; q++) {
+//document.write(q+".")
+if (links[q].URL.indexOf(keyword) != -1){
+// document.write("Search Results for keyword: "+keyword+ "<br>" +links[q].Name +"<p>")
+//document.write("搜寻结果: "+keyword+ "<br>" );
+showLink(links,q);
+continue;
+}
+if (links[q].Desc.indexOf(keyword) != -1) {
+showLink(links,q);
+continue;
+}
+if (links[q].Date.indexOf(keyword) != -1) {
+showLink(links,q);
+continue;
+}
+if (links[q].Name.indexOf(keyword) != -1) {
+showLink(links,q);
+continue;
+}
+}
+document.write("</table>");
+} 
+
+
+// final stuff
+// the main program ---
+
+jsi = new makeLinks(linksize);
+document.write("<title>站内查询</title>");
+searchLinks(jsi, prompt("输入查询关键字:","输入查询关键字:"));
+document.write("<hr>");
+document.write("按<b>search again</b>再次查询<hr>");
+document.write("<form><input type=button onClick='history.go(0)' value='Search Again'></form>");
+
+// show all the links
+//document.write("<table border>");
+//showAll(jsi);
+//document.write("</table>");
+
+</script>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

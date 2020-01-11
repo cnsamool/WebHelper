@@ -1,0 +1,86 @@
+    我们建立这样一个简单的BBS应用程序，它的数据库中分别有以下五个字段：“ID”，每个帖子的自动编号；“subject”，每个帖子的主题；“name”，加帖用户的姓名；“email”，用户的电子邮件地址；“postdate”，加帖的时间。数据库的DSN为“bbs”。我们将显示帖子分页的所有步骤放在一个名为“ShowList()”的过程中，方便调用。程序如下：  
+
+’----BBS显示帖子分页----  
+< Sub ShowList() >  
+<  
+PgSz=20 ’设定开关，指定每一页所显示的帖子数目，默认为20帖一页  
+Set Conn = Server.CreateObject("ADODB.Connection")  
+Set RS = Server.CreateObject("ADODB.RecordSet")  
+sql = "SELECT * FROM message order by ID DESC"  
+’查询所有帖子，并按帖子的ID倒序排列  
+Conn.Open "bbs"  
+RS.open sql,Conn,1,1  
+If RS.RecordCount=0 then  
+response.write "< P>< center>对不起，数据库中没有相关信息！< /center>< /P>"  
+else  
+RS.PageSize = Cint(PgSz) ’设定PageSize属性的值  
+Total=INT(RS.recordcount / PgSz * -1)*-1 ’计算可显示页面的总数  
+PageNo=Request("pageno")  
+if PageNo="" Then  
+PageNo = 1  
+else  
+PageNo=PageNo+1  
+PageNo=PageNo-1  
+end if  
+ScrollAction = Request("ScrollAction")  
+if ScrollAction = " 上一页 " Then  
+PageNo=PageNo-1  
+end if  
+if ScrollAction = " 下一页 " Then  
+PageNo=PageNo+1  
+end if  
+if PageNo < 1 Then  
+PageNo = 1  
+end if  
+n=1  
+RS.AbsolutePage = PageNo  
+Response.Write "< CENTER>"  
+position=RS.PageSize*PageNo  
+pagebegin=position-RS.PageSize+1  
+if position < RS.RecordCount then  
+pagend=position  
+else  
+pagend= RS.RecordCount  
+end if  
+Response.Write "< P>< font color=’Navy’>< B>数 据 库 查 询 结 果:< /B>"  
+Response.Write "(共有"&RS.RecordCount &"条符合条件的信息,显示"&pagebegin&"-"&pagend&")< font>< /p>"  
+Response.Write "< TABLE WIDTH=600 BORDER=1 CELLPADDING=4 CELLSPACING=0 BGCOLOR=#FFFFFF>"  
+Response.Write "< TR BGCOLOR=#5FB5E2 >< FONT SIZE=2 >< TD >< B >主 题< /B >< /TD >< TD >< B >用 户< /B >< /TD >< TD >< B >Email< /B >< /TD >< TD >< B >发 布 日 期< /B >< /TD >< /FONT >< TR BGCOLOR=#FFFFFF >"  
+Do while not (RS is nothing)  
+RowCount = RS.PageSize  
+Do While Not RS.EOF and rowcount > 0  
+If n=1 then  
+Response.Write "< TR BGCOLOR=#FFFFFF>"  
+ELSE  
+Response.Write "< TR BGCOLOR=#EEEEEE>"  
+End If  
+n=1-n >  
+< TD>< span style="font-size:9pt">< A href=’view.asp?key=< =RS("ID")>’>< =RS("subject")>< A>< /span>< /td>  
+< TD>< span style="font-size:9pt">< =RS("name")>< /A>< /span>< /td>  
+< TD>< span style="font-size:9pt">< a href="mailto:< =RS("email")>">< =RS("email")>< /a>< /span> < /TD>  
+< TD>< span style="font-size:9pt">< =RS("postdate")>< /span> < /td>  
+< /TR>  
+<  
+RowCount = RowCount - 1  
+RS.MoveNext  
+Loop  
+set RS = RS.NextRecordSet  
+Loop  
+Conn.Close  
+set rs = nothing  
+set Conn = nothing  
+>  
+< /TABLE >  
+< FORM METHOD=GET ACTION="list.asp" >  
+< INPUT TYPE="HIDDEN" NAME="pageno" VALUE="< =PageNo >" >  
+<  
+if PageNo > 1 Then  
+response.write "< INPUT TYPE=SUBMIT NAME=’ScrollAction’ VALUE=’ 上一页 ’>"  
+end if  
+if RowCount = 0 and PageNo < >Total then  
+response.write "< INPUT TYPE=SUBMIT NAME=’ScrollAction’ VALUE=’ 下一页 ’>"  
+end if  
+response.write "< /FORM>"  
+End if  
+>  
+< End Sub ％> 

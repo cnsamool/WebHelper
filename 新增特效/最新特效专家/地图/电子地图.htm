@@ -1,0 +1,92 @@
+<head>
+<style>
+body,td {font-family:宋体;padding:0px;font-size:12px;}
+span    {position:absolute;}
+#map    {width:1600px;height:1200px;left:-850;top:-690;z-index:0}
+#label  {width:80px;height:18px;padding:3px 0px 0px 4px;background:#ffe0e0;color:#ee0000;left:0;top:0;filter:alpha(opacity=80);z-index:2}
+#c_tl,#c_tr,#c_bl,#c_br,#c_tt,#c_rr,#c_bb,#c_ll{border:none;z-index:1}
+</style>
+<script language="JavaScript">
+<!-- 此特效使用《网页特效精灵》编辑制作-->
+<!-- 奥天软件：http://www.aosky.net-->
+var stopimg=false
+var tmpposX=-850, tmpposY=-690
+var arr_tl_1=new Image();arr_tl_1.src="gis_tl_1.gif"
+var arr_tr_1=new Image();arr_tr_1.src="gis_tr_1.gif"
+var arr_bl_1=new Image();arr_bl_1.src="gis_bl_1.gif"
+var arr_br_1=new Image();arr_br_1.src="gis_br_1.gif"
+var arr_tt_1=new Image();arr_tt_1.src="gis_tt_1.gif"
+var arr_rr_1=new Image();arr_rr_1.src="gis_rr_1.gif"
+var arr_bb_1=new Image();arr_bb_1.src="gis_bb_1.gif"
+var arr_ll_1=new Image();arr_ll_1.src="gis_ll_1.gif"
+
+function scroll_To(y,x,icon){
+eval('arr_'+icon+'.src="gis_'+icon+'_1.gif"')
+if(tmpposY==0&&y==5){y=0}
+if(tmpposY<=(-1200+document.body.clientHeight)&&y==-5){y=0}
+if(tmpposX==0&&x==5){x=0}
+if(tmpposX<=(-1600+document.body.clientWidth)&&x==-5){x=0}
+label.innerHTML="X:"+(Math.abs(tmpposX)+150)+"&nbsp;Y:"+(Math.abs(tmpposY)+110)
+if(!stopimg){
+tmpposX+=x
+tmpposY+=y
+map.style.posTop=tmpposY
+map.style.posLeft=tmpposX
+window.setTimeout("scroll_To("+y+","+x+",'"+icon+"')",10)
+}}
+function scroll_Stop(icon){
+stopimg=true
+window.setTimeout("scroll_Ready('"+icon+"')",10)
+}
+function scroll_Ready(icon){
+eval('arr_'+icon+'.src="gis_'+icon+'_0.gif"')
+stopimg=false
+}
+function initctrl(){
+c_tl.style.posTop=30
+c_tl.style.posLeft=50
+c_tr.style.posTop=30
+c_tr.style.posLeft=document.body.clientWidth-71
+c_bl.style.posTop=document.body.clientHeight-51
+c_bl.style.posLeft=50
+c_br.style.posTop=document.body.clientHeight-51
+c_br.style.posLeft=document.body.clientWidth-71
+c_tt.style.posTop=10
+c_tt.style.posLeft=(document.body.clientWidth-21)/2
+c_rr.style.posTop=(document.body.clientHeight-21)/2
+c_rr.style.posLeft=document.body.clientWidth-31
+c_bb.style.posTop=document.body.clientHeight-31
+c_bb.style.posLeft=(document.body.clientWidth-21)/2
+c_ll.style.posTop=(document.body.clientHeight-21)/2
+c_ll.style.posLeft=10
+label.innerHTML="X:"+(Math.abs(tmpposX)+150)+"&nbsp;Y:"+(Math.abs(tmpposY)+110)
+}
+function Obj_Click(){
+alert("这只是范例，并无实际连结！")
+}
+onresize=initctrl
+</script>
+</head>
+<map name="MapIndex">
+<area shape="rect" coords=" 682, 658, 755, 671" href="javascript:Obj_Click()" title="河南路加油站">
+<area shape="rect" coords=" 499, 753, 560, 766" href="javascript:Obj_Click()" title="青海加油站">
+<area shape="rect" coords=" 869, 878, 930, 891" href="javascript:Obj_Click()" title="西屯加油站">
+<area shape="rect" coords=" 456, 558, 505, 571" href="javascript:Obj_Click()" title="上石国小">
+<area shape="rect" coords="1005, 348,1054, 361" href="javascript:Obj_Click()" title="逢甲邮局">
+<area shape="rect" coords="1148, 273,1233, 286" href="javascript:Obj_Click()" title="第二信用合作社">
+<area shape="rect" coords="1410, 153,1471, 166" href="javascript:Obj_Click()" title="逢甲托儿所">
+<area shape="rect" coords=" 944, 538,1005, 551" href="javascript:Obj_Click()" title="西屯图书馆">
+<area shape="rect" coords="1075, 628,1124, 641" href="javascript:Obj_Click()" title="福星公园">
+</map>
+<body bgcolor=#d0d0d0 scroll=no onload="initctrl()" onSelectstart="return false;" onDragstart="return false;">
+<span id=map><img src=gis_map.gif border=0 usemap="#MapIndex" hidefocus=true></span>
+<span id=label></span>
+<span id=c_tl><img id=arr_tl src=gis_tl_0.gif onmouseover="scroll_To( 5, 5,'tl')" onmouseout="scroll_Stop('tl')"></span>
+<span id=c_tr><img id=arr_tr src=gis_tr_0.gif onmouseover="scroll_To( 5,-5,'tr')" onmouseout="scroll_Stop('tr')"></span>
+<span id=c_bl><img id=arr_bl src=gis_bl_0.gif onmouseover="scroll_To(-5, 5,'bl')" onmouseout="scroll_Stop('bl')"></span>
+<span id=c_br><img id=arr_br src=gis_br_0.gif onmouseover="scroll_To(-5,-5,'br')" onmouseout="scroll_Stop('br')"></span>
+<span id=c_tt><img id=arr_tt src=gis_tt_0.gif onmouseover="scroll_To( 5, 0,'tt')" onmouseout="scroll_Stop('tt')"></span>
+<span id=c_rr><img id=arr_rr src=gis_rr_0.gif onmouseover="scroll_To( 0,-5,'rr')" onmouseout="scroll_Stop('rr')"></span>
+<span id=c_bb><img id=arr_bb src=gis_bb_0.gif onmouseover="scroll_To(-5, 0,'bb')" onmouseout="scroll_Stop('bb')"></span>
+<span id=c_ll><img id=arr_ll src=gis_ll_0.gif onmouseover="scroll_To( 0, 5,'ll')" onmouseout="scroll_Stop('ll')"></span>
+</body>

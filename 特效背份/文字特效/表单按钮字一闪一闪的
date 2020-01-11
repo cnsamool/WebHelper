@@ -1,0 +1,34 @@
+<form mane=laofz>
+<input type="text" name="T1" size="27" value=" 你可以利用到表单的各个方面"  id="flashit"><input type="reset" value="重写" name="B2"  id="flashit">
+</form>
+
+<script language="JavaScript1.2"> 
+<!--// 
+if (document.all&&document.all.flashit){ 
+ 
+var flashelement=document.all.flashit 
+if (flashelement.length==null) 
+flashelement[0]=document.all.flashit 
+ 
+function changecolor(which){ 
+if (flashelement[which].style.color=='') 
+flashelement[which].style.color="#008000" //你可以改变颜色
+else 
+flashelement[which].style.color="" 
+} 
+ 
+ 
+if (flashelement.length==null) 
+setInterval("changecolor(0)",1000) 
+else 
+for (i=0;i<flashelement.length;i++){ 
+var tempvariable='setInterval("changecolor('+i+')",'+'1000)' 
+eval(tempvariable) 
+} 
+ 
+} 
+//--> 
+</script> 
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,85 @@
+<SCRIPT language=JavaScript><!--
+
+function getResult(form) {
+
+var score = 0
+
+if (form.Q01[0].checked) { score += -1 }
+if (form.Q01[1].checked) { score += 3 }
+
+if (form.Q02[0].checked) { score += -1 }
+if (form.Q02[1].checked) { score += 0 }
+if (form.Q02[2].checked) { score += 3 }
+
+
+if (form.Q03[0].checked) { score += 3 }
+if (form.Q03[1].checked) { score += 0 }
+
+if (form.Q04[0].checked) { score += 3 }
+if (form.Q04[1].checked) { score += 0 }
+if (form.Q04[2].checked) { score += -1 }
+
+if (form.Q05[0].checked) { score += -1 }
+if (form.Q05[1].checked) { score += 3 }
+
+if (form.Q06[0].checked) { score += 3 }
+if (form.Q06[1].checked) { score += -1 }
+
+if (form.Q07[0].checked) { score += 3 }
+if (form.Q07[1].checked) { score += 0 }
+
+if (form.Q08[0].checked) { score += 3 }
+if (form.Q08[1].checked) { score += 0 }
+
+if (form.Q09[0].checked) { score += 3 }
+if (form.Q09[1].checked) { score += -1 }
+
+if (form.Q10[0].checked) { score += 3 }
+if (form.Q10[1].checked) { score += -1 }
+
+score1=score*100/30
+if (score1 > 60) { alert('恭喜恭喜！你的成功率是'+score1+'好兆头，不是吗？ ')}
+if (score1 > 30 && score1 <61) { alert('你的成功率是'+score1+'。怎么办?加把劲吧！') }
+if (score1 < 31 ) { alert('你的成功率只有'+score1+'。你还是放弃吧...') }
+}
+
+// --></SCRIPT>
+
+<P><FONT color=#ff8000 size=4><STRONG>你的恋爱成功率 </STRONG></FONT></P>
+<FORM name=pt1>
+<OL>
+  <LI>与情人相处，能否直接询问对方是不是爱你？
+  <P><INPUT CHECKED name=Q01 type=radio value=1>能　<INPUT name=Q01 type=radio 
+  value=2>不能　</P>
+  <LI>恋爱结婚主要是解决：
+  <P><INPUT CHECKED name=Q02 type=radio value=1>性欲　<INPUT name=Q02 type=radio 
+  value=2>生活　<INPUT name=Q02 type=radio value=3>亲密伴侣</P>
+  <LI>从恋爱到结婚时间是否需要长一点？
+  <P><INPUT CHECKED name=Q03 type=radio value=1>要　<INPUT name=Q03 type=radio 
+  value=2>不要</P>
+  <LI>嫉妒是什么信号？
+  <P><INPUT CHECKED name=Q04 type=radio value=1>爱　<INPUT name=Q04 type=radio 
+  value=2>不安　<INPUT name=Q04 type=radio value=3>竞争</P>
+  <LI>可以在情人面前与别的异性过于亲热吗？
+  <P><INPUT CHECKED name=Q05 type=radio value=1>可以　<INPUT name=Q05 type=radio 
+  value=2>不可以　</P>
+  <LI>能同时和两个人要好吗？
+  <P><INPUT CHECKED name=Q06 type=radio value=1>不能　<INPUT name=Q06 type=radio 
+  value=2>能　</P>
+  <LI>许多人对婚后生活满怀奢望，结果常常落空，是这样吗？ 
+  <P><INPUT CHECKED name=Q07 type=radio value=1>是　<INPUT name=Q07 type=radio 
+  value=2>不是　</P>
+  <LI>哪种人最经不起失恋和孤寂之苦，女人还是男人？ 
+  <P><INPUT CHECKED name=Q08 type=radio value=1>女人　<INPUT name=Q08 type=radio 
+  value=2>男人　</P>
+  <LI>忠贞是搞好婚姻的重要原则吗？
+  <P><INPUT CHECKED name=Q09 type=radio value=1>是　<INPUT name=Q09 type=radio 
+  value=2>不是　<BR></P>
+<LI>忠贞是搞好婚姻的重要原则吗？
+  <P><INPUT CHECKED name=Q10 type=radio value=1>是　<INPUT name=Q10 type=radio 
+  value=2>不是　<BR></P>
+</LI></OL>
+<P>　　<INPUT name=finish onclick=getResult(this.form) type=button value=EQ解码> <INPUT type=reset value=" RESET "></P></FORM>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

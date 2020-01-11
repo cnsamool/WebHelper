@@ -1,0 +1,105 @@
+<SCRIPT>
+
+<!-- 使用说明：使用时将文字换成你需要的文字即可！-->
+function fadein(){
+mytransition.innerHTML=''
+if (cur!='x'){
+mytransition.filters.revealTrans.Transition=cur
+mytransition.filters.revealTrans.apply()
+mytransition.innerHTML='<p align="center"><big><big><font face="Verdana">网页助手  你的朋友</font></big></big></p><p align="center"><big><big><font face="Verdana">http://samool.533.net</font></big></big></p>'
+mytransition.filters.revealTrans.play()
+}
+else{
+mytransition.filters.blendTrans.apply()
+mytransition.innerHTML='<p align="center"><big><big><font face="Verdana">这是一个简单的例子</font></big></big></p><p align="center"><big><big><font face="Verdana">这是一个简单的例子</font></big></big></p>'
+mytransition.filters.blendTrans.play()
+}
+}
+</SCRIPT>
+<TABLE border=0 cellPadding=3 width="429" height="324" cellspacing="0" style="border-collapse: collapse; border: 1px dotted #808080" bordercolor="#111111">
+<TBODY>
+<TR bgcolor="#ffffff"> 
+<TD width="518" height="272"> 
+<TABLE border=0 cellPadding=3 cellSpacing=0 width="82%" height="129" style="border-collapse: collapse" bordercolor="#111111">
+<TBODY>
+<TR>
+<TD width="30%" height="108" rowspan="2">
+<TABLE border=0 cellPadding=0 cellSpacing=0 width="56%" height="401">
+<TBODY>
+<TR>
+<TD bgColor=#C0C0C0 style="BORDER-BOTTOM: rgb(0,0,0) 1px solid; BORDER-LEFT: rgb(0,0,0) 1px solid; BORDER-RIGHT: rgb(0,0,0) 1px solid; BORDER-TOP: rgb(0,0,0) 1px solid" width="100%" height="21">
+<div align="center"><STRONG><SMALL><FONT face=Verdana>选择转换式样</FONT></SMALL></STRONG></div>
+</TD></TR>
+<TR>
+<TD width="100%" height="380"><STRONG><FONT face=Verdana><FONT color=#008000>
+<SCRIPT language=JavaScript1.2>
+<!--
+var cur="x";
+function changecolor(x){
+if (event.srcElement.tagName=="SMALL"){
+if (event.srcElement.style.color=="purple")
+return
+event.srcElement.style.color=x
+}
+}
+
+function doit(){
+if (event.srcElement.tagName=="SMALL"){
+cur=event.srcElement.n
+fadein()
+}
+}
+
+//-->
+</SCRIPT>
+</FONT>
+<DIV onclick="changecolor('purple');doit()" onmouseout="changecolor('green')" onmouseover="changecolor('red')" style="CURSOR: hand; HEIGHT: 313; OVERFLOW: scroll; width:156"><FONT color=#008000>
+<SMALL n="x">由浅至深</SMALL><BR>
+<SMALL n="0">由上到下</SMALL><BR>
+<SMALL n="1">由下到上</SMALL><BR>
+<SMALL n="2">圆形收缩</SMALL><BR>
+<SMALL n="3">圆形发散</SMALL><BR>
+<SMALL n="4">由下往上翻</SMALL><BR>
+<SMALL n="5">由上往下翻</SMALL><BR>
+<SMALL n="6">由左向右翻</SMALL><BR>
+<SMALL n="7">由右向左翻</SMALL><BR>
+<SMALL n="8">横向百叶窗</SMALL><BR>
+<SMALL n="9">纵向百叶窗</SMALL><BR>
+<SMALL n="10">横向交错</SMALL><BR>
+<SMALL n="11">纵向交错</SMALL><BR>
+<SMALL n="12">溶解出现</SMALL><BR>
+<SMALL n="13">左右两边向内</SMALL><BR>
+<SMALL n="14">中间向左右</SMALL><BR>
+<SMALL n="15">上下两边向内</SMALL><BR>
+<SMALL n="16">中间向上下</SMALL><BR>
+<SMALL n="17">左斜向下</SMALL><BR>
+<SMALL n="18">左斜向上</SMALL><BR>
+<SMALL n="19">右斜向下</SMALL><BR>
+<SMALL n="20">右斜向上</SMALL><BR>
+<SMALL n="21">横向抽丝</SMALL><BR>
+<SMALL n="22">纵向抽丝</SMALL><BR>
+<SMALL n="23">随机</SMALL></FONT></DIV>
+</FONT></STRONG></TD></TR></TBODY></TABLE></TD>
+<TD align=left vAlign=top width="70%" height="172">
+<DIV id=mytransition style="border:1px solid black; FILTER: revealTrans(duration=3,transition=0) blendTrans(duration=3); HEIGHT: 173; WIDTH: 275"></DIV></TD></TR>
+<tr>
+<TD align=left vAlign=top width="70%" height="34">
+<STRONG><FONT face=Verdana>
+<TEXTAREA cols=37 name=js_1 rows=8 wrap=VIRTUAL></textarea><br>
+</FONT></STRONG>
+<INPUT name=button onclick=applyit() style="FONT-WEIGHT: bold" type=button value=我要这段代码></TD>
+</tr>
+<TR>
+
+<SCRIPT language=JavaScript1.2>
+function applyit(){
+var temp;
+if (cur!="x")
+temp='<META http-equiv="Page-Enter" CONTENT="RevealTrans(Duration=4,Transition='+cur+')">'
+else
+temp='<meta http-equiv="Page-Enter" content="blendTrans(Duration=4.0)">'
+js_1.value=temp
+}
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

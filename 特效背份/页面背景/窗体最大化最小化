@@ -1,0 +1,45 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--将以下代码到到<body>中//-->
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var xx=0,yy=0;
+function min() {
+xx=window.screenLeft;
+yy=window.screenTop;
+window.moveTo(2000,2000);
+window.attachEvent("onfocus",res);
+}
+function res() {
+window.moveTo(xx,yy);
+window.detachEvent("onfocus",res)
+}
+
+function maximizeWin() {
+  if (window.screen) {
+    var aw = screen.availWidth;
+    var ah = screen.availHeight;
+    window.moveTo(0, 0);
+    window.resizeTo(aw, ah);
+  }
+}
+
+// -->
+</SCRIPT>
+</HEAD>
+
+<BODY SCROLL="AUTO" bgcolor="#FFFFFF">
+<INPUT TYPE="button" VALUE=" Max " onClick="maximizeWin()">
+<INPUT TYPE="button" VALUE=" Close" onClick="window.close()">
+<INPUT TYPE="BUTTON" VALUE=" Min " onclick="min()">
+</BODY>
+</HTML>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

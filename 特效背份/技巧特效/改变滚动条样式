@@ -1,0 +1,21 @@
+<html>
+<head>
+<title></title>
+<!--你可以更改以下的颜色代码-->
+<html>
+<head>
+<STYLE>
+BODY {
+SCROLLBAR-FACE-COLOR: rgb(255,204,0);
+ SCROLLBAR-3DLIGHT-COLOR: rgb(255,207,116);
+ SCROLLBAR-DARKSHADOW-COLOR: rgb(255,227,163);
+ SCROLLBAR-BASE-COLOR: rgb(255,217,93)
+}
+</STYLE>
+</head>
+<body>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

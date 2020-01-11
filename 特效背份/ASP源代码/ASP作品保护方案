@@ -1,0 +1,71 @@
+各ASP文件的编写操作如下：  
+
+1.用FrontPage（或NotePad），新建一个ASP文件Default.asp，录入以下程序代码：  
+
+＜html＞ 
+＜head＞ 
+＜title＞Sample＜/title＞ 
+＜/head＞ 
+＜% dim conn,fs,f 
+Set conn = Server.CreateObject("ADODB.Connection") 
+conn.open "driver={Microsoft Access Driver (*.mdb)};uid=;pwd=kxj;dbq="&server.mappath("id.mdb") 
+set fs=server.createObject("scripting.filesystemobject") 
+testDrive=Server.MapPath("/DRIVEINFO.ASP") 
+''通过MapPath获得当前盘盘符 
+testDrive=Left(testDrive,3) 
+set f=fs.getdrive(testDrive) 
+''调用GetDrive方法，将驱动器赋予一个变量 
+Mysql="SELECT * From driveinfo where id=1"  
+set rsCheck = Server.CreateObject("ADODB.Recordset") 
+rsCheck.open Mysql,conn,1,1 
+FSER=trim(f.serialnumber) 
+''获得当前盘序列号 
+StrSerno=trim(rsCheck.fields("SERNO")) 
+StrMark=rsCheck.fields("WRIMARK") 
+if StrSerno＜＞FSER and StrMark=0 then 
+''若是首次安装，则置写盘标志为1 
+session("pass")=true 
+''定义用户Session，并置为全局ASP文档标识变量 
+set rsMain = Server.CreateObject("ADODB.Recordset") 
+Mysql1="update driveinfo SET SERNO="&FSER&", WRIMARK=1"  
+rsMain.open Mysql1,conn,1,2 
+response.write("＜a href=''success.asp''＞SETUP  
+SUCCESSFUL!WELCOME TO ACCESS THE WEBSITE!＜/a＞") 
+set rsMain=nothing 
+else  
+if StrSerno=FSER then 
+''若是合法用户再次合法进入 
+session("pass")=true 
+response.write("＜a href=''success.asp''＞YOU ARE AUTHORIZED BY THE WEBSITE MANAGER，WELCOME TO ACCESS !＜/a＞") 
+else 
+''非法拷贝用户 
+session("pass")=false 
+response.write("＜a href=''fail.htm''＞IT IS ILLEGAL TO COPY THE WEBSITE''S ASP DOCUMENT.YOU ARE NOT RIGRT TO USE THE PROGRAM.＜/a＞") 
+end if 
+end if  
+response.write("＜br＞")  
+response.write("Volume Serial Number in drive "&testDrive) 
+response.write(f.serialnumber) 
+response.write("＜br＞") 
+response.write("Volume hex Serial Number in drive "&testDrive) 
+response.write(hex(f.serialnumber)) 
+response.write("＜br＞") 
+''作为演示，本程序把当前盘序列号列出来(16进制) 
+set f=nothing 
+set fs=nothing 
+%＞ 
+＜/html＞ 
+
+
+2.在合法用户可以访问的各个ASP文件头部，添加如下代码：  
+
+＜% if Session("pass")=false then 
+''对Session变量进行判定，非法则跳出本ASP文件 
+response.redirect("fail.htm") 
+end if  
+%＞ 
+
+
+3.用ASP加密程序（例如微软公司的SCRENC.EXE，别的ASP加密程序也可以）对各个ASP文件进行加密。  
+
+在DOS状态下运行SCRENC -l vbscript source.asp destination.asp，即把源文件source.asp生成了包含密文ASP脚本的新文件destination.asp。SCRENC.EXE可以在微软公司站点（http://www.microsoft.com免费下载）。  

@@ -1,0 +1,55 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中//-->
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+function distance(form) {
+var x1 = eval(form.x1.value);
+var y1 = eval(form.y1.value);
+var x2 = eval(form.x2.value);
+var y2 = eval(form.y2.value);
+var xdiff = x2 - x1;
+var ydiff = y2 - y1;
+form.answer.value = Math.pow((xdiff * xdiff + ydiff * ydiff), 0.5);
+}
+//  End -->
+</script>
+<center>
+<form>
+<table border=3 cellspacing=2 cellpadding=5>
+<tr>
+<td colspan=4 align=center>计算平面两点之间的距离</td>
+</tr>
+<tr>
+<td colspan=2 align=center>A点</td>
+<td colspan=2 align=center>B点</td>
+</tr>
+<tr>
+<td align=center>A点横坐标</td>
+<td align=center>A点纵坐标</td>
+<td align=center>B点横坐标</td>
+<td align=center>B点纵坐标</td>
+</tr>
+<tr>
+<td align=center><input type=text name=x1 size=5></td>
+<td align=center><input type=text name=y1 size=5></td>
+<td align=center><input type=text name=x2 size=5></td>
+<td align=center><input type=text name=y2 size=5></td>
+</tr>
+<tr>
+<td colspan=4 align=center><input type=button value="计算距离" onClick="distance(this.form)"></td>
+</tr>
+<tr>
+<td colspan=4 align=center><input type=text name=answer size=20></td>
+</tr>
+</table>
+</form>
+</center>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

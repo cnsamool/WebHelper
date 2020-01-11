@@ -1,0 +1,93 @@
+    聊天室的主程式。 
+<html> 
+<head> 
+<title>聊天室</title> 
+</head> 
+<frameset rows="*,40" border=1> 
+<frame src="list.php" name=list scrolling=auto> 
+<frame src="post.php" name=post scrolling=no> 
+<noframes> 
+<body> 
+本聊天室需使用页框，您的浏览器无法使用 
+</body> 
+</noframes> 
+</frameset> 
+</html> 
+    程式中以 frame 带出二支 PHP 程式，建议将它们放在同一目录之中，例如 /chatroom，以便日后维护。另外，为了 list.php 及 post.php 可以使用相同的变数，下例将共通的变路路径放在 env.inc 中，可以将它放在 /chatroom 或是 Web 伺服器 (如 Apache) 的 PHP include 设定路径中。 
+<?php 
+// 档名: env.inc 
+$tempdir="/tmp/"; 
+$chatfile="/tmp/abc"; 
+?> 
+    聊天室的后端可以设计的很简单，单纯的使用档案来做，也可以弄个资料库，将聊天的内容丢入，若是真的很在意系统效率，或许可以考虑使用 UNIX 的行程通讯 IPC 了。 
+    本节即将使用者留言的内容放入档案中，在这儿的例子大部份都使用 UNIX/Linux 的外部指令。若系统无该指令 (或称程式)，请自行安装相关程式。 
+    实际上将资料丢入档案中会比使用资料库还快，若还很在乎速度，可以在 UNIX 机器中装上 RAM Disk，再将档案的存取路径都设在该 RAM Disk 上，保证存取速度能满足严苛的要求。在有些以高速度搜寻引擎为号召的网站，甚至将整个资料库资料都放到 RAM Disk 中，马上让系统速度提高十倍百倍，而且 RAM 的价格和其它解决方案相比的话还算很便宜。若使用 Windows NT，那就没办法了，看微软什么时候提供，或者用 Third Party 的产品了。 
+    有些使用者可能对 UNIX 还不是很熟，在这儿先简介会用到的指令： 
+touch: 建立新档案，或修改旧档的最后更新日期。 
+echo 加上二个大于符号: 将字串显示转向到指定的地方。 
+tail: 显示档案最后数行的资料，内定值为十行，可使用减号加数字，修改欲显示的行数。 
+下面为送出及处理留言字串的程式，程式用到 env.inc 的档案。 
+<?php 
+// 档名: post.php 
+require("env.inc"); 
+if (($chatuser!="") and ($chattext!="")) { 
+$chatstr="<font color=8080ff>".date("h:i:s")."</font>-<font     color=ff8080>".$chatuser."</font>: ".$chattext; 
+$cmdstr="echo \"".$chatstr."\" >> ".$chatfile; 
+if (!file_exists($chatfile)) passthru("touch ".$chatfile); 
+passthru($cmdstr); 
+} 
+?><html> 
+<body bgcolor=ffffff leftmargin=0 topmargin=0 marginheight=0 marginwidth=0> 
+<form action=<? echo $PHP_SELF; ?> method=post> 
+<table border=0 width=100%><tr> 
+<td align=right>匿称:</td> 
+<td><input type=text name=chatuser size=8 value="<? echo $chatuser; ?>"></td> 
+<td align=right>发言:</td> 
+<td><input type=text name=chattext size=30 maxlength=500></td> 
+<td><div align=right><input type=submit value="送出"></td> 
+</tr></table> 
+</form> 
+</body> 
+</html> 
+    程式先检查是否有输入字串，若无匿名及发言内容字串则显示发言的表单 (Form)，若有资料则将字串及当时时间存入档案中 (利用 UNIX 的转向指令)。当然，为了防止错误，先检查是否有档案可存档，若没有则先 touch 该档，例中的档案就是 /tmp/abc。 
+<html> 
+<meta http-equiv="Refresh" content="5; url=<? echo $PHP_SELF; ?>"> 
+<meta content="text/html; charset=gb2312" http-equiv=Content-Type> 
+<body bgcolor=ffffff leftmargin=0 topmargin=0 marginheight=0 marginwidth=0> 
+<? 
+// 档名: list.php 
+require("env.inc"); 
+if (!file_exists($chatfile)) { 
+  echo "尚未开张</body></html>"; 
+  exit; 
+} 
+$uniqfile=$tempdir.uniqid(rand()); 
+$shellcmd="/usr/bin/tail -50 ".$chatfile. " > ".$uniqfile; 
+passthru($shellcmd); 
+$chatfilearray=file($uniqfile); 
+$j=count($chatfilearray); 
+for ($i=1; $i<=$j; $i++) { 
+  echo $chatfilearray[$j-$i]."
+\n"; 
+} 
+unlink($uniqfile); 
+?> 
+</body> 
+</html> 
+    上面的程式就是使用 Client Pull 的技术，每五秒就重新更新一次。同样地，它也 require 共用的 env.inc 档，要改变其中的变数时，马上就可以让所有的程式用到，这对开发网站来说，是蛮重要的方法，可以将网页程式中都会出现的地方。例如 Copyright (C) 1996-2000 的字串，放在一个档案上，到了新的一年，只要改一个档，整个站都改了。 
+if (!file_exists($chatfile)) { 
+  echo "尚未开张</body></html>"; 
+  exit; 
+} 
+$uniqfile=$tempdir.uniqid(rand()); 
+$shellcmd="/usr/bin/tail -50 ".$chatfile. " > ".$uniqfile; 
+passthru($shellcmd); 
+    程式先检查有没有使用者发送聊天内容的档案 /tmp/abc，若没有就显示尚未开张，等使用者送聊天内容。若已有聊天资料，就抓出最后五十笔，在在另外的档案中准备显示。 
+$chatfilearray=file($uniqfile); 
+$j=count($chatfilearray); 
+for ($i=1; $i<=$j; $i++) { 
+  echo $chatfilearray[$j-$i]."
+\n"; 
+} 
+unlink($uniqfile); 
+    将档案读入阵列变数 $chatfilearray 中，并以最后的资料最先显示的方式送给浏览器端，当然可以使用对阵列排序的方法，但确定一定时最后存入的资料在最后面，将它排序实在很浪费 CPU 时间，因此就从最后 echo 到最前面的资料。使用完成还要用 unlink() 指令，将临时档杀掉。  

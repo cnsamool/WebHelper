@@ -1,0 +1,31 @@
+<SCRIPT language=VBScript>
+Sub Window_OnLoad()
+    call SG1.Scale(0.50, 0.50, 0.50)
+    call SG4.Scale(0.50, 0.50, 0.50)
+    call SG1.Rotate(0, 6, 0)
+    RotateAll
+end sub
+
+' sets rotation speed and behavior as well as creating loop
+
+Sub RotateAll
+    Call SG1.Rotate(0,4,0)//(角度,摆动速度,速度)调整这里的参数可以改变效果
+    Call SG4.Rotate(0,4,0)//(角度,摆动速度,速度)
+    FILK = Window.SetTimeOut("Call RotateAll", 10, "VBSCript")
+End Sub
+
+</SCRIPT>
+
+<!--以下内容是改变字本的样式-->
+<OBJECT classid=CLSID:369303C2-D7AC-11D0-89D5-00A0C90833E6 id=SG4 
+style="HEIGHT: 300px; LEFT: 20%; POSITION: absolute; TOP: 20%; WIDTH: 600px; ZINDEX: 0"><PARAM 
+NAME="Line0001" VALUE="SetLineStyle(0)"><PARAM NAME="Line0002" VALUE="SetFillColor(242, 201, 77)"><PARAM 
+NAME="Line0003" VALUE="SetFillStyle(1)"><PARAM NAME="Line0004" VALUE="SetFont('隶书', 100, 200, 0, 0, 
+0)"><PARAM NAME="Line0005" VALUE="Text('网页助手 你的朋友', -100, 34)"></OBJECT>
+<OBJECT classid=CLSID:369303C2-D7AC-11D0-89D5-00A0C90833E6 id=SG1 
+style="HEIGHT: 300px; LEFT: 20%; POSITION: absolute; TOP: 20%; WIDTH: 600px; ZINDEX: 0"><PARAM 
+NAME="Line0001" VALUE="SetLineStyle(1)"><PARAM NAME="Line0002" VALUE="SetLineColor(0, 0, 10)"><PARAM 
+NAME="Line0003" VALUE="SetFillStyle(0)"><PARAM NAME="Line0004" VALUE="SetFont('隶书', 100, 200, 0, 0, 
+0)"><PARAM NAME="Line0005" VALUE="Text('网页助手 你的朋友', -100, 34)"></OBJECT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

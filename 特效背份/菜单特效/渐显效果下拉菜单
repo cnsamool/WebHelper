@@ -1,0 +1,97 @@
+<style>
+<!--
+#iewrap{
+position:relative;
+height:30px
+}
+#iewrap2{
+position:absolute
+}
+#dropmenu03{
+filter:revealTrans(Duration=1.5,Transition=12)
+visibility:hide
+}
+a:hover {  color: #FF0000}
+body {  font-family: "宋体"; font-size: 9pt; text-decoration: none}
+a { font-family: "宋体"; font-size: 9pt; text-decoration: none}
+-->
+</style>
+<ilayer id="dropmenu01" height=35px>
+<layer id="dropmenu02" visibility=show>
+<span id="iewrap">
+<span id="iewrap2" onClick="dropit2();event.cancelBubble=true;return false">
+<font face="宋体"><a href="#">点这里看本站栏目</a></font>
+</span>
+</span>
+</layer>
+</ilayer>
+<script language="JavaScript1.2">
+//如果想关闭 "fade"（消隐）效果，将如下参数设置成false，适用于IE用户。
+var enableeffect=true
+//将如下数组修改成你自己的。
+var selection=new Array()
+selection[0]='<font face="宋体"><a href="link1.htm">link1</a></font><br>'
+selection[1]='<font face="宋体"><a href="link2.htm">link2</a></font><br>'
+selection[2]='<font face="宋体"><a href="link3.htm">link3</a></font><br>'
+selection[3]='<font face="宋体"><a href="link4.htm">link4</a></font><br>'
+selection[4]='<font face="宋体"><a href="link5.htm">link5</a></font>'
+if (document.layers)
+document.dropmenu01.document.dropmenu02.visibility='show'
+function dropit2(){
+if (document.all){
+dropmenu03.style.left=document.body.scrollLeft+event.clientX-event.offsetX
+dropmenu03.style.top=document.body.scrollTop+event.clientY-event.offsetY+18
+if (dropmenu03.style.visibility=="hidden"){
+if (enableeffect)
+dropmenu03.filters.revealTrans.apply()
+dropmenu03.style.visibility="visible"
+if (enableeffect)
+dropmenu03.filters.revealTrans.play()
+}
+else{
+hidemenu()
+}
+}
+}
+function dropit(e){
+if (document.dropmenu03.visibility=="hide")
+document.dropmenu03.visibility="show"
+else
+document.dropmenu03.visibility="hide"
+document.dropmenu03.left=e.pageX-e.layerX
+document.dropmenu03.top=e.pageY-e.layerY+19
+return false
+}
+function hidemenu(){
+if (enableeffect)
+dropmenu03.filters.revealTrans.stop()
+dropmenu03.style.visibility="hidden"
+}
+function hidemenu2(){
+document.dropmenu03.visibility="hide"
+}
+if (document.layers){
+document.dropmenu01.document.dropmenu02.captureEvents(Event.CLICK)
+document.dropmenu01.document.dropmenu02.onclick=dropit
+}
+else if (document.all)
+document.body.onclick=hidemenu
+</script>
+<!-- 你可以改变菜单出现的外观风格-->
+<div id="dropmenu03" style="position:absolute;left:0;top:0;layer-background-color:seashell;background-color:seashell;width:100;visibility:hidden;border:1px solid black;padding:0px">
+<script language="JavaScript1.2">
+if (document.all)
+dropmenu03.style.padding='4px'
+for (i=0;i<selection.length;i++)
+document.write(selection[i])
+</script>
+</div>
+<script language="JavaScript1.2">
+if (document.layers){
+document.dropmenu03.captureEvents(Event.CLICK)
+document.dropmenu03.onclick=hidemenu2
+}
+</script>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,213 @@
+文件1：BackupDB.asp
+
+
+
+<%@ Language=VBScript %>
+<HTML>
+<HEAD>
+<META name=VI60_defaultClientScript content=VBScript>
+<META NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<SCRIPT ID=clientEventHandlersVBS LANGUAGE=vbscript>
+<!--
+
+
+
+Sub btnbak_onclick
+if frmbak.txtsvr.value="" then
+window.alert(""Server Name" is empty!")
+frmbak.txtsvr.focus
+exit sub
+end if
+if frmbak.txtuid.value="" then
+window.alert(""Administrators" is empty!")
+frmbak.txtuid.focus
+exit sub
+end if
+if frmbak.txtdb.value="" then
+window.alert(""Database" is empty!")
+frmbak.txtdb.focus
+exit sub
+end if
+if frmbak.txtto.value="" then
+window.alert(""Backup To" is empty!")
+frmbak.txtto.focus
+exit sub
+end if
+frmbak.submit
+End Sub
+
+
+
+-->
+</SCRIPT>
+<link rel="stylesheet" href="../../sheets/B2BStyle.css">
+</HEAD>
+<form action="backupdbsave.asp" method="post" id=frmbak name=frmbak>
+<body class="bg_frame_up">
+<p class=heading> Database --> Backup</p>
+<P align=center>
+<div align="center">
+<center>
+<table width="60%" cellpadding=1 cellspacing=1 border=0 align=center>
+<tr>
+<td class=TD_Mand_FN align="center" height="35" width="40%">Server Name:</td>
+<td class=TD_Mand_F height="35" width="59%">  
+<INPUT id=txtsvr name=txtsvr size="20" style="font-family: Arial; font-size: 9pt"></td>
+</tr>
+<tr>
+<td class=TD_Mand_FN align="center" height="35" width="40%">Administrators:</td>
+<td class=TD_Mand_F height="35" width="59%">  
+<INPUT id=txtuid name=txtuid size="20" style="font-family: Arial; font-size: 9pt"></td>
+</tr>
+<tr>
+<td class=TD_Mand_FN align="center" height="35" width="40%">Password:</td>
+<td class=TD_Mand_F height="35" width="59%">  
+<INPUT id=txtpwd name=txtpwd type=password style="font-family: Arial; font-size: 9pt"></td>
+</tr>
+<tr>
+<td class=TD_Mand_FN align="center" height="35" width="40%">Database:</td>
+<td class=TD_Mand_F height="35" width="59%"> 
+<p align="left"> 
+<INPUT id=txtdb name=txtdb size="20" style="font-family: Arial; font-size: 9pt"></p>
+</td>
+</tr>
+
+
+
+<td class=TD_Mand_FN align="center" height="35" width="40%">Backup To:<br>
+<u>(Server Path)</u></td> 
+<td class=TD_Mand_F height="35" width="59%">  
+<input id=txtto name=txtto style="font-family: Arial; font-size: 9pt"></td> 
+</tr> 
+</table> 
+</center> </div> 
+<p align=center><input id=btnbak name=btnbak type=button value="Start Backup" style="font-family: Arial; font-size: 9pt"></p> 
+</body> 
+</form> 
+</HTML> 
+
+
+
+
+文件2：BackupDBSave.asp
+
+
+
+<%@ Language=VBScript %>
+<%
+dim msvr,muid,mpwd,mdb,mto
+msvr=Request.Form("txtsvr")
+muid=Request.Form("txtuid")
+mpwd=Request.Form("txtpwd")
+mdb=Request.Form("txtdb")
+mto=Request.Form("txtto")
+if mpwd="" then mpwd=""""
+
+
+
+on error resume next
+set dmosvr=server.CreateObject("SQLDMO.SQLServer")
+dmosvr.connect msvr,muid,mpwd
+
+
+
+if err.number>0 then Response.Redirect("http:backuperr.asp?err="&err.number)
+
+
+
+mdevname="Backup_"&muid&"_"&mdb
+set dmodev=server.CreateObject("SQLDMO.BackupDevice")
+dmodev.name=mdevname
+dmodev.type=2
+dmodev.PhysicalLocation=mto
+dmosvr.BackupDevices.Add dmodev
+
+
+
+if err.number>0 then Response.Redirect("http:backuperr.asp?err="&err.number)
+
+
+
+set dmobak=server.CreateObject("SQLDMO.Backup")
+dmobak.database=mdb
+dmobak.devices=mdevname
+%>
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+</HEAD>
+<body background="../../Images/dot.gif">
+
+
+
+<p><strong>Backuping, wait please...</strong></p>
+<%
+dmobak.sqlbackup dmosvr
+if err.number>0 then Response.Redirect("http:backuperr.asp?err="&err.number)
+
+
+
+dmosvr.backupdevices(mdevname).remove
+set dmobak=nothing
+set dmodev=nothing
+dmosvr.disconnect
+set dmosvr=nothing
+%>
+<p><strong>Database "<%=mdb%>" backup successed!</strong></p>
+</BODY>
+</HTML>
+
+
+
+
+文件3：BackupErr.asp
+
+
+
+<%@ Language=VBScript %>
+<%
+dim errno,errstr
+errno=Request.QueryString("err")
+errstr=""
+select case cstr(errno)
+case "18456"
+errstr="administrators or password error!"
+case "20482"
+errstr="server name error or server cannot connect!"
+case "911"
+errstr="database not found!"
+case "15026"
+errstr="server path not found!"
+case "3201"
+errstr="server path not found!"
+case "3254"
+errstr="restore from file lawlessness!"
+case else
+errstr="unknown error! retry later please!"
+end select
+%>
+<HTML>
+<HEAD>
+<META name=VI60_defaultClientScript content=VBScript>
+<META NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+<SCRIPT ID=clientEventHandlersVBS LANGUAGE=vbscript>
+<!--
+
+
+
+Sub btnret_onclick
+history.back
+End Sub
+
+
+
+-->
+</SCRIPT>
+<title></title>
+</HEAD>
+<body class="bg_frame_up">
+<p align=center><font color=#006666><%=errstr%></font></p>
+<p align=center><input id=btnret name=btnret type=button value=Return style="font-family: Arial; font-size: 9pt"></p>
+</BODY>
+</HTML> 
+

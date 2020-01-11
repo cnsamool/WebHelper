@@ -1,0 +1,72 @@
+
+<style type="text/css">
+.a1{
+position:relative;
+font-family:Verdana;
+font-size:20px;
+color:#889978;
+}
+</style>
+<script language="JavaScript">
+function lotto(){
+if (!document.all&&!document.layers)
+return
+for (j=1; j < 48; j++)//stop zero!?
+ {
+ var a=Math.round(Math.random()*j+1);
+ var b=Math.round(Math.random()*j+1);
+ var c=Math.round(Math.random()*j+1);
+ var d=Math.round(Math.random()*j+1);
+ var e=Math.round(Math.random()*j+1);
+ var f=Math.round(Math.random()*j+1);
+ }
+var x=new Array(a,b,c,d,e,f);
+if ((x[0] == x[1]) || (x[0] == x[2]) || (x[0] == x[3]) || (x[0] == x[3]) || (x[0] == x[5]) ||
+    (x[1] == x[2]) || (x[1] == x[3]) || (x[1] == x[4]) || (x[1] == x[5]) || 
+    (x[2] == x[3]) || (x[2] == x[4]) || (x[2] == x[5]) ||                        
+    (x[3] == x[4]) || (x[3] == x[5]) ||
+    (x[4] == x[5]) || (x[5] == x[4]))
+lotto();//restart 
+else
+ {
+ var y=x.toString();
+ var z=y.split(',');
+ for (i=0; i < z.length; i++)
+ {
+ z[i]=z[i]+" ";
+ if (z[i].length < 3)//add '0' to singles  
+ z[i]="0"+z[i]+" ";
+ }
+ z=z.sort();
+ Nos=z[0]+z[1]+z[2]+z[3]+z[4]+z[5];
+  if (document.all)
+  {document.all.layer1.innerHTML=Nos;}//OR Z!
+  else if (document.layers)
+  {
+  document.layers.layer1.document.open();
+  document.layers.layer1.document.write("<span style='position:absolute;top:0px;left:0px;font-family:Verdana;font-size:20px;color:#888888;text-align:center'>&nbsp;"+Nos+"</span>");
+  document.layers.layer1.document.close();
+  }
+  T=setTimeout('lotto()',10);
+ }
+}
+//-->
+</script>
+
+
+<table border='0' width=250 height=50>
+<tr valign='middle'>
+<td align='center'>
+<form name=form>
+<input type=button value='点击看看你有没有中将' onClick="lotto(),setTimeout('clearTimeout(T)',3000)">
+</form>
+<span id=layer1 class=a1>结果</span>
+</td>
+</tr>
+</table>
+<br>
+<br>
+<br>
+<center>按后需要等一会看结果</center>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

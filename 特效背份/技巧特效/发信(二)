@@ -1,0 +1,39 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中://-->
+
+<form name="addresses">
+请选择给谁发信<select name="list" onChange="update()">
+<option value="mailto:admin@some-site.com">email admin@some-site.com
+<option value="mailto:support@some-site.com">email support@some-site.com
+<option value="mailto:f_jinyi@163.com">email f_jinyi@163.com
+</select> 
+<a href="http://fengyi.b6.to">发信啦!</a>
+</form>
+<script language="javascript">
+
+<!--  begin
+pos = 9999;
+for(num=0;num<document.links.length;num++) {
+if (document.links[num].href.indexOf("updatelink") != -1) {
+pos = num;
+num = 5000;
+   }
+}
+function update() {
+if (pos!=9999) {
+sel = document.addresses.list.selectedIndex;
+document.links[pos].href = document.addresses.list[sel].value;
+   }
+}
+update();
+// end -->
+</script>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

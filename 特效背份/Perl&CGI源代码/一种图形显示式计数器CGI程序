@@ -1,0 +1,54 @@
+<table border="1" bgcolor="#F5DE38" width="81">
+<tr>
+<td width="75"><img src="http://gzcatv.huyt.net/cgi-bin/counter.cgi?position=5" width="15"
+height="17"><img src="http://gzcatv.huyt.net/cgi-bin/counter.cgi?position=4" width="15"
+height="17"><img src="http://gzcatv.huyt.net/cgi-bin/counter.cgi?position=3" width="15"
+height="17"><img src="http://gzcatv.huyt.net/cgi-bin/counter.cgi?position=2" width="15"
+height="17"><img src="http://gzcatv.huyt.net/cgi-bin/counter.cgi?position=1" width="15"
+height="17"></td>
+</tr>
+</table>
+上面一段代码是用作调用此程序的HTML代码。在要显示计数的地方放上此段代码即可。
+###########################################################
+#!/usr/bin/perl
+$counterfile = "counter/counter.txt"; #counter.txt（计数器的数据库文件）的相对路径
+$imagefile{'0'}="counter/0.gif"; # 0.gif（数字图片文件）的相对路径
+$imagefile{'1'}="counter/1.gif"; 
+$imagefile{'2'}="counter/2.gif"; 
+$imagefile{'3'}="counter/3.gif"; 
+$imagefile{'4'}="counter/4.gif"; 
+$imagefile{'5'}="counter/5.gif"; 
+$imagefile{'6'}="counter/6.gif"; 
+$imagefile{'7'}="counter/7.gif"; 
+$imagefile{'8'}="counter/8.gif"; 
+$imagefile{'9'}="counter/9.gif"; 
+######################
+$|=1;
+@querys = split(/&/, $ENV{'QUERY_STRING'});
+foreach $query (@querys) {
+($name, $value) = split(/=/, $query);
+$FORM{$name} = $value;}
+$position="$FORM{'position'}";
+#上面程序段为接收浏览器送来的数据处理段
+######################
+open(NUMBER,"$counterfile");#用只读方式打开记录库文件
+$number=<NUMBER>;#将库文件内的数据赋给变量$number
+close(NUMBER);#关闭数据库
+$number++;#记录数加一
+if ($position==1) {#如果$position（浏览器端送来的数据）等于一，则将新数据写如数据库
+open(NUMBER,">$counterfile");
+print NUMBER "$number";
+close(NUMBER);}
+if (($position>0) && ($position<=length($number))) {#如果$position大于0并且小于$number的字段位数（length($number)是截取$number的字段位数的语句）
+$positionnumber=substr($number,(length($number)-$position),1);#截取从$number的右边开始的第length($number)-$position)}后的一个字符。
+else {#否则$positionnumber=0
+$positionnumber="0";}
+if ($imagefile{$positionnumber}) {#如果$imagefile{$positionnumber}已定义
+$imagereturn=$imagefile{$positionnumber};}#则有$imagereturn=$imagefile{$positionnumber}
+else {#否则$imagereturn=$imagefile{'0'}
+$imagereturn=$imagefile{'0'};}
+print "Content-type: image/gif\n\n";设定输出格式为GIF图形格式
+open(IMAGE,"<$imagereturn");
+print <IMAGE>;#显示$imagereturn内容的图片文件。
+close(IMAGE);
+exit 0;#程序结束   

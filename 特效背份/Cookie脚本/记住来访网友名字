@@ -1,0 +1,61 @@
+<script language="javascript">
+<!--
+var username = GetCookie('username');
+if (username == null) {
+username = prompt('第一次光临我的主页的朋友，请输入你的名字',"");
+  if (username == null) {
+    alert('Its ok if you dont want to tell me your name');
+    username = 'WebSurfer';
+  } else {
+    // don't set the username cookie.... because the user refused to tell you.
+    // they will be prompted next time....
+    pathname = location.pathname;
+    myDomain = pathname.substring(0,pathname.lastIndexOf('/')) +'/';
+    // set expiry date to 1 year from now.
+    var largeExpDate = new Date ();
+    largeExpDate.setTime(largeExpDate.getTime() + (365 * 24 * 3600 * 1000));
+    SetCookie('username',username,largeExpDate,myDomain);
+  }
+}
+function getCookieVal (offset) {
+   var endstr = document.cookie.indexOf (";", offset);
+   if (endstr == -1)
+     endstr = document.cookie.length;
+  return unescape(document.cookie.substring(offset, endstr));
+}
+function GetCookie (name) {
+        var arg = name + "=";
+      var alen = arg.length;
+        var clen = document.cookie.length;
+        var i = 0;
+        while (i < clen) {
+               var j = i + alen;
+                if (document.cookie.substring(i, j) == arg)
+                        return getCookieVal (j);
+                i = document.cookie.indexOf(" ", i) + 1;
+                        if (i == 0)
+                                break;
+               }
+   return null;
+}
+
+function SetCookie (name, value) {
+        var argv = SetCookie.arguments;
+        var argc = SetCookie.arguments.length;
+        var expires = (argc > 2) ? argv[2] : null;
+        var path = (argc > 3) ? argv[3] : null;
+        var domain = (argc > 4) ? argv[4] : null;
+        var secure = (argc > 5) ? argv[5] : false;
+        document.cookie = name + "=" + escape (value) +
+                ((expires == null) ? "" : ("; expires=" +
+expires.toGMTString())) +
+                ((path == null) ? "" : ("; path=" + path)) +
+                ((domain == null) ? "" : ("; domain=" + domain)) +
+                ((secure == true) ? "; secure" : "");
+
+}
+document.write('<p>谢谢您光临我的网页, '+username);
+//--></script>
+
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

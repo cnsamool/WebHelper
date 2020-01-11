@@ -1,0 +1,23 @@
+与列表一样，也可以通过数组变量创建关联数组，当然，其元素数目应该为偶数，如： 
+@fruit = ("apples",17,"bananas",9,"oranges","none"); 
+%fruit = @fruit; 
+反之，可以把关联数组赋给数组变量，如： 
+%fruit = ("grapes",11,"lemons",27); 
+@fruit = %fruit; 
+注意，此语句中元素次序未定义，那么数组变量@fruit可能为("grapes",11,"lemons",27)或("lemons",27,"grapes",11)。 
+关联数组变量之间可以直接赋值，如：%fruit2 = %fruit1; 还可以把数组变量同时赋给一些简单变量和一个关联数组变量，如： 
+($var1, $var2, %myarray) = @list; 
+此语句把@list的第一个元素赋给$var1，第二个赋给$var2，其余的赋给%myarray。 
+最后，关联数组可以通过返回值为列表的内嵌函数或用户定义的子程序来创建，下例中把split()函数的返回值--一个列表--赋给一个关联数组变量。 
+
+1: #!/usr/local/bin/perl 
+2: 
+3: $inputline = ; 
+4: $inputline =~ s/^s+|s+n$//g; 
+5: %fruit = split(/s+/, $inputline); 
+6: print ("Number of bananas: $fruit{"bananas"}n"); 
+
+运行结果如下： 
+
+oranges 5 apples 7 bananas 11 cherries 6 
+Number of bananas: 11 

@@ -1,0 +1,70 @@
+<STYLE type=text/css>
+#slidemenubar2 {BACKGROUND-COLOR:#808080;
+FONT: 9pt/20pt "宋体"; LEFT: -110pt; POSITION: absolute; TOP: 100pt; WIDTH:80pt}
+BODY {FONT-SIZE: 9pt; MARGIN: 0pt}
+#slidemenubar { BACKGROUND-COLOR: #f3f3f3;FONT: 9pt/20pt "宋体"; LEFT: -110pt; POSITION: absolute; TOP: 100pt; WIDTH: 80pt; layer-background-color: lightyellow}
+</STYLE>
+<SCRIPT language=JavaScript>
+if (document.all)
+document.write('<div id="slidemenubar2" style="left:-100" onMouseover="pull()" onMouseout="draw()">')
+</SCRIPT>
+<LAYER id=slidemenubar onmouseout=draw() onmouseover=pull()>
+<SCRIPT language=JavaScript>
+var sitems=new Array()
+var sitemlinks=new Array()
+sitems[0]="小小优化师"
+sitemlinks[0]="http://samool.533.net"
+sitems[1]="网页助手"
+sitemlinks[1]="http://samool.533.net"
+for (i=0;i<=sitems.length-1;i++)
+document.write('<a href='+sitemlinks[i]+'><font color=#8000FF>'+sitems[i]+'</a><br>')
+</SCRIPT>
+</LAYER>
+<SCRIPT language=JavaScript>
+function regenerate(){
+window.location.reload()
+}
+function regenerate2(){
+if (document.layers)
+setTimeout("window.onresize=regenerate",400)
+}
+window.onload=regenerate2
+if (document.all){
+document.write('</div>')
+themenu=document.all.slidemenubar2.style
+rightboundary=0
+leftboundary=-100
+}
+else{
+themenu=document.layers.slidemenubar
+rightboundary=100
+leftboundary=10
+}
+function pull(){
+if (window.drawit)
+clearInterval(drawit)
+pullit=setInterval("pullengine()",50)
+}
+function draw(){
+clearInterval(pullit)
+drawit=setInterval("drawengine()",50)
+}
+function pullengine(){
+if (document.all&&themenu.pixelLeft<rightboundary)
+themenu.pixelLeft+=5
+else if(document.layers&&themenu.left<rightboundary)
+themenu.left+=5
+else if (window.pullit)
+clearInterval(pullit)
+}
+function drawengine(){
+if (document.all&&themenu.pixelLeft>leftboundary)
+themenu.pixelLeft-=5
+else if(document.layers&&themenu.left>leftboundary)
+themenu.left-=5
+else if (window.drawit)
+clearInterval(drawit)
+}
+</SCRIPT>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

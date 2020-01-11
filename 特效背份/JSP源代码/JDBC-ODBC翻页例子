@@ -1,0 +1,189 @@
+一、运行前准备 
+
+　　 建议了一个MS SQLServer7数据库 DNS，名称为：Test_DB 
+
+　　 数据库中有一个表：guestbook字段为：name(varchar),email(varchar),body(text) 
+
+　　 数据库用户为sa 密码空，可以自己修改的。 
+
+二、代码 
+
+<%@ page contentType="text/html;charset=gb2312"%>
+
+<% 
+
+//变量声明 
+
+java.sql.Connection sqlCon; //数据库连接对象 
+
+java.sql.Statement sqlStmt; //SQL语句对象 
+
+java.sql.ResultSet sqlRst; //结果集对象 
+
+java.lang.String strCon; //数据库连接字符串 
+
+java.lang.String strSQL; //SQL语句 
+
+int intPageSize; //一页显示的记录数 
+
+int intRowCount; //记录总数 
+
+int intPageCount; //总页数 
+
+int intPage; //待显示页码 
+
+java.lang.String strPage; 
+
+int i,j,k; //设置一页显示的记录数 
+
+intPageSize = 5; //取得待显示页码 
+
+strPage = request.getParameter("page"); 
+
+if(strPage==null){
+
+//表明在QueryString中没有page这一个参数，此时显示第一页数据 
+
+intPage = 1; 
+
+} else{
+
+//将字符串转换成整型 
+
+intPage = java.lang.Integer.parseInt(strPage); 
+
+if(intPage<1) intPage = 1; }
+
+//装载JDBC-ODBC驱动程序 
+
+Class.forName("sun.jdbc.odbc.JdbcOdbcDriver"); 
+
+//设置数据库连接字符串 
+
+strCon = "jdbc:odbc:Test_DB"; 
+
+//连接数据库 
+
+sqlCon = java.sql.DriverManager.getConnection(strCon,"sa",""); 
+
+//创建SQL语句对象 
+
+sqlStmt = sqlCon.createStatement(); 
+
+//获取记录总数 
+
+strSQL = "select count(*) from guestbook"; 
+
+sqlRst = sqlStmt.executeQuery(strSQL); 
+
+//执行SQL语句并取得结果集 
+
+sqlRst.next(); //记录集刚打开的时候，指针位于第一条记录之前 
+
+intRowCount = sqlRst.getInt(1); 
+
+sqlRst.close(); //关闭结果集 
+
+//记算总页数 
+
+intPageCount = (intRowCount+intPageSize-1) / intPageSize; 
+
+//调整待显示的页码 if(intPage>intPageCount) intPage = intPageCount; 
+
+//设置获取数据SQL语句 
+
+strSQL = "select name,email,body from guestbook"; 
+
+//执行SQL语句并取得结果集 
+
+sqlRst = sqlStmt.executeQuery(strSQL);
+
+//将记录指针定位到待显示页的第一条记录上 
+
+i = (intPage-1) * intPageSize; 
+
+for(j=0;j<i;j++) sqlRst.next(); %> 
+
+<html> 
+
+<head>
+
+<title>JSP数据库操作例程 - 数据分页显示 - JDBC-ODBC</title>
+
+</head> 
+
+<body> 
+
+<p align=center>jdbc-odbc留言版</p> 
+
+<table border="1" cellspacing="0" cellpadding="0" width=600 align=center> 
+
+<% 
+
+//显示数据 
+
+i = 0; 
+
+while(i<intPageSize && sqlRst.next()){ %> 
+
+<tr> 
+
+<td>姓名：<%=sqlRst.getString(1)%></td>
+
+<td>邮件：<%=sqlRst.getString(2)%></td>
+
+</tr> 
+
+<tr> 
+
+<td colspan=2><%=sqlRst.getString(3)%></td>
+
+</tr>
+
+<% i++; } %>
+
+<tr> 
+
+<td colspan=2 align=center> 
+
+第<%=intPage%>页 共<%=intPageCount%>页 
+
+<%if(intPage<intPageCount){%>
+
+<a href="mssql.jsp?page=<%=intPage+1%>">下一页</a><%
+
+}
+
+%> 
+
+<%if(intPage>1){%>
+
+<a href="mssql.jsp?page=<%=intPage-1%>">上一页</a><%
+
+}
+
+%> 
+
+</td> 
+
+</tr>
+
+</table> </body> 
+
+</html> 
+
+<% 
+
+//关闭结果集 
+
+sqlRst.close(); 
+
+//关闭SQL语句对象 
+
+sqlStmt.close(); 
+
+//关闭数据库
+
+sqlCon.close();
+
+%>

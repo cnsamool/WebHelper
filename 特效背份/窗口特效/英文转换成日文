@@ -1,0 +1,282 @@
+
+<!--第一步:把如下代码加入<head>区域中-->
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Original:  Momoko Sakura -->
+<!-- Modified By:  Ronnie T. Moore, Editor -->
+
+<!-- This script and many more are available free online at -->
+<!-- The JavaScript Source!! http://javascript.internet.com -->
+
+<!-- Begin
+function isvowel(v) {
+if ((v == "a") || (v == "e") || (v == "i") || (v == "o") || (v == "u")) {
+return true;
+}
+else {
+return false;
+   }
+}
+function toJapanese(inp) {
+name1 = inp;
+otp = "";
+cnt = 0;
+k = "";
+l = "";
+inp = inp.toLowerCase();
+while (cnt <= inp.length - 1) {
+k = inp.charAt(cnt);
+if ((cnt + 1) > (inp.length - 1)) {
+l = "u";
+}
+else {
+l = inp.charAt(cnt+1);
+}
+if ((k == " ") || (k == "-") || (k == "'")) {
+otp = otp + k;
+cnt += 1;
+}
+if ((l == "y") && (!isvowel(k))) {
+l = "i";
+}
+if (k == "x") {
+if (cnt == 0) {
+k = "z";
+}
+else {
+k = "k";
+   }
+}
+if (k == "g") {
+if ((l == "e") || (l == "i") || (l == "y")) {
+k = "j";
+}
+else { 
+if (isvowel(l)) {
+otp = otp + k + l;
+cnt += 2;
+}
+else {
+otp = otp + k + "u";
+cnt += 1;
+      }
+   }
+}
+if (k == "j") {
+if ((l == "a") || (l == "u") || (l == "o")) {
+otp = otp + k + l;
+cnt +=2;
+}
+if ((l == "e") || (l == "i")) {
+otp = otp + "ji";
+cnt += 2;
+   }
+}
+if (k == "y") {
+if ((l == "a") || (l == "u") || (l == "o")) {
+otp = otp + k + l;
+cnt += 2;
+}
+else {
+k = "i";
+   }
+}
+if (k == "m") {
+if (isvowel(l)) {
+otp = otp + k + l;
+cnt += 2;
+}
+else {
+if ((l == "b") || (l == "m") || (l == "p")) {
+otp = otp + "n";
+cnt += 1;
+}
+else {
+otp = otp + "mu";
+cnt += 1;
+      }
+   }
+}
+if (isvowel(k) || ((k == "n") && (!isvowel(l)))) {
+otp = otp + k;
+cnt = cnt + 1;
+}
+if (k == "q") {
+k = "k";
+}
+if (k == "v") {
+k = "b";
+} 
+if (k == "l") {
+k = "r";}
+if (k == "c") {
+if (l == "h") {
+otp = otp + "chi"; 
+cnt += 3;
+}
+else {
+if ((l == "e") || (l == "i") || (l == "y")) {
+k = "s";
+}
+else {
+k = "k";
+      }
+   }
+}
+if (k == "w") {
+if ((l == "a") || (l == "o")) {
+otp = otp + k + l;
+cnt += 2;
+}
+else {
+if ((l == "i") || (l=="e")) {
+otp = otp + "u" + l;
+cnt += 2;
+}
+else {
+k = "b";
+      }
+   }
+}
+if ((k == "b") || (k == "k") || (k == "r")) {
+if (isvowel(l)) {
+otp = otp + k + l;
+cnt += 2;
+}
+else {
+otp = otp + k + "u";
+cnt += 1;
+   }
+}
+if (k == "d") {
+if ((l == "i") || (l == "a") || (l == "e")) {
+otp = otp + "de";
+cnt += 2;
+}
+if ((l == "u") || (l == "o")) {
+otp = otp + "do";
+cnt += 2;
+}
+if (!isvowel(l)) {
+otp = otp + "de";
+cnt += 1;
+   }
+}
+if (k == "f") {
+otp = otp + "fu"; 
+cnt += 1;
+if (isvowel(l)) {
+cnt += 1;
+   }
+}
+if (k == "h") {
+if (l == "u") {
+otp = otp + "fu";
+cnt += 2;
+}
+else {
+if (isvowel(l)) {
+otp = otp + k + l;
+cnt += 2;
+}
+else {
+otp = otp + "fu";
+cnt += 1;
+      }
+   }
+}
+if (k == "z") {
+if (l == "i") {
+k = "j";
+} 
+else {
+if (isvowel(l)) {
+otp = otp + k + l;
+cnt += 2;
+}
+else {
+otp = otp + "zu";
+cnt += 1;
+      }
+   }
+}
+if (k == "n") {
+if (isvowel(l)) {
+otp = otp + k + l;
+cnt += 2;
+   }
+}
+if (k == "p") {
+if (l == "h") {
+otp = otp + "fu";
+cnt += 2;
+}
+if (isvowel(l)) {
+otp = otp + k + l;
+cnt += 2;
+}
+else {
+otp = otp + "pu";
+cnt += 1;
+   }
+}
+if (k == "s") {
+if ((l == "i") || (l == "h")) {
+otp = otp + "shi";
+cnt += 2;
+if (l == "h") {
+cnt += 1;
+   }
+}
+else {
+if (isvowel(l)) {
+otp = otp + k + l;
+cnt += 2;
+}
+else {
+otp = otp + "su";
+cnt += 1;
+      }
+   }
+}
+if (k == "t") { 
+if ((l == "a") || (l == "e") || (l == "o")) {
+otp = otp + k + l;
+cnt += 2;
+}
+if ((l == "u") || ((!isvowel(l)) && (!(l == "h")))) {
+otp = otp + "tsu";
+cnt += 1;
+if (l == "u") {
+cnt += 1;
+} 
+if ((l == "s") && (inp.charAt(cnt + 1) == "u")) {
+cnt += 2;
+   }
+}
+if (l == "i") {
+otp = otp + "chi";
+cnt += 2;
+}
+if (l == "h") {
+otp = otp + "fu";
+cnt += 3;
+      }
+   }
+}
+name2 = "" + otp.charAt(0).toUpperCase();
+for (j = 1; j <= otp.length - 1; j++) {
+name2 += otp.charAt(j);
+}
+alert(name1 + " is pronounced in Japanese as: \"" + name2 + "\"");
+}
+//  End -->
+</script>
+
+
+<!--第二步:把如下代码加入<body>区域中-->
+<form>
+Your Name:  <input type=text name="personname" size=15>
+<input type=button value="Show Japanese Name!" onClick="toJapanese(this.form.personname.value);">
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

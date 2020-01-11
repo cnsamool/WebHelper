@@ -1,0 +1,27 @@
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+function expandingWindow(website) {
+var heightspeed = 2; // vertical scrolling speed (higher = slower)
+var widthspeed = 7;  // horizontal scrolling speed (higher = slower)
+var leftdist = 0;    // distance to left edge of window
+var topdist = 0;     // distance to top edge of window
+if (document.all) {
+var winwidth = window.screen.availWidth - leftdist;
+var winheight = window.screen.availHeight - topdist;
+var sizer = window.open("","","left=" + leftdist + ",top=" + topdist + ",width=1,height=1,scrollbars=yes");
+for (sizeheight = 1; sizeheight < winheight; sizeheight += heightspeed) {
+sizer.resizeTo("1", sizeheight);
+}
+for (sizewidth = 1; sizewidth < winwidth; sizewidth += widthspeed) {
+sizer.resizeTo(sizewidth, sizeheight);
+}
+sizer.location = website;
+}
+else
+window.location = website;
+}
+//  End -->
+</script>
+<a href="http://samool.533.net/" onClick="expandingWindow('http://samool.533.net');return false;">点击测试效果</a></body>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

@@ -1,0 +1,20 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<!--把如下代码加入<body>区域中//-->
+<form action="file:///c|/"><input type="submit" value="c:\ drive"></form>
+<p>
+<form action="file:///a|/"><input type="submit" value="a:\ drive"></form>
+<p>
+<form action="file:///b|/"><input type="submit" value="b:\ drive"></form>
+<p>
+<form action="file:///d|/"><input type="submit" value="d:\ drive"></form>
+<p>
+<form action="file:///e|/"><input type="submit" value="e:\ drive"></form>
+
+</body>
+</html>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

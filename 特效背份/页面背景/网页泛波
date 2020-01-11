@@ -1,0 +1,46 @@
+<!--本特效需要ring.gif图片支持-->
+<!--C:\webhelpview\webhelpview 有这个文件-->
+
+<script language="JavaScript">
+<!-- 
+I=new Image();
+I.src="0109ring.gif";
+if (document.all){
+document.write('<div id="C" style="position:absolute;top:0px;left:0px">');
+document.write('<div style="position:relative">');
+document.write('<img  id="pic" src="ring.gif" style="position:absolute;top:0px;left:0px">');
+document.write('</div></div>');
+}
+S=null,fadeStep=4,fade=80,currentStep=0,step=2,RY=0,RX=0,Yarea=0,Xarea=0;
+function Expand(){
+if (document.all){
+pic.width=currentStep*2;
+pic.height=currentStep*2;
+pic.style.top= -currentStep;
+pic.style.left= -currentStep;
+pic.style.filter='alpha(opacity='+fade+')';
+currentStep+=step;
+if (currentStep > 20) fade-=fadeStep;
+if (fade < -50) 
+{
+currentStep=0;
+fade=80;
+Yarea=window.document.body.clientHeight-80;
+Xarea=window.document.body.clientWidth-80;
+RY=Math.round(50+Math.random()*Yarea);
+RX=Math.round(50+Math.random()*Xarea);
+C.style.top=RY+document.body.scrollTop;
+C.style.left=RX+document.body.scrollLeft;
+}
+S=setTimeout('Expand()',40);
+}
+}
+if (document.all)window.onload=Expand; 
+
+if (document.layers)
+ {
+ alert("Your Browser is not capable of displaying this effect.\nPick another.");
+ opener.gO();window.close();
+ }
+</script>
+<div style="position:relative"></div>

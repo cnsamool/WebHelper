@@ -1,0 +1,16 @@
+<style>
+  .start {color:black; background:red}
+</style>
+<script LANGUAGE="JAVASCRIPT">
+  function highlightButton(s) {
+    if ("INPUT"==event.srcElement.tagName)
+      event.srcElement.className=s
+  }
+</script>
+
+<form name="form2" onmouseover="highlightButton('start')" onmouseout="highlightButton('')">
+<center><p>
+<input type="button" value="按这里试试" name="B2"></p>
+</form>
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->

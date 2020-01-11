@@ -1,0 +1,19 @@
+<!--脚本说明:
+第一步:把如下代码加入<body>区域中-->
+<SCRIPT language=VBScript>
+dim c,numgc
+c=-100000
+numgc=document.body.sourceIndex
+sub SF
+c=c+2
+Document.all(numgc).style.BackgroundPosition="0 "&c
+id=SetTimeOut("SF",64,"VBScript")
+end sub
+SF
+</SCRIPT>
+
+
+<!--第二步:把<body>换为-->
+<body background="image1.gif" onLoad="ob(),setNum(),setInterval('timer()',100);setInterval('runClock()',100)">
+<!--本网页由《网页助手V1.1》制作    版权所有：傻猫软件 -->
+<!--请访问傻猫软件官方网站   http://samool.533.net  -->
